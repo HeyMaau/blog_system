@@ -1,0 +1,145 @@
+package cn.manpok.blogsystem.pojo;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "articles")
+public class BlogArticles {
+
+    @Id
+    private String id;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "user_id")
+    private String userId;
+    @Column(name = "category_id")
+    private String categoryId;
+    @Column(name = "content")
+    private String content;
+    @Column(name = "type")
+    private String type;
+    @Column(name = "state")
+    private String state;
+    @Column(name = "summary")
+    private String summary;
+    @Column(name = "labels")
+    private String labels;
+    @Column(name = "view_count")
+    private long viewCount;
+    @Column(name = "create_time")
+    private java.sql.Timestamp createTime;
+    @Column(name = "update_time")
+    private java.sql.Timestamp updateTime;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+
+    public String getLabels() {
+        return labels;
+    }
+
+    public void setLabels(String labels) {
+        this.labels = labels;
+    }
+
+
+    public long getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(long viewCount) {
+        this.viewCount = viewCount;
+    }
+
+
+    public java.sql.Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(java.sql.Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+
+    public java.sql.Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(java.sql.Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+}

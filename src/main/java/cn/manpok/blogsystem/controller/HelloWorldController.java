@@ -1,0 +1,16 @@
+package cn.manpok.blogsystem.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/test")
+public class HelloWorldController {
+
+    @GetMapping("/hello-world")
+    public String helloWorld() {
+        System.out.println("Hello World!");
+        return "hello world!";
+    }
+}

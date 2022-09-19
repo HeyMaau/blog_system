@@ -1,3 +1,9 @@
 spring:
   application:
     name: blog_system
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.144.128:3306/blog?characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
