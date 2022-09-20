@@ -1,32 +1,17 @@
-2022-09-19 15:27:12.418 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 51848 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
-2022-09-19 15:27:12.419 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
-2022-09-19 15:27:13.295 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
-2022-09-19 15:27:13.295 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
-2022-09-19 15:27:13.296 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-09-19 15:27:13.357 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
-2022-09-19 15:27:13.441 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
-2022-09-19 15:27:13.537 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
-2022-09-19 15:27:13.562 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-09-19 15:27:13.589 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-09-19 15:27:13.670 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-09-19 15:27:13.734 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2022-09-19 15:27:14.072 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-09-19 15:27:14.407 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
-2022-09-19 15:27:14.491 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 2.443 seconds (JVM running for 2.973)
-2022-09-19 15:27:52.707 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 58764 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
-2022-09-19 15:27:52.708 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
-2022-09-19 15:27:53.590 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
-2022-09-19 15:27:53.590 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
-2022-09-19 15:27:53.590 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
-2022-09-19 15:27:53.650 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
-2022-09-19 15:27:53.731 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
-2022-09-19 15:27:53.827 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
-2022-09-19 15:27:53.851 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-09-19 15:27:53.878 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
-2022-09-19 15:27:53.954 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-09-19 15:27:54.018 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
-2022-09-19 15:27:54.359 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-09-19 15:27:54.693 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
-2022-09-19 15:27:54.777 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 2.428 seconds (JVM running for 2.897)
-2022-09-19 15:28:00.898 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2022-09-19 15:28:00.984 [ http-nio-8080-exec-1 ] - [ INFO  ] [ c.m.blogsystem.controller.HelloWorldController : 21 ] - login success!
+2022-09-20 09:24:08.809 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 61988 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-20 09:24:08.813 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-20 09:24:09.868 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-20 09:24:09.868 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-20 09:24:09.869 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-20 09:24:09.937 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-20 09:24:10.030 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-20 09:24:10.130 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-20 09:24:10.160 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-20 09:24:10.198 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-20 09:24:10.294 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-20 09:24:10.374 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-20 09:24:10.759 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-20 09:24:11.114 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-20 09:24:11.199 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 2.926 seconds (JVM running for 3.658)
+2022-09-20 09:24:47.518 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-20 09:24:47.620 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 18 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='abc', password='123', roles='null', avatar='null', email='null', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}

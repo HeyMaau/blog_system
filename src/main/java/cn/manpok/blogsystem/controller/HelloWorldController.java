@@ -18,7 +18,7 @@ public class HelloWorldController {
 
     @PostMapping("/login")
     public ResponseResult login(@RequestBody User user) {
-        log.info("login success!");
+        log.info("login success! ");
         return ResponseResult.SUCCESS().setData(user);
     }
 }
