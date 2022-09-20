@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "articles")
-public class BlogArticles {
+public class BlogArticle {
 
     @Id
     private String id;
@@ -142,4 +142,21 @@ public class BlogArticles {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "BlogArticle{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", userId='" + userId + '\'' +
+                ", categoryId='" + categoryId + '\'' +
+                ", content='" + content + '\'' +
+                ", type='" + type + '\'' +
+                ", state='" + state + '\'' +
+                ", summary='" + summary + '\'' +
+                ", labels='" + labels + '\'' +
+                ", viewCount=" + viewCount +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

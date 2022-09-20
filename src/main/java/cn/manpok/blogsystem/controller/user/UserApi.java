@@ -5,6 +5,9 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 用户管理API
+ */
 @Slf4j
 @RestController
 @RequestMapping("/user")
