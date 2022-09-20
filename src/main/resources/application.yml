@@ -7,3 +7,7 @@ spring:
     password: root
     url: jdbc:mysql://192.168.144.128:3306/blog?characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
