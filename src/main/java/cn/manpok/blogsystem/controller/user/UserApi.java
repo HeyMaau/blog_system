@@ -108,4 +108,27 @@ public class UserApi {
         log.info("修改用户信息 ----> " + blogUser.toString());
         return null;
     }
+
+    /**
+     * 删除用户
+     *
+     * @param userID
+     * @return
+     */
+    @DeleteMapping("/{userID}")
+    public ResponseResult deleteUser(@PathVariable("userID") String userID) {
+        return null;
+    }
+
+    /**
+     * 获取所有用户信息
+     *
+     * @param page
+     * @param size
+     * @return
+     */
+    @GetMapping("/list")
+    public ResponseResult getUsers(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return null;
+    }
 }

@@ -98,4 +98,17 @@ public class BlogLooper {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "BlogLooper{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", order=" + order +
+                ", state='" + state + '\'' +
+                ", targetUrl='" + targetUrl + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

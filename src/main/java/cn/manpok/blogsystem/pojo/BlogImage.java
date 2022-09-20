@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "images")
-public class BlogImages {
+public class BlogImage {
 
     @Id
     private String id;
@@ -76,4 +76,15 @@ public class BlogImages {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "BlogImage{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", url='" + url + '\'' +
+                ", state='" + state + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

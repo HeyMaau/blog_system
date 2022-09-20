@@ -1,6 +1,6 @@
 package cn.manpok.blogsystem.controller.admin;
 
-import cn.manpok.blogsystem.pojo.BlogArticle;
+import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +16,12 @@ public class CategoryApi {
     /**
      * 添加分类
      *
-     * @param blogArticle
+     * @param blogCategory
      * @return
      */
     @PostMapping
-    public ResponseResult addCategory(@RequestBody BlogArticle blogArticle) {
-        log.info("添加分类 ----> " + blogArticle.toString());
+    public ResponseResult addCategory(@RequestBody BlogCategory blogCategory) {
+        log.info("添加分类 ----> " + blogCategory.toString());
         return null;
     }
 
@@ -40,12 +40,12 @@ public class CategoryApi {
     /**
      * 修改分类
      *
-     * @param blogArticle
+     * @param blogCategory
      * @return
      */
     @PutMapping
-    public ResponseResult updateCategory(@RequestBody BlogArticle blogArticle) {
-        log.info("修改分类 ----> " + blogArticle.toString());
+    public ResponseResult updateCategory(@RequestBody BlogCategory blogCategory) {
+        log.info("修改分类 ----> " + blogCategory.toString());
         return null;
     }
 
