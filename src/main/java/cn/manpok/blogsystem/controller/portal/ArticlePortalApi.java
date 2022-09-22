@@ -1,4 +1,4 @@
-package cn.manpok.blogsystem.controller.portal.article;
+package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
 import lombok.extern.slf4j.Slf4j;

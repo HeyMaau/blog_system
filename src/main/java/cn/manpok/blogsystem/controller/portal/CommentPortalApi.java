@@ -1,4 +1,4 @@
-package cn.manpok.blogsystem.controller.portal.comment;
+package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.pojo.BlogComment;
 import cn.manpok.blogsystem.response.ResponseResult;
@@ -46,6 +46,18 @@ public class CommentPortalApi {
     @PutMapping
     public ResponseResult updateComment(@RequestBody BlogComment blogComment) {
         log.info("修改评论 ----> " + blogComment.toString());
+        return null;
+    }
+
+    /**
+     * 门户获取文章下的所有评论
+     *
+     * @param articleID
+     * @return
+     */
+    @GetMapping("/list/{articleID}")
+    public ResponseResult getCommentsByArticle(@PathVariable("articleID") String articleID) {
+        log.info("门户获取文章下的所有评论 ----> " + articleID);
         return null;
     }
 }
