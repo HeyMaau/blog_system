@@ -55,7 +55,7 @@ public class ImageApi {
      * @param imageID
      * @return
      */
-    @GetMapping("{imageID}")
+    @GetMapping("/{imageID}")
     public ResponseResult getCategory(@PathVariable("imageID") String imageID) {
         log.info("获取单张图片 ----> " + imageID);
         return null;

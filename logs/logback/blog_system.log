@@ -292,7 +292,7 @@
 		cn.manpok.blogsystem.pojo.BlogCategory
 		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
-		cn.manpok.blogsystem.pojo.BlogFriends
+		cn.manpok.blogsystem.pojo.BlogFriendLink
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
@@ -667,51 +667,51 @@
 2022-09-20 11:01:09.136 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogDailyViewCount:viewCount]
 2022-09-20 11:01:09.136 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for viewCount
 2022-09-20 11:01:09.136 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property viewCount
-2022-09-20 11:01:09.136 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:09.136 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:09.137 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:01:09.137 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogFriends
-2022-09-20 11:01:09.137 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriends on table friends
+2022-09-20 11:01:09.137 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriendLink on table friends
 2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:id]
+2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:id]
 2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:01:09.138 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:createTime]
+2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:createTime]
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=logo, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property logo with lazy=false
-2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:logo]
+2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:logo]
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for logo
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property logo
 2022-09-20 11:01:09.139 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property name with lazy=false
-2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:name]
+2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:name]
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for name
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property name
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=order, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property order with lazy=false
-2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:order]
+2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:order]
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for order
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property order
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:state]
+2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:state]
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:01:09.140 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:updateTime]
+2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:updateTime]
 2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=url, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property url with lazy=false
-2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:url]
+2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:url]
 2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for url
 2022-09-20 11:01:09.141 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property url
 2022-09-20 11:01:09.142 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogImage
@@ -1068,8 +1068,8 @@
 2022-09-20 11:01:09.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLabels
 2022-09-20 11:01:09.418 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogDailyViewCount] is safe
 2022-09-20 11:01:09.419 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogDailyViewCount
-2022-09-20 11:01:09.430 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:01:09.430 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:09.430 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:01:09.430 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:09.443 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:01:09.443 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:01:09.452 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
@@ -1129,7 +1129,7 @@
           - suffixed key columns - {id1_3_0_}
 
 2022-09-20 11:01:09.553 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogDailyViewCount [NONE]: select blogdailyv0_.id as id1_3_0_, blogdailyv0_.create_time as create_t2_3_0_, blogdailyv0_.update_time as update_t3_3_0_, blogdailyv0_.view_count as view_cou4_3_0_ from daily_view_count blogdailyv0_ where blogdailyv0_.id=?
-2022-09-20 11:01:09.554 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:09.554 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:09.554 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from friends where id =?
 2022-09-20 11:01:09.554 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogfriend_.id, blogfriend_.create_time as create_t2_4_, blogfriend_.logo as logo3_4_, blogfriend_.name as name4_4_, blogfriend_.`order` as order5_4_, blogfriend_.state as state6_4_, blogfriend_.update_time as update_t7_4_, blogfriend_.url as url8_4_ from friends blogfriend_ where blogfriend_.id=?
 2022-09-20 11:01:09.554 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into friends (create_time, logo, name, `order`, state, update_time, url, id) values (?, ?, ?, ?, ?, ?, ?, ?)
@@ -1145,16 +1145,16 @@
 2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : url
 2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriends)
+2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriends, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriendLink, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
           - SQL table alias mapping - blogfriend0_
           - alias suffix - 0_
           - suffixed key columns - {id1_4_0_}
 
-2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriends [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
+2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriendLink [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
 2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from looper where id =?
 2022-09-20 11:01:09.555 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloglooper_.id, bloglooper_.create_time as create_t2_7_, bloglooper_.image_url as image_ur3_7_, bloglooper_.`order` as order4_7_, bloglooper_.state as state5_7_, bloglooper_.target_url as target_u6_7_, bloglooper_.title as title7_7_, bloglooper_.update_time as update_t8_7_ from looper bloglooper_ where bloglooper_.id=?
@@ -1673,7 +1673,7 @@
 		cn.manpok.blogsystem.pojo.BlogCategory
 		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
-		cn.manpok.blogsystem.pojo.BlogFriends
+		cn.manpok.blogsystem.pojo.BlogFriendLink
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
@@ -2045,51 +2045,51 @@
 2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogDailyViewCount:viewCount]
 2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for viewCount
 2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property viewCount
-2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogFriends
-2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriends on table friends
+2022-09-20 11:01:58.284 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriendLink on table friends
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:id]
+2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:id]
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:createTime]
+2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:createTime]
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=logo, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property logo with lazy=false
-2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:logo]
+2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:logo]
 2022-09-20 11:01:58.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for logo
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property logo
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property name with lazy=false
-2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:name]
+2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:name]
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for name
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property name
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=order, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property order with lazy=false
-2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:order]
+2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:order]
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for order
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property order
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:state]
+2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:state]
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:updateTime]
+2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:updateTime]
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:01:58.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=url, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property url with lazy=false
-2022-09-20 11:01:58.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:url]
+2022-09-20 11:01:58.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:url]
 2022-09-20 11:01:58.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for url
 2022-09-20 11:01:58.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property url
 2022-09-20 11:01:58.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogImage
@@ -2449,8 +2449,8 @@
 2022-09-20 11:01:58.413 [ HikariPool-1 connection adder ] - [ DEBUG ] [ com.zaxxer.hikari.pool.HikariPool : 421 ] - HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
 2022-09-20 11:01:58.477 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogDailyViewCount] is safe
 2022-09-20 11:01:58.477 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogDailyViewCount
-2022-09-20 11:01:58.485 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:01:58.486 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:58.485 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:01:58.486 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:58.494 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:01:58.494 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:01:58.502 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
@@ -2510,7 +2510,7 @@
           - suffixed key columns - {id1_3_0_}
 
 2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogDailyViewCount [NONE]: select blogdailyv0_.id as id1_3_0_, blogdailyv0_.create_time as create_t2_3_0_, blogdailyv0_.update_time as update_t3_3_0_, blogdailyv0_.view_count as view_cou4_3_0_ from daily_view_count blogdailyv0_ where blogdailyv0_.id=?
-2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from friends where id =?
 2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogfriend_.id, blogfriend_.create_time as create_t2_4_, blogfriend_.logo as logo3_4_, blogfriend_.name as name4_4_, blogfriend_.`order` as order5_4_, blogfriend_.state as state6_4_, blogfriend_.update_time as update_t7_4_, blogfriend_.url as url8_4_ from friends blogfriend_ where blogfriend_.id=?
 2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into friends (create_time, logo, name, `order`, state, update_time, url, id) values (?, ?, ?, ?, ?, ?, ?, ?)
@@ -2526,16 +2526,16 @@
 2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : url
 2022-09-20 11:01:58.568 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriends)
+2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriends, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriendLink, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
           - SQL table alias mapping - blogfriend0_
           - alias suffix - 0_
           - suffixed key columns - {id1_4_0_}
 
-2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriends [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
+2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriendLink [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
 2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from looper where id =?
 2022-09-20 11:01:58.569 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloglooper_.id, bloglooper_.create_time as create_t2_7_, bloglooper_.image_url as image_ur3_7_, bloglooper_.`order` as order4_7_, bloglooper_.state as state5_7_, bloglooper_.target_url as target_u6_7_, bloglooper_.title as title7_7_, bloglooper_.update_time as update_t8_7_ from looper bloglooper_ where bloglooper_.id=?
@@ -3052,7 +3052,7 @@
 		cn.manpok.blogsystem.pojo.BlogCategory
 		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
-		cn.manpok.blogsystem.pojo.BlogFriends
+		cn.manpok.blogsystem.pojo.BlogFriendLink
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
@@ -3427,51 +3427,51 @@
 2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogDailyViewCount:viewCount]
 2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for viewCount
 2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property viewCount
-2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogFriends
-2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriends on table friends
+2022-09-20 11:02:16.103 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriendLink on table friends
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:id]
+2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:id]
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:createTime]
+2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:createTime]
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=logo, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property logo with lazy=false
-2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:logo]
+2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:logo]
 2022-09-20 11:02:16.104 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for logo
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property logo
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property name with lazy=false
-2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:name]
+2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:name]
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for name
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property name
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=order, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property order with lazy=false
-2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:order]
+2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:order]
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for order
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property order
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:state]
+2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:state]
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:updateTime]
+2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:updateTime]
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=url, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property url with lazy=false
-2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:url]
+2022-09-20 11:02:16.105 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:url]
 2022-09-20 11:02:16.106 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for url
 2022-09-20 11:02:16.106 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property url
 2022-09-20 11:02:16.106 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogImage
@@ -3828,8 +3828,8 @@
 2022-09-20 11:02:16.206 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLabels
 2022-09-20 11:02:16.301 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogDailyViewCount] is safe
 2022-09-20 11:02:16.301 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogDailyViewCount
-2022-09-20 11:02:16.309 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:02:16.309 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:16.309 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:02:16.309 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:16.316 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:02:16.316 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:02:16.323 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
@@ -3889,7 +3889,7 @@
           - suffixed key columns - {id1_3_0_}
 
 2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogDailyViewCount [NONE]: select blogdailyv0_.id as id1_3_0_, blogdailyv0_.create_time as create_t2_3_0_, blogdailyv0_.update_time as update_t3_3_0_, blogdailyv0_.view_count as view_cou4_3_0_ from daily_view_count blogdailyv0_ where blogdailyv0_.id=?
-2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from friends where id =?
 2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogfriend_.id, blogfriend_.create_time as create_t2_4_, blogfriend_.logo as logo3_4_, blogfriend_.name as name4_4_, blogfriend_.`order` as order5_4_, blogfriend_.state as state6_4_, blogfriend_.update_time as update_t7_4_, blogfriend_.url as url8_4_ from friends blogfriend_ where blogfriend_.id=?
 2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into friends (create_time, logo, name, `order`, state, update_time, url, id) values (?, ?, ?, ?, ?, ?, ?, ?)
@@ -3905,16 +3905,16 @@
 2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : url
 2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriends)
+2022-09-20 11:02:16.388 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriends, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriendLink, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
           - SQL table alias mapping - blogfriend0_
           - alias suffix - 0_
           - suffixed key columns - {id1_4_0_}
 
-2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriends [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
+2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriendLink [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
 2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from looper where id =?
 2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloglooper_.id, bloglooper_.create_time as create_t2_7_, bloglooper_.image_url as image_ur3_7_, bloglooper_.`order` as order4_7_, bloglooper_.state as state5_7_, bloglooper_.target_url as target_u6_7_, bloglooper_.title as title7_7_, bloglooper_.update_time as update_t8_7_ from looper bloglooper_ where bloglooper_.id=?
@@ -4434,7 +4434,7 @@
 		cn.manpok.blogsystem.pojo.BlogCategory
 		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
-		cn.manpok.blogsystem.pojo.BlogFriends
+		cn.manpok.blogsystem.pojo.BlogFriendLink
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
@@ -4809,51 +4809,51 @@
 2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogDailyViewCount:viewCount]
 2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for viewCount
 2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property viewCount
-2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogFriends
-2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriends on table friends
+2022-09-20 11:02:48.285 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogFriendLink on table friends
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:id]
+2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:id]
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:createTime]
+2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:createTime]
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:02:48.286 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=logo, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property logo with lazy=false
-2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:logo]
+2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:logo]
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for logo
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property logo
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property name with lazy=false
-2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:name]
+2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:name]
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for name
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property name
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=order, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property order with lazy=false
-2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:order]
+2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:order]
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for order
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property order
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:state]
+2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:state]
 2022-09-20 11:02:48.287 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:updateTime]
+2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:updateTime]
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(friends), mappingColumn=url, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property url with lazy=false
-2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriends:url]
+2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogFriendLink:url]
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for url
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property url
 2022-09-20 11:02:48.288 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogImage
@@ -5210,8 +5210,8 @@
 2022-09-20 11:02:48.381 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLabels
 2022-09-20 11:02:48.475 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogDailyViewCount] is safe
 2022-09-20 11:02:48.475 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogDailyViewCount
-2022-09-20 11:02:48.483 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriends] is safe
-2022-09-20 11:02:48.483 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:48.483 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogFriendLink] is safe
+2022-09-20 11:02:48.483 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:48.492 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:02:48.492 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:02:48.500 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
@@ -5271,7 +5271,7 @@
           - suffixed key columns - {id1_3_0_}
 
 2022-09-20 11:02:48.565 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogDailyViewCount [NONE]: select blogdailyv0_.id as id1_3_0_, blogdailyv0_.create_time as create_t2_3_0_, blogdailyv0_.update_time as update_t3_3_0_, blogdailyv0_.view_count as view_cou4_3_0_ from daily_view_count blogdailyv0_ where blogdailyv0_.id=?
-2022-09-20 11:02:48.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriends
+2022-09-20 11:02:48.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:48.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from friends where id =?
 2022-09-20 11:02:48.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogfriend_.id, blogfriend_.create_time as create_t2_4_, blogfriend_.logo as logo3_4_, blogfriend_.name as name4_4_, blogfriend_.`order` as order5_4_, blogfriend_.state as state6_4_, blogfriend_.update_time as update_t7_4_, blogfriend_.url as url8_4_ from friends blogfriend_ where blogfriend_.id=?
 2022-09-20 11:02:48.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into friends (create_time, logo, name, `order`, state, update_time, url, id) values (?, ?, ?, ?, ?, ?, ?, ?)
@@ -5287,16 +5287,16 @@
 2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : url
 2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriends)
+2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriends, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogFriendLink, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogFriendLink)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriends)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogFriendLink)
           - SQL table alias mapping - blogfriend0_
           - alias suffix - 0_
           - suffixed key columns - {id1_4_0_}
 
-2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriends [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
+2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogFriendLink [NONE]: select blogfriend0_.id as id1_4_0_, blogfriend0_.create_time as create_t2_4_0_, blogfriend0_.logo as logo3_4_0_, blogfriend0_.name as name4_4_0_, blogfriend0_.`order` as order5_4_0_, blogfriend0_.state as state6_4_0_, blogfriend0_.update_time as update_t7_4_0_, blogfriend0_.url as url8_4_0_ from friends blogfriend0_ where blogfriend0_.id=?
 2022-09-20 11:02:48.566 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLooper
 2022-09-20 11:02:48.567 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from looper where id =?
 2022-09-20 11:02:48.567 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloglooper_.id, bloglooper_.create_time as create_t2_7_, bloglooper_.image_url as image_ur3_7_, bloglooper_.`order` as order4_7_, bloglooper_.state as state5_7_, bloglooper_.target_url as target_u6_7_, bloglooper_.title as title7_7_, bloglooper_.update_time as update_t8_7_ from looper bloglooper_ where bloglooper_.id=?

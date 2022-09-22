@@ -55,7 +55,7 @@ public class LooperApi {
      * @param looperID
      * @return
      */
-    @GetMapping("{looperID}")
+    @GetMapping("/{looperID}")
     public ResponseResult getLooper(@PathVariable("looperID") String looperID) {
         log.info("获取单张轮播图 ----> " + looperID);
         return null;

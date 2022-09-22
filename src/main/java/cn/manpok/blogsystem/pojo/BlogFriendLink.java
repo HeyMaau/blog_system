@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "friends")
-public class BlogFriends {
+public class BlogFriendLink {
 
     @Id
     private String id;
@@ -98,4 +98,17 @@ public class BlogFriends {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "BlogFriendLink{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", logo='" + logo + '\'' +
+                ", url='" + url + '\'' +
+                ", order=" + order +
+                ", state='" + state + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }

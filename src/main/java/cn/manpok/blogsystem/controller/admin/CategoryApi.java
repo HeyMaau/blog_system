@@ -55,7 +55,7 @@ public class CategoryApi {
      * @param categoryID
      * @return
      */
-    @GetMapping("{categoryID}")
+    @GetMapping("/{categoryID}")
     public ResponseResult getCategory(@PathVariable("categoryID") String categoryID) {
         log.info("获取单个分类 ----> " + categoryID);
         return null;
