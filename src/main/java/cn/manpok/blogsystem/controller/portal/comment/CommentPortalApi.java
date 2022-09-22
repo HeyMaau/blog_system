@@ -1,4 +1,4 @@
-package cn.manpok.blogsystem.controller.portal;
+package cn.manpok.blogsystem.controller.portal.comment;
 
 import cn.manpok.blogsystem.pojo.BlogComment;
 import cn.manpok.blogsystem.response.ResponseResult;
