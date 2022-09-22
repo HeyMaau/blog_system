@@ -290,7 +290,7 @@
 	Managed classes names [
 		cn.manpok.blogsystem.pojo.BlogArticle
 		cn.manpok.blogsystem.pojo.BlogCategory
-		cn.manpok.blogsystem.pojo.BlogComments
+		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
 		cn.manpok.blogsystem.pojo.BlogFriends
 		cn.manpok.blogsystem.pojo.BlogImage
@@ -583,61 +583,61 @@
 2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogCategory:updateTime]
 2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogComments
-2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComments on table comments
+2022-09-20 11:01:09.126 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComment on table comments
 2022-09-20 11:01:09.127 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:01:09.127 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:01:09.127 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:09.127 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:01:09.127 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:id]
+2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:id]
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=article_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property articleId with lazy=false
-2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:articleId]
+2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:articleId]
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for articleId
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property articleId
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property content with lazy=false
-2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:content]
+2022-09-20 11:01:09.128 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:content]
 2022-09-20 11:01:09.129 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for content
 2022-09-20 11:01:09.129 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property content
 2022-09-20 11:01:09.129 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.129 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:01:09.129 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:createTime]
+2022-09-20 11:01:09.129 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:createTime]
 2022-09-20 11:01:09.129 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=parent_content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property parentContent with lazy=false
-2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:parentContent]
+2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:parentContent]
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for parentContent
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property parentContent
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:state]
+2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:state]
 2022-09-20 11:01:09.130 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:updateTime]
+2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:updateTime]
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_avatar, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userAvatar with lazy=false
-2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userAvatar]
+2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userAvatar]
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userAvatar
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userAvatar
 2022-09-20 11:01:09.131 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userId with lazy=false
-2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userId]
+2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userId]
 2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userId
 2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userId
 2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userName with lazy=false
-2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userName]
+2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userName]
 2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userName
 2022-09-20 11:01:09.132 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userName
 2022-09-20 11:01:09.133 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogDailyViewCount
@@ -1080,8 +1080,8 @@
 2022-09-20 11:01:09.470 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogCategory
 2022-09-20 11:01:09.480 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogArticle] is safe
 2022-09-20 11:01:09.480 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogArticle
-2022-09-20 11:01:09.494 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:01:09.495 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:09.494 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:01:09.495 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:09.505 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogImage] is safe
 2022-09-20 11:01:09.505 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:01:09.517 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLabels
@@ -1290,7 +1290,7 @@
           - suffixed key columns - {id1_0_0_}
 
 2022-09-20 11:01:09.563 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogArticle [NONE]: select blogarticl0_.id as id1_0_0_, blogarticl0_.category_id as category2_0_0_, blogarticl0_.content as content3_0_0_, blogarticl0_.create_time as create_t4_0_0_, blogarticl0_.labels as labels5_0_0_, blogarticl0_.state as state6_0_0_, blogarticl0_.summary as summary7_0_0_, blogarticl0_.title as title8_0_0_, blogarticl0_.type as type9_0_0_, blogarticl0_.update_time as update_10_0_0_, blogarticl0_.user_id as user_id11_0_0_, blogarticl0_.view_count as view_co12_0_0_ from articles blogarticl0_ where blogarticl0_.id=?
-2022-09-20 11:01:09.564 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:09.564 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:09.564 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from comments where id =?
 2022-09-20 11:01:09.564 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogcommen_.id, blogcommen_.article_id as article_2_2_, blogcommen_.content as content3_2_, blogcommen_.create_time as create_t4_2_, blogcommen_.parent_content as parent_c5_2_, blogcommen_.state as state6_2_, blogcommen_.update_time as update_t7_2_, blogcommen_.user_avatar as user_ava8_2_, blogcommen_.user_id as user_id9_2_, blogcommen_.user_name as user_na10_2_ from comments blogcommen_ where blogcommen_.id=?
 2022-09-20 11:01:09.564 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into comments (article_id, content, create_time, parent_content, state, update_time, user_avatar, user_id, user_name, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -1308,16 +1308,16 @@
 2022-09-20 11:01:09.564 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : userName
 2022-09-20 11:01:09.564 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComments)
+2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComment)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComments, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComment, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComment)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComment)
           - SQL table alias mapping - blogcommen0_
           - alias suffix - 0_
           - suffixed key columns - {id1_2_0_}
 
-2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComments [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
+2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComment [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
 2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from images where id =?
 2022-09-20 11:01:09.565 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogimages_.id, blogimages_.create_time as create_t2_5_, blogimages_.state as state3_5_, blogimages_.update_time as update_t4_5_, blogimages_.url as url5_5_, blogimages_.user_id as user_id6_5_ from images blogimages_ where blogimages_.id=?
@@ -1671,7 +1671,7 @@
 	Managed classes names [
 		cn.manpok.blogsystem.pojo.BlogArticle
 		cn.manpok.blogsystem.pojo.BlogCategory
-		cn.manpok.blogsystem.pojo.BlogComments
+		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
 		cn.manpok.blogsystem.pojo.BlogFriends
 		cn.manpok.blogsystem.pojo.BlogImage
@@ -1961,61 +1961,61 @@
 2022-09-20 11:01:58.277 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogCategory:updateTime]
 2022-09-20 11:01:58.277 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:58.277 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:01:58.277 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:58.277 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:58.277 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogComments
-2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComments on table comments
+2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComment on table comments
 2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:id]
+2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:id]
 2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:01:58.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=article_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property articleId with lazy=false
-2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:articleId]
+2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:articleId]
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for articleId
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property articleId
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property content with lazy=false
-2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:content]
+2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:content]
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for content
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property content
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:createTime]
+2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:createTime]
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=parent_content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property parentContent with lazy=false
-2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:parentContent]
+2022-09-20 11:01:58.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:parentContent]
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for parentContent
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property parentContent
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:state]
+2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:state]
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:updateTime]
+2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:updateTime]
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:58.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_avatar, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userAvatar with lazy=false
-2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userAvatar]
+2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userAvatar]
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userAvatar
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userAvatar
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userId with lazy=false
-2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userId]
+2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userId]
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userId
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userId
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userName with lazy=false
-2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userName]
+2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userName]
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userName
 2022-09-20 11:01:58.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userName
 2022-09-20 11:01:58.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogDailyViewCount
@@ -2461,8 +2461,8 @@
 2022-09-20 11:01:58.515 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogCategory
 2022-09-20 11:01:58.521 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogArticle] is safe
 2022-09-20 11:01:58.521 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogArticle
-2022-09-20 11:01:58.528 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:01:58.528 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:58.528 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:01:58.528 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:58.533 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogImage] is safe
 2022-09-20 11:01:58.533 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:01:58.541 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLabels
@@ -2671,7 +2671,7 @@
           - suffixed key columns - {id1_0_0_}
 
 2022-09-20 11:01:58.573 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogArticle [NONE]: select blogarticl0_.id as id1_0_0_, blogarticl0_.category_id as category2_0_0_, blogarticl0_.content as content3_0_0_, blogarticl0_.create_time as create_t4_0_0_, blogarticl0_.labels as labels5_0_0_, blogarticl0_.state as state6_0_0_, blogarticl0_.summary as summary7_0_0_, blogarticl0_.title as title8_0_0_, blogarticl0_.type as type9_0_0_, blogarticl0_.update_time as update_10_0_0_, blogarticl0_.user_id as user_id11_0_0_, blogarticl0_.view_count as view_co12_0_0_ from articles blogarticl0_ where blogarticl0_.id=?
-2022-09-20 11:01:58.573 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:01:58.573 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:01:58.573 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from comments where id =?
 2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogcommen_.id, blogcommen_.article_id as article_2_2_, blogcommen_.content as content3_2_, blogcommen_.create_time as create_t4_2_, blogcommen_.parent_content as parent_c5_2_, blogcommen_.state as state6_2_, blogcommen_.update_time as update_t7_2_, blogcommen_.user_avatar as user_ava8_2_, blogcommen_.user_id as user_id9_2_, blogcommen_.user_name as user_na10_2_ from comments blogcommen_ where blogcommen_.id=?
 2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into comments (article_id, content, create_time, parent_content, state, update_time, user_avatar, user_id, user_name, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -2689,16 +2689,16 @@
 2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : userName
 2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComments)
+2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComment)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComments, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComment, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComment)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComment)
           - SQL table alias mapping - blogcommen0_
           - alias suffix - 0_
           - suffixed key columns - {id1_2_0_}
 
-2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComments [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
+2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComment [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
 2022-09-20 11:01:58.574 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:01:58.575 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from images where id =?
 2022-09-20 11:01:58.575 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogimages_.id, blogimages_.create_time as create_t2_5_, blogimages_.state as state3_5_, blogimages_.update_time as update_t4_5_, blogimages_.url as url5_5_, blogimages_.user_id as user_id6_5_ from images blogimages_ where blogimages_.id=?
@@ -3050,7 +3050,7 @@
 	Managed classes names [
 		cn.manpok.blogsystem.pojo.BlogArticle
 		cn.manpok.blogsystem.pojo.BlogCategory
-		cn.manpok.blogsystem.pojo.BlogComments
+		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
 		cn.manpok.blogsystem.pojo.BlogFriends
 		cn.manpok.blogsystem.pojo.BlogImage
@@ -3343,61 +3343,61 @@
 2022-09-20 11:02:16.098 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogCategory:updateTime]
 2022-09-20 11:02:16.098 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:16.098 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:02:16.098 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:16.098 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:16.098 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:02:16.098 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogComments
-2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComments on table comments
+2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComment on table comments
 2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:id]
+2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:id]
 2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:02:16.099 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=article_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property articleId with lazy=false
-2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:articleId]
+2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:articleId]
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for articleId
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property articleId
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property content with lazy=false
-2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:content]
+2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:content]
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for content
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property content
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:createTime]
+2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:createTime]
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=parent_content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property parentContent with lazy=false
-2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:parentContent]
+2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:parentContent]
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for parentContent
 2022-09-20 11:02:16.100 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property parentContent
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:state]
+2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:state]
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:updateTime]
+2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:updateTime]
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_avatar, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userAvatar with lazy=false
-2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userAvatar]
+2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userAvatar]
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userAvatar
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userAvatar
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userId with lazy=false
-2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userId]
+2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userId]
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userId
 2022-09-20 11:02:16.101 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userId
 2022-09-20 11:02:16.102 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.102 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userName with lazy=false
-2022-09-20 11:02:16.102 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userName]
+2022-09-20 11:02:16.102 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userName]
 2022-09-20 11:02:16.102 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userName
 2022-09-20 11:02:16.102 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userName
 2022-09-20 11:02:16.102 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogDailyViewCount
@@ -3840,8 +3840,8 @@
 2022-09-20 11:02:16.336 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogCategory
 2022-09-20 11:02:16.341 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogArticle] is safe
 2022-09-20 11:02:16.341 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogArticle
-2022-09-20 11:02:16.348 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:02:16.348 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:16.348 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:02:16.348 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:16.353 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogImage] is safe
 2022-09-20 11:02:16.353 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:02:16.361 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLabels
@@ -4050,7 +4050,7 @@
           - suffixed key columns - {id1_0_0_}
 
 2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogArticle [NONE]: select blogarticl0_.id as id1_0_0_, blogarticl0_.category_id as category2_0_0_, blogarticl0_.content as content3_0_0_, blogarticl0_.create_time as create_t4_0_0_, blogarticl0_.labels as labels5_0_0_, blogarticl0_.state as state6_0_0_, blogarticl0_.summary as summary7_0_0_, blogarticl0_.title as title8_0_0_, blogarticl0_.type as type9_0_0_, blogarticl0_.update_time as update_10_0_0_, blogarticl0_.user_id as user_id11_0_0_, blogarticl0_.view_count as view_co12_0_0_ from articles blogarticl0_ where blogarticl0_.id=?
-2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from comments where id =?
 2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogcommen_.id, blogcommen_.article_id as article_2_2_, blogcommen_.content as content3_2_, blogcommen_.create_time as create_t4_2_, blogcommen_.parent_content as parent_c5_2_, blogcommen_.state as state6_2_, blogcommen_.update_time as update_t7_2_, blogcommen_.user_avatar as user_ava8_2_, blogcommen_.user_id as user_id9_2_, blogcommen_.user_name as user_na10_2_ from comments blogcommen_ where blogcommen_.id=?
 2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into comments (article_id, content, create_time, parent_content, state, update_time, user_avatar, user_id, user_name, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -4068,16 +4068,16 @@
 2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : userName
 2022-09-20 11:02:16.393 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComments)
+2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComment)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComments, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComment, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComment)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComment)
           - SQL table alias mapping - blogcommen0_
           - alias suffix - 0_
           - suffixed key columns - {id1_2_0_}
 
-2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComments [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
+2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComment [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
 2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from images where id =?
 2022-09-20 11:02:16.394 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogimages_.id, blogimages_.create_time as create_t2_5_, blogimages_.state as state3_5_, blogimages_.update_time as update_t4_5_, blogimages_.url as url5_5_, blogimages_.user_id as user_id6_5_ from images blogimages_ where blogimages_.id=?
@@ -4432,7 +4432,7 @@
 	Managed classes names [
 		cn.manpok.blogsystem.pojo.BlogArticle
 		cn.manpok.blogsystem.pojo.BlogCategory
-		cn.manpok.blogsystem.pojo.BlogComments
+		cn.manpok.blogsystem.pojo.BlogComment
 		cn.manpok.blogsystem.pojo.BlogDailyViewCount
 		cn.manpok.blogsystem.pojo.BlogFriends
 		cn.manpok.blogsystem.pojo.BlogImage
@@ -4725,61 +4725,61 @@
 2022-09-20 11:02:48.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogCategory:updateTime]
 2022-09-20 11:02:48.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:48.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:02:48.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:48.278 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogComments
-2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComments on table comments
+2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogComment on table comments
 2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:02:48.279 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:id]
+2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:id]
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=article_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property articleId with lazy=false
-2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:articleId]
+2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:articleId]
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for articleId
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property articleId
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property content with lazy=false
-2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:content]
+2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:content]
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for content
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property content
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:createTime]
+2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:createTime]
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:02:48.280 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=parent_content, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property parentContent with lazy=false
-2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:parentContent]
+2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:parentContent]
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for parentContent
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property parentContent
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=state, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property state with lazy=false
-2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:state]
+2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:state]
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for state
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property state
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:updateTime]
+2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:updateTime]
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_avatar, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.281 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userAvatar with lazy=false
-2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userAvatar]
+2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userAvatar]
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userAvatar
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userAvatar
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_id, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userId with lazy=false
-2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userId]
+2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userId]
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userId
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userId
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(comments), mappingColumn=user_name, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property userName with lazy=false
-2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComments:userName]
+2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogComment:userName]
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for userName
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property userName
 2022-09-20 11:02:48.282 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogDailyViewCount
@@ -5222,8 +5222,8 @@
 2022-09-20 11:02:48.514 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogCategory
 2022-09-20 11:02:48.520 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogArticle] is safe
 2022-09-20 11:02:48.520 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogArticle
-2022-09-20 11:02:48.526 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComments] is safe
-2022-09-20 11:02:48.526 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:48.526 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogComment] is safe
+2022-09-20 11:02:48.526 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:48.532 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogImage] is safe
 2022-09-20 11:02:48.532 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:02:48.540 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogLabels
@@ -5432,7 +5432,7 @@
           - suffixed key columns - {id1_0_0_}
 
 2022-09-20 11:02:48.572 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogArticle [NONE]: select blogarticl0_.id as id1_0_0_, blogarticl0_.category_id as category2_0_0_, blogarticl0_.content as content3_0_0_, blogarticl0_.create_time as create_t4_0_0_, blogarticl0_.labels as labels5_0_0_, blogarticl0_.state as state6_0_0_, blogarticl0_.summary as summary7_0_0_, blogarticl0_.title as title8_0_0_, blogarticl0_.type as type9_0_0_, blogarticl0_.update_time as update_10_0_0_, blogarticl0_.user_id as user_id11_0_0_, blogarticl0_.view_count as view_co12_0_0_ from articles blogarticl0_ where blogarticl0_.id=?
-2022-09-20 11:02:48.572 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComments
+2022-09-20 11:02:48.572 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogComment
 2022-09-20 11:02:48.572 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from comments where id =?
 2022-09-20 11:02:48.572 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogcommen_.id, blogcommen_.article_id as article_2_2_, blogcommen_.content as content3_2_, blogcommen_.create_time as create_t4_2_, blogcommen_.parent_content as parent_c5_2_, blogcommen_.state as state6_2_, blogcommen_.update_time as update_t7_2_, blogcommen_.user_avatar as user_ava8_2_, blogcommen_.user_id as user_id9_2_, blogcommen_.user_name as user_na10_2_ from comments blogcommen_ where blogcommen_.id=?
 2022-09-20 11:02:48.572 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into comments (article_id, content, create_time, parent_content, state, update_time, user_avatar, user_id, user_name, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -5450,16 +5450,16 @@
 2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : userName
 2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComments)
+2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogComment)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComments, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogComment, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogComment)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComments)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogComment)
           - SQL table alias mapping - blogcommen0_
           - alias suffix - 0_
           - suffixed key columns - {id1_2_0_}
 
-2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComments [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
+2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogComment [NONE]: select blogcommen0_.id as id1_2_0_, blogcommen0_.article_id as article_2_2_0_, blogcommen0_.content as content3_2_0_, blogcommen0_.create_time as create_t4_2_0_, blogcommen0_.parent_content as parent_c5_2_0_, blogcommen0_.state as state6_2_0_, blogcommen0_.update_time as update_t7_2_0_, blogcommen0_.user_avatar as user_ava8_2_0_, blogcommen0_.user_id as user_id9_2_0_, blogcommen0_.user_name as user_na10_2_0_ from comments blogcommen0_ where blogcommen0_.id=?
 2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogImage
 2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from images where id =?
 2022-09-20 11:02:48.573 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogimages_.id, blogimages_.create_time as create_t2_5_, blogimages_.state as state3_5_, blogimages_.update_time as update_t4_5_, blogimages_.url as url5_5_, blogimages_.user_id as user_id6_5_ from images blogimages_ where blogimages_.id=?
@@ -5863,3 +5863,27 @@
 2022-09-20 15:54:58.182 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 2.873 seconds (JVM running for 3.34)
 2022-09-20 15:55:01.273 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-09-20 15:55:04.963 [ http-nio-8080-exec-7 ] - [ WARN  ] [ s.documentation.swagger2.web.Swagger2Controller : 96 ] - Unable to find specification for group API
+2022-09-20 16:58:31.457 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 8844 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-20 16:58:31.458 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-20 16:58:32.627 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-20 16:58:32.628 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-20 16:58:32.628 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-20 16:58:32.700 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-20 16:58:32.783 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-20 16:58:32.877 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-20 16:58:32.905 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-20 16:58:32.931 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-20 16:58:33.010 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-20 16:58:33.078 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-20 16:58:33.422 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-20 16:58:33.647 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-20 16:58:33.926 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-20 16:58:34.000 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-20 16:58:34.011 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 2 custom documentation plugin(s)
+2022-09-20 16:58:34.037 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-20 16:58:34.121 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-20 16:58:34.149 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-20 16:58:34.150 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-20 16:58:34.170 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.33 seconds (JVM running for 3.863)
+2022-09-20 16:59:05.094 [ http-nio-8080-exec-2 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-20 16:59:05.153 [ http-nio-8080-exec-2 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.admin.ArticleApi : 60 ] - 获取文章 ----> 123456

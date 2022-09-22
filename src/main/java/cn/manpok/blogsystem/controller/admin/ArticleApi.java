@@ -55,7 +55,7 @@ public class ArticleApi {
      * @param articleID
      * @return
      */
-    @GetMapping("{articleID}")
+    @GetMapping("/{articleID}")
     public ResponseResult getArticle(@PathVariable("articleID") String articleID) {
         log.info("获取文章 ----> " + articleID);
         return null;
@@ -71,6 +71,30 @@ public class ArticleApi {
     @GetMapping("/list")
     public ResponseResult getArticles(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取文章列表 ----> ");
+        return null;
+    }
+
+    /**
+     * 修改文章状态
+     *
+     * @param articleID
+     * @param state
+     * @return
+     */
+    @PutMapping("/state/{articleID}/{state}")
+    public ResponseResult updateArticleState(@PathVariable("articleID") String articleID, @PathVariable("state") String state) {
+        return null;
+    }
+
+    /**
+     * 文章置顶
+     *
+     * @param articleID
+     * @return
+     */
+    @PutMapping("/top/{articleID}")
+    public ResponseResult topArticle(@PathVariable("articleID") String articleID) {
+        log.info("置顶文章 ----> " + articleID);
         return null;
     }
 }

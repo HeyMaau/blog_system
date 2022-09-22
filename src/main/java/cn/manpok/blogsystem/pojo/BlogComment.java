@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "comments")
-public class BlogComments {
+public class BlogComment {
 
     @Id
     private String id;
@@ -120,4 +120,19 @@ public class BlogComments {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String toString() {
+        return "BlogComment{" +
+                "id='" + id + '\'' +
+                ", parentContent='" + parentContent + '\'' +
+                ", articleId='" + articleId + '\'' +
+                ", content='" + content + '\'' +
+                ", userId='" + userId + '\'' +
+                ", userAvatar='" + userAvatar + '\'' +
+                ", userName='" + userName + '\'' +
+                ", state='" + state + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
 }
