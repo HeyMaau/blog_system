@@ -296,7 +296,7 @@
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
-		cn.manpok.blogsystem.pojo.BlogSettings
+		cn.manpok.blogsystem.pojo.BlogSetting
 		cn.manpok.blogsystem.pojo.BlogUser]
 	Mapping files names []
 	Properties []
@@ -830,36 +830,36 @@
 2022-09-20 11:01:09.153 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogLooper:updateTime]
 2022-09-20 11:01:09.153 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:09.153 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:01:09.154 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:09.154 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:09.154 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:01:09.154 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogSettings
-2022-09-20 11:01:09.154 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSettings on table settings
+2022-09-20 11:01:09.154 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSetting on table settings
 2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:id]
+2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:id]
 2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:01:09.155 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:createTime]
+2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:createTime]
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=key, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property key with lazy=false
-2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:key]
+2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:key]
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for key
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property key
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:updateTime]
+2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:updateTime]
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:09.156 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:01:09.157 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=value, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:09.157 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property value with lazy=false
-2022-09-20 11:01:09.157 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:value]
+2022-09-20 11:01:09.157 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:value]
 2022-09-20 11:01:09.157 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for value
 2022-09-20 11:01:09.157 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property value
 2022-09-20 11:01:09.157 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogUser
@@ -1072,8 +1072,8 @@
 2022-09-20 11:01:09.430 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:09.443 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:01:09.443 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
-2022-09-20 11:01:09.452 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:01:09.452 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:09.452 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:01:09.452 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:09.458 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogUser] is safe
 2022-09-20 11:01:09.459 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:01:09.469 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogCategory] is safe
@@ -1181,7 +1181,7 @@
           - suffixed key columns - {id1_7_0_}
 
 2022-09-20 11:01:09.557 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogLooper [NONE]: select bloglooper0_.id as id1_7_0_, bloglooper0_.create_time as create_t2_7_0_, bloglooper0_.image_url as image_ur3_7_0_, bloglooper0_.`order` as order4_7_0_, bloglooper0_.state as state5_7_0_, bloglooper0_.target_url as target_u6_7_0_, bloglooper0_.title as title7_7_0_, bloglooper0_.update_time as update_t8_7_0_ from looper bloglooper0_ where bloglooper0_.id=?
-2022-09-20 11:01:09.557 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:09.557 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:09.557 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from settings where id =?
 2022-09-20 11:01:09.557 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogsettin_.id, blogsettin_.create_time as create_t2_8_, blogsettin_.key as key3_8_, blogsettin_.update_time as update_t4_8_, blogsettin_.value as value5_8_ from settings blogsettin_ where blogsettin_.id=?
 2022-09-20 11:01:09.557 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into settings (create_time, key, update_time, value, id) values (?, ?, ?, ?, ?)
@@ -1194,16 +1194,16 @@
 2022-09-20 11:01:09.557 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : value
 2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSettings)
+2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSetting)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSettings, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSetting, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSetting)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSetting)
           - SQL table alias mapping - blogsettin0_
           - alias suffix - 0_
           - suffixed key columns - {id1_8_0_}
 
-2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSettings [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
+2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSetting [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
 2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from users where id =?
 2022-09-20 11:01:09.558 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloguser_.id, bloguser_.avatar as avatar2_9_, bloguser_.create_time as create_t3_9_, bloguser_.email as email4_9_, bloguser_.login_ip as login_ip5_9_, bloguser_.password as password6_9_, bloguser_.reg_ip as reg_ip7_9_, bloguser_.roles as roles8_9_, bloguser_.sign as sign9_9_, bloguser_.state as state10_9_, bloguser_.update_time as update_11_9_, bloguser_.user_name as user_na12_9_ from users bloguser_ where bloguser_.id=?
@@ -1677,7 +1677,7 @@
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
-		cn.manpok.blogsystem.pojo.BlogSettings
+		cn.manpok.blogsystem.pojo.BlogSetting
 		cn.manpok.blogsystem.pojo.BlogUser]
 	Mapping files names []
 	Properties []
@@ -2208,36 +2208,36 @@
 2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogLooper:updateTime]
 2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogSettings
-2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSettings on table settings
+2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSetting on table settings
 2022-09-20 11:01:58.294 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:id]
+2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:id]
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:createTime]
+2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:createTime]
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=key, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property key with lazy=false
-2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:key]
+2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:key]
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for key
 2022-09-20 11:01:58.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property key
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:updateTime]
+2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:updateTime]
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=value, insertable=true, updatable=true, unique=false}
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property value with lazy=false
-2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:value]
+2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:value]
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for value
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property value
 2022-09-20 11:01:58.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogUser
@@ -2453,8 +2453,8 @@
 2022-09-20 11:01:58.486 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:01:58.494 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:01:58.494 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
-2022-09-20 11:01:58.502 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:01:58.502 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:58.502 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:01:58.502 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:58.507 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogUser] is safe
 2022-09-20 11:01:58.507 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:01:58.515 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogCategory] is safe
@@ -2562,7 +2562,7 @@
           - suffixed key columns - {id1_7_0_}
 
 2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogLooper [NONE]: select bloglooper0_.id as id1_7_0_, bloglooper0_.create_time as create_t2_7_0_, bloglooper0_.image_url as image_ur3_7_0_, bloglooper0_.`order` as order4_7_0_, bloglooper0_.state as state5_7_0_, bloglooper0_.target_url as target_u6_7_0_, bloglooper0_.title as title7_7_0_, bloglooper0_.update_time as update_t8_7_0_ from looper bloglooper0_ where bloglooper0_.id=?
-2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from settings where id =?
 2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogsettin_.id, blogsettin_.create_time as create_t2_8_, blogsettin_.key as key3_8_, blogsettin_.update_time as update_t4_8_, blogsettin_.value as value5_8_ from settings blogsettin_ where blogsettin_.id=?
 2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into settings (create_time, key, update_time, value, id) values (?, ?, ?, ?, ?)
@@ -2575,16 +2575,16 @@
 2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : value
 2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:01:58.570 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:01:58.571 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSettings)
+2022-09-20 11:01:58.571 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSetting)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSettings, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSetting, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSetting)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSetting)
           - SQL table alias mapping - blogsettin0_
           - alias suffix - 0_
           - suffixed key columns - {id1_8_0_}
 
-2022-09-20 11:01:58.571 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSettings [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
+2022-09-20 11:01:58.571 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSetting [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
 2022-09-20 11:01:58.571 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:01:58.571 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from users where id =?
 2022-09-20 11:01:58.571 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloguser_.id, bloguser_.avatar as avatar2_9_, bloguser_.create_time as create_t3_9_, bloguser_.email as email4_9_, bloguser_.login_ip as login_ip5_9_, bloguser_.password as password6_9_, bloguser_.reg_ip as reg_ip7_9_, bloguser_.roles as roles8_9_, bloguser_.sign as sign9_9_, bloguser_.state as state10_9_, bloguser_.update_time as update_11_9_, bloguser_.user_name as user_na12_9_ from users bloguser_ where bloguser_.id=?
@@ -3056,7 +3056,7 @@
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
-		cn.manpok.blogsystem.pojo.BlogSettings
+		cn.manpok.blogsystem.pojo.BlogSetting
 		cn.manpok.blogsystem.pojo.BlogUser]
 	Mapping files names []
 	Properties []
@@ -3590,36 +3590,36 @@
 2022-09-20 11:02:16.112 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogLooper:updateTime]
 2022-09-20 11:02:16.112 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:16.112 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:02:16.112 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:16.112 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogSettings
-2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSettings on table settings
+2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSetting on table settings
 2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:id]
+2022-09-20 11:02:16.113 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:id]
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:createTime]
+2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:createTime]
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=key, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property key with lazy=false
-2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:key]
+2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:key]
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for key
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property key
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:updateTime]
+2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:updateTime]
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=value, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property value with lazy=false
-2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:value]
+2022-09-20 11:02:16.114 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:value]
 2022-09-20 11:02:16.115 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for value
 2022-09-20 11:02:16.115 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property value
 2022-09-20 11:02:16.115 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogUser
@@ -3832,8 +3832,8 @@
 2022-09-20 11:02:16.309 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:16.316 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:02:16.316 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
-2022-09-20 11:02:16.323 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:02:16.323 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:16.323 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:02:16.323 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:16.328 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogUser] is safe
 2022-09-20 11:02:16.328 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:02:16.336 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogCategory] is safe
@@ -3941,7 +3941,7 @@
           - suffixed key columns - {id1_7_0_}
 
 2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogLooper [NONE]: select bloglooper0_.id as id1_7_0_, bloglooper0_.create_time as create_t2_7_0_, bloglooper0_.image_url as image_ur3_7_0_, bloglooper0_.`order` as order4_7_0_, bloglooper0_.state as state5_7_0_, bloglooper0_.target_url as target_u6_7_0_, bloglooper0_.title as title7_7_0_, bloglooper0_.update_time as update_t8_7_0_ from looper bloglooper0_ where bloglooper0_.id=?
-2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:16.389 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from settings where id =?
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogsettin_.id, blogsettin_.create_time as create_t2_8_, blogsettin_.key as key3_8_, blogsettin_.update_time as update_t4_8_, blogsettin_.value as value5_8_ from settings blogsettin_ where blogsettin_.id=?
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into settings (create_time, key, update_time, value, id) values (?, ?, ?, ?, ?)
@@ -3954,16 +3954,16 @@
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : value
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSettings)
+2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSetting)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSettings, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSetting, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSetting)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSetting)
           - SQL table alias mapping - blogsettin0_
           - alias suffix - 0_
           - suffixed key columns - {id1_8_0_}
 
-2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSettings [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
+2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSetting [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from users where id =?
 2022-09-20 11:02:16.390 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloguser_.id, bloguser_.avatar as avatar2_9_, bloguser_.create_time as create_t3_9_, bloguser_.email as email4_9_, bloguser_.login_ip as login_ip5_9_, bloguser_.password as password6_9_, bloguser_.reg_ip as reg_ip7_9_, bloguser_.roles as roles8_9_, bloguser_.sign as sign9_9_, bloguser_.state as state10_9_, bloguser_.update_time as update_11_9_, bloguser_.user_name as user_na12_9_ from users bloguser_ where bloguser_.id=?
@@ -4438,7 +4438,7 @@
 		cn.manpok.blogsystem.pojo.BlogImage
 		cn.manpok.blogsystem.pojo.BlogLabels
 		cn.manpok.blogsystem.pojo.BlogLooper
-		cn.manpok.blogsystem.pojo.BlogSettings
+		cn.manpok.blogsystem.pojo.BlogSetting
 		cn.manpok.blogsystem.pojo.BlogUser]
 	Mapping files names []
 	Properties []
@@ -4972,36 +4972,36 @@
 2022-09-20 11:02:48.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogLooper:updateTime]
 2022-09-20 11:02:48.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:48.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
-2022-09-20 11:02:48.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:48.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:48.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3DiscriminatorColumn{logicalColumnName'DTYPE', discriminatorTypeName='string'}
 2022-09-20 11:02:48.295 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 431 ] - Import with entity name BlogSettings
-2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSettings on table settings
+2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.EntityBinder : 874 ] - Bind entity cn.manpok.blogsystem.pojo.BlogSetting on table settings
 2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=id, insertable=true, updatable=true, unique=false}
-2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property id with lazy=false
-2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:id]
+2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:id]
 2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for id
 2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property id
 2022-09-20 11:02:48.296 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.BinderHelper : 514 ] - #makeIdGenerator(org.hibernate.mapping.SimpleValue([org.hibernate.mapping.Column(id)]), id, assigned, , ...)
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=create_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property createTime with lazy=false
-2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:createTime]
+2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:createTime]
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for createTime
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property createTime
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=key, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property key with lazy=false
-2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:key]
+2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:key]
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for key
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property key
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=update_time, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property updateTime with lazy=false
-2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:updateTime]
+2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:updateTime]
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for updateTime
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property updateTime
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.Ejb3Column : 227 ] - Binding column: Ejb3Column{table=org.hibernate.mapping.Table(settings), mappingColumn=value, insertable=true, updatable=true, unique=false}
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 175 ] - MetadataSourceProcessor property value with lazy=false
-2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSettings:value]
+2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AbstractPropertyHolder : 94 ] - Attempting to locate auto-apply AttributeConverter for property [cn.manpok.blogsystem.pojo.BlogSetting:value]
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.SimpleValueBinder : 410 ] - building SimpleValue for value
 2022-09-20 11:02:48.297 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.annotations.PropertyBinder : 266 ] - Building property value
 2022-09-20 11:02:48.298 [ restartedMain ] - [ DEBUG ] [ org.hibernate.cfg.AnnotationBinder : 547 ] - Binding entity from annotated class: cn.manpok.blogsystem.pojo.BlogUser
@@ -5214,8 +5214,8 @@
 2022-09-20 11:02:48.483 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogFriendLink
 2022-09-20 11:02:48.492 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogLooper] is safe
 2022-09-20 11:02:48.492 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogLooper
-2022-09-20 11:02:48.500 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSettings] is safe
-2022-09-20 11:02:48.500 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:48.500 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogSetting] is safe
+2022-09-20 11:02:48.500 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:48.506 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogUser] is safe
 2022-09-20 11:02:48.506 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 62 ] - No temp ClassLoader provided; using live ClassLoader for loading potentially unsafe class : cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:02:48.514 [ restartedMain ] - [ DEBUG ] [ org.hibernate.boot.internal.ClassLoaderAccessImpl : 60 ] - Not known whether passed class name [cn.manpok.blogsystem.pojo.BlogCategory] is safe
@@ -5323,7 +5323,7 @@
           - suffixed key columns - {id1_7_0_}
 
 2022-09-20 11:02:48.567 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogLooper [NONE]: select bloglooper0_.id as id1_7_0_, bloglooper0_.create_time as create_t2_7_0_, bloglooper0_.image_url as image_ur3_7_0_, bloglooper0_.`order` as order4_7_0_, bloglooper0_.state as state5_7_0_, bloglooper0_.target_url as target_u6_7_0_, bloglooper0_.title as title7_7_0_, bloglooper0_.update_time as update_t8_7_0_ from looper bloglooper0_ where bloglooper0_.id=?
-2022-09-20 11:02:48.567 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSettings
+2022-09-20 11:02:48.567 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogSetting
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from settings where id =?
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select blogsettin_.id, blogsettin_.create_time as create_t2_8_, blogsettin_.key as key3_8_, blogsettin_.update_time as update_t4_8_, blogsettin_.value as value5_8_ from settings blogsettin_ where blogsettin_.id=?
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 394 ] -  Insert 0: insert into settings (create_time, key, update_time, value, id) values (?, ?, ?, ?, ?)
@@ -5336,16 +5336,16 @@
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.walking.spi.MetamodelGraphWalker : 146 ] - Visiting attribute path : value
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.b.i.FetchStyleLoadPlanBuildingAssociationVisitationStrategy : 160 ] - Building LoadPlan...
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.l.p.e.internal.LoadQueryJoinAndFetchProcessor : 102 ] - processing queryspace <gen:0>
-2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSettings)
+2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.loader.plan.build.spi.LoadPlanTreePrinter : 55 ] - LoadPlan(entity=cn.manpok.blogsystem.pojo.BlogSetting)
     - Returns
-       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSettings, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityReturnImpl(entity=cn.manpok.blogsystem.pojo.BlogSetting, querySpaceUid=<gen:0>, path=cn.manpok.blogsystem.pojo.BlogSetting)
     - QuerySpaces
-       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSettings)
+       - EntityQuerySpaceImpl(uid=<gen:0>, entity=cn.manpok.blogsystem.pojo.BlogSetting)
           - SQL table alias mapping - blogsettin0_
           - alias suffix - 0_
           - suffixed key columns - {id1_8_0_}
 
-2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSettings [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
+2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ org.hibernate.loader.entity.plan.EntityLoader : 129 ] - Static select for entity cn.manpok.blogsystem.pojo.BlogSetting [NONE]: select blogsettin0_.id as id1_8_0_, blogsettin0_.create_time as create_t2_8_0_, blogsettin0_.key as key3_8_0_, blogsettin0_.update_time as update_t4_8_0_, blogsettin0_.value as value5_8_0_ from settings blogsettin0_ where blogsettin0_.id=?
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4002 ] - Static SQL for entity: cn.manpok.blogsystem.pojo.BlogUser
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4007 ] -  Version select: select id from users where id =?
 2022-09-20 11:02:48.568 [ restartedMain ] - [ DEBUG ] [ o.h.persister.entity.AbstractEntityPersister : 4010 ] -  Snapshot select: select bloguser_.id, bloguser_.avatar as avatar2_9_, bloguser_.create_time as create_t3_9_, bloguser_.email as email4_9_, bloguser_.login_ip as login_ip5_9_, bloguser_.password as password6_9_, bloguser_.reg_ip as reg_ip7_9_, bloguser_.roles as roles8_9_, bloguser_.sign as sign9_9_, bloguser_.state as state10_9_, bloguser_.update_time as update_11_9_, bloguser_.user_name as user_na12_9_ from users bloguser_ where bloguser_.id=?
@@ -5887,3 +5887,665 @@
 2022-09-20 16:58:34.170 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.33 seconds (JVM running for 3.863)
 2022-09-20 16:59:05.094 [ http-nio-8080-exec-2 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-09-20 16:59:05.153 [ http-nio-8080-exec-2 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.admin.ArticleApi : 60 ] - 获取文章 ----> 123456
+2022-09-22 16:20:52.368 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 61332 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-22 16:20:52.388 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-22 16:20:53.526 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-22 16:20:53.526 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-22 16:20:53.526 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-22 16:20:53.597 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-22 16:20:53.685 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-22 16:20:53.781 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-22 16:20:53.809 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-22 16:20:53.850 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-22 16:20:53.946 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-22 16:20:54.021 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-22 16:20:54.395 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-22 16:20:54.647 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-22 16:20:54.924 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-22 16:20:55.003 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-22 16:20:55.014 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-22 16:20:55.041 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-22 16:20:55.136 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-22 16:20:55.185 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-22 16:20:55.186 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-22 16:20:55.214 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-22 16:20:55.221 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-22 16:20:55.231 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-22 16:20:55.238 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-22 16:20:55.239 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-22 16:20:55.240 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-22 16:20:55.241 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-22 16:20:55.242 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-22 16:20:55.253 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.275 seconds (JVM running for 3.77)
+2022-09-22 16:21:05.142 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 11:27:00.381 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 29980 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-27 11:27:00.383 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-27 11:27:01.599 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:27:01.600 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-27 11:27:01.600 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-27 11:27:01.671 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-27 11:27:01.765 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-27 11:27:01.871 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-27 11:27:01.900 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-27 11:27:01.938 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-27 11:27:02.044 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-27 11:27:02.131 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-27 11:27:02.510 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-27 11:27:02.956 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-27 11:27:03.239 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:27:03.316 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-27 11:27:03.328 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-27 11:27:03.356 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:27:03.440 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:27:03.486 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-27 11:27:03.487 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-27 11:27:03.507 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:27:03.514 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-27 11:27:03.522 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-27 11:27:03.528 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-27 11:27:03.530 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-27 11:27:03.531 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-27 11:27:03.532 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-27 11:27:03.533 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-27 11:27:03.543 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.559 seconds (JVM running for 4.057)
+2022-09-27 11:27:15.249 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 11:29:02.901 [ http-nio-8080-exec-8 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 24 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='root', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:32:15.608 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 32404 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-27 11:32:15.610 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-27 11:32:16.663 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:32:16.663 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-27 11:32:16.664 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-27 11:32:16.729 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-27 11:32:16.812 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-27 11:32:16.906 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-27 11:32:16.933 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-27 11:32:16.960 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-27 11:32:17.044 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-27 11:32:17.112 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-27 11:32:17.450 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-27 11:32:17.862 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-27 11:32:18.133 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:32:18.209 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-27 11:32:18.219 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-27 11:32:18.245 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:32:18.325 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:32:18.370 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-27 11:32:18.372 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-27 11:32:18.392 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:32:18.398 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-27 11:32:18.408 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-27 11:32:18.414 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-27 11:32:18.415 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-27 11:32:18.416 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-27 11:32:18.418 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-27 11:32:18.419 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-27 11:32:18.429 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.172 seconds (JVM running for 3.612)
+2022-09-27 11:32:29.400 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 11:32:39.533 [ http-nio-8080-exec-10 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='root', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:32:39.652 [ http-nio-8080-exec-10 ] - [ WARN  ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 137 ] - SQL Error: 1064, SQLState: 42000
+2022-09-27 11:32:39.652 [ http-nio-8080-exec-10 ] - [ ERROR ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 142 ] - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:32:39.616', 'admin_account_i' at line 1
+2022-09-27 11:32:39.653 [ http-nio-8080-exec-10 ] - [ INFO  ] [ o.h.engine.jdbc.batch.internal.AbstractBatchImpl : 213 ] - HHH000010: On release of batch it still contained JDBC statements
+2022-09-27 11:32:39.662 [ http-nio-8080-exec-10 ] - [ ERROR ] [ o.a.c.c.C.[.[localhost].[/].[dispatcherServlet] : 175 ] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute statement] with root cause
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:32:39.616', 'admin_account_i' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3375)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3908)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1407)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:489)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3290)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2425)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:449)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at cn.manpok.blogsystem.service.impl.UserServiceImpl$$EnhancerBySpringCGLIB$$2f9bf439.initAdminAccount(<generated>)
+	at cn.manpok.blogsystem.controller.user.UserApi.initAdmin(UserApi.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1070)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-09-27 11:34:44.253 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 31272 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-27 11:34:44.254 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-27 11:34:45.335 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:34:45.336 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-27 11:34:45.336 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-27 11:34:45.405 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-27 11:34:45.490 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-27 11:34:45.581 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-27 11:34:45.607 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-27 11:34:45.633 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-27 11:34:45.710 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-27 11:34:45.778 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-27 11:34:46.110 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-27 11:34:46.527 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-27 11:34:46.799 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:34:46.875 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-27 11:34:46.885 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-27 11:34:46.912 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:34:46.993 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:34:47.041 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-27 11:34:47.042 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-27 11:34:47.066 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:34:47.072 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-27 11:34:47.082 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-27 11:34:47.088 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-27 11:34:47.090 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-27 11:34:47.091 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-27 11:34:47.092 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-27 11:34:47.093 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-27 11:34:47.103 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.221 seconds (JVM running for 3.646)
+2022-09-27 11:34:51.479 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 11:34:51.527 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='root', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:34:51.640 [ http-nio-8080-exec-1 ] - [ WARN  ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 137 ] - SQL Error: 1064, SQLState: 42000
+2022-09-27 11:34:51.640 [ http-nio-8080-exec-1 ] - [ ERROR ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 142 ] - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:34:51.602', 'admin_account_i' at line 1
+2022-09-27 11:34:51.641 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.h.engine.jdbc.batch.internal.AbstractBatchImpl : 213 ] - HHH000010: On release of batch it still contained JDBC statements
+2022-09-27 11:34:51.650 [ http-nio-8080-exec-1 ] - [ ERROR ] [ o.a.c.c.C.[.[localhost].[/].[dispatcherServlet] : 175 ] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute statement] with root cause
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:34:51.602', 'admin_account_i' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3375)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3908)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1407)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:489)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3290)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2425)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:449)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at cn.manpok.blogsystem.service.impl.UserServiceImpl$$EnhancerBySpringCGLIB$$77478795.initAdminAccount(<generated>)
+	at cn.manpok.blogsystem.controller.user.UserApi.initAdmin(UserApi.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1070)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-09-27 11:39:24.133 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 3008 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-27 11:39:24.134 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-27 11:39:25.213 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:39:25.213 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-27 11:39:25.213 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-27 11:39:25.280 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-27 11:39:25.363 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-27 11:39:25.456 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-27 11:39:25.481 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-27 11:39:25.508 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-27 11:39:25.586 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-27 11:39:25.653 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-27 11:39:25.989 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-27 11:39:26.416 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-27 11:39:26.690 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:39:26.766 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-27 11:39:26.776 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-27 11:39:26.802 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:39:26.882 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:39:26.931 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-27 11:39:26.933 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-27 11:39:26.954 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:39:26.961 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-27 11:39:26.970 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-27 11:39:26.977 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-27 11:39:26.978 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-27 11:39:26.979 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-27 11:39:26.980 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-27 11:39:26.981 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-27 11:39:26.991 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.221 seconds (JVM running for 3.654)
+2022-09-27 11:39:30.328 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 11:39:30.377 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='root', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:39:30.457 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.service.impl.UserServiceImpl : 69 ] - setting ---> cn.manpok.blogsystem.pojo.BlogSetting@35ba874d
+2022-09-27 11:39:30.458 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.service.impl.UserServiceImpl : 70 ] - user ---> BlogUser{id='329696208513662976', userName='admin-blog', password='root', roles='role_admin', avatar='//www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', email='123@qq.com', sign='My blog!', state='1', regIP='0:0:0:0:0:0:0:1', loginIP='0:0:0:0:0:0:0:1', createTime=Tue Sep 27 11:39:30 CST 2022, updateTime=Tue Sep 27 11:39:30 CST 2022}
+2022-09-27 11:39:30.493 [ http-nio-8080-exec-1 ] - [ WARN  ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 137 ] - SQL Error: 1064, SQLState: 42000
+2022-09-27 11:39:30.493 [ http-nio-8080-exec-1 ] - [ ERROR ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 142 ] - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:39:30.457', 'admin_account_i' at line 1
+2022-09-27 11:39:30.494 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.h.engine.jdbc.batch.internal.AbstractBatchImpl : 213 ] - HHH000010: On release of batch it still contained JDBC statements
+2022-09-27 11:39:30.503 [ http-nio-8080-exec-1 ] - [ ERROR ] [ o.a.c.c.C.[.[localhost].[/].[dispatcherServlet] : 175 ] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute statement] with root cause
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:39:30.457', 'admin_account_i' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3375)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3908)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1407)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:489)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3290)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2425)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:449)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at cn.manpok.blogsystem.service.impl.UserServiceImpl$$EnhancerBySpringCGLIB$$a05f13a5.initAdminAccount(<generated>)
+	at cn.manpok.blogsystem.controller.user.UserApi.initAdmin(UserApi.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1070)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-09-27 11:40:27.720 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 32556 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-27 11:40:27.722 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-27 11:40:28.836 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:40:28.836 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-27 11:40:28.837 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-27 11:40:28.902 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-27 11:40:28.989 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-27 11:40:29.085 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-27 11:40:29.112 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-27 11:40:29.139 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-27 11:40:29.223 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-27 11:40:29.294 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-27 11:40:29.650 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-27 11:40:30.071 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-27 11:40:30.340 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:40:30.416 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-27 11:40:30.426 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-27 11:40:30.452 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:40:30.533 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:40:30.579 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-27 11:40:30.580 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-27 11:40:30.601 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:40:30.608 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-27 11:40:30.618 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-27 11:40:30.625 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-27 11:40:30.626 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-27 11:40:30.627 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-27 11:40:30.628 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-27 11:40:30.629 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-27 11:40:30.639 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.291 seconds (JVM running for 3.723)
+2022-09-27 11:40:33.267 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 11:40:33.318 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='root', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:40:33.396 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.service.impl.UserServiceImpl : 69 ] - setting ---> BlogSetting{id='329696472494768128', key='admin_account_init_state', value='1', createTime=Tue Sep 27 11:40:33 CST 2022, updateTime=Tue Sep 27 11:40:33 CST 2022}
+2022-09-27 11:40:33.397 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.service.impl.UserServiceImpl : 70 ] - user ---> BlogUser{id='329696472490573824', userName='admin-blog', password='root', roles='role_admin', avatar='www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', email='123@qq.com', sign='My blog!', state='1', regIP='0:0:0:0:0:0:0:1', loginIP='0:0:0:0:0:0:0:1', createTime=Tue Sep 27 11:40:33 CST 2022, updateTime=Tue Sep 27 11:40:33 CST 2022}
+2022-09-27 11:40:33.433 [ http-nio-8080-exec-1 ] - [ WARN  ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 137 ] - SQL Error: 1064, SQLState: 42000
+2022-09-27 11:40:33.434 [ http-nio-8080-exec-1 ] - [ ERROR ] [ org.hibernate.engine.jdbc.spi.SqlExceptionHelper : 142 ] - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:40:33.395', 'admin_account_i' at line 1
+2022-09-27 11:40:33.435 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.h.engine.jdbc.batch.internal.AbstractBatchImpl : 213 ] - HHH000010: On release of batch it still contained JDBC statements
+2022-09-27 11:40:33.445 [ http-nio-8080-exec-1 ] - [ ERROR ] [ o.a.c.c.C.[.[localhost].[/].[dispatcherServlet] : 175 ] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute statement] with root cause
+com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key, update_time, value, id) values ('2022-09-27 11:40:33.395', 'admin_account_i' at line 1
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:404)
+	at com.mysql.jdbc.Util.getInstance(Util.java:387)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:942)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3966)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3902)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2526)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2673)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2549)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1861)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2073)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2009)
+	at com.mysql.jdbc.PreparedStatement.executeLargeUpdate(PreparedStatement.java:5098)
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:1994)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
+	at org.hibernate.engine.jdbc.batch.internal.NonBatchingBatch.addToBatch(NonBatchingBatch.java:46)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3375)
+	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3908)
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
+	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:344)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:107)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1407)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:489)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3290)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2425)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:449)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at cn.manpok.blogsystem.service.impl.UserServiceImpl$$EnhancerBySpringCGLIB$$a05f13a5.initAdminAccount(<generated>)
+	at cn.manpok.blogsystem.controller.user.UserApi.initAdmin(UserApi.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1070)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-09-27 11:44:14.838 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 32196 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-27 11:44:14.840 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-27 11:44:15.950 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:44:15.951 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-27 11:44:15.951 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-27 11:44:16.019 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-27 11:44:16.106 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-27 11:44:16.200 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-27 11:44:16.229 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-27 11:44:16.256 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-27 11:44:16.334 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-27 11:44:16.403 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-27 11:44:16.744 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-27 11:44:17.163 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-27 11:44:17.427 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-27 11:44:17.502 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-27 11:44:17.511 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-27 11:44:17.538 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:44:17.617 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:44:17.662 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-27 11:44:17.663 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-27 11:44:17.684 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-27 11:44:17.690 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-27 11:44:17.699 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-27 11:44:17.706 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-27 11:44:17.708 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-27 11:44:17.709 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-27 11:44:17.709 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-27 11:44:17.711 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-27 11:44:17.721 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.298 seconds (JVM running for 3.755)
+2022-09-27 11:44:22.420 [ http-nio-8080-exec-2 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-27 11:44:22.466 [ http-nio-8080-exec-2 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='root', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:44:22.546 [ http-nio-8080-exec-2 ] - [ INFO  ] [ cn.manpok.blogsystem.service.impl.UserServiceImpl : 69 ] - setting ---> BlogSetting{id='329697433615335425', key='admin_account_init_state', value='1', createTime=Tue Sep 27 11:44:22 CST 2022, updateTime=Tue Sep 27 11:44:22 CST 2022}
+2022-09-27 11:44:22.546 [ http-nio-8080-exec-2 ] - [ INFO  ] [ cn.manpok.blogsystem.service.impl.UserServiceImpl : 70 ] - user ---> BlogUser{id='329697433615335424', userName='admin-blog', password='root', roles='role_admin', avatar='www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', email='123@qq.com', sign='My blog!', state='1', regIP='0:0:0:0:0:0:0:1', loginIP='0:0:0:0:0:0:0:1', createTime=Tue Sep 27 11:44:22 CST 2022, updateTime=Tue Sep 27 11:44:22 CST 2022}
+2022-09-27 11:44:54.880 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='root2', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:45:09.508 [ http-nio-8080-exec-3 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='null', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:45:11.493 [ http-nio-8080-exec-4 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='null', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:45:25.654 [ http-nio-8080-exec-5 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='admin-blog', password='null', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-27 11:45:51.467 [ http-nio-8080-exec-6 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='null', password='root3', roles='null', avatar='null', email='123@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}

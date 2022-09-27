@@ -1,7 +1,9 @@
 package cn.manpok.blogsystem;
 
+import cn.manpok.blogsystem.utils.Snowflake;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
@@ -12,4 +14,8 @@ public class BlogSystemApplication {
         SpringApplication.run(BlogSystemApplication.class, args);
     }
 
+    @Bean
+    public Snowflake createSnowflake() {
+        return new Snowflake();
+    }
 }

@@ -2,8 +2,12 @@ package cn.manpok.blogsystem.controller.user;
 
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户管理API
@@ -13,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserApi {
 
+    @Autowired
+    private IUserService userService;
+
     /**
      * 初始化管理员账号
      *
@@ -20,9 +27,9 @@ public class UserApi {
      * @return
      */
     @PostMapping("/admin/account")
-    public ResponseResult initAdmin(@RequestBody BlogUser blogUser) {
+    public ResponseResult initAdmin(@RequestBody BlogUser blogUser, HttpServletRequest request) {
         log.info("初始化管理员账号 ----> " + blogUser.toString());
-        return null;
+        return userService.initAdminAccount(blogUser, request);
     }
 
     /**

@@ -23,12 +23,34 @@ public class ResponseResult {
     }
 
     /**
+     * 操作成功返回
+     *
+     * @return
+     */
+    public static ResponseResult SUCCESS(String message) {
+        ResponseResult responseResult = new ResponseResult(ResponseState.SUCCESS);
+        responseResult.setMessage(message);
+        return responseResult;
+    }
+
+    /**
      * 操作失败返回
      *
      * @return
      */
     public static ResponseResult FAIL() {
         return new ResponseResult(ResponseState.FAIL);
+    }
+
+    /**
+     * 操作失败返回
+     *
+     * @return
+     */
+    public static ResponseResult FAIL(String message) {
+        ResponseResult responseResult = new ResponseResult(ResponseState.FAIL);
+        responseResult.setMessage(message);
+        return responseResult;
     }
 
     public boolean isSuccess() {
