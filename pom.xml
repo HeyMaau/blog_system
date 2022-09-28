@@ -81,6 +81,12 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+        <!--图形验证码-->
+        <dependency>
+            <groupId>com.pig4cloud.plugin</groupId>
+            <artifactId>captcha-spring-boot-starter</artifactId>
+            <version>2.2.2</version>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>

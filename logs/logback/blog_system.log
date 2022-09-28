@@ -2968,3 +2968,150 @@
 2022-09-28 10:56:46.280 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.303 seconds (JVM running for 3.766)
 2022-09-28 10:59:49.576 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2022-09-28 10:59:49.638 [ http-nio-8080-exec-1 ] - [ INFO  ] [ cn.manpok.blogsystem.controller.user.UserApi : 31 ] - 初始化管理员账号 ----> BlogUser{id='null', userName='test', password='1230', roles='null', avatar='null', email='123456@qq.com', sign='null', state='null', regIP='null', loginIP='null', createTime=null, updateTime=null}
+2022-09-28 14:50:50.238 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 31964 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-28 14:50:50.239 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-28 14:50:51.356 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-28 14:50:51.357 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-28 14:50:51.357 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-28 14:50:51.428 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-28 14:50:51.520 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-28 14:50:51.617 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-28 14:50:51.643 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-28 14:50:51.667 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-28 14:50:51.746 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-28 14:50:51.810 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-28 14:50:52.148 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-28 14:50:52.649 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-28 14:50:52.924 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-28 14:50:53.004 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-28 14:50:53.014 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-28 14:50:53.044 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:50:53.145 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:50:53.199 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-28 14:50:53.200 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-28 14:50:53.222 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:50:53.229 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-28 14:50:53.238 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-28 14:50:53.244 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-28 14:50:53.246 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-28 14:50:53.247 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-28 14:50:53.248 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-28 14:50:53.249 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-28 14:50:53.258 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.395 seconds (JVM running for 3.868)
+2022-09-28 14:51:15.909 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-28 14:52:18.945 [ main ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplicationTests : 55 ] - Starting BlogSystemApplicationTests using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 30596 (started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-28 14:52:18.946 [ main ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplicationTests : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-28 14:52:20.211 [ main ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-28 14:52:20.396 [ main ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-28 14:52:20.452 [ main ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-28 14:52:20.506 [ main ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-28 14:52:20.685 [ main ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-28 14:52:20.815 [ main ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-28 14:52:21.278 [ main ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-28 14:52:22.504 [ main ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-28 14:52:23.075 [ main ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-28 14:52:23.095 [ main ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-28 14:52:23.129 [ main ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:23.256 [ main ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:23.308 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-28 14:52:23.309 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-28 14:52:23.329 [ main ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:23.333 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-28 14:52:23.341 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-28 14:52:23.345 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-28 14:52:23.345 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-28 14:52:23.346 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-28 14:52:23.347 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-28 14:52:23.348 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-28 14:52:23.357 [ main ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplicationTests : 61 ] - Started BlogSystemApplicationTests in 4.804 seconds (JVM running for 5.516)
+2022-09-28 14:52:23.527 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 350 ] - HikariPool-1 - Shutdown initiated...
+2022-09-28 14:52:23.531 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 352 ] - HikariPool-1 - Shutdown completed.
+2022-09-28 14:52:39.736 [ main ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplicationTests : 55 ] - Starting BlogSystemApplicationTests using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 17176 (started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-28 14:52:39.737 [ main ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplicationTests : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-28 14:52:40.993 [ main ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-28 14:52:41.174 [ main ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-28 14:52:41.232 [ main ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-28 14:52:41.285 [ main ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-28 14:52:41.455 [ main ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-28 14:52:41.586 [ main ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-28 14:52:42.036 [ main ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-28 14:52:43.269 [ main ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-28 14:52:43.946 [ main ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-28 14:52:43.962 [ main ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-28 14:52:43.996 [ main ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:44.115 [ main ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:44.169 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-28 14:52:44.170 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-28 14:52:44.190 [ main ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:44.194 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-28 14:52:44.200 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-28 14:52:44.204 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-28 14:52:44.205 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-28 14:52:44.205 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-28 14:52:44.206 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-28 14:52:44.206 [ main ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-28 14:52:44.217 [ main ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplicationTests : 61 ] - Started BlogSystemApplicationTests in 4.869 seconds (JVM running for 5.621)
+2022-09-28 14:52:44.374 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 350 ] - HikariPool-1 - Shutdown initiated...
+2022-09-28 14:52:44.378 [ SpringApplicationShutdownHook ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 352 ] - HikariPool-1 - Shutdown completed.
+2022-09-28 14:52:54.039 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 26100 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-28 14:52:54.040 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-28 14:52:55.140 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-28 14:52:55.140 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-28 14:52:55.140 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-28 14:52:55.207 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-28 14:52:55.297 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-28 14:52:55.389 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-28 14:52:55.413 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-28 14:52:55.438 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-28 14:52:55.517 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-28 14:52:55.582 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-28 14:52:55.913 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-28 14:52:56.411 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-28 14:52:56.677 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-28 14:52:56.752 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-28 14:52:56.763 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-28 14:52:56.790 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:56.874 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:56.925 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-28 14:52:56.926 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-28 14:52:56.945 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:52:56.951 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-28 14:52:56.959 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-28 14:52:56.965 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-28 14:52:56.966 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-28 14:52:56.967 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-28 14:52:56.969 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-28 14:52:56.970 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-28 14:52:56.979 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.296 seconds (JVM running for 3.75)
+2022-09-28 14:53:22.775 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-09-28 14:54:56.391 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 55 ] - Starting BlogSystemApplication using Java 17.0.3.1 on DESKTOP-5KE68E3 with PID 22704 (D:\WorkSpace\Java\BlogSystem\target\classes started by CMIC_ZWB in D:\WorkSpace\Java\BlogSystem)
+2022-09-28 14:54:56.392 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 634 ] - No active profile set, falling back to 1 default profile: "default"
+2022-09-28 14:54:57.522 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Initializing ProtocolHandler ["http-nio-8080"]
+2022-09-28 14:54:57.523 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardService : 173 ] - Starting service [Tomcat]
+2022-09-28 14:54:57.523 [ restartedMain ] - [ INFO  ] [ org.apache.catalina.core.StandardEngine : 173 ] - Starting Servlet engine: [Apache Tomcat/9.0.65]
+2022-09-28 14:54:57.593 [ restartedMain ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring embedded WebApplicationContext
+2022-09-28 14:54:57.687 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 110 ] - HikariPool-1 - Starting...
+2022-09-28 14:54:57.785 [ restartedMain ] - [ INFO  ] [ com.zaxxer.hikari.HikariDataSource : 123 ] - HikariPool-1 - Start completed.
+2022-09-28 14:54:57.812 [ restartedMain ] - [ INFO  ] [ org.hibernate.jpa.internal.util.LogHelper : 31 ] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-09-28 14:54:57.838 [ restartedMain ] - [ INFO  ] [ org.hibernate.Version : 44 ] - HHH000412: Hibernate ORM core version 5.6.10.Final
+2022-09-28 14:54:57.919 [ restartedMain ] - [ INFO  ] [ org.hibernate.annotations.common.Version : 56 ] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-09-28 14:54:57.987 [ restartedMain ] - [ INFO  ] [ org.hibernate.dialect.Dialect : 175 ] - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-09-28 14:54:58.344 [ restartedMain ] - [ INFO  ] [ o.h.e.t.jta.platform.internal.JtaPlatformInitiator : 52 ] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-09-28 14:54:58.854 [ restartedMain ] - [ INFO  ] [ s.d.s.w.PropertySourcedRequestMappingHandlerMapping : 69 ] - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-09-28 14:54:59.126 [ restartedMain ] - [ INFO  ] [ org.apache.coyote.http11.Http11NioProtocol : 173 ] - Starting ProtocolHandler ["http-nio-8080"]
+2022-09-28 14:54:59.202 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 160 ] - Context refreshed
+2022-09-28 14:54:59.211 [ restartedMain ] - [ INFO  ] [ s.d.s.web.plugins.DocumentationPluginsBootstrapper : 163 ] - Found 3 custom documentation plugin(s)
+2022-09-28 14:54:59.238 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:54:59.319 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:54:59.367 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_1
+2022-09-28 14:54:59.368 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoryUsingGET_1
+2022-09-28 14:54:59.391 [ restartedMain ] - [ INFO  ] [ s.d.spring.web.scanners.ApiListingReferenceScanner : 41 ] - Scanning for api listing references
+2022-09-28 14:54:59.398 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getArticlesUsingGET_1
+2022-09-28 14:54:59.407 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: deleteCommentUsingDELETE_1
+2022-09-28 14:54:59.413 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getCategoriesUsingGET_2
+2022-09-28 14:54:59.414 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getFriendLinksUsingGET_1
+2022-09-28 14:54:59.415 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getLoopersUsingGET_1
+2022-09-28 14:54:59.416 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeTitleUsingGET_1
+2022-09-28 14:54:59.417 [ restartedMain ] - [ INFO  ] [ s.d.s.w.r.operation.CachingOperationNameGenerator : 40 ] - Generating unique operation named: getWebSizeViewCountUsingGET_1
+2022-09-28 14:54:59.427 [ restartedMain ] - [ INFO  ] [ cn.manpok.blogsystem.BlogSystemApplication : 61 ] - Started BlogSystemApplication in 3.402 seconds (JVM running for 3.896)
+2022-09-28 14:55:03.914 [ http-nio-8080-exec-1 ] - [ INFO  ] [ o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] : 173 ] - Initializing Spring DispatcherServlet 'dispatcherServlet'
