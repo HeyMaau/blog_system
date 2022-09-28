@@ -11,6 +11,7 @@ import cn.manpok.blogsystem.utils.Snowflake;
 import cn.manpok.blogsystem.utils.TextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,9 @@ import java.util.Date;
 @Service
 @Transactional
 public class UserServiceImpl implements IUserService {
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     private Snowflake snowflake;
@@ -59,6 +63,8 @@ public class UserServiceImpl implements IUserService {
         blogUser.setRoles(Constants.User.ROLE_ADMIN);
         blogUser.setCreateTime(new Date());
         blogUser.setUpdateTime(new Date());
+        //密码加密
+        blogUser.setPassword(bCryptPasswordEncoder.encode(blogUser.getPassword()));
         //补充设置信息
         BlogSetting blogSetting = new BlogSetting();
         blogSetting.setId(String.valueOf(snowflake.nextId()));
@@ -66,8 +72,7 @@ public class UserServiceImpl implements IUserService {
         blogSetting.setValue("1");
         blogSetting.setCreateTime(new Date());
         blogSetting.setUpdateTime(new Date());
-        log.info("setting ---> " + blogSetting);
-        log.info("user ---> " + blogUser);
+        //保存数据库
         settingDao.save(blogSetting);
         userDao.save(blogUser);
         return ResponseResult.SUCCESS("初始化管理员账户成功！");
