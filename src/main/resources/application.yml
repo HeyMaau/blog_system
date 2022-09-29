@@ -13,3 +13,7 @@ spring:
       matching-strategy: ant_path_matcher
   jpa:
     show-sql: true
+  redis:
+    host: 192.168.144.128
+    port: 6379
+    password: root
