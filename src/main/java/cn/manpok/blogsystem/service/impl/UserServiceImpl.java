@@ -61,8 +61,8 @@ public class UserServiceImpl implements IUserService {
      * 初始化邮箱设置
      */
     static {
-        String from = "18819254799@139.com";
-        String pass = "dd00d746a1ee1ceb0d00";
+        String from = "XXXX@139.com";
+        String pass = "XXX";
         String host = "smtp.139.com";
         MailUtil.setMailConfig(from, pass, host);
     }
