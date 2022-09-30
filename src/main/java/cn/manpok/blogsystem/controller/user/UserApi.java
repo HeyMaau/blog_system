@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * 用户管理API
@@ -59,13 +61,19 @@ public class UserApi {
 
     /**
      * 获取人类验证码
+     * 用请求时的时间戳作为验证码存储的key
      *
      * @return
      */
     @GetMapping("/captcha")
-    public ResponseResult sendCaptcha() {
+    public void getCaptcha(@RequestParam("captcha_key") String captchaKey, HttpServletResponse response) {
+        try {
+            userService.createCaptcha(captchaKey, response);
+        } catch (IOException e) {
+            log.error("输出验证码图片异常");
+            e.printStackTrace();
+        }
         log.info("获取人类验证码 ----> ");
-        return null;
     }
 
     /**

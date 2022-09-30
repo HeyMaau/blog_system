@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.Random;
+
 @SpringBootApplication
 @EnableSwagger2
 public class BlogSystemApplication {
@@ -23,5 +25,10 @@ public class BlogSystemApplication {
     @Bean
     public BCryptPasswordEncoder createBCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public Random createRandom() {
+        return new Random();
     }
 }
