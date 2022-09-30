@@ -5,12 +5,12 @@ import cn.manpok.blogsystem.dao.IUserDao;
 import cn.manpok.blogsystem.pojo.BlogSetting;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IAsyncTaskService;
 import cn.manpok.blogsystem.service.IUserService;
-import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.RedisUtil;
-import cn.manpok.blogsystem.utils.Snowflake;
-import cn.manpok.blogsystem.utils.TextUtil;
-import com.pig4cloud.captcha.*;
+import cn.manpok.blogsystem.utils.*;
+import com.pig4cloud.captcha.ArithmeticCaptcha;
+import com.pig4cloud.captcha.GifCaptcha;
+import com.pig4cloud.captcha.SpecCaptcha;
 import com.pig4cloud.captcha.base.Captcha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +48,29 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    private IAsyncTaskService asyncTaskService;
+
+    private final int EVERY_SEND_EMAIL_INTERVAL = 60;
+
+    private final int SEND_EMAIL_IP_INTERVAL = 60 * 60;
+
+    private final int VERIFY_CODE_VALID = 60 * 10;
+
+    /**
+     * 初始化邮箱设置
+     */
+    static {
+        String from = "18819254799@139.com";
+        String pass = "dd00d746a1ee1ceb0d00";
+        String host = "smtp.139.com";
+        MailUtil.setMailConfig(from, pass, host);
+    }
+
     /**
      * 验证码过期时间，5分钟
      */
-    private final int CAPTCHA_EXPIRE_TIME = 5;
+    private final int CAPTCHA_EXPIRE_TIME = 5 * 60;
 
     /**
      * 验证码字体
@@ -165,5 +184,41 @@ public class UserServiceImpl implements IUserService {
         redisUtil.set(Constants.User.KEY_CAPTCHA_TEXT + key, captcha.text(), CAPTCHA_EXPIRE_TIME);
         // 输出图片流
         captcha.out(response.getOutputStream());
+    }
+
+    @Override
+    public ResponseResult sendVerifyCodeEmail(String email, HttpServletRequest request) {
+        //获取IP地址
+        String ip = request.getRemoteAddr().replaceAll(":", "-");
+        //如果IP地址一个小时内访问10次，则拒绝发送
+        Integer requestCount = (Integer) redisUtil.get(Constants.User.KEY_SEND_EMAIL_REQUEST_IP + ip);
+        if (requestCount != null && requestCount > 10) {
+            return ResponseResult.FAIL("发送验证码过于频繁！");
+        }
+        //如果上一次EMAIL访问时间少于60秒，则拒绝发送
+        String isSent = (String) redisUtil.get(Constants.User.KEY_SEND_EMIAL_ADDR + email);
+        if (isSent != null) {
+            return ResponseResult.FAIL("发送验证码过于频繁！");
+        }
+        //检查邮箱地址是否正确
+        if (!TextUtil.checkEmailAddr(email)) {
+            return ResponseResult.FAIL("邮箱地址不正确！");
+        }
+        //产生随机验证码，六位数
+        int verifyCode = random.nextInt(1000000);
+        if (verifyCode < 100000) {
+            verifyCode += 100000;
+        }
+        //发送邮件
+        asyncTaskService.sendVerifyCodeEmail(email, String.valueOf(verifyCode));
+        //redis存储
+        redisUtil.set(Constants.User.KEY_SEND_EMIAL_ADDR + email, "true", EVERY_SEND_EMAIL_INTERVAL);
+        redisUtil.set(Constants.User.KEY_VERIFY_CODE_TEXT + email, String.valueOf(verifyCode), VERIFY_CODE_VALID);
+        if (requestCount == null) {
+            requestCount = 0;
+        }
+        requestCount++;
+        redisUtil.set(Constants.User.KEY_SEND_EMAIL_REQUEST_IP + ip, requestCount, SEND_EMAIL_IP_INTERVAL);
+        return ResponseResult.SUCCESS("发送验证码成功！");
     }
 }
