@@ -13,5 +13,7 @@ public interface IUserService {
 
     void createCaptcha(String captchaKey, HttpServletResponse response) throws IOException;
 
-    ResponseResult sendVerifyCodeEmail(String email, HttpServletRequest request);
+    ResponseResult sendVerifyCodeEmail(String email, String type, HttpServletRequest request);
+
+    ResponseResult register(BlogUser blogUser, String captchaKey, String captchaCode, String verifyCode, HttpServletRequest request);
 }

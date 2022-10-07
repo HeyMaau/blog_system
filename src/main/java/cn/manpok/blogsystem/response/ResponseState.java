@@ -3,7 +3,8 @@ package cn.manpok.blogsystem.response;
 public enum ResponseState {
 
     SUCCESS(true, 20000, "操作成功"),
-    FAIL(false, 40000, "操作失败");
+    FAIL(false, 40000, "操作失败"),
+    REGISTER_SUCCESS(true, 20001, "注册成功");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;

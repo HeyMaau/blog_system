@@ -33,6 +33,10 @@ public class ResponseResult {
         return responseResult;
     }
 
+    public static ResponseResult GET(ResponseState responseState) {
+        return new ResponseResult(responseState);
+    }
+
     /**
      * 操作失败返回
      *

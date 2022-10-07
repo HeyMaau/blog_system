@@ -10,6 +10,7 @@ public interface Constants {
         String DEFAULT_STATE = "1";
         String DEFAULT_SIGN = "My blog!";
         String ROLE_ADMIN = "role_admin";
+        String ROLE_NORMAL = "role_normal";
         String KEY_CAPTCHA_TEXT = "key_captcha_text_";
         String KEY_VERIFY_CODE_TEXT = "key_verify_code_text_";
         String KEY_SEND_EMAIL_REQUEST_IP = "key_send_email_request_ip_";

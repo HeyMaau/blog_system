@@ -5,6 +5,7 @@ import cn.manpok.blogsystem.dao.IUserDao;
 import cn.manpok.blogsystem.pojo.BlogSetting;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IAsyncTaskService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
@@ -61,7 +62,7 @@ public class UserServiceImpl implements IUserService {
      * 初始化邮箱设置
      */
     static {
-        String from = "XXXX@139.com";
+        String from = "XXX@139.com";
         String pass = "XXX";
         String host = "smtp.139.com";
         MailUtil.setMailConfig(from, pass, host);
@@ -187,7 +188,19 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseResult sendVerifyCodeEmail(String email, HttpServletRequest request) {
+    public ResponseResult sendVerifyCodeEmail(String email, String type, HttpServletRequest request) {
+        //根据类型做不同的处理：注册、找回密码、修改邮箱
+        BlogUser queryUser = userDao.findByEmail(email);
+        if ("register".equals(type) || "update".equals(type)) {
+            if (queryUser != null) {
+                return ResponseResult.FAIL("该邮箱已注册");
+            }
+        }
+        if ("forget".equals(type)) {
+            if (queryUser == null) {
+                return ResponseResult.FAIL("该邮箱未注册");
+            }
+        }
         //获取IP地址
         String ip = request.getRemoteAddr().replaceAll(":", "-");
         //如果IP地址一个小时内访问10次，则拒绝发送
@@ -220,5 +233,70 @@ public class UserServiceImpl implements IUserService {
         requestCount++;
         redisUtil.set(Constants.User.KEY_SEND_EMAIL_REQUEST_IP + ip, requestCount, SEND_EMAIL_IP_INTERVAL);
         return ResponseResult.SUCCESS("发送验证码成功！");
+    }
+
+    @Override
+    public ResponseResult register(BlogUser blogUser, String captchaKey, String captchaCode, String verifyCode, HttpServletRequest request) {
+        //1、校验用户名是否为空或已注册
+        String userName = blogUser.getUserName();
+        if (TextUtil.isEmpty(userName)) {
+            return ResponseResult.FAIL("用户名为空");
+        }
+        BlogUser queryUser = userDao.findByUserName(userName);
+        if (queryUser != null) {
+            return ResponseResult.FAIL("用户名已注册");
+        }
+        //2、校验邮箱是否为空或已注册
+        String email = blogUser.getEmail();
+        if (TextUtil.isEmpty(email)) {
+            return ResponseResult.FAIL("邮箱地址为空");
+        }
+        if (!TextUtil.checkEmailAddr(email)) {
+            return ResponseResult.FAIL("邮箱地址不正确");
+        }
+        queryUser = userDao.findByEmail(email);
+        if (queryUser != null) {
+            return ResponseResult.FAIL("该邮箱已被注册");
+        }
+        //3、校验密码
+        String password = blogUser.getPassword();
+        if (TextUtil.isEmpty(password)) {
+            return ResponseResult.FAIL("密码为空");
+        }
+        //3、校验人类验证码
+        String captchaText = (String) redisUtil.get(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
+        if (TextUtil.isEmpty(captchaText)) {
+            return ResponseResult.FAIL("人类验证码无效");
+        }
+        if (!captchaCode.equalsIgnoreCase(captchaText)) {
+            return ResponseResult.FAIL("人类验证码错误");
+        } else {
+            redisUtil.del(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
+        }
+        //4、校验邮件验证码
+        String verifyCodeText = (String) redisUtil.get(Constants.User.KEY_VERIFY_CODE_TEXT + email);
+        if (TextUtil.isEmpty(verifyCodeText)) {
+            return ResponseResult.FAIL("邮箱验证码无效");
+        }
+        if (!verifyCode.equals(verifyCodeText)) {
+            return ResponseResult.FAIL("邮件验证码错误");
+        } else {
+            redisUtil.del(Constants.User.KEY_VERIFY_CODE_TEXT + email);
+        }
+        //5、对密码进行加密
+        String encodePassword = bCryptPasswordEncoder.encode(password);
+        blogUser.setPassword(encodePassword);
+        //5、补充数据
+        blogUser.setRoles(Constants.User.ROLE_NORMAL);
+        blogUser.setId(String.valueOf(snowflake.nextId()));
+        blogUser.setSign(Constants.User.DEFAULT_SIGN);
+        blogUser.setState(Constants.User.DEFAULT_STATE);
+        blogUser.setAvatar(Constants.User.DEFAULT_AVATAR);
+        blogUser.setRegIP(request.getRemoteAddr());
+        blogUser.setLoginIP(request.getRemoteAddr());
+        blogUser.setCreateTime(new Date());
+        blogUser.setUpdateTime(new Date());
+        userDao.save(blogUser);
+        return ResponseResult.GET(ResponseState.REGISTER_SUCCESS);
     }
 }

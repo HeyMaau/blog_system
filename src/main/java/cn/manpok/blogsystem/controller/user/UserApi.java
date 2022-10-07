@@ -41,9 +41,13 @@ public class UserApi {
      * @return
      */
     @PostMapping
-    public ResponseResult register(@RequestBody BlogUser blogUser) {
+    public ResponseResult register(@RequestBody BlogUser blogUser,
+                                   @RequestParam("captcha_key") String captchaKey,
+                                   @RequestParam("captcha_code") String captchaCode,
+                                   @RequestParam("verify_code") String verifyCode,
+                                   HttpServletRequest request) {
         log.info("注册账号 ----> " + blogUser.toString());
-        return null;
+        return userService.register(blogUser, captchaKey, captchaCode, verifyCode, request);
     }
 
     /**
@@ -78,14 +82,18 @@ public class UserApi {
 
     /**
      * 发送激活验证码邮件
+     * 三种情况：
+     * 1、注册新用户：邮箱已存在，不发验证码 register
+     * 2、找回密码：邮箱不存在，提示邮箱不存在 forget
+     * 3、修改邮箱：邮箱已存在，不发验证码 update
      *
      * @param email
      * @return
      */
     @GetMapping("/verify_code")
-    public ResponseResult sendVerifyCode(@RequestParam("email") String email, HttpServletRequest request) {
+    public ResponseResult sendVerifyCode(@RequestParam("email") String email, @RequestParam("type") String type, HttpServletRequest request) {
         log.info("发送激活验证码 ----> ");
-        return userService.sendVerifyCodeEmail(email, request);
+        return userService.sendVerifyCodeEmail(email, type, request);
     }
 
     /**
