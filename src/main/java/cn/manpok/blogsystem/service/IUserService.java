@@ -16,4 +16,6 @@ public interface IUserService {
     ResponseResult sendVerifyCodeEmail(String email, String type, HttpServletRequest request);
 
     ResponseResult register(BlogUser blogUser, String captchaKey, String captchaCode, String verifyCode, HttpServletRequest request);
+
+    ResponseResult login(String captchaKey, String captchaCode, BlogUser blogUser, HttpServletRequest request, HttpServletResponse response);
 }

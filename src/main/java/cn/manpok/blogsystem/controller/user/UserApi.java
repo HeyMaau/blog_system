@@ -53,14 +53,21 @@ public class UserApi {
     /**
      * 用户登录
      *
-     * @param captcha
+     * @param captchaKey  人类验证码key
+     * @param captchaCode 人类验证码
      * @param blogUser
+     * @param request
+     * @param response
      * @return
      */
-    @PostMapping("/{captcha}")
-    public ResponseResult login(@PathVariable("captcha") String captcha, @RequestBody BlogUser blogUser) {
+    @PostMapping("/{captcha_key}/{captcha_code}")
+    public ResponseResult login(@PathVariable("captcha_key") String captchaKey,
+                                @PathVariable("captcha_code") String captchaCode,
+                                @RequestBody BlogUser blogUser,
+                                HttpServletRequest request,
+                                HttpServletResponse response) {
         log.info("用户登录 ----> " + blogUser.toString());
-        return null;
+        return userService.login(captchaKey, captchaCode, blogUser, request, response);
     }
 
     /**

@@ -17,13 +17,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 @Slf4j
@@ -57,6 +61,11 @@ public class UserServiceImpl implements IUserService {
     private final int SEND_EMAIL_IP_INTERVAL = 60 * 60;
 
     private final int VERIFY_CODE_VALID = 60 * 10;
+
+    /**
+     * COOKIES失效时间，一年
+     */
+    private final int COOKIES_EXPIRED_TIME = 60 * 60 * 24 * 365;
 
     /**
      * 初始化邮箱设置
@@ -298,5 +307,56 @@ public class UserServiceImpl implements IUserService {
         blogUser.setUpdateTime(new Date());
         userDao.save(blogUser);
         return ResponseResult.GET(ResponseState.REGISTER_SUCCESS);
+    }
+
+    @Override
+    public ResponseResult login(String captchaKey, String captchaCode, BlogUser blogUser, HttpServletRequest request, HttpServletResponse response) {
+        //1、校验人类验证码是否正确
+        String captchaText = (String) redisUtil.get(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
+        if (!captchaText.equalsIgnoreCase(captchaCode)) {
+            return ResponseResult.FAIL("验证码错误");
+        } else {
+            redisUtil.del(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
+        }
+        //2、校验用户名或邮箱是否存在
+        String userName = blogUser.getUserName();
+        String email = blogUser.getEmail();
+        if (TextUtil.isEmpty(userName) && TextUtil.isEmpty(email)) {
+            return ResponseResult.FAIL("用户名或邮箱不能为空");
+        }
+        BlogUser queryUser = userDao.findByUserName(userName);
+        if (queryUser == null) {
+            queryUser = userDao.findByEmail(email);
+            if (queryUser == null) {
+                return ResponseResult.FAIL("用户名或密码错误");
+            }
+        }
+        //3、校验用户状态是否异常
+        String state = queryUser.getState();
+        if (!state.equals(Constants.User.DEFAULT_STATE)) {
+            return ResponseResult.GET(ResponseState.USER_FORBIDDEN);
+        }
+        //4、校验密码是否正确
+        if (!bCryptPasswordEncoder.matches(blogUser.getPassword(), queryUser.getPassword())) {
+            return ResponseResult.FAIL("用户名或密码不正确");
+        }
+        //5、生成token
+        Map<String, String> payload = new HashMap<>();
+        payload.put("id", queryUser.getId());
+        payload.put("user_name", queryUser.getUserName());
+        payload.put("roles", queryUser.getRoles());
+        payload.put("avatar", queryUser.getAvatar());
+        payload.put("email", queryUser.getEmail());
+        payload.put("sign", queryUser.getSign());
+        String token = JWTUtil.generateToken(payload);
+        log.info("user token ----> " + token);
+        //6、生成token的MD5返回给客户端
+        String tokenMD5 = DigestUtils.md5DigestAsHex(token.getBytes());
+        Cookie cookie = new Cookie("manpok_blog_system", tokenMD5);
+        cookie.setDomain("localhost");
+        cookie.setMaxAge(COOKIES_EXPIRED_TIME);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        return ResponseResult.SUCCESS("登录成功");
     }
 }
