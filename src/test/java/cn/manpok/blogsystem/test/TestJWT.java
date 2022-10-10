@@ -1,7 +1,11 @@
 package cn.manpok.blogsystem.test;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import cn.manpok.blogsystem.utils.JWTUtil;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.util.DigestUtils;
+
+import java.util.Map;
 
 public class TestJWT {
 
@@ -9,8 +13,10 @@ public class TestJWT {
         String digest = DigestUtils.md5DigestAsHex("manpok_blog_system_+=&".getBytes());
         System.out.println(digest);
 
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        boolean matches = bCryptPasswordEncoder.matches("hh123", "$2a$10$YBTMJyMW/ex1RQHvvojgIeM7pMSa1/4gol1.6iKbEJr/TPXCKk.BC");
-        System.out.println(matches);
+        DecodedJWT decodedJWT = JWTUtil.decodeToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX25hbWUiOiJ0ZXh0X2FjY291bnQiLCJyb2xlcyI6InJvbGVfbm9ybWFsIiwic2lnbiI6Ik15IGJsb2chIiwiaWQiOiIzMzMzODA3MzgxMzA5MDMwNDAiLCJhdmF0YXIiOiJ3d3cuYmFpZHUuY29tL2ltZy9QQ3RtX2Q5Yzg3NTBiZWQwYjNjN2QwODlmYTdkNTU3MjBkNmNmLnBuZyIsImV4cCI6MTY2NTM5NDkwNiwiZW1haWwiOiI4NDEyOTQxODBAcXEuY29tIn0.kJoz90TOJsqayXFY-0zwQQr4p9u5-uogUoGkXk_0DIs");
+        Map<String, Claim> claims = decodedJWT.getClaims();
+        Claim userName = claims.get("user_name");
+        String s = userName.asString();
+        System.out.println(s);
     }
 }

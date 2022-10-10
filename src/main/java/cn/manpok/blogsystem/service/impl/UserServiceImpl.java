@@ -68,6 +68,11 @@ public class UserServiceImpl implements IUserService {
     private final int COOKIES_EXPIRED_TIME = 60 * 60 * 24 * 365;
 
     /**
+     * token有效时间
+     */
+    private final int TOKEN_TTL = 60 * 60 * 2;
+
+    /**
      * 初始化邮箱设置
      */
     static {
@@ -157,7 +162,7 @@ public class UserServiceImpl implements IUserService {
             return;
         }
         //把key转换成Long类型，做校验
-        long key = 0l;
+        long key = 0L;
         try {
             key = Long.parseLong(captchaKey);
         } catch (NumberFormatException e) {
@@ -352,7 +357,8 @@ public class UserServiceImpl implements IUserService {
         log.info("user token ----> " + token);
         //6、生成token的MD5返回给客户端
         String tokenMD5 = DigestUtils.md5DigestAsHex(token.getBytes());
-        Cookie cookie = new Cookie("manpok_blog_system", tokenMD5);
+        redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, TOKEN_TTL);
+        Cookie cookie = new Cookie(Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
         cookie.setDomain("localhost");
         cookie.setMaxAge(COOKIES_EXPIRED_TIME);
         cookie.setPath("/");

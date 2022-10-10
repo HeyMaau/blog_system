@@ -16,6 +16,8 @@ public interface Constants {
         String KEY_VERIFY_CODE_TEXT = "key_verify_code_text_";
         String KEY_SEND_EMAIL_REQUEST_IP = "key_send_email_request_ip_";
         String KEY_SEND_EMIAL_ADDR = "key_send_emial_addr_";
+        String KEY_USER_TOKEN = "key_user_token_";
+        String KEY_TOKEN_COOKIE = "manpok_blog_system_token";
     }
 
     interface Setting {
