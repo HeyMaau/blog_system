@@ -1,7 +1,9 @@
 package cn.manpok.blogsystem.service.impl;
 
+import cn.manpok.blogsystem.dao.IRefreshTokenDao;
 import cn.manpok.blogsystem.dao.ISettingDao;
 import cn.manpok.blogsystem.dao.IUserDao;
+import cn.manpok.blogsystem.pojo.BlogRefreshToken;
 import cn.manpok.blogsystem.pojo.BlogSetting;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
@@ -9,6 +11,8 @@ import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IAsyncTaskService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.pig4cloud.captcha.ArithmeticCaptcha;
 import com.pig4cloud.captcha.GifCaptcha;
 import com.pig4cloud.captcha.SpecCaptcha;
@@ -53,6 +57,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IAsyncTaskService asyncTaskService;
+
+    @Autowired
+    private IRefreshTokenDao refreshTokenDao;
 
     /**
      * 初始化邮箱设置
@@ -327,14 +334,93 @@ public class UserServiceImpl implements IUserService {
         if (!bCryptPasswordEncoder.matches(blogUser.getPassword(), queryUser.getPassword())) {
             return ResponseResult.FAIL("用户名或密码不正确");
         }
-        //5、生成token
-        Map<String, String> payload = ClaimUtil.userBean2Claims(queryUser);
+        //5、生成token和refreshToken
+        createToken(response, queryUser);
+        return ResponseResult.SUCCESS("登录成功");
+    }
+
+    /**
+     * 检查用户的token是否有效，并转换为BlogUser
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public BlogUser checkUserToken(HttpServletRequest request, HttpServletResponse response) {
+        String tokenMD5 = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+        //如果cookie为空，直接返回
+        if (TextUtil.isEmpty(tokenMD5)) {
+            return null;
+        }
+        String token = (String) redisUtil.get(Constants.User.KEY_USER_TOKEN + tokenMD5);
+        //如果redis中的token为空，则去查询refreshToken
+        if (TextUtil.isEmpty(token)) {
+            return checkUserRefreshToken(response, tokenMD5);
+        }
+        try {
+            //token有效，直接返回解析后的BlogUser
+            DecodedJWT decodedJWT = JWTUtil.decodeToken(token);
+            Map<String, Claim> claims = decodedJWT.getClaims();
+            return ClaimUtil.Claims2UserBean(claims);
+        } catch (Exception e) {
+            //说明token过期，去查询refreshToken
+            return checkUserRefreshToken(response, tokenMD5);
+        }
+    }
+
+    /**
+     * 查询数据库中的refreshToken状态
+     *
+     * @param response
+     * @param tokenMD5
+     * @return
+     */
+    private BlogUser checkUserRefreshToken(HttpServletResponse response, String tokenMD5) {
+        BlogRefreshToken blogRefreshToken = refreshTokenDao.findByTokenMD5(tokenMD5);
+        if (blogRefreshToken != null) {
+            String refreshToken = blogRefreshToken.getRefreshToken();
+            try {
+                JWTUtil.decodeToken(refreshToken);
+                //根据RefreshToken中的userID获取BlogUser
+                BlogUser queryUser = userDao.findUserById(blogRefreshToken.getUserId());
+                //先把原来的refreshToken删除了
+                refreshTokenDao.deleteByTokenMD5(tokenMD5);
+                //创建新的token返回给客户端
+                createToken(response, queryUser);
+                return queryUser;
+            } catch (Exception e) {
+                //如果refreshToken过期了，则返回空
+                return null;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 创建token和refreshToken
+     *
+     * @param response
+     * @param blogUser
+     */
+    private void createToken(HttpServletResponse response, BlogUser blogUser) {
+        //生成token
+        Map<String, String> payload = ClaimUtil.userBean2Claims(blogUser);
         String token = JWTUtil.generateToken(payload);
         log.info("user token ----> " + token);
-        //6、生成token的MD5返回给客户端
+        //生成token的MD5返回给客户端
         String tokenMD5 = DigestUtils.md5DigestAsHex(token.getBytes());
         redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_2);
         CookieUtil.setupCookie(response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
-        return ResponseResult.SUCCESS("登录成功");
+        //生成refresh token保存到数据库
+        Map<String, String> refreshTokenClaim = ClaimUtil.createClaim("user_id", blogUser.getId());
+        String refreshToken = JWTUtil.generateToken(refreshTokenClaim, Constants.TimeValue.MONTH);
+        BlogRefreshToken blogRefreshToken = new BlogRefreshToken();
+        blogRefreshToken.setRefreshToken(refreshToken);
+        blogRefreshToken.setTokenMD5(tokenMD5);
+        blogRefreshToken.setUserId(blogUser.getId());
+        blogRefreshToken.setId(String.valueOf(snowflake.nextId()));
+        blogRefreshToken.setCreateTime(new Date());
+        blogRefreshToken.setUpdateTime(new Date());
+        refreshTokenDao.save(blogRefreshToken);
     }
 }

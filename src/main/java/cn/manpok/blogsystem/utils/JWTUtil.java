@@ -21,15 +21,26 @@ public class JWTUtil {
 
     /**
      * 生成token
-     *
-     * @param payload token携带的信息
-     * @return token字符串
+     * 默认两小时有效
+     * @param payload
+     * @return
      */
     public static String generateToken(Map<String, String> payload) {
+        return generateToken(payload, Constants.TimeValue.HOUR_2);
+    }
+
+    /**
+     * 生成token
+     *
+     * @param payload token携带的信息
+     * @param ttl 过期时间，单位：秒
+     * @return token字符串
+     */
+    public static String generateToken(Map<String, String> payload, int ttl) {
         // 指定token过期时间
         Calendar calendar = Calendar.getInstance();
         // 2小时
-        calendar.add(Calendar.HOUR, 2);
+        calendar.add(Calendar.SECOND, ttl);
         JWTCreator.Builder builder = JWT.create();
         // 构建payload
         payload.forEach(builder::withClaim);

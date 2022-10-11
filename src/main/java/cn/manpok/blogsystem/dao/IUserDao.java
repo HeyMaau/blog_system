@@ -11,4 +11,6 @@ public interface IUserDao extends JpaRepository<BlogUser, String>, JpaSpecificat
     BlogUser findByUserName(String userName);
 
     BlogUser findByEmail(String email);
+
+    BlogUser findUserById(String id);
 }

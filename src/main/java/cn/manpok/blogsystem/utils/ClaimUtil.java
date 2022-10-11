@@ -38,4 +38,10 @@ public class ClaimUtil {
         blogUser.setSign(sign);
         return blogUser;
     }
+
+    public static Map<String, String> createClaim(String key, String value) {
+        Map<String, String> payload = new HashMap<>();
+        payload.put(key, value);
+        return payload;
+    }
 }
