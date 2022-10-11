@@ -25,7 +25,6 @@ import javax.transaction.Transactional;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -329,13 +328,7 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户名或密码不正确");
         }
         //5、生成token
-        Map<String, String> payload = new HashMap<>();
-        payload.put("id", queryUser.getId());
-        payload.put("user_name", queryUser.getUserName());
-        payload.put("roles", queryUser.getRoles());
-        payload.put("avatar", queryUser.getAvatar());
-        payload.put("email", queryUser.getEmail());
-        payload.put("sign", queryUser.getSign());
+        Map<String, String> payload = ClaimUtil.userBean2Claims(queryUser);
         String token = JWTUtil.generateToken(payload);
         log.info("user token ----> " + token);
         //6、生成token的MD5返回给客户端
