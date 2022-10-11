@@ -23,4 +23,19 @@ public interface Constants {
     interface Setting {
         String ADMIN_ACCOUNT_INIT_STATE = "admin_account_init_state";
     }
+
+    /**
+     * 时间常量
+     * 基本单位：秒
+     */
+    interface TimeValue {
+        int SECOND = 1;
+        int MIN = SECOND * 60;
+        int MIN_10 = MIN * 10;
+        int HOUR = MIN * 60;
+        int HOUR_2 = HOUR * 2;
+        int DAY = HOUR * 24;
+        int MONTH = DAY * 30;
+        int YEAR = DAY * 365;
+    }
 }

@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
@@ -55,22 +54,6 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IAsyncTaskService asyncTaskService;
-
-    private final int EVERY_SEND_EMAIL_INTERVAL = 60;
-
-    private final int SEND_EMAIL_IP_INTERVAL = 60 * 60;
-
-    private final int VERIFY_CODE_VALID = 60 * 10;
-
-    /**
-     * COOKIES失效时间，一年
-     */
-    private final int COOKIES_EXPIRED_TIME = 60 * 60 * 24 * 365;
-
-    /**
-     * token有效时间
-     */
-    private final int TOKEN_TTL = 60 * 60 * 2;
 
     /**
      * 初始化邮箱设置
@@ -239,13 +222,13 @@ public class UserServiceImpl implements IUserService {
         //发送邮件
         asyncTaskService.sendVerifyCodeEmail(email, String.valueOf(verifyCode));
         //redis存储
-        redisUtil.set(Constants.User.KEY_SEND_EMIAL_ADDR + email, "true", EVERY_SEND_EMAIL_INTERVAL);
-        redisUtil.set(Constants.User.KEY_VERIFY_CODE_TEXT + email, String.valueOf(verifyCode), VERIFY_CODE_VALID);
+        redisUtil.set(Constants.User.KEY_SEND_EMIAL_ADDR + email, "true", Constants.TimeValue.MIN);
+        redisUtil.set(Constants.User.KEY_VERIFY_CODE_TEXT + email, String.valueOf(verifyCode), Constants.TimeValue.MIN_10);
         if (requestCount == null) {
             requestCount = 0;
         }
         requestCount++;
-        redisUtil.set(Constants.User.KEY_SEND_EMAIL_REQUEST_IP + ip, requestCount, SEND_EMAIL_IP_INTERVAL);
+        redisUtil.set(Constants.User.KEY_SEND_EMAIL_REQUEST_IP + ip, requestCount, Constants.TimeValue.HOUR);
         return ResponseResult.SUCCESS("发送验证码成功！");
     }
 
@@ -357,12 +340,8 @@ public class UserServiceImpl implements IUserService {
         log.info("user token ----> " + token);
         //6、生成token的MD5返回给客户端
         String tokenMD5 = DigestUtils.md5DigestAsHex(token.getBytes());
-        redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, TOKEN_TTL);
-        Cookie cookie = new Cookie(Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
-        cookie.setDomain("localhost");
-        cookie.setMaxAge(COOKIES_EXPIRED_TIME);
-        cookie.setPath("/");
-        response.addCookie(cookie);
+        redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_2);
+        CookieUtil.setupCookie(response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
         return ResponseResult.SUCCESS("登录成功");
     }
 }
