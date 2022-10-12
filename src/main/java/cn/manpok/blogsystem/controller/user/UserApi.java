@@ -124,7 +124,7 @@ public class UserApi {
     @GetMapping("/{userID}")
     public ResponseResult getUserInfo(@PathVariable("userID") String userID) {
         log.info("获取用户信息 ----> " + userID);
-        return null;
+        return userService.getUserInfo(userID);
     }
 
     /**

@@ -18,4 +18,6 @@ public interface IUserService {
     ResponseResult register(BlogUser blogUser, String captchaKey, String captchaCode, String verifyCode, HttpServletRequest request);
 
     ResponseResult login(String captchaKey, String captchaCode, BlogUser blogUser, HttpServletRequest request, HttpServletResponse response);
+
+    ResponseResult getUserInfo(String userID);
 }

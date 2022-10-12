@@ -13,6 +13,7 @@ import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.google.gson.Gson;
 import com.pig4cloud.captcha.ArithmeticCaptcha;
 import com.pig4cloud.captcha.GifCaptcha;
 import com.pig4cloud.captcha.SpecCaptcha;
@@ -337,6 +338,23 @@ public class UserServiceImpl implements IUserService {
         //5、生成token和refreshToken
         createToken(response, queryUser);
         return ResponseResult.SUCCESS("登录成功");
+    }
+
+    @Override
+    public ResponseResult getUserInfo(String userID) {
+        BlogUser queryUser = userDao.findUserById(userID);
+        if (queryUser == null) {
+            return ResponseResult.FAIL("用户不存在");
+        }
+        //深拷贝去除用户敏感信息：密码、email、IP地址
+        Gson gson = new Gson();
+        String userJson = gson.toJson(queryUser);
+        BlogUser cloneUser = gson.fromJson(userJson, BlogUser.class);
+        cloneUser.setPassword("");
+        cloneUser.setEmail("");
+        cloneUser.setRegIP("");
+        cloneUser.setLoginIP("");
+        return ResponseResult.SUCCESS("查询用户成功").setData(cloneUser);
     }
 
     /**
