@@ -308,6 +308,9 @@ public class UserServiceImpl implements IUserService {
     public ResponseResult login(String captchaKey, String captchaCode, BlogUser blogUser, HttpServletRequest request, HttpServletResponse response) {
         //1、校验人类验证码是否正确
         String captchaText = (String) redisUtil.get(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
+        if (TextUtil.isEmpty(captchaText)) {
+            return ResponseResult.FAIL("验证码为空");
+        }
         if (!captchaText.equalsIgnoreCase(captchaCode)) {
             return ResponseResult.FAIL("验证码错误");
         } else {
@@ -373,6 +376,34 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.SUCCESS("该邮箱未使用");
         }
         return ResponseResult.FAIL("该邮箱已使用");
+    }
+
+    @Override
+    public ResponseResult updateUserInfo(HttpServletRequest request, HttpServletResponse response, BlogUser blogUser) {
+        //从token中获取用户信息
+        BlogUser userByToken = checkUserToken(request, response);
+        //token为空，说明用户未登录
+        if (userByToken == null) {
+            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
+        }
+        //只限本账户操作
+        if (!userByToken.getId().equals(blogUser.getId())) {
+            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
+        }
+        //允许修改的项：用户名，头像，签名
+        if (TextUtil.isEmpty(blogUser.getUserName())) {
+            return ResponseResult.FAIL("用户名不能为空");
+        }
+        BlogUser queryUserByUserName = userDao.findByUserName(blogUser.getUserName());
+        if (queryUserByUserName != null) {
+            return ResponseResult.FAIL("用户名已存在");
+        }
+        BlogUser queryUserByID = userDao.findUserById(userByToken.getId());
+        queryUserByID.setUserName(blogUser.getUserName());
+        queryUserByID.setAvatar(blogUser.getAvatar());
+        queryUserByID.setSign(blogUser.getSign());
+        queryUserByID.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("修改用户信息成功");
     }
 
     /**

@@ -134,9 +134,9 @@ public class UserApi {
      * @return
      */
     @PutMapping
-    public ResponseResult updateUserInfo(@RequestBody BlogUser blogUser) {
+    public ResponseResult updateUserInfo(HttpServletRequest request, HttpServletResponse response, @RequestBody BlogUser blogUser) {
         log.info("修改用户信息 ----> " + blogUser.toString());
-        return null;
+        return userService.updateUserInfo(request, response, blogUser);
     }
 
     /**

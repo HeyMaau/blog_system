@@ -57,6 +57,16 @@ public class ResponseResult {
         return responseResult;
     }
 
+    /**
+     * 操作失败返回
+     *
+     * @return
+     */
+    public static ResponseResult FAIL(ResponseState responseState) {
+        ResponseResult responseResult = new ResponseResult(responseState);
+        return responseResult;
+    }
+
     public boolean isSuccess() {
         return success;
     }

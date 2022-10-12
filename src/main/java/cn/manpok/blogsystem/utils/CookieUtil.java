@@ -34,6 +34,9 @@ public class CookieUtil {
 
     public static String getCookie(HttpServletRequest request, String key) {
         Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return null;
+        }
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals(key)) {
                 return cookie.getValue();

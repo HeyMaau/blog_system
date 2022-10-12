@@ -3,9 +3,11 @@ package cn.manpok.blogsystem.response;
 public enum ResponseState {
 
     SUCCESS(true, 20000, "操作成功"),
-    FAIL(false, 40000, "操作失败"),
     REGISTER_SUCCESS(true, 20001, "注册成功"),
-    USER_FORBIDDEN(false, 20002, "用户已禁止");
+    USER_FORBIDDEN(false, 20002, "用户已禁止"),
+    FAIL(false, 40000, "操作失败"),
+    NOT_LOGIN(false, 40001, "用户未登录"),
+    PERMISSION_DENIED(false, 40002, "权限不足");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;
