@@ -403,7 +403,30 @@ public class UserServiceImpl implements IUserService {
         queryUserByID.setAvatar(blogUser.getAvatar());
         queryUserByID.setSign(blogUser.getSign());
         queryUserByID.setUpdateTime(new Date());
+        //刷新token
+        createToken(response, queryUserByID);
         return ResponseResult.SUCCESS("修改用户信息成功");
+    }
+
+    @Override
+    public ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, String userID) {
+        //检验token权限
+        BlogUser userByToken = checkUserToken(request, response);
+        //token为空，说明用户未登录
+        if (userByToken == null) {
+            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
+        }
+        //管理员才有权限删除用户
+        if (!userByToken.getRoles().equals(Constants.User.ROLE_ADMIN)) {
+            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
+        }
+        //把对应用户的状态改为禁止
+        BlogUser queryUserByID = userDao.findUserById(userID);
+        if (queryUserByID == null) {
+            return ResponseResult.FAIL("用户不存在");
+        }
+        queryUserByID.setState(Constants.User.FORBIDDEN_STATE);
+        return ResponseResult.SUCCESS("删除用户成功");
     }
 
     /**
@@ -451,7 +474,11 @@ public class UserServiceImpl implements IUserService {
                 //根据RefreshToken中的userID获取BlogUser
                 BlogUser queryUser = userDao.findUserById(blogRefreshToken.getUserId());
                 //先把原来的refreshToken删除了
-                refreshTokenDao.deleteByTokenMD5(tokenMD5);
+                int deleteCount = refreshTokenDao.deleteByTokenMD5(tokenMD5);
+                if (deleteCount <= 0) {
+                    log.info("删除refershToken失败 ----> " + tokenMD5);
+                }
+                log.info("删除refreshToken成功 ----> " + tokenMD5);
                 //创建新的token返回给客户端
                 createToken(response, queryUser);
                 return queryUser;

@@ -146,8 +146,9 @@ public class UserApi {
      * @return
      */
     @DeleteMapping("/{userID}")
-    public ResponseResult deleteUser(@PathVariable("userID") String userID) {
-        return null;
+    public ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, @PathVariable("userID") String userID) {
+        log.info("删除用户 ----> " + userID);
+        return userService.deleteUser(request, response, userID);
     }
 
     /**

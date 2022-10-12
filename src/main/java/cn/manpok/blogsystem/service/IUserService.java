@@ -26,4 +26,6 @@ public interface IUserService {
     ResponseResult checkEmailIsUsed(String email);
 
     ResponseResult updateUserInfo(HttpServletRequest request, HttpServletResponse response, BlogUser blogUser);
+
+    ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, String userID);
 }
