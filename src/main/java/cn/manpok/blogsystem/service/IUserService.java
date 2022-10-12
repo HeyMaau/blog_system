@@ -20,4 +20,8 @@ public interface IUserService {
     ResponseResult login(String captchaKey, String captchaCode, BlogUser blogUser, HttpServletRequest request, HttpServletResponse response);
 
     ResponseResult getUserInfo(String userID);
+
+    ResponseResult checkUserNameIsUsed(String userName);
+
+    ResponseResult checkEmailIsUsed(String email);
 }

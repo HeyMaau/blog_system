@@ -161,4 +161,28 @@ public class UserApi {
     public ResponseResult getUsers(@RequestParam("page") int page, @RequestParam("size") int size) {
         return null;
     }
+
+    /**
+     * 检查用户名是否已使用
+     *
+     * @param userName
+     * @return
+     */
+    @GetMapping("/user_name")
+    public ResponseResult checkUserNameIsUsed(@RequestParam("user_name") String userName) {
+        log.info("检查用户名是否已使用 ----> " + userName);
+        return userService.checkUserNameIsUsed(userName);
+    }
+
+    /**
+     * 检查邮箱是否已使用
+     *
+     * @param email
+     * @return
+     */
+    @GetMapping("/email")
+    public ResponseResult checkEmailIsUsed(@RequestParam("email") String email) {
+        log.info("检查邮箱是否已使用 ----> " + email);
+        return userService.checkEmailIsUsed(email);
+    }
 }

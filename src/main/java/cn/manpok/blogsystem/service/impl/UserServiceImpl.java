@@ -357,6 +357,24 @@ public class UserServiceImpl implements IUserService {
         return ResponseResult.SUCCESS("查询用户成功").setData(cloneUser);
     }
 
+    @Override
+    public ResponseResult checkUserNameIsUsed(String userName) {
+        BlogUser queryUser = userDao.findByUserName(userName);
+        if (queryUser == null) {
+            return ResponseResult.SUCCESS("该用户名未使用");
+        }
+        return ResponseResult.FAIL("该用户名已使用");
+    }
+
+    @Override
+    public ResponseResult checkEmailIsUsed(String email) {
+        BlogUser queryUser = userDao.findByEmail(email);
+        if (queryUser == null) {
+            return ResponseResult.SUCCESS("该邮箱未使用");
+        }
+        return ResponseResult.FAIL("该邮箱已使用");
+    }
+
     /**
      * 检查用户的token是否有效，并转换为BlogUser
      *
