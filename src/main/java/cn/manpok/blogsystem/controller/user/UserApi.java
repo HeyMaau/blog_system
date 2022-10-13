@@ -5,6 +5,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -146,6 +147,7 @@ public class UserApi {
      * @return
      */
     @DeleteMapping("/{userID}")
+    @PreAuthorize("@permission.isAdmin()")
     public ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, @PathVariable("userID") String userID) {
         log.info("删除用户 ----> " + userID);
         return userService.deleteUser(request, response, userID);
@@ -159,6 +161,7 @@ public class UserApi {
      * @return
      */
     @GetMapping("/list")
+    @PreAuthorize("@permission.isAdmin()")
     public ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, @RequestParam("page") int page, @RequestParam("size") int size) {
         return userService.getUsers(request, response, page, size);
     }

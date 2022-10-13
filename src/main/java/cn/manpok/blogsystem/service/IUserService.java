@@ -30,4 +30,6 @@ public interface IUserService {
     ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, String userID);
 
     ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, int page, int size);
+
+    BlogUser checkUserToken(HttpServletRequest request, HttpServletResponse response);
 }

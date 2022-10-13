@@ -414,16 +414,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, String userID) {
-        //检验token权限
-        BlogUser userByToken = checkUserToken(request, response);
-        //token为空，说明用户未登录
-        if (userByToken == null) {
-            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
-        }
-        //管理员才有权限删除用户
-        if (!userByToken.getRoles().equals(Constants.User.ROLE_ADMIN)) {
-            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
-        }
         //把对应用户的状态改为禁止
         BlogUser queryUserByID = userDao.findUserById(userID);
         if (queryUserByID == null) {
@@ -435,17 +425,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, int page, int size) {
-        //鉴权
-        //检验token权限
-        BlogUser userByToken = checkUserToken(request, response);
-        //token为空，说明用户未登录
-        if (userByToken == null) {
-            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
-        }
-        //管理员才有权限删除用户
-        if (!userByToken.getRoles().equals(Constants.User.ROLE_ADMIN)) {
-            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
-        }
         //页码合规判断
         if (size < Constants.Page.DEFAULT_PAGE) {
             page = Constants.Page.DEFAULT_PAGE;
@@ -466,6 +445,7 @@ public class UserServiceImpl implements IUserService {
      * @param response
      * @return
      */
+    @Override
     public BlogUser checkUserToken(HttpServletRequest request, HttpServletResponse response) {
         String tokenMD5 = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
         //如果cookie为空，直接返回
