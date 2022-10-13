@@ -8,5 +8,5 @@ public interface IRefreshTokenDao extends JpaRepository<BlogRefreshToken, String
 
     BlogRefreshToken findByTokenMD5(String tokenMD5);
 
-    int deleteByTokenMD5(String tokenMD5);
+    int deleteByUserId(String userID);
 }

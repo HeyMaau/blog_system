@@ -503,12 +503,6 @@ public class UserServiceImpl implements IUserService {
                 JWTUtil.decodeToken(refreshToken);
                 //根据RefreshToken中的userID获取BlogUser
                 BlogUser queryUser = userDao.findUserById(blogRefreshToken.getUserId());
-                //先把原来的refreshToken删除了
-                int deleteCount = refreshTokenDao.deleteByTokenMD5(tokenMD5);
-                if (deleteCount <= 0) {
-                    log.info("删除refershToken失败 ----> " + tokenMD5);
-                }
-                log.info("删除refreshToken成功 ----> " + tokenMD5);
                 //创建新的token返回给客户端
                 createToken(response, queryUser);
                 return queryUser;
@@ -536,6 +530,12 @@ public class UserServiceImpl implements IUserService {
         redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_2);
         CookieUtil.setupCookie(response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
         //生成refresh token保存到数据库
+        //先把原来的refreshToken删除
+        int deleteCount = refreshTokenDao.deleteByUserId(blogUser.getId());
+        if (deleteCount <= 0) {
+            log.info("删除refreshToken失败 ----> " + blogUser.getId());
+        }
+        log.info("删除refreshToken成功 ----> " + blogUser.getId());
         Map<String, String> refreshTokenClaim = ClaimUtil.createClaim("user_id", blogUser.getId());
         String refreshToken = JWTUtil.generateToken(refreshTokenClaim, Constants.TimeValue.MONTH);
         BlogRefreshToken blogRefreshToken = new BlogRefreshToken();
