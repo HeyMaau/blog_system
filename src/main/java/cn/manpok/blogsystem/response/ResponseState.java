@@ -7,7 +7,10 @@ public enum ResponseState {
     USER_FORBIDDEN(false, 20002, "用户已禁止"),
     FAIL(false, 40000, "操作失败"),
     NOT_LOGIN(false, 40001, "用户未登录"),
-    PERMISSION_DENIED(false, 40002, "权限不足");
+    PERMISSION_DENIED(false, 40002, "权限不足"),
+    NOT_FOUND(false, 40003, "资源不存在"),
+    REQUEST_TIMEOUT(false, 40004, "系统繁忙"),
+    SERVER_ERROR(false, 40005, "服务器异常");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;
