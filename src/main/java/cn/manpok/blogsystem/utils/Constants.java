@@ -38,4 +38,12 @@ public interface Constants {
         int MONTH = DAY * 30;
         int YEAR = DAY * 365;
     }
+
+    /**
+     * 有关分页查询的常量
+     */
+    interface Page {
+        int DEFAULT_PAGE = 1;
+        int DEFAULT_SIZE = 5;
+    }
 }

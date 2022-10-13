@@ -20,6 +20,10 @@ import com.pig4cloud.captcha.SpecCaptcha;
 import com.pig4cloud.captcha.base.Captcha;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -427,6 +431,32 @@ public class UserServiceImpl implements IUserService {
         }
         queryUserByID.setState(Constants.User.FORBIDDEN_STATE);
         return ResponseResult.SUCCESS("删除用户成功");
+    }
+
+    @Override
+    public ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, int page, int size) {
+        //鉴权
+        //检验token权限
+        BlogUser userByToken = checkUserToken(request, response);
+        //token为空，说明用户未登录
+        if (userByToken == null) {
+            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
+        }
+        //管理员才有权限删除用户
+        if (!userByToken.getRoles().equals(Constants.User.ROLE_ADMIN)) {
+            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
+        }
+        //页码合规判断
+        if (size < Constants.Page.DEFAULT_PAGE) {
+            page = Constants.Page.DEFAULT_PAGE;
+        }
+        //每页数量合规判断
+        if (size < Constants.Page.DEFAULT_SIZE) {
+            size = Constants.Page.DEFAULT_SIZE;
+        }
+        Pageable pageable = PageRequest.of(page - 1, size, Sort.Direction.ASC, "createTime");
+        Page<BlogUser> users = userDao.findAllUsers(pageable);
+        return ResponseResult.SUCCESS("查询所有用户成功").setData(users);
     }
 
     /**

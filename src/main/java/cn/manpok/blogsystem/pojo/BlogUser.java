@@ -46,6 +46,24 @@ public class BlogUser {
     @Column(name = "update_time")
     private Date updateTime;
 
+    public BlogUser() {
+    }
+
+    public BlogUser(String id, String userName, String roles, String avatar, String email, String sign, String state, String regIP, String loginIP, Date createTime, Date updateTime) {
+        this.id = id;
+        this.userName = userName;
+        this.roles = roles;
+        this.avatar = avatar;
+        this.email = email;
+        this.sign = sign;
+        this.state = state;
+        this.regIP = regIP;
+        this.loginIP = loginIP;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.password = "";
+    }
+
     public String getId() {
         return id;
     }

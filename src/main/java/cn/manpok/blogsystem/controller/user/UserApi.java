@@ -159,8 +159,8 @@ public class UserApi {
      * @return
      */
     @GetMapping("/list")
-    public ResponseResult getUsers(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return null;
+    public ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, @RequestParam("page") int page, @RequestParam("size") int size) {
+        return userService.getUsers(request, response, page, size);
     }
 
     /**

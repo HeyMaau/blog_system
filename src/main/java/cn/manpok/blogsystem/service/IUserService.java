@@ -28,4 +28,6 @@ public interface IUserService {
     ResponseResult updateUserInfo(HttpServletRequest request, HttpServletResponse response, BlogUser blogUser);
 
     ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, String userID);
+
+    ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, int page, int size);
 }
