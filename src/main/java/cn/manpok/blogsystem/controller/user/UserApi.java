@@ -209,4 +209,14 @@ public class UserApi {
         log.info("检查邮箱是否已使用 ----> " + email);
         return userService.checkEmailIsUsed(email);
     }
+
+    /**
+     * 退出登录
+     *
+     * @return
+     */
+    @GetMapping("/logout")
+    public ResponseResult logout() {
+        return userService.logout();
+    }
 }

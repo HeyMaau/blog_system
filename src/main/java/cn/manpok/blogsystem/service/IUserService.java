@@ -36,4 +36,6 @@ public interface IUserService {
     ResponseResult resetPassword(String email, BlogUser blogUser);
 
     ResponseResult updateEmail(String email, String verifyCode);
+
+    ResponseResult logout();
 }

@@ -525,6 +525,23 @@ public class UserServiceImpl implements IUserService {
         return ResponseResult.SUCCESS("修改邮箱成功");
     }
 
+    @Override
+    public ResponseResult logout() {
+        //获取登录信息;
+        BlogUser userInToken = checkUserToken();
+        if (userInToken == null) {
+            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
+        }
+        //删除redis里面的token
+        String tokenMD5 = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+        redisUtil.del(Constants.User.KEY_USER_TOKEN + tokenMD5);
+        //删除refreshToken
+        refreshTokenDao.deleteByUserId(userInToken.getId());
+        //删除cookie
+        CookieUtil.deleteCookie(response, Constants.User.KEY_TOKEN_COOKIE);
+        return ResponseResult.SUCCESS("退出登录成功");
+    }
+
     /**
      * 验证邮件验证码是否正确
      *
