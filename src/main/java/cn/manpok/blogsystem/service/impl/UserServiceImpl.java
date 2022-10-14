@@ -542,6 +542,22 @@ public class UserServiceImpl implements IUserService {
         return ResponseResult.SUCCESS("退出登录成功");
     }
 
+    @Override
+    public ResponseResult updatePassword(BlogUser blogUser) {
+        //获取token中的信息
+        BlogUser userInToken = checkUserToken();
+        if (userInToken == null) {
+            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
+        }
+        //只限本账户操作
+        if (!userInToken.getId().equals(blogUser.getId())) {
+            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
+        }
+        BlogUser queryUserByID = userDao.findUserById(userInToken.getId());
+        queryUserByID.setPassword(bCryptPasswordEncoder.encode(blogUser.getPassword()));
+        return ResponseResult.SUCCESS("修改密码成功");
+    }
+
     /**
      * 验证邮件验证码是否正确
      *

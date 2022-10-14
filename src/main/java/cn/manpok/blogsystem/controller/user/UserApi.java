@@ -219,4 +219,10 @@ public class UserApi {
     public ResponseResult logout() {
         return userService.logout();
     }
+
+    @PutMapping("/password")
+    public ResponseResult updatePassword(@RequestBody BlogUser blogUser) {
+        log.info("用户修改密码 ----> " + blogUser);
+        return userService.updatePassword(blogUser);
+    }
 }
