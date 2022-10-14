@@ -34,6 +34,7 @@ import javax.transaction.Transactional;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -65,6 +66,12 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IRefreshTokenDao refreshTokenDao;
+
+    @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
+    private HttpServletResponse response;
 
     /**
      * 初始化邮箱设置
@@ -199,7 +206,7 @@ public class UserServiceImpl implements IUserService {
     public ResponseResult sendVerifyCodeEmail(String email, String type, HttpServletRequest request) {
         //根据类型做不同的处理：注册、找回密码、修改邮箱
         BlogUser queryUser = userDao.findByEmail(email);
-        if ("register".equals(type) || "update".equals(type)) {
+        /*if ("register".equals(type) || "update".equals(type)) {
             if (queryUser != null) {
                 return ResponseResult.FAIL("该邮箱已注册");
             }
@@ -208,6 +215,20 @@ public class UserServiceImpl implements IUserService {
             if (queryUser == null) {
                 return ResponseResult.FAIL("该邮箱未注册");
             }
+        }*/
+        switch (type) {
+            case "register":
+            case "update":
+                if (queryUser != null) {
+                    return ResponseResult.FAIL("该邮箱已注册");
+                }
+                break;
+            case "forget":
+                if (queryUser == null) {
+                    return ResponseResult.FAIL("该邮箱未注册");
+                }
+                break;
+            default:
         }
         //获取IP地址
         String ip = request.getRemoteAddr().replaceAll(":", "-");
@@ -232,6 +253,7 @@ public class UserServiceImpl implements IUserService {
         }
         //发送邮件
         asyncTaskService.sendVerifyCodeEmail(email, String.valueOf(verifyCode));
+        log.info("邮件验证码 ----> " + verifyCode);
         //redis存储
         redisUtil.set(Constants.User.KEY_SEND_EMIAL_ADDR + email, "true", Constants.TimeValue.MIN);
         redisUtil.set(Constants.User.KEY_VERIFY_CODE_TEXT + email, String.valueOf(verifyCode), Constants.TimeValue.MIN_10);
@@ -240,7 +262,7 @@ public class UserServiceImpl implements IUserService {
         }
         requestCount++;
         redisUtil.set(Constants.User.KEY_SEND_EMAIL_REQUEST_IP + ip, requestCount, Constants.TimeValue.HOUR);
-        return ResponseResult.SUCCESS("发送验证码成功！");
+        return ResponseResult.SUCCESS("发送验证码成功");
     }
 
     @Override
@@ -282,7 +304,7 @@ public class UserServiceImpl implements IUserService {
             redisUtil.del(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
         }
         //4、校验邮件验证码
-        String verifyCodeText = (String) redisUtil.get(Constants.User.KEY_VERIFY_CODE_TEXT + email);
+        /*String verifyCodeText = (String) redisUtil.get(Constants.User.KEY_VERIFY_CODE_TEXT + email);
         if (TextUtil.isEmpty(verifyCodeText)) {
             return ResponseResult.FAIL("邮箱验证码无效");
         }
@@ -290,6 +312,9 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("邮件验证码错误");
         } else {
             redisUtil.del(Constants.User.KEY_VERIFY_CODE_TEXT + email);
+        }*/
+        if (!checkEmailVerifyCode(email, verifyCode)) {
+            return ResponseResult.FAIL("邮件验证码错误");
         }
         //5、对密码进行加密
         String encodePassword = bCryptPasswordEncoder.encode(password);
@@ -466,6 +491,59 @@ public class UserServiceImpl implements IUserService {
             //说明token过期，去查询refreshToken
             return checkUserRefreshToken(response, tokenMD5);
         }
+    }
+
+
+    @Override
+    public ResponseResult forgetPassword(String email, String verifyCode) {
+        //检查邮件验证码是否正确
+        if (!checkEmailVerifyCode(email, verifyCode)) {
+            return ResponseResult.FAIL(ResponseState.VERIFY_CODE_ERROR);
+        }
+        //生成临时token用于修改密码鉴权
+        Map<String, String> payload = new HashMap<>();
+        payload.put("email", email);
+        String token = JWTUtil.generateToken(payload, Constants.TimeValue.MIN_10);
+        CookieUtil.setupCookie(response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE, token, Constants.TimeValue.MIN_10);
+        return ResponseResult.SUCCESS("验证码通过");
+    }
+
+    @Override
+    public ResponseResult resetPassword(String email, BlogUser blogUser) {
+        String token = CookieUtil.getCookie(request, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE);
+        if (TextUtil.isEmpty(token)) {
+            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
+        }
+        String emailInToken = JWTUtil.decodeToken(token).getClaim("email").asString();
+        if (!email.equals(emailInToken)) {
+            return ResponseResult.FAIL(ResponseState.EMAIL_NOT_CORRECT);
+        }
+        String encodePassword = bCryptPasswordEncoder.encode(blogUser.getPassword());
+        BlogUser queryUser = userDao.findByEmail(email);
+        queryUser.setPassword(encodePassword);
+        //重置密码后要把cookie删掉
+        CookieUtil.deleteCookie(response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE);
+        return ResponseResult.SUCCESS("重置密码成功");
+    }
+
+    /**
+     * 验证邮件验证码是否正确
+     *
+     * @param email
+     * @param verifyCode
+     * @return
+     */
+    private boolean checkEmailVerifyCode(String email, String verifyCode) {
+        if (TextUtil.isEmpty(email)) {
+            return false;
+        }
+        String verifyCodeInRedis = (String) redisUtil.get(Constants.User.KEY_VERIFY_CODE_TEXT + email);
+        if (verifyCode.equals(verifyCodeInRedis)) {
+            //删除redis中的邮件验证码
+            redisUtil.del(Constants.User.KEY_VERIFY_CODE_TEXT + email);
+            return true;
+        }
+        return false;
     }
 
     /**

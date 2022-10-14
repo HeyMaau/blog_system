@@ -32,4 +32,8 @@ public interface IUserService {
     ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, int page, int size);
 
     BlogUser checkUserToken(HttpServletRequest request, HttpServletResponse response);
+
+    ResponseResult forgetPassword(String email, String verifyCode);
+
+    ResponseResult resetPassword(String email, BlogUser blogUser);
 }

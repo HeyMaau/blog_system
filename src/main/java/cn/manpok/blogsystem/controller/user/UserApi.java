@@ -105,15 +105,22 @@ public class UserApi {
     }
 
     /**
-     * 修改密码
+     * 忘记密码，校验邮件验证码是否正确
      *
-     * @param blogUser
+     * @param email
+     * @param verifyCode
      * @return
      */
-    @PutMapping("/password")
-    public ResponseResult updatePassword(@RequestBody BlogUser blogUser) {
-        log.info("用户修改密码 ----> " + blogUser.toString());
-        return null;
+    @GetMapping("/forget")
+    public ResponseResult forgetPassword(@RequestParam("email") String email, @RequestParam("verify_code") String verifyCode) {
+        log.info("用户忘记密码 ----> " + email);
+        return userService.forgetPassword(email, verifyCode);
+    }
+
+    @PutMapping("/reset")
+    public ResponseResult resetPassword(@RequestParam("email") String email, @RequestBody BlogUser blogUser) {
+        log.info("用户重设密码 ----> " + email);
+        return userService.resetPassword(email, blogUser);
     }
 
     /**

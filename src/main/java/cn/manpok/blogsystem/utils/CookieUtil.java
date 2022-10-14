@@ -22,7 +22,7 @@ public class CookieUtil {
      * @param response
      * @param key
      * @param value
-     * @param ttl      过期时间
+     * @param ttl      过期时间 单位：秒
      */
     public static void setupCookie(HttpServletResponse response, String key, String value, int ttl) {
         Cookie cookie = new Cookie(key, value);
