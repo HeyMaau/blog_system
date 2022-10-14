@@ -39,7 +39,7 @@ public class UserApi {
      * @param blogUser
      * @return
      */
-    @PostMapping
+    @PostMapping("/register")
     public ResponseResult register(@RequestBody BlogUser blogUser,
                                    @RequestParam("captcha_key") String captchaKey,
                                    @RequestParam("captcha_code") String captchaCode,
@@ -56,7 +56,7 @@ public class UserApi {
      * @param blogUser
      * @return
      */
-    @PostMapping("/{captcha_key}/{captcha_code}")
+    @PostMapping("/login/{captcha_key}/{captcha_code}")
     public ResponseResult login(@PathVariable("captcha_key") String captchaKey,
                                 @PathVariable("captcha_code") String captchaCode,
                                 @RequestBody BlogUser blogUser) {
@@ -129,7 +129,7 @@ public class UserApi {
      * @param userID
      * @return
      */
-    @GetMapping("/{userID}")
+    @GetMapping("/user_info/{userID}")
     public ResponseResult getUserInfo(@PathVariable("userID") String userID) {
         log.info("获取用户信息 ----> " + userID);
         return userService.getUserInfo(userID);
@@ -154,7 +154,7 @@ public class UserApi {
      * @param blogUser
      * @return
      */
-    @PutMapping
+    @PutMapping("/user_info")
     public ResponseResult updateUserInfo(@RequestBody BlogUser blogUser) {
         log.info("修改用户信息 ----> " + blogUser.toString());
         return userService.updateUserInfo(blogUser);
