@@ -136,6 +136,19 @@ public class UserApi {
     }
 
     /**
+     * 更新用户邮箱
+     *
+     * @param email
+     * @param verifyCode
+     * @return
+     */
+    @PutMapping("/email")
+    public ResponseResult updateEmail(@RequestParam("email") String email, @RequestParam("verify_code") String verifyCode) {
+        log.info("用户更新邮箱 ----> " + email);
+        return userService.updateEmail(email, verifyCode);
+    }
+
+    /**
      * 修改用户信息
      *
      * @param blogUser

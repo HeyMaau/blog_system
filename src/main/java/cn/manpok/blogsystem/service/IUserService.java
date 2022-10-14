@@ -34,4 +34,6 @@ public interface IUserService {
     ResponseResult forgetPassword(String email, String verifyCode);
 
     ResponseResult resetPassword(String email, BlogUser blogUser);
+
+    ResponseResult updateEmail(String email, String verifyCode);
 }

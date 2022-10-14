@@ -206,16 +206,6 @@ public class UserServiceImpl implements IUserService {
     public ResponseResult sendVerifyCodeEmail(String email, String type) {
         //根据类型做不同的处理：注册、找回密码、修改邮箱
         BlogUser queryUser = userDao.findByEmail(email);
-        /*if ("register".equals(type) || "update".equals(type)) {
-            if (queryUser != null) {
-                return ResponseResult.FAIL("该邮箱已注册");
-            }
-        }
-        if ("forget".equals(type)) {
-            if (queryUser == null) {
-                return ResponseResult.FAIL("该邮箱未注册");
-            }
-        }*/
         switch (type) {
             case "register":
             case "update":
@@ -304,15 +294,6 @@ public class UserServiceImpl implements IUserService {
             redisUtil.del(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
         }
         //4、校验邮件验证码
-        /*String verifyCodeText = (String) redisUtil.get(Constants.User.KEY_VERIFY_CODE_TEXT + email);
-        if (TextUtil.isEmpty(verifyCodeText)) {
-            return ResponseResult.FAIL("邮箱验证码无效");
-        }
-        if (!verifyCode.equals(verifyCodeText)) {
-            return ResponseResult.FAIL("邮件验证码错误");
-        } else {
-            redisUtil.del(Constants.User.KEY_VERIFY_CODE_TEXT + email);
-        }*/
         if (!checkEmailVerifyCode(email, verifyCode)) {
             return ResponseResult.FAIL("邮件验证码错误");
         }
@@ -522,6 +503,26 @@ public class UserServiceImpl implements IUserService {
         //重置密码后要把cookie删掉
         CookieUtil.deleteCookie(response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE);
         return ResponseResult.SUCCESS("重置密码成功");
+    }
+
+    @Override
+    public ResponseResult updateEmail(String email, String verifyCode) {
+        //邮箱地址判空
+        if (TextUtil.isEmpty(email)) {
+            return ResponseResult.FAIL("邮箱地址为空");
+        }
+        //从token里面获得登录信息
+        BlogUser userByToken = checkUserToken();
+        if (userByToken == null) {
+            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
+        }
+        String verifyCodeInRedis = (String) redisUtil.get(Constants.User.KEY_VERIFY_CODE_TEXT + email);
+        if (!verifyCode.equals(verifyCodeInRedis)) {
+            return ResponseResult.FAIL(ResponseState.VERIFY_CODE_ERROR);
+        }
+        BlogUser queryUserByID = userDao.findUserById(userByToken.getId());
+        queryUserByID.setEmail(email);
+        return ResponseResult.SUCCESS("修改邮箱成功");
     }
 
     /**
