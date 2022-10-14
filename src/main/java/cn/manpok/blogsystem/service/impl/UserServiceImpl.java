@@ -516,8 +516,7 @@ public class UserServiceImpl implements IUserService {
         if (userByToken == null) {
             return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
         }
-        String verifyCodeInRedis = (String) redisUtil.get(Constants.User.KEY_VERIFY_CODE_TEXT + email);
-        if (!verifyCode.equals(verifyCodeInRedis)) {
+        if (checkEmailVerifyCode(email, verifyCode)) {
             return ResponseResult.FAIL(ResponseState.VERIFY_CODE_ERROR);
         }
         BlogUser queryUserByID = userDao.findUserById(userByToken.getId());
