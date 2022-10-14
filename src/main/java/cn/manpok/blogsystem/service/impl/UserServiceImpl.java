@@ -113,7 +113,7 @@ public class UserServiceImpl implements IUserService {
             Captcha.TYPE_NUM_AND_UPPER};
 
     @Override
-    public ResponseResult initAdminAccount(BlogUser blogUser, HttpServletRequest request) {
+    public ResponseResult initAdminAccount(BlogUser blogUser) {
         BlogSetting setting = settingDao.findByKey(Constants.Setting.ADMIN_ACCOUNT_INIT_STATE);
         if (setting != null) {
             return ResponseResult.FAIL("已有管理员账户！");
@@ -156,7 +156,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void createCaptcha(String captchaKey, HttpServletResponse response) throws IOException {
+    public void createCaptcha(String captchaKey) throws IOException {
         //验证码KEY为空或者长度不符合，直接返回
         if (TextUtil.isEmpty(captchaKey) || captchaKey.length() < 13) {
             log.info("验证码为空或长度不符");
@@ -203,7 +203,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseResult sendVerifyCodeEmail(String email, String type, HttpServletRequest request) {
+    public ResponseResult sendVerifyCodeEmail(String email, String type) {
         //根据类型做不同的处理：注册、找回密码、修改邮箱
         BlogUser queryUser = userDao.findByEmail(email);
         /*if ("register".equals(type) || "update".equals(type)) {
@@ -266,7 +266,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseResult register(BlogUser blogUser, String captchaKey, String captchaCode, String verifyCode, HttpServletRequest request) {
+    public ResponseResult register(BlogUser blogUser, String captchaKey, String captchaCode, String verifyCode) {
         //1、校验用户名是否为空或已注册
         String userName = blogUser.getUserName();
         if (TextUtil.isEmpty(userName)) {
@@ -334,7 +334,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseResult login(String captchaKey, String captchaCode, BlogUser blogUser, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseResult login(String captchaKey, String captchaCode, BlogUser blogUser) {
         //1、校验人类验证码是否正确
         String captchaText = (String) redisUtil.get(Constants.User.KEY_CAPTCHA_TEXT + captchaKey);
         if (TextUtil.isEmpty(captchaText)) {
@@ -368,7 +368,7 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户名或密码不正确");
         }
         //5、生成token和refreshToken
-        createToken(response, queryUser);
+        createToken(queryUser);
         return ResponseResult.SUCCESS("登录成功");
     }
 
@@ -408,9 +408,9 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseResult updateUserInfo(HttpServletRequest request, HttpServletResponse response, BlogUser blogUser) {
+    public ResponseResult updateUserInfo(BlogUser blogUser) {
         //从token中获取用户信息
-        BlogUser userByToken = checkUserToken(request, response);
+        BlogUser userByToken = checkUserToken();
         //token为空，说明用户未登录
         if (userByToken == null) {
             return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
@@ -433,12 +433,12 @@ public class UserServiceImpl implements IUserService {
         queryUserByID.setSign(blogUser.getSign());
         queryUserByID.setUpdateTime(new Date());
         //刷新token
-        createToken(response, queryUserByID);
+        createToken(queryUserByID);
         return ResponseResult.SUCCESS("修改用户信息成功");
     }
 
     @Override
-    public ResponseResult deleteUser(HttpServletRequest request, HttpServletResponse response, String userID) {
+    public ResponseResult deleteUser(String userID) {
         //把对应用户的状态改为禁止
         BlogUser queryUserByID = userDao.findUserById(userID);
         if (queryUserByID == null) {
@@ -449,7 +449,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseResult getUsers(HttpServletRequest request, HttpServletResponse response, int page, int size) {
+    public ResponseResult getUsers(int page, int size) {
         //页码合规判断
         if (size < Constants.Page.DEFAULT_PAGE) {
             page = Constants.Page.DEFAULT_PAGE;
@@ -466,12 +466,10 @@ public class UserServiceImpl implements IUserService {
     /**
      * 检查用户的token是否有效，并转换为BlogUser
      *
-     * @param request
-     * @param response
      * @return
      */
     @Override
-    public BlogUser checkUserToken(HttpServletRequest request, HttpServletResponse response) {
+    public BlogUser checkUserToken() {
         String tokenMD5 = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
         //如果cookie为空，直接返回
         if (TextUtil.isEmpty(tokenMD5)) {
@@ -480,7 +478,7 @@ public class UserServiceImpl implements IUserService {
         String token = (String) redisUtil.get(Constants.User.KEY_USER_TOKEN + tokenMD5);
         //如果redis中的token为空，则去查询refreshToken
         if (TextUtil.isEmpty(token)) {
-            return checkUserRefreshToken(response, tokenMD5);
+            return checkUserRefreshToken(tokenMD5);
         }
         try {
             //token有效，直接返回解析后的BlogUser
@@ -489,7 +487,7 @@ public class UserServiceImpl implements IUserService {
             return ClaimUtil.Claims2UserBean(claims);
         } catch (Exception e) {
             //说明token过期，去查询refreshToken
-            return checkUserRefreshToken(response, tokenMD5);
+            return checkUserRefreshToken(tokenMD5);
         }
     }
 
@@ -549,11 +547,10 @@ public class UserServiceImpl implements IUserService {
     /**
      * 查询数据库中的refreshToken状态
      *
-     * @param response
      * @param tokenMD5
      * @return
      */
-    private BlogUser checkUserRefreshToken(HttpServletResponse response, String tokenMD5) {
+    private BlogUser checkUserRefreshToken(String tokenMD5) {
         BlogRefreshToken blogRefreshToken = refreshTokenDao.findByTokenMD5(tokenMD5);
         if (blogRefreshToken != null) {
             String refreshToken = blogRefreshToken.getRefreshToken();
@@ -562,7 +559,7 @@ public class UserServiceImpl implements IUserService {
                 //根据RefreshToken中的userID获取BlogUser
                 BlogUser queryUser = userDao.findUserById(blogRefreshToken.getUserId());
                 //创建新的token返回给客户端
-                createToken(response, queryUser);
+                createToken(queryUser);
                 return queryUser;
             } catch (Exception e) {
                 //如果refreshToken过期了，则返回空
@@ -575,10 +572,9 @@ public class UserServiceImpl implements IUserService {
     /**
      * 创建token和refreshToken
      *
-     * @param response
      * @param blogUser
      */
-    private void createToken(HttpServletResponse response, BlogUser blogUser) {
+    private void createToken(BlogUser blogUser) {
         //生成token
         Map<String, String> payload = ClaimUtil.userBean2Claims(blogUser);
         String token = JWTUtil.generateToken(payload);
