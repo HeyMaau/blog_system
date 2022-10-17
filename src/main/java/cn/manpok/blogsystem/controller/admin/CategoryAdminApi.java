@@ -41,7 +41,7 @@ public class CategoryAdminApi {
     @DeleteMapping("/{categoryID}")
     public ResponseResult deleteCategory(@PathVariable("categoryID") String categoryID) {
         log.info("删除分类 ----> " + categoryID);
-        return null;
+        return categoryAdminService.deleteCategory(categoryID);
     }
 
     /**

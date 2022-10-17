@@ -11,4 +11,6 @@ public interface ICategoryAdminService {
     ResponseResult getCategories(int page, int size);
 
     ResponseResult updateCategory(BlogCategory blogCategory);
+
+    ResponseResult deleteCategory(String categoryID);
 }

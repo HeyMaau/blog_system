@@ -97,4 +97,14 @@ public class CategoryAdminServiceImpl implements ICategoryAdminService {
         queryCategory.setUpdateTime(new Date());
         return ResponseResult.SUCCESS("更新文章分类成功");
     }
+
+    @Override
+    public ResponseResult deleteCategory(String categoryID) {
+        BlogCategory queryCategory = categoryAdminDao.findCategoryById(categoryID);
+        if (queryCategory == null) {
+            return ResponseResult.FAIL("文章分类不存在");
+        }
+        queryCategory.setState(Constants.FORBIDDEN_STATE);
+        return ResponseResult.SUCCESS("删除文章分类成功");
+    }
 }

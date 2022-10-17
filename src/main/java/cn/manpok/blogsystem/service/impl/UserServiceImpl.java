@@ -425,7 +425,7 @@ public class UserServiceImpl implements IUserService {
         if (queryUserByID == null) {
             return ResponseResult.FAIL("用户不存在");
         }
-        queryUserByID.setState(Constants.User.FORBIDDEN_STATE);
+        queryUserByID.setState(Constants.FORBIDDEN_STATE);
         return ResponseResult.SUCCESS("删除用户成功");
     }
 
