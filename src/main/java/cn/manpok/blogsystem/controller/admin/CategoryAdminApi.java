@@ -76,9 +76,10 @@ public class CategoryAdminApi {
      * @param size 每页大小
      * @return
      */
+    @PreAuthorize("@permission.isAdmin()")
     @GetMapping("/list")
     public ResponseResult getCategories(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有分类 ----> ");
-        return null;
+        return categoryAdminService.getCategories(page, size);
     }
 }
