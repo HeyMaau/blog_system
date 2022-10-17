@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "categories")
@@ -19,12 +20,12 @@ public class BlogCategory {
     private String description;
     @Column(name = "`order`")
     private long order;
-    @Column(name = "status")
-    private String status;
+    @Column(name = "`state`")
+    private String state;
     @Column(name = "create_time")
-    private java.sql.Timestamp createTime;
+    private Date createTime;
     @Column(name = "update_time")
-    private java.sql.Timestamp updateTime;
+    private Date updateTime;
 
 
     public String getId() {
@@ -72,29 +73,27 @@ public class BlogCategory {
     }
 
 
-    public String getStatus() {
-        return status;
+    public String getState() {
+        return state;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setState(String state) {
+        this.state = state;
     }
 
-
-    public java.sql.Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(java.sql.Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-
-    public java.sql.Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(java.sql.Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -106,7 +105,7 @@ public class BlogCategory {
                 ", pinyin='" + pinyin + '\'' +
                 ", description='" + description + '\'' +
                 ", order=" + order +
-                ", status='" + status + '\'' +
+                ", status='" + state + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

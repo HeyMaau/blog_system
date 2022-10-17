@@ -5,9 +5,10 @@ package cn.manpok.blogsystem.utils;
  */
 public interface Constants {
 
+    String DEFAULT_STATE = "1";
+
     interface User {
         String DEFAULT_AVATAR = "www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png";
-        String DEFAULT_STATE = "1";
         String FORBIDDEN_STATE = "0";
         String DEFAULT_SIGN = "My blog!";
         String ROLE_ADMIN = "role_admin";

@@ -2,7 +2,10 @@ package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.ICategoryService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -11,7 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/admin/category")
-public class CategoryApi {
+public class CategoryAdminApi {
+
+    @Autowired
+    private ICategoryService categoryService;
 
     /**
      * 添加分类
@@ -19,10 +25,11 @@ public class CategoryApi {
      * @param blogCategory
      * @return
      */
+    @PreAuthorize("@permission.isAdmin()")
     @PostMapping
     public ResponseResult addCategory(@RequestBody BlogCategory blogCategory) {
         log.info("添加分类 ----> " + blogCategory.toString());
-        return null;
+        return categoryService.addCategory(blogCategory);
     }
 
     /**
