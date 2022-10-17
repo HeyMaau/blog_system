@@ -431,15 +431,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ResponseResult getUsers(int page, int size) {
-        //页码合规判断
-        if (size < Constants.Page.DEFAULT_PAGE) {
-            page = Constants.Page.DEFAULT_PAGE;
-        }
-        //每页数量合规判断
-        if (size < Constants.Page.DEFAULT_SIZE) {
-            size = Constants.Page.DEFAULT_SIZE;
-        }
-        Pageable pageable = PageRequest.of(page - 1, size, Sort.Direction.ASC, "createTime");
+        //检查分页参数
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
         Page<BlogUser> users = userDao.findAllUsers(pageable);
         return ResponseResult.SUCCESS("查询所有用户成功").setData(users);
     }

@@ -5,6 +5,7 @@ import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ICategoryAdminService;
 import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import cn.manpok.blogsystem.utils.TextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,15 +61,10 @@ public class CategoryAdminServiceImpl implements ICategoryAdminService {
 
     @Override
     public ResponseResult getCategories(int page, int size) {
-        //检查页数、每页条数是否正确
-        if (page < Constants.Page.DEFAULT_PAGE) {
-            page = Constants.Page.DEFAULT_PAGE;
-        }
-        if (size < Constants.Page.DEFAULT_SIZE) {
-            size = Constants.Page.DEFAULT_SIZE;
-        }
+        //检查分页参数
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         //做分页查询
-        Pageable pageAble = PageRequest.of(page - 1, size, Sort.Direction.ASC, "createTime");
+        Pageable pageAble = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
         Page<BlogCategory> queryCategories = categoryAdminDao.findAll(pageAble);
         return ResponseResult.SUCCESS("获取所有文章分类成功").setData(queryCategories);
     }
