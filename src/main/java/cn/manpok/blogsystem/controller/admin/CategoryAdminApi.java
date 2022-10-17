@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/admin/category")
+@PreAuthorize("@permission.isAdmin()")
 public class CategoryAdminApi {
 
     @Autowired
@@ -25,7 +26,6 @@ public class CategoryAdminApi {
      * @param blogCategory
      * @return
      */
-    @PreAuthorize("@permission.isAdmin()")
     @PostMapping
     public ResponseResult addCategory(@RequestBody BlogCategory blogCategory) {
         log.info("添加分类 ----> " + blogCategory.toString());
@@ -53,7 +53,7 @@ public class CategoryAdminApi {
     @PutMapping
     public ResponseResult updateCategory(@RequestBody BlogCategory blogCategory) {
         log.info("修改分类 ----> " + blogCategory.toString());
-        return null;
+        return categoryAdminService.updateCategory(blogCategory);
     }
 
     /**
@@ -62,7 +62,6 @@ public class CategoryAdminApi {
      * @param categoryID
      * @return
      */
-    @PreAuthorize("@permission.isAdmin()")
     @GetMapping("/{categoryID}")
     public ResponseResult getCategory(@PathVariable("categoryID") String categoryID) {
         log.info("获取单个分类 ----> " + categoryID);
@@ -76,7 +75,6 @@ public class CategoryAdminApi {
      * @param size 每页大小
      * @return
      */
-    @PreAuthorize("@permission.isAdmin()")
     @GetMapping("/list")
     public ResponseResult getCategories(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有分类 ----> ");

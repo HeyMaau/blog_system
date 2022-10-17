@@ -72,4 +72,29 @@ public class CategoryAdminServiceImpl implements ICategoryAdminService {
         Page<BlogCategory> queryCategories = categoryAdminDao.findAll(pageAble);
         return ResponseResult.SUCCESS("获取所有文章分类成功").setData(queryCategories);
     }
+
+    @Override
+    public ResponseResult updateCategory(BlogCategory blogCategory) {
+        //检查数据
+        if (TextUtil.isEmpty(blogCategory.getName().trim())) {
+            return ResponseResult.FAIL("分类名称为空");
+        }
+        if (TextUtil.isEmpty(blogCategory.getDescription())) {
+            return ResponseResult.FAIL("分类描述为空");
+        }
+        if (TextUtil.isEmpty(blogCategory.getPinyin())) {
+            return ResponseResult.FAIL("分类名称拼音为空");
+        }
+        //先从数据库查询
+        BlogCategory queryCategory = categoryAdminDao.findCategoryById(blogCategory.getId());
+        if (queryCategory == null) {
+            return ResponseResult.FAIL("文章分类不存在");
+        }
+        queryCategory.setName(blogCategory.getName());
+        queryCategory.setDescription(blogCategory.getDescription());
+        queryCategory.setPinyin(blogCategory.getPinyin());
+        queryCategory.setOrder(blogCategory.getOrder());
+        queryCategory.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("更新文章分类成功");
+    }
 }

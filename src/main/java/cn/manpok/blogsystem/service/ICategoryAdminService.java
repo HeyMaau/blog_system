@@ -9,4 +9,6 @@ public interface ICategoryAdminService {
     ResponseResult getCategory(String categoryID);
 
     ResponseResult getCategories(int page, int size);
+
+    ResponseResult updateCategory(BlogCategory blogCategory);
 }
