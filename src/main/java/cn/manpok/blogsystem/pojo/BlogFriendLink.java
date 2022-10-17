@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "friends")
@@ -22,9 +23,9 @@ public class BlogFriendLink {
     @Column(name = "state")
     private String state;
     @Column(name = "create_time")
-    private java.sql.Timestamp createTime;
+    private Date createTime;
     @Column(name = "update_time")
-    private java.sql.Timestamp updateTime;
+    private Date updateTime;
 
 
     public String getId() {
@@ -80,21 +81,19 @@ public class BlogFriendLink {
         this.state = state;
     }
 
-
-    public java.sql.Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(java.sql.Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-
-    public java.sql.Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(java.sql.Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 

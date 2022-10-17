@@ -2,7 +2,7 @@ package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
-import cn.manpok.blogsystem.service.ICategoryAdminService;
+import cn.manpok.blogsystem.service.ICategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin/category")
 @PreAuthorize("@permission.isAdmin()")
-public class CategoryAdminApi {
+public class CategoryApi {
 
     @Autowired
-    private ICategoryAdminService categoryAdminService;
+    private ICategoryService categoryService;
 
     /**
      * 添加分类
@@ -29,7 +29,7 @@ public class CategoryAdminApi {
     @PostMapping
     public ResponseResult addCategory(@RequestBody BlogCategory blogCategory) {
         log.info("添加分类 ----> " + blogCategory.toString());
-        return categoryAdminService.addCategory(blogCategory);
+        return categoryService.addCategory(blogCategory);
     }
 
     /**
@@ -41,7 +41,7 @@ public class CategoryAdminApi {
     @DeleteMapping("/{categoryID}")
     public ResponseResult deleteCategory(@PathVariable("categoryID") String categoryID) {
         log.info("删除分类 ----> " + categoryID);
-        return categoryAdminService.deleteCategory(categoryID);
+        return categoryService.deleteCategory(categoryID);
     }
 
     /**
@@ -53,7 +53,7 @@ public class CategoryAdminApi {
     @PutMapping
     public ResponseResult updateCategory(@RequestBody BlogCategory blogCategory) {
         log.info("修改分类 ----> " + blogCategory.toString());
-        return categoryAdminService.updateCategory(blogCategory);
+        return categoryService.updateCategory(blogCategory);
     }
 
     /**
@@ -65,7 +65,7 @@ public class CategoryAdminApi {
     @GetMapping("/{categoryID}")
     public ResponseResult getCategory(@PathVariable("categoryID") String categoryID) {
         log.info("获取单个分类 ----> " + categoryID);
-        return categoryAdminService.getCategory(categoryID);
+        return categoryService.getCategory(categoryID);
     }
 
     /**
@@ -78,6 +78,6 @@ public class CategoryAdminApi {
     @GetMapping("/list")
     public ResponseResult getCategories(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有分类 ----> ");
-        return categoryAdminService.getCategories(page, size);
+        return categoryService.getCategories(page, size);
     }
 }

@@ -1,9 +1,9 @@
 package cn.manpok.blogsystem.service.impl;
 
-import cn.manpok.blogsystem.dao.ICategoryAdminDao;
+import cn.manpok.blogsystem.dao.ICategoryDao;
 import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
-import cn.manpok.blogsystem.service.ICategoryAdminService;
+import cn.manpok.blogsystem.service.ICategoryService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
@@ -20,13 +20,13 @@ import java.util.Date;
 
 @Service
 @Transactional
-public class CategoryAdminServiceImpl implements ICategoryAdminService {
+public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     private Snowflake snowflake;
 
     @Autowired
-    private ICategoryAdminDao categoryAdminDao;
+    private ICategoryDao categoryDao;
 
     @Override
     public ResponseResult addCategory(BlogCategory blogCategory) {
@@ -46,13 +46,13 @@ public class CategoryAdminServiceImpl implements ICategoryAdminService {
         blogCategory.setCreateTime(new Date());
         blogCategory.setUpdateTime(new Date());
         //保存
-        categoryAdminDao.save(blogCategory);
+        categoryDao.save(blogCategory);
         return ResponseResult.SUCCESS("添加文章分类成功");
     }
 
     @Override
     public ResponseResult getCategory(String categoryID) {
-        BlogCategory queryCategory = categoryAdminDao.findCategoryById(categoryID);
+        BlogCategory queryCategory = categoryDao.findCategoryById(categoryID);
         if (queryCategory == null) {
             return ResponseResult.FAIL("文章分类不存在");
         }
@@ -65,7 +65,7 @@ public class CategoryAdminServiceImpl implements ICategoryAdminService {
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         //做分页查询
         Pageable pageAble = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
-        Page<BlogCategory> queryCategories = categoryAdminDao.findAll(pageAble);
+        Page<BlogCategory> queryCategories = categoryDao.findAll(pageAble);
         return ResponseResult.SUCCESS("获取所有文章分类成功").setData(queryCategories);
     }
 
@@ -82,7 +82,7 @@ public class CategoryAdminServiceImpl implements ICategoryAdminService {
             return ResponseResult.FAIL("分类名称拼音为空");
         }
         //先从数据库查询
-        BlogCategory queryCategory = categoryAdminDao.findCategoryById(blogCategory.getId());
+        BlogCategory queryCategory = categoryDao.findCategoryById(blogCategory.getId());
         if (queryCategory == null) {
             return ResponseResult.FAIL("文章分类不存在");
         }
@@ -96,7 +96,7 @@ public class CategoryAdminServiceImpl implements ICategoryAdminService {
 
     @Override
     public ResponseResult deleteCategory(String categoryID) {
-        BlogCategory queryCategory = categoryAdminDao.findCategoryById(categoryID);
+        BlogCategory queryCategory = categoryDao.findCategoryById(categoryID);
         if (queryCategory == null) {
             return ResponseResult.FAIL("文章分类不存在");
         }
