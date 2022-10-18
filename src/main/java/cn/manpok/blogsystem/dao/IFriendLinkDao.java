@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface IFriendLinkDao extends JpaRepository<BlogFriendLink, String>, JpaSpecificationExecutor<BlogFriendLink> {
 
     BlogFriendLink findFriendLinkById(String id);
+
+    int deleteFriendLinkById(String id);
 }

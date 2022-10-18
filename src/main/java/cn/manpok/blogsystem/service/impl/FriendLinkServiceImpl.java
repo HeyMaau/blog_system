@@ -51,7 +51,11 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
 
     @Override
     public ResponseResult deleteFriendLink(String friendLinkID) {
-        return null;
+        int deleteCount = friendLinkDao.deleteFriendLinkById(friendLinkID);
+        if (deleteCount < 1) {
+            return ResponseResult.FAIL("友情链接不存在");
+        }
+        return ResponseResult.SUCCESS("删除友情链接成功");
     }
 
     @Override
