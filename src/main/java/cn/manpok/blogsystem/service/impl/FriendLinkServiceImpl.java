@@ -56,7 +56,26 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
 
     @Override
     public ResponseResult updateFriendLink(BlogFriendLink blogFriendLink) {
-        return null;
+        //检查参数，有些不能为空
+        if (TextUtil.isEmpty(blogFriendLink.getName())) {
+            return ResponseResult.FAIL("友情链接名称为空");
+        }
+        if (TextUtil.isEmpty(blogFriendLink.getLogo())) {
+            return ResponseResult.FAIL("友情链接LOGO为空");
+        }
+        if (TextUtil.isEmpty(blogFriendLink.getUrl())) {
+            return ResponseResult.FAIL("友情链接URL为空");
+        }
+        BlogFriendLink queryFriendLink = friendLinkDao.findFriendLinkById(blogFriendLink.getId());
+        if (queryFriendLink == null) {
+            return ResponseResult.FAIL("友情链接不存在");
+        }
+        queryFriendLink.setName(blogFriendLink.getName());
+        queryFriendLink.setLogo(blogFriendLink.getLogo());
+        queryFriendLink.setUrl(blogFriendLink.getUrl());
+        queryFriendLink.setOrder(blogFriendLink.getOrder());
+        queryFriendLink.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("修改友情链接成功");
     }
 
     @Override
