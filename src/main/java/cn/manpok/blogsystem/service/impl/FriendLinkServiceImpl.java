@@ -56,7 +56,11 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
 
     @Override
     public ResponseResult getFriendLink(String friendLinkID) {
-        return null;
+        BlogFriendLink queryFriendLink = friendLinkDao.findFriendLinkById(friendLinkID);
+        if (queryFriendLink == null) {
+            return ResponseResult.FAIL("友情链接不存在");
+        }
+        return ResponseResult.SUCCESS("获取友情链接成功").setData(queryFriendLink);
     }
 
     @Override
