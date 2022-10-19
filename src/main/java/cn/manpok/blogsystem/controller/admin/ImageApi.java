@@ -1,6 +1,5 @@
 package cn.manpok.blogsystem.controller.admin;
 
-import cn.manpok.blogsystem.pojo.BlogImage;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IImageService;
 import lombok.extern.slf4j.Slf4j;
@@ -45,27 +44,14 @@ public class ImageApi {
     }
 
     /**
-     * 修改图片
-     *
-     * @param blogImage
-     * @return
-     */
-    @PutMapping
-    public ResponseResult updateImage(@RequestBody BlogImage blogImage) {
-        log.info("修改图片 ----> " + blogImage.toString());
-        return null;
-    }
-
-    /**
      * 获取单张图片
      *
      * @param imageID
-     * @return
      */
     @GetMapping("/{imageID}")
-    public ResponseResult getCategory(@PathVariable("imageID") String imageID) {
+    public void getImage(@PathVariable("imageID") String imageID) {
         log.info("获取单张图片 ----> " + imageID);
-        return null;
+        imageService.getImage(imageID);
     }
 
     /**
@@ -76,7 +62,7 @@ public class ImageApi {
      * @return
      */
     @GetMapping("/list")
-    public ResponseResult getCategories(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public ResponseResult getImages(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有图片 ----> ");
         return null;
     }

@@ -5,4 +5,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface IImageService {
     ResponseResult uploadImage(MultipartFile imageFile);
+
+    void getImage(String imageID);
 }

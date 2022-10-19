@@ -29,3 +29,5 @@ spring:
 blog.system.image.dir.path: D:\WorkSpace\Java\images
 # 图片大小限制，单位b，大小2M
 blog.system.image.max.size: 2097152
+# 读取图片缓冲区带下
+blog.system.image.inputstream.buffer: 8192

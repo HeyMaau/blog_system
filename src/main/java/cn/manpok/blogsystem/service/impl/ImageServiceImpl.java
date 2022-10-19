@@ -16,8 +16,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,6 +38,9 @@ public class ImageServiceImpl implements IImageService {
     @Value("${blog.system.image.max.size}")
     private long maxImageSize;
 
+    @Value("${blog.system.image.inputstream.buffer}")
+    private int bufferSize;
+
     @Autowired
     private Snowflake snowflake;
 
@@ -43,6 +49,9 @@ public class ImageServiceImpl implements IImageService {
 
     @Autowired
     private IImageDao imageDao;
+
+    @Autowired
+    private HttpServletResponse response;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.Image.DATE_FORMAT);
 
@@ -102,7 +111,7 @@ public class ImageServiceImpl implements IImageService {
         String originalFilename = imageFile.getOriginalFilename();
         image.setName(originalFilename);
         image.setId(id);
-        image.setUrl(dateFormatStr + File.separator + type);
+        image.setUrl(dateFormatStr + File.separator + type + File.separator + fileName);
         image.setState(Constants.DEFAULT_STATE);
         image.setCreateTime(currentDate);
         image.setUpdateTime(currentDate);
@@ -123,6 +132,42 @@ public class ImageServiceImpl implements IImageService {
         return ResponseResult.SUCCESS("图片上传成功").setData(result);
     }
 
+    @Override
+    public void getImage(String imageID) {
+        //根据图片ID查询数据库记录
+        BlogImage queryImage = imageDao.findImageById(imageID);
+        if (queryImage == null) {
+            log.error("图片不存在 ----> " + imageID);
+            return;
+        }
+        //获取图片相对路径
+        String imageUrl = queryImage.getUrl();
+        //根据主机存放路径，组成图片的全路径
+        String imageFilePath = imagePath + File.separator + imageUrl;
+        File file = new File(imageFilePath);
+        if (!file.exists()) {
+            return;
+        }
+        //获取文件后缀名
+        int index = imageUrl.lastIndexOf(".");
+        String type = imageUrl.substring(index + 1);
+        //根据后缀名设置contentType
+        String contentType = getContentType(type);
+        response.setContentType(contentType);
+        //输出流写出
+        try (FileInputStream inputStream = new FileInputStream(file);
+             ServletOutputStream outputStream = response.getOutputStream()) {
+            byte[] buffer = new byte[bufferSize];
+            int len;
+            while ((len = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, len);
+            }
+        } catch (Exception e) {
+            log.error("输出图片失败");
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 检查图片类型
      *
@@ -134,6 +179,22 @@ public class ImageServiceImpl implements IImageService {
             case Constants.Image.TYPE_GIF_WITH_PREFIX -> Constants.Image.TYPE_GIF;
             case Constants.Image.TYPE_PNG_WITH_PREFIX -> Constants.Image.TYPE_PNG;
             case Constants.Image.TYPE_JPEG_WITH_PREFIX -> Constants.Image.TYPE_JPEG;
+            default -> null;
+        };
+    }
+
+    /**
+     * 获取图片类型对应的contentType
+     *
+     * @param type
+     * @return
+     */
+    private String getContentType(String type) {
+        return switch (type) {
+            case Constants.Image.TYPE_JPG -> Constants.Image.TYPE_JPG_WITH_PREFIX;
+            case Constants.Image.TYPE_GIF -> Constants.Image.TYPE_GIF_WITH_PREFIX;
+            case Constants.Image.TYPE_PNG -> Constants.Image.TYPE_PNG_WITH_PREFIX;
+            case Constants.Image.TYPE_JPEG -> Constants.Image.TYPE_JPEG_WITH_PREFIX;
             default -> null;
         };
     }

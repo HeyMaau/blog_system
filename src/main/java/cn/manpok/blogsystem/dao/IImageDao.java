@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface IImageDao extends JpaRepository<BlogImage, String>, JpaSpecificationExecutor<BlogImage> {
 
     BlogImage findImageByMD5(String MD5);
+
+    BlogImage findImageById(String id);
 }
