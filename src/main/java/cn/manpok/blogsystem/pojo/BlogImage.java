@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "images")
@@ -18,9 +19,13 @@ public class BlogImage {
     @Column(name = "state")
     private String state;
     @Column(name = "create_time")
-    private java.sql.Timestamp createTime;
+    private Date createTime;
     @Column(name = "update_time")
-    private java.sql.Timestamp updateTime;
+    private Date updateTime;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "MD5")
+    private String MD5;
 
 
     public String getId() {
@@ -58,22 +63,36 @@ public class BlogImage {
         this.state = state;
     }
 
-
-    public java.sql.Timestamp getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(java.sql.Timestamp createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-
-    public java.sql.Timestamp getUpdateTime() {
+    public Date getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(java.sql.Timestamp updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMD5() {
+        return MD5;
+    }
+
+    public void setMD5(String MD5) {
+        this.MD5 = MD5;
     }
 
     @Override
@@ -85,6 +104,8 @@ public class BlogImage {
                 ", state='" + state + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", name='" + name + '\'' +
+                ", MD5='" + MD5 + '\'' +
                 '}';
     }
 }

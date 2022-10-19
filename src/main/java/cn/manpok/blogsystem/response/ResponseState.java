@@ -12,7 +12,9 @@ public enum ResponseState {
     REQUEST_TIMEOUT(false, 40004, "系统繁忙"),
     SERVER_ERROR(false, 40005, "服务器异常"),
     VERIFY_CODE_ERROR(false, 40006, "邮件验证码错误"),
-    EMAIL_NOT_CORRECT(false, 40007, "邮箱不正确");
+    EMAIL_NOT_CORRECT(false, 40007, "邮箱不正确"),
+    IMAGE_TYPE_NOT_SUPPORT(false, 40008, "图片格式错误"),
+    IMAGE_UPLOAD_FAILED(false, 40009, "图片上传失败");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;

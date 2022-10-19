@@ -2,8 +2,12 @@ package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.pojo.BlogImage;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IImageService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 管理图片Api
@@ -11,18 +15,21 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/admin/image")
+@PreAuthorize("@permission.admin")
 public class ImageApi {
+
+    @Autowired
+    private IImageService imageService;
 
     /**
      * 上传图片
      *
-     * @param blogImage
+     * @param imageFile
      * @return
      */
     @PostMapping
-    public ResponseResult uploadImage(@RequestBody BlogImage blogImage) {
-        log.info("上传图片 ----> " + blogImage.toString());
-        return null;
+    public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile) {
+        return imageService.uploadImage(imageFile);
     }
 
     /**

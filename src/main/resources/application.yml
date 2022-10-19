@@ -19,3 +19,13 @@ spring:
     host: 192.168.144.128
     port: 6379
     password: root
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 50MB
+
+# 图片本地保存路径
+blog.system.image.dir.path: D:\WorkSpace\Java\images
+# 图片大小限制，单位b，大小2M
+blog.system.image.max.size: 2097152

@@ -26,6 +26,19 @@ public interface Constants {
         String ADMIN_ACCOUNT_INIT_STATE = "admin_account_init_state";
     }
 
+    interface Image {
+        String DATE_FORMAT = "yyyy_MM_dd";
+        String CONTENT_TYPE_PREFIX = "image/";
+        String TYPE_JPG = "jpg";
+        String TYPE_GIF = "gif";
+        String TYPE_PNG = "png";
+        String TYPE_JPEG = "jpeg";
+        String TYPE_JPG_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_JPG;
+        String TYPE_GIF_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_GIF;
+        String TYPE_PNG_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_PNG;
+        String TYPE_JPEG_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_JPEG;
+    }
+
     /**
      * 时间常量
      * 基本单位：秒
