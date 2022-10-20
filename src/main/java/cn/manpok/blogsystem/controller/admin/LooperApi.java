@@ -2,7 +2,9 @@ package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.pojo.BlogLooper;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.ILooperService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin/looper")
 public class LooperApi {
 
+    @Autowired
+    private ILooperService looperService;
+
     /**
      * 上传轮播图
      *
@@ -22,7 +27,7 @@ public class LooperApi {
     @PostMapping
     public ResponseResult uploadLooper(@RequestBody BlogLooper blogLooper) {
         log.info("上传轮播图 ----> " + blogLooper.toString());
-        return null;
+        return looperService.uploadLooper(blogLooper);
     }
 
     /**
