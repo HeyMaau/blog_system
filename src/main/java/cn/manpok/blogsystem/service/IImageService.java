@@ -9,4 +9,6 @@ public interface IImageService {
     void getImage(String imageID);
 
     ResponseResult getImages(int page, int size);
+
+    ResponseResult deleteImage(String imageID);
 }

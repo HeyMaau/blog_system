@@ -186,6 +186,16 @@ public class ImageServiceImpl implements IImageService {
         return ResponseResult.SUCCESS("获取所有图片成功").setData(queryImages);
     }
 
+    @Override
+    public ResponseResult deleteImage(String imageID) {
+        BlogImage queryImage = imageDao.findImageById(imageID);
+        if (queryImage == null) {
+            return ResponseResult.FAIL("图片不存在");
+        }
+        queryImage.setState(Constants.FORBIDDEN_STATE);
+        return ResponseResult.SUCCESS("删除图片成功");
+    }
+
     /**
      * 检查图片类型
      *

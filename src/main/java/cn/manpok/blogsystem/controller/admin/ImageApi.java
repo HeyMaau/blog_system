@@ -40,7 +40,7 @@ public class ImageApi {
     @DeleteMapping("/{imageID}")
     public ResponseResult deleteImage(@PathVariable("imageID") String imageID) {
         log.info("删除图片 ----> " + imageID);
-        return null;
+        return imageService.deleteImage(imageID);
     }
 
     /**
