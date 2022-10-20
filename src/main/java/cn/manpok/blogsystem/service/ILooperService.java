@@ -5,4 +5,6 @@ import cn.manpok.blogsystem.response.ResponseResult;
 
 public interface ILooperService {
     ResponseResult uploadLooper(BlogLooper blogLooper);
+
+    ResponseResult getLooper(String looperID);
 }

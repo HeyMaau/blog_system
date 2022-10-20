@@ -44,4 +44,13 @@ public class LooperServiceImpl implements ILooperService {
         looperDao.save(blogLooper);
         return ResponseResult.SUCCESS("上传轮播图成功");
     }
+
+    @Override
+    public ResponseResult getLooper(String looperID) {
+        BlogLooper queryLooper = looperDao.findLooperById(looperID);
+        if (queryLooper == null) {
+            return ResponseResult.FAIL("轮播图不存在");
+        }
+        return ResponseResult.SUCCESS("获取轮播图成功").setData(queryLooper);
+    }
 }

@@ -5,6 +5,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ILooperService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/admin/looper")
+@PreAuthorize("@permission.admin")
 public class LooperApi {
 
     @Autowired
@@ -63,7 +65,7 @@ public class LooperApi {
     @GetMapping("/{looperID}")
     public ResponseResult getLooper(@PathVariable("looperID") String looperID) {
         log.info("获取单张轮播图 ----> " + looperID);
-        return null;
+        return looperService.getLooper(looperID);
     }
 
     /**
