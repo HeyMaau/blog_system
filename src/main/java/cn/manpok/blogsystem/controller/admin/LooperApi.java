@@ -78,6 +78,6 @@ public class LooperApi {
     @GetMapping("/list")
     public ResponseResult getLoopers(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有轮播图 ----> ");
-        return null;
+        return looperService.getLoopers(page, size);
     }
 }

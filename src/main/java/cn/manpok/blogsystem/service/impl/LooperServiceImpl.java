@@ -5,9 +5,14 @@ import cn.manpok.blogsystem.pojo.BlogLooper;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ILooperService;
 import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import cn.manpok.blogsystem.utils.TextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -52,5 +57,13 @@ public class LooperServiceImpl implements ILooperService {
             return ResponseResult.FAIL("轮播图不存在");
         }
         return ResponseResult.SUCCESS("获取轮播图成功").setData(queryLooper);
+    }
+
+    @Override
+    public ResponseResult getLoopers(int page, int size) {
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "updateTime");
+        Page<BlogLooper> queryLoopers = looperDao.findAll(pageable);
+        return ResponseResult.SUCCESS("获取所有轮播图成功").setData(queryLoopers);
     }
 }
