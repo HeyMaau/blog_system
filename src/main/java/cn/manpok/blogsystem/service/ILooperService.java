@@ -9,4 +9,6 @@ public interface ILooperService {
     ResponseResult getLooper(String looperID);
 
     ResponseResult getLoopers(int page, int size);
+
+    ResponseResult updateLooper(BlogLooper blogLooper);
 }

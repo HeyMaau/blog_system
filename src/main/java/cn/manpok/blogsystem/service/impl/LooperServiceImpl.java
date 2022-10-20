@@ -66,4 +66,29 @@ public class LooperServiceImpl implements ILooperService {
         Page<BlogLooper> queryLoopers = looperDao.findAll(pageable);
         return ResponseResult.SUCCESS("获取所有轮播图成功").setData(queryLoopers);
     }
+
+    @Override
+    public ResponseResult updateLooper(BlogLooper blogLooper) {
+        //检查参数
+        if (TextUtil.isEmpty(blogLooper.getTitle())) {
+            return ResponseResult.FAIL("轮播图标题为空");
+        }
+        if (TextUtil.isEmpty(blogLooper.getImageUrl())) {
+            return ResponseResult.FAIL("轮播图图片URL为空");
+        }
+        if (TextUtil.isEmpty(blogLooper.getTargetUrl())) {
+            return ResponseResult.FAIL("轮播图目标URL为空");
+        }
+        //从数据库查出来
+        BlogLooper queryLooper = looperDao.findLooperById(blogLooper.getId());
+        if (queryLooper == null) {
+            return ResponseResult.FAIL("轮播图不存在");
+        }
+        queryLooper.setTitle(blogLooper.getTitle());
+        queryLooper.setTargetUrl(blogLooper.getTargetUrl());
+        queryLooper.setImageUrl(blogLooper.getImageUrl());
+        queryLooper.setOrder(blogLooper.getOrder());
+        queryLooper.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("修改轮播图成功");
+    }
 }

@@ -53,7 +53,7 @@ public class LooperApi {
     @PutMapping
     public ResponseResult updateLooper(@RequestBody BlogLooper blogLooper) {
         log.info("修改轮播图 ----> " + blogLooper.toString());
-        return null;
+        return looperService.updateLooper(blogLooper);
     }
 
     /**
