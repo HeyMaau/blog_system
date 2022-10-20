@@ -41,7 +41,7 @@ public class LooperApi {
     @DeleteMapping("/{looperID}")
     public ResponseResult deleteLooper(@PathVariable("looperID") String looperID) {
         log.info("删除轮播图 ----> " + looperID);
-        return null;
+        return looperService.deleteLooper(looperID);
     }
 
     /**

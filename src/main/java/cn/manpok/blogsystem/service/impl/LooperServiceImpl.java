@@ -91,4 +91,13 @@ public class LooperServiceImpl implements ILooperService {
         queryLooper.setUpdateTime(new Date());
         return ResponseResult.SUCCESS("修改轮播图成功");
     }
+
+    @Override
+    public ResponseResult deleteLooper(String looperID) {
+        int deleteCount = looperDao.deleteLooperById(looperID);
+        if (deleteCount < 1) {
+            return ResponseResult.FAIL("删除轮播图失败");
+        }
+        return ResponseResult.SUCCESS("删除轮播图成功");
+    }
 }

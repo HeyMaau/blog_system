@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface ILooperDao extends JpaRepository<BlogLooper, String>, JpaSpecificationExecutor<BlogLooper> {
 
     BlogLooper findLooperById(String id);
+
+    int deleteLooperById(String id);
 }
