@@ -8,10 +8,15 @@ import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IImageService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -166,6 +171,19 @@ public class ImageServiceImpl implements IImageService {
             log.error("输出图片失败");
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public ResponseResult getImages(int page, int size) {
+        //检查分页参数
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        //获取用户token
+        BlogUser user = userService.checkUserToken();
+        //构建分页
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
+        //查询条件：1、属于当前用户；2、状态正常
+        Page<BlogImage> queryImages = imageDao.findImagesByUserIdAndState(user.getId(), Constants.DEFAULT_STATE, pageable);
+        return ResponseResult.SUCCESS("获取所有图片成功").setData(queryImages);
     }
 
     /**

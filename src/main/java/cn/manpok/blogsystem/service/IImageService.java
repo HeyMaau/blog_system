@@ -7,4 +7,6 @@ public interface IImageService {
     ResponseResult uploadImage(MultipartFile imageFile);
 
     void getImage(String imageID);
+
+    ResponseResult getImages(int page, int size);
 }

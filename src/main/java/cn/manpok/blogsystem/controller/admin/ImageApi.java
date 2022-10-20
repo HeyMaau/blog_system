@@ -64,6 +64,6 @@ public class ImageApi {
     @GetMapping("/list")
     public ResponseResult getImages(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有图片 ----> ");
-        return null;
+        return imageService.getImages(page, size);
     }
 }
