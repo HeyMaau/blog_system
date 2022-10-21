@@ -67,13 +67,13 @@ public class WebSizeInfoApi {
     }
 
     /**
-     * 获取网站统计信息
+     * 获取网站访问量
      *
      * @return
      */
     @GetMapping("/view_count")
     public ResponseResult getWebSizeViewCount() {
         log.info("获取网站统计信息");
-        return null;
+        return webSizeInfoService.getWebSizeViewCount();
     }
 }

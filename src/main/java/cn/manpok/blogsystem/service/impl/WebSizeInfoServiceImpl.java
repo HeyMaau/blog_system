@@ -112,4 +112,24 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         }
         return ResponseResult.SUCCESS("查询网站SEO信息成功").setData(result);
     }
+
+    @Override
+    public ResponseResult getWebSizeViewCount() {
+        //先从数据库中查询
+        BlogSetting queryViewCount = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+        //如果为空，则创建一个新的
+        if (queryViewCount == null) {
+            queryViewCount = new BlogSetting();
+            queryViewCount.setId(String.valueOf(snowflake.nextId()));
+            queryViewCount.setKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+            queryViewCount.setValue("1");
+            Date date = new Date();
+            queryViewCount.setCreateTime(date);
+            queryViewCount.setUpdateTime(date);
+            webSizeInfoDao.save(queryViewCount);
+        }
+        Map<String, String> result = new HashMap<>();
+        result.put("view_count", queryViewCount.getValue());
+        return ResponseResult.SUCCESS("查询网站访问量成功").setData(result);
+    }
 }

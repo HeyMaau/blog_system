@@ -27,6 +27,7 @@ public interface Constants {
         String WEB_SIZE_INFO_TITLE = "web_size_info_title";
         String WEB_SIZE_INFO_SEO_KEYWORDS = "web_size_info_seo_keywords";
         String WEB_SIZE_INFO_SEO_DESCRIPTION = "web_size_info_seo_description";
+        String WEB_SIZE_INFO_VIEW_COUNT = "web_size_info_view_count";
     }
 
     interface Image {

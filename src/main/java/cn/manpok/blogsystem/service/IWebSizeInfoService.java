@@ -10,4 +10,6 @@ public interface IWebSizeInfoService {
     ResponseResult updateSeoInfo(String keywords, String description);
 
     ResponseResult getSeoInfo();
+
+    ResponseResult getWebSizeViewCount();
 }
