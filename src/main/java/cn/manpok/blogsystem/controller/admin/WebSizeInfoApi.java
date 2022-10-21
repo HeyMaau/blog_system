@@ -62,8 +62,8 @@ public class WebSizeInfoApi {
      */
     @PutMapping("/seo")
     public ResponseResult updateSeoInfo(@RequestParam("keywords") String keywords, @RequestParam("description") String description) {
-        log.info("修改网站SEO信息 ----> " + "kewords: " + keywords + "description: " + description);
-        return null;
+        log.info("修改网站SEO信息 ----> " + "keywords: " + keywords + "description: " + description);
+        return webSizeInfoService.updateSeoInfo(keywords, description);
     }
 
     /**

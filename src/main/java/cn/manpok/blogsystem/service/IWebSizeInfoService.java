@@ -6,4 +6,6 @@ public interface IWebSizeInfoService {
     ResponseResult updateWebSizeTitle(String title);
 
     ResponseResult getWebSizeTitle();
+
+    ResponseResult updateSeoInfo(String keywords, String description);
 }

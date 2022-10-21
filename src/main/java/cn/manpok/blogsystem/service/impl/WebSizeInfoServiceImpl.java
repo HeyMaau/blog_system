@@ -57,4 +57,40 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         result.put("title", querySetting.getValue());
         return ResponseResult.SUCCESS("获取网站标题成功").setData(result);
     }
+
+    @Override
+    public ResponseResult updateSeoInfo(String keywords, String description) {
+        //校验参数
+        if (TextUtil.isEmpty(keywords)) {
+            return ResponseResult.FAIL("SEO关键字为空");
+        }
+        if (TextUtil.isEmpty(description)) {
+            return ResponseResult.FAIL("SEO描述为空");
+        }
+        //从数据库中查询
+        BlogSetting queryKeywords = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_KEYWORDS);
+        BlogSetting queryDescription = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_DESCRIPTION);
+        //若关键字为空，则创建，并保存
+        Date date = new Date();
+        if (queryKeywords == null) {
+            queryKeywords = new BlogSetting();
+            queryKeywords.setId(String.valueOf(snowflake.nextId()));
+            queryKeywords.setKey(Constants.Setting.WEB_SIZE_INFO_SEO_KEYWORDS);
+            queryKeywords.setCreateTime(date);
+        }
+        queryKeywords.setValue(keywords);
+        queryKeywords.setUpdateTime(date);
+        //若描述为空，则创建，并保存
+        if (queryDescription == null) {
+            queryDescription = new BlogSetting();
+            queryDescription.setId(String.valueOf(snowflake.nextId()));
+            queryDescription.setKey(Constants.Setting.WEB_SIZE_INFO_SEO_DESCRIPTION);
+            queryDescription.setCreateTime(date);
+        }
+        queryDescription.setValue(description);
+        queryDescription.setUpdateTime(date);
+        webSizeInfoDao.save(queryKeywords);
+        webSizeInfoDao.save(queryDescription);
+        return ResponseResult.SUCCESS("修改网站SEO信息成功");
+    }
 }

@@ -25,6 +25,8 @@ public interface Constants {
     interface Setting {
         String ADMIN_ACCOUNT_INIT_STATE = "admin_account_init_state";
         String WEB_SIZE_INFO_TITLE = "web_size_info_title";
+        String WEB_SIZE_INFO_SEO_KEYWORDS = "web_size_info_seo_keywords";
+        String WEB_SIZE_INFO_SEO_DESCRIPTION = "web_size_info_seo_description";
     }
 
     interface Image {
