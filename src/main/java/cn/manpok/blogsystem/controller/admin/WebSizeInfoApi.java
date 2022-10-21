@@ -1,7 +1,10 @@
 package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IWebSizeInfoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -10,7 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/admin/web_size_info")
+@PreAuthorize("@permission.admin")
 public class WebSizeInfoApi {
+
+    @Autowired
+    private IWebSizeInfoService webSizeInfoService;
 
     /**
      * 获取网站标题
@@ -32,7 +39,7 @@ public class WebSizeInfoApi {
     @PutMapping("/title")
     public ResponseResult updateWebSizeTitle(@RequestParam("title") String title) {
         log.info("修改网站标题 ----> " + title);
-        return null;
+        return webSizeInfoService.updateWebSizeTitle(title);
     }
 
     /**
