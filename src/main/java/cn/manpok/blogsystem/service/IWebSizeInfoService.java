@@ -8,4 +8,6 @@ public interface IWebSizeInfoService {
     ResponseResult getWebSizeTitle();
 
     ResponseResult updateSeoInfo(String keywords, String description);
+
+    ResponseResult getSeoInfo();
 }

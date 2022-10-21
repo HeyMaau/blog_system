@@ -32,29 +32,29 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
             return ResponseResult.FAIL("网站标题为空");
         }
         //先从数据库中查询出来
-        BlogSetting querySetting = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
+        BlogSetting queryTitle = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
         //如果为空，则创建新的
         Date date = new Date();
-        if (querySetting == null) {
-            querySetting = new BlogSetting();
-            querySetting.setId(String.valueOf(snowflake.nextId()));
-            querySetting.setKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
-            querySetting.setCreateTime(date);
+        if (queryTitle == null) {
+            queryTitle = new BlogSetting();
+            queryTitle.setId(String.valueOf(snowflake.nextId()));
+            queryTitle.setKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
+            queryTitle.setCreateTime(date);
         }
-        querySetting.setValue(title);
-        querySetting.setUpdateTime(date);
-        webSizeInfoDao.save(querySetting);
+        queryTitle.setValue(title);
+        queryTitle.setUpdateTime(date);
+        webSizeInfoDao.save(queryTitle);
         return ResponseResult.SUCCESS("保存网站标题成功");
     }
 
     @Override
     public ResponseResult getWebSizeTitle() {
-        BlogSetting querySetting = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
-        if (querySetting == null) {
+        BlogSetting queryTitle = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
+        if (queryTitle == null) {
             return ResponseResult.FAIL("网站标题为空");
         }
-        Map<String, String> result = new HashMap<>();
-        result.put("title", querySetting.getValue());
+        Map<String, String> result = new HashMap<>(1);
+        result.put("title", queryTitle.getValue());
         return ResponseResult.SUCCESS("获取网站标题成功").setData(result);
     }
 
@@ -92,5 +92,24 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         webSizeInfoDao.save(queryKeywords);
         webSizeInfoDao.save(queryDescription);
         return ResponseResult.SUCCESS("修改网站SEO信息成功");
+    }
+
+    @Override
+    public ResponseResult getSeoInfo() {
+        //从数据库中查询
+        BlogSetting queryKeywords = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_KEYWORDS);
+        BlogSetting queryDescription = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_DESCRIPTION);
+        Map<String, String> result = new HashMap<>(2);
+        if (queryKeywords == null) {
+            result.put("keywords", "");
+        } else {
+            result.put("keywords", queryKeywords.getValue());
+        }
+        if (queryDescription == null) {
+            result.put("description", "");
+        } else {
+            result.put("description", queryDescription.getValue());
+        }
+        return ResponseResult.SUCCESS("查询网站SEO信息成功").setData(result);
     }
 }

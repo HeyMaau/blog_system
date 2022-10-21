@@ -50,7 +50,7 @@ public class WebSizeInfoApi {
     @GetMapping("/seo")
     public ResponseResult getSeoInfo() {
         log.info("获取网站SEO信息");
-        return null;
+        return webSizeInfoService.getSeoInfo();
     }
 
     /**
