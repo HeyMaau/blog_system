@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
@@ -43,5 +45,16 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         querySetting.setUpdateTime(date);
         webSizeInfoDao.save(querySetting);
         return ResponseResult.SUCCESS("保存网站标题成功");
+    }
+
+    @Override
+    public ResponseResult getWebSizeTitle() {
+        BlogSetting querySetting = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
+        if (querySetting == null) {
+            return ResponseResult.FAIL("网站标题为空");
+        }
+        Map<String, String> result = new HashMap<>();
+        result.put("title", querySetting.getValue());
+        return ResponseResult.SUCCESS("获取网站标题成功").setData(result);
     }
 }

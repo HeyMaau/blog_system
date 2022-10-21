@@ -27,7 +27,7 @@ public class WebSizeInfoApi {
     @GetMapping("/title")
     public ResponseResult getWebSizeTitle() {
         log.info("获取网站标题");
-        return null;
+        return webSizeInfoService.getWebSizeTitle();
     }
 
     /**
