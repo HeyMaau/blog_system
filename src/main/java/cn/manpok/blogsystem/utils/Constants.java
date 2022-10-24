@@ -67,4 +67,17 @@ public interface Constants {
         int DEFAULT_PAGE = 1;
         int DEFAULT_SIZE = 5;
     }
+
+    /**
+     * 管理-文章相关常量
+     */
+    interface Article {
+        String STATE_DELETE = "0";
+        String STATE_DRAFT = "1";
+        String STATE_PUBLISH = "2";
+        String STATE_TOP = "3";
+        int INITIAL_VIEW_COUNT = 1;
+        String TYPE_RICH_TEXT = "0";
+        String TYPE_MARKDOWN = "1";
+    }
 }

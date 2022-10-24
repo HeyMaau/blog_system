@@ -2,7 +2,10 @@ package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.pojo.BlogArticle;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IArticleAdminService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -11,7 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/admin/article")
-public class ArticleApi {
+@PreAuthorize("@permission.admin")
+public class ArticleAdminApi {
+
+    @Autowired
+    private IArticleAdminService articleAdminService;
 
     /**
      * 添加文章
@@ -22,7 +29,7 @@ public class ArticleApi {
     @PostMapping
     public ResponseResult addArticle(@RequestBody BlogArticle blogArticle) {
         log.info("添加文章 ----> " + blogArticle.toString());
-        return null;
+        return articleAdminService.addArticle(blogArticle);
     }
 
     /**
