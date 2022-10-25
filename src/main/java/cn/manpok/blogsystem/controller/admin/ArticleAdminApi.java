@@ -76,9 +76,11 @@ public class ArticleAdminApi {
      * @return
      */
     @GetMapping("/list")
-    public ResponseResult getArticles(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public ResponseResult getArticles(@RequestParam("page") int page, @RequestParam("size") int size,
+                                      @RequestParam(value = "keywords", required = false) String keywords,
+                                      @RequestParam(value = "state", required = false) String state) {
         log.info("获取文章列表 ----> ");
-        return null;
+        return articleAdminService.getArticles(page, size, keywords, state);
     }
 
     /**
