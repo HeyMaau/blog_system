@@ -1,8 +1,10 @@
 package cn.manpok.blogsystem.service.impl;
 
 import cn.manpok.blogsystem.dao.IArticleAdminDao;
+import cn.manpok.blogsystem.dao.IArticleAdminSimpleDao;
 import cn.manpok.blogsystem.dao.ICategoryDao;
 import cn.manpok.blogsystem.pojo.BlogArticle;
+import cn.manpok.blogsystem.pojo.BlogArticleSimple;
 import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
@@ -36,6 +38,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Autowired
     private IArticleAdminDao articleAdminDao;
+
+    @Autowired
+    private IArticleAdminSimpleDao articleAdminSimpleDao;
 
     @Autowired
     private IUserService userService;
@@ -97,7 +102,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         //构建分页
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "updateTime");
         //构建条件查询
-        Page<BlogArticle> all = articleAdminDao.findAll((Specification<BlogArticle>) (root, query, criteriaBuilder) -> {
+        Page<BlogArticleSimple> all = articleAdminSimpleDao.findAll((Specification<BlogArticleSimple>) (root, query, criteriaBuilder) -> {
             List<Predicate> predicateList = new ArrayList<>();
             //条件一：当关键词不为空时，模糊匹配标题、内容、摘要，用or连接
             if (!TextUtil.isEmpty(keywords)) {
