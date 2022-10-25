@@ -157,4 +157,14 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         }
         return ResponseResult.SUCCESS("删除文章成功");
     }
+
+    @Override
+    public ResponseResult updateArticleState(String articleID) {
+        BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
+        if (queryArticle == null) {
+            return ResponseResult.FAIL("文章不存在");
+        }
+        queryArticle.setState(Constants.Article.STATE_DELETE);
+        return ResponseResult.SUCCESS("删除文章成功");
+    }
 }

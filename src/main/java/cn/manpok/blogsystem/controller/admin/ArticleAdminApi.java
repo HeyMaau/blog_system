@@ -84,15 +84,15 @@ public class ArticleAdminApi {
     }
 
     /**
-     * 修改文章状态
+     * 通过修改文章状态删除文章
      *
      * @param articleID
-     * @param state
      * @return
      */
-    @PutMapping("/state/{articleID}/{state}")
-    public ResponseResult updateArticleState(@PathVariable("articleID") String articleID, @PathVariable("state") String state) {
-        return null;
+    @DeleteMapping("/state/{articleID}")
+    public ResponseResult updateArticleState(@PathVariable("articleID") String articleID) {
+        log.info("通过修改状态删除文章 ----> " + articleID);
+        return articleAdminService.updateArticleState(articleID);
     }
 
     /**
