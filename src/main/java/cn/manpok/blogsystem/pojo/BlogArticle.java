@@ -1,9 +1,6 @@
 package cn.manpok.blogsystem.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -34,6 +31,11 @@ public class BlogArticle {
     private Date createTime;
     @Column(name = "update_time")
     private Date updateTime;
+    @OneToOne()
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private BlogUserSimple user;
+    @Column(name = "cover")
+    private String cover;
 
 
     public String getId() {
@@ -141,6 +143,22 @@ public class BlogArticle {
         this.updateTime = updateTime;
     }
 
+    public BlogUserSimple getUser() {
+        return user;
+    }
+
+    public void setUser(BlogUserSimple user) {
+        this.user = user;
+    }
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
     @Override
     public String toString() {
         return "BlogArticle{" +
@@ -156,6 +174,8 @@ public class BlogArticle {
                 ", viewCount=" + viewCount +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", user=" + user +
+                ", cover='" + cover + '\'' +
                 '}';
     }
 }
