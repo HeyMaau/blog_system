@@ -7,4 +7,6 @@ public interface IArticleAdminService {
     ResponseResult addArticle(BlogArticle blogArticle);
 
     ResponseResult getArticles(int page, int size, String keywords, String state);
+
+    ResponseResult getArticle(String articleID);
 }

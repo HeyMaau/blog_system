@@ -65,7 +65,7 @@ public class ArticleAdminApi {
     @GetMapping("/{articleID}")
     public ResponseResult getArticle(@PathVariable("articleID") String articleID) {
         log.info("获取文章 ----> " + articleID);
-        return null;
+        return articleAdminService.getArticle(articleID);
     }
 
     /**

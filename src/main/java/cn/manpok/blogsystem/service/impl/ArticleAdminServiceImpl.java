@@ -119,4 +119,13 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         }, pageable);
         return ResponseResult.SUCCESS("获取文章列表成功").setData(all);
     }
+
+    @Override
+    public ResponseResult getArticle(String articleID) {
+        BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
+        if (queryArticle == null) {
+            return ResponseResult.FAIL("文章不存在");
+        }
+        return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
+    }
 }
