@@ -167,4 +167,39 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setState(Constants.Article.STATE_DELETE);
         return ResponseResult.SUCCESS("删除文章成功");
     }
+
+    @Override
+    public ResponseResult updateArticle(BlogArticle blogArticle) {
+        //检查不允许为空的参数
+        if (TextUtil.isEmpty(blogArticle.getTitle())) {
+            return ResponseResult.FAIL("文章标题为空");
+        }
+        if (TextUtil.isEmpty(blogArticle.getContent())) {
+            return ResponseResult.FAIL("文章内容为空");
+        }
+        if (TextUtil.isEmpty(blogArticle.getSummary())) {
+            return ResponseResult.FAIL("文章摘要为空");
+        }
+        String type = blogArticle.getType();
+        if (!type.equals(Constants.Article.TYPE_RICH_TEXT) && !type.equals(Constants.Article.TYPE_MARKDOWN)) {
+            return ResponseResult.FAIL("文章类型错误");
+        }
+        BlogArticle queryArticle = articleAdminDao.findArticleById(blogArticle.getId());
+        if (queryArticle == null) {
+            return ResponseResult.FAIL("文章不存在");
+        }
+        BlogCategory queryCategory = categoryDao.findCategoryById(blogArticle.getCategoryId());
+        if (queryCategory == null) {
+            return ResponseResult.FAIL("分类不存在");
+        }
+        //更新数据
+        queryArticle.setTitle(blogArticle.getTitle());
+        queryArticle.setContent(blogArticle.getContent());
+        queryArticle.setType(blogArticle.getType());
+        queryArticle.setSummary(blogArticle.getSummary());
+        queryArticle.setLabels(blogArticle.getLabels());
+        queryArticle.setCategoryId(blogArticle.getCategoryId());
+        queryArticle.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("修改文章成功");
+    }
 }

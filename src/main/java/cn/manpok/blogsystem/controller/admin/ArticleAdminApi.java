@@ -53,7 +53,7 @@ public class ArticleAdminApi {
     @PutMapping
     public ResponseResult updateArticle(@RequestBody BlogArticle blogArticle) {
         log.info("修改文章 ----> " + blogArticle.toString());
-        return null;
+        return articleAdminService.updateArticle(blogArticle);
     }
 
     /**
