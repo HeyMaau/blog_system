@@ -9,4 +9,6 @@ public interface IArticleAdminService {
     ResponseResult getArticles(int page, int size, String keywords, String state);
 
     ResponseResult getArticle(String articleID);
+
+    ResponseResult topArticle(String articleID);
 }

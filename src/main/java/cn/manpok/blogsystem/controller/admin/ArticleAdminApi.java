@@ -104,6 +104,6 @@ public class ArticleAdminApi {
     @PutMapping("/top/{articleID}")
     public ResponseResult topArticle(@PathVariable("articleID") String articleID) {
         log.info("置顶文章 ----> " + articleID);
-        return null;
+        return articleAdminService.topArticle(articleID);
     }
 }

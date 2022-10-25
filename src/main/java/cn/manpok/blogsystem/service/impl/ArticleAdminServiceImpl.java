@@ -128,4 +128,24 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         }
         return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
     }
+
+    @Override
+    public ResponseResult topArticle(String articleID) {
+        BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
+        if (queryArticle == null) {
+            return ResponseResult.FAIL("文章不存在");
+        }
+        String state = queryArticle.getState();
+        //如果文章已置顶，则取消置顶
+        if (state.equals(Constants.Article.STATE_TOP)) {
+            queryArticle.setState(Constants.Article.STATE_PUBLISH);
+            return ResponseResult.SUCCESS("取消置顶文章成功");
+        }
+        //只有已发布的文章才允许置顶操作
+        if (!queryArticle.getState().equals(Constants.Article.STATE_PUBLISH)) {
+            return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
+        }
+        queryArticle.setState(Constants.Article.STATE_TOP);
+        return ResponseResult.SUCCESS("置顶文章成功");
+    }
 }
