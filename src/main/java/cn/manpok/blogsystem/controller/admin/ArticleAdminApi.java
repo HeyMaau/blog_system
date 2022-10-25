@@ -41,7 +41,7 @@ public class ArticleAdminApi {
     @DeleteMapping("/{articleID}")
     public ResponseResult deleteArticle(@PathVariable("articleID") String articleID) {
         log.info("删除文章 ----> " + articleID);
-        return null;
+        return articleAdminService.deleteArticle(articleID);
     }
 
     /**

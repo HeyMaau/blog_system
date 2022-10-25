@@ -11,4 +11,6 @@ public interface IArticleAdminService {
     ResponseResult getArticle(String articleID);
 
     ResponseResult topArticle(String articleID);
+
+    ResponseResult deleteArticle(String articleID);
 }

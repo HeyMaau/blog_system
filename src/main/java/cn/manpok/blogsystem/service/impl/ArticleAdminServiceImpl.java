@@ -148,4 +148,13 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setState(Constants.Article.STATE_TOP);
         return ResponseResult.SUCCESS("置顶文章成功");
     }
+
+    @Override
+    public ResponseResult deleteArticle(String articleID) {
+        int deleteCount = articleAdminDao.deleteArticleById(articleID);
+        if (deleteCount < 1) {
+            return ResponseResult.FAIL("删除文章失败");
+        }
+        return ResponseResult.SUCCESS("删除文章成功");
+    }
 }

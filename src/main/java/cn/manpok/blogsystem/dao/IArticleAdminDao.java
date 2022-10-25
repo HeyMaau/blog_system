@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface IArticleAdminDao extends JpaRepository<BlogArticle, String>, JpaSpecificationExecutor<BlogArticle> {
 
     BlogArticle findArticleById(String id);
+
+    int deleteArticleById(String id);
 }
