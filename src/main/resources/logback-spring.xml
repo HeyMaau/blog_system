@@ -29,7 +29,7 @@
 
 
     <!-- 日志输出级别 -->
-    <logger name="org.springframework" level="info"  additivity="false"/>
+    <logger name="org.springframework" level="info"/>
     <logger name="cn.manpok.blogsystem" level="info"/>
     <root level="INFO">
         <appender-ref ref="stdout"/>
