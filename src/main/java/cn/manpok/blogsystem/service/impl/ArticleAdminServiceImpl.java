@@ -50,6 +50,19 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Override
     public ResponseResult addArticle(BlogArticle blogArticle) {
+        BlogArticle article2Save = null;
+        //若请求包含ID，先从数据库从查询文章
+        String id = blogArticle.getId();
+        if (!TextUtil.isEmpty(id)) {
+            article2Save = articleAdminDao.findArticleById(id);
+        }
+        //如果数据库查询出来为空，则新创建一个article，需要填入文章ID和用户ID
+        if (article2Save == null) {
+            article2Save = new BlogArticle();
+            article2Save.setId(String.valueOf(snowflake.nextId()));
+            BlogUser user = userService.checkUserToken();
+            article2Save.setUserId(user.getId());
+        }
         //检查分类ID是否为空
         BlogCategory queryCategory = categoryDao.findCategoryById(blogArticle.getCategoryId());
         if (queryCategory == null) {
@@ -84,15 +97,19 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
         }
         //补充数据
-        blogArticle.setId(String.valueOf(snowflake.nextId()));
-        BlogUser user = userService.checkUserToken();
-        blogArticle.setUserId(user.getId());
+        article2Save.setTitle(blogArticle.getTitle());
+        article2Save.setCategoryId(blogArticle.getCategoryId());
+        article2Save.setContent(blogArticle.getContent());
+        article2Save.setType(blogArticle.getType());
+        article2Save.setState(blogArticle.getState());
+        article2Save.setSummary(blogArticle.getSummary());
+        article2Save.setLabels(blogArticle.getLabels());
+        article2Save.setViewCount(Constants.Article.INITIAL_VIEW_COUNT);
         Date date = new Date();
-        blogArticle.setViewCount(Constants.Article.INITIAL_VIEW_COUNT);
-        blogArticle.setCreateTime(date);
-        blogArticle.setUpdateTime(date);
-        articleAdminDao.save(blogArticle);
-        return ResponseResult.SUCCESS("添加文章成功");
+        article2Save.setCreateTime(date);
+        article2Save.setUpdateTime(date);
+        articleAdminDao.save(article2Save);
+        return ResponseResult.SUCCESS("添加文章成功").setData(article2Save.getId());
     }
 
     @Override
