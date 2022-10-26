@@ -610,6 +610,10 @@ public class UserServiceImpl implements IUserService {
         String tokenMD5 = DigestUtils.md5DigestAsHex(token.getBytes());
         redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_2);
         CookieUtil.setupCookie(response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
+        //如果是管理员账户，则不保存refreshToken
+        if (blogUser.getRoles().equals(Constants.User.ROLE_ADMIN)) {
+            return;
+        }
         //生成refresh token保存到数据库
         //先把原来的refreshToken删除
         int deleteCount = refreshTokenDao.deleteByUserId(blogUser.getId());
