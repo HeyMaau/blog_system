@@ -1,6 +1,7 @@
 package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IFriendLinkService;
 import cn.manpok.blogsystem.service.ILooperService;
 import cn.manpok.blogsystem.service.IWebSizeInfoService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,9 @@ public class WebSizeInfoPortalApi {
 
     @Autowired
     private ILooperService looperService;
+
+    @Autowired
+    private IFriendLinkService friendLinkService;
 
     /**
      * 门户获取所有分类
@@ -75,6 +79,6 @@ public class WebSizeInfoPortalApi {
     @GetMapping("/friend_links")
     public ResponseResult getFriendLinks() {
         log.info("门户获取所有友情链接");
-        return null;
+        return friendLinkService.getNormalFriendLinks();
     }
 }

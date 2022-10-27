@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -98,5 +99,11 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
         Page<BlogFriendLink> queryFriendLinks = friendLinkDao.findAll(pageable);
         return ResponseResult.SUCCESS("获取所有友情链接成功").setData(queryFriendLinks);
+    }
+
+    @Override
+    public ResponseResult getNormalFriendLinks() {
+        List<BlogFriendLink> all = friendLinkDao.findAllFriendLinksByState(Constants.DEFAULT_STATE);
+        return ResponseResult.SUCCESS("获取所有友情链接成功").setData(all);
     }
 }

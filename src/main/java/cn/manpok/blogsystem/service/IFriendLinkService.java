@@ -13,4 +13,6 @@ public interface IFriendLinkService {
     ResponseResult getFriendLink(String friendLinkID);
 
     ResponseResult getFriendLinks(int page, int size);
+
+    ResponseResult getNormalFriendLinks();
 }
