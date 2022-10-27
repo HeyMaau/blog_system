@@ -39,12 +39,12 @@ public class ArticlePortalApi {
      * @param size
      * @return
      */
-    @GetMapping("/list/{categoryID}/{page}/{size}")
+    @GetMapping("/list/{categoryID}")
     public ResponseResult getArticlesByCategory(@PathVariable("categoryID") String categoryID,
-                                                @PathVariable("page") int page,
-                                                @PathVariable("size") int size) {
+                                                @RequestParam("page") int page,
+                                                @RequestParam("size") int size) {
         log.info("门户根据分类获取文章列表 ----> " + categoryID);
-        return null;
+        return articleAdminService.getArticles(page, size, categoryID, null, Constants.Article.STATE_PUBLISH);
     }
 
     /**
