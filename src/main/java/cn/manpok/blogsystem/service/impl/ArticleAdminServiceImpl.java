@@ -113,7 +113,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
     }
 
     @Override
-    public ResponseResult getArticles(int page, int size, String keywords, String state) {
+    public ResponseResult getArticles(int page, int size, String categoryID, String keywords, String state) {
         //检查页码参数
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         //构建分页
@@ -134,9 +134,14 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
                 Predicate statePredicate = criteriaBuilder.equal(root.get("state"), state);
                 predicateList.add(statePredicate);
             }
+            //条件三：当分类号不为空时，匹配分类号
+            if (!TextUtil.isEmpty(categoryID)) {
+                Predicate categoryPredicate = criteriaBuilder.equal(root.get("categoryId"), categoryID);
+                predicateList.add(categoryPredicate);
+            }
             Predicate[] predicates = new Predicate[predicateList.size()];
             predicateList.toArray(predicates);
-            //条件一与条件二用and连接
+            //条件一、条件二、条件三用and连接
             return criteriaBuilder.and(predicates);
         }, pageable);
         return ResponseResult.SUCCESS("获取文章列表成功").setData(all);

@@ -6,7 +6,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 public interface IArticleAdminService {
     ResponseResult addArticle(BlogArticle blogArticle);
 
-    ResponseResult getArticles(int page, int size, String keywords, String state);
+    ResponseResult getArticles(int page, int size, String category, String keywords, String state);
 
     ResponseResult getArticle(String articleID);
 
