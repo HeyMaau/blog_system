@@ -49,7 +49,7 @@ public class WebSizeInfoPortalApi {
     @GetMapping("/view_count")
     public ResponseResult getWebSizeViewCount() {
         log.info("门户获取网站访问量");
-        return null;
+        return webSizeInfoService.getWebSizeViewCount();
     }
 
     /**
