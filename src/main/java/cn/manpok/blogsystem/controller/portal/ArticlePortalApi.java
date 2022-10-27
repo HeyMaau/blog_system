@@ -2,12 +2,10 @@ package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IArticleAdminService;
+import cn.manpok.blogsystem.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 门户文章API
@@ -27,10 +25,10 @@ public class ArticlePortalApi {
      * @param size
      * @return
      */
-    @GetMapping("/list/{page}/{size}")
-    public ResponseResult getArticles(@PathVariable("page") int page, @PathVariable("size") int size) {
+    @GetMapping("/list")
+    public ResponseResult getArticles(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("门户获取文章列表");
-        return null;
+        return articleAdminService.getArticles(page, size, null, null, Constants.Article.STATE_PUBLISH);
     }
 
     /**
