@@ -135,7 +135,7 @@ public class UserServiceImpl implements IUserService {
         blogUser.setAvatar(Constants.User.DEFAULT_AVATAR);
         blogUser.setRegIP(request.getRemoteAddr());
         blogUser.setLoginIP(request.getRemoteAddr());
-        blogUser.setState(Constants.DEFAULT_STATE);
+        blogUser.setState(Constants.STATE_NORMAL);
         blogUser.setSign(Constants.User.DEFAULT_SIGN);
         blogUser.setRoles(Constants.User.ROLE_ADMIN);
         blogUser.setCreateTime(new Date());
@@ -304,7 +304,7 @@ public class UserServiceImpl implements IUserService {
         blogUser.setRoles(Constants.User.ROLE_NORMAL);
         blogUser.setId(String.valueOf(snowflake.nextId()));
         blogUser.setSign(Constants.User.DEFAULT_SIGN);
-        blogUser.setState(Constants.DEFAULT_STATE);
+        blogUser.setState(Constants.STATE_NORMAL);
         blogUser.setAvatar(Constants.User.DEFAULT_AVATAR);
         blogUser.setRegIP(request.getRemoteAddr());
         blogUser.setLoginIP(request.getRemoteAddr());
@@ -341,7 +341,7 @@ public class UserServiceImpl implements IUserService {
         }
         //3、校验用户状态是否异常
         String state = queryUser.getState();
-        if (!state.equals(Constants.DEFAULT_STATE)) {
+        if (!state.equals(Constants.STATE_NORMAL)) {
             return ResponseResult.GET(ResponseState.USER_FORBIDDEN);
         }
         //4、校验密码是否正确
@@ -425,7 +425,7 @@ public class UserServiceImpl implements IUserService {
         if (queryUserByID == null) {
             return ResponseResult.FAIL("用户不存在");
         }
-        queryUserByID.setState(Constants.FORBIDDEN_STATE);
+        queryUserByID.setState(Constants.STATE_FORBIDDEN);
         return ResponseResult.SUCCESS("删除用户成功");
     }
 

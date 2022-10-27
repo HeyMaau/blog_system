@@ -1,6 +1,7 @@
 package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.ICategoryService;
 import cn.manpok.blogsystem.service.IFriendLinkService;
 import cn.manpok.blogsystem.service.ILooperService;
 import cn.manpok.blogsystem.service.IWebSizeInfoService;
@@ -27,6 +28,9 @@ public class WebSizeInfoPortalApi {
     @Autowired
     private IFriendLinkService friendLinkService;
 
+    @Autowired
+    private ICategoryService categoryService;
+
     /**
      * 门户获取所有分类
      *
@@ -35,7 +39,7 @@ public class WebSizeInfoPortalApi {
     @GetMapping("/categories")
     public ResponseResult getCategories() {
         log.info("门户获取所有分类");
-        return null;
+        return categoryService.getNormalCategories();
     }
 
     /**

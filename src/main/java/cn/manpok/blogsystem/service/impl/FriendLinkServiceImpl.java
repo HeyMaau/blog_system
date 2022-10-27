@@ -43,7 +43,7 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
         }
         //补充数据
         blogFriendLink.setId(String.valueOf(snowflake.nextId()));
-        blogFriendLink.setState(Constants.DEFAULT_STATE);
+        blogFriendLink.setState(Constants.STATE_NORMAL);
         blogFriendLink.setCreateTime(new Date());
         blogFriendLink.setUpdateTime(new Date());
         friendLinkDao.save(blogFriendLink);
@@ -103,7 +103,7 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
 
     @Override
     public ResponseResult getNormalFriendLinks() {
-        List<BlogFriendLink> all = friendLinkDao.findAllFriendLinksByState(Constants.DEFAULT_STATE);
+        List<BlogFriendLink> all = friendLinkDao.findAllFriendLinksByState(Constants.STATE_NORMAL);
         return ResponseResult.SUCCESS("获取所有友情链接成功").setData(all);
     }
 }

@@ -13,4 +13,6 @@ public interface ICategoryService {
     ResponseResult updateCategory(BlogCategory blogCategory);
 
     ResponseResult deleteCategory(String categoryID);
+
+    ResponseResult getNormalCategories();
 }

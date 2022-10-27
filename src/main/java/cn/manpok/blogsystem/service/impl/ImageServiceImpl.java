@@ -117,7 +117,7 @@ public class ImageServiceImpl implements IImageService {
         image.setName(originalFilename);
         image.setId(id);
         image.setUrl(dateFormatStr + File.separator + type + File.separator + fileName);
-        image.setState(Constants.DEFAULT_STATE);
+        image.setState(Constants.STATE_NORMAL);
         image.setCreateTime(currentDate);
         image.setUpdateTime(currentDate);
         BlogUser user = userService.checkUserToken();
@@ -182,7 +182,7 @@ public class ImageServiceImpl implements IImageService {
         //构建分页
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
         //查询条件：1、属于当前用户；2、状态正常
-        Page<BlogImage> queryImages = imageDao.findImagesByUserIdAndState(user.getId(), Constants.DEFAULT_STATE, pageable);
+        Page<BlogImage> queryImages = imageDao.findImagesByUserIdAndState(user.getId(), Constants.STATE_NORMAL, pageable);
         return ResponseResult.SUCCESS("获取所有图片成功").setData(queryImages);
     }
 
@@ -192,7 +192,7 @@ public class ImageServiceImpl implements IImageService {
         if (queryImage == null) {
             return ResponseResult.FAIL("图片不存在");
         }
-        queryImage.setState(Constants.FORBIDDEN_STATE);
+        queryImage.setState(Constants.STATE_FORBIDDEN);
         return ResponseResult.SUCCESS("删除图片成功");
     }
 

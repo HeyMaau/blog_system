@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -42,7 +43,7 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         //补充数据
         blogCategory.setId(String.valueOf(snowflake.nextId()));
-        blogCategory.setState(Constants.DEFAULT_STATE);
+        blogCategory.setState(Constants.STATE_NORMAL);
         blogCategory.setCreateTime(new Date());
         blogCategory.setUpdateTime(new Date());
         //保存
@@ -100,7 +101,13 @@ public class CategoryServiceImpl implements ICategoryService {
         if (queryCategory == null) {
             return ResponseResult.FAIL("文章分类不存在");
         }
-        queryCategory.setState(Constants.FORBIDDEN_STATE);
+        queryCategory.setState(Constants.STATE_FORBIDDEN);
         return ResponseResult.SUCCESS("删除文章分类成功");
+    }
+
+    @Override
+    public ResponseResult getNormalCategories() {
+        List<BlogCategory> all = categoryDao.findAllCategoriesByState(Constants.STATE_NORMAL);
+        return ResponseResult.SUCCESS("获取所有分类成功").setData(all);
     }
 }

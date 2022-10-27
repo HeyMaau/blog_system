@@ -43,7 +43,7 @@ public class LooperServiceImpl implements ILooperService {
         }
         //补充数据
         blogLooper.setId(String.valueOf(snowflake.nextId()));
-        blogLooper.setState(Constants.DEFAULT_STATE);
+        blogLooper.setState(Constants.STATE_NORMAL);
         Date date = new Date();
         blogLooper.setCreateTime(date);
         blogLooper.setUpdateTime(date);
@@ -104,7 +104,7 @@ public class LooperServiceImpl implements ILooperService {
 
     @Override
     public ResponseResult getNormalLoopers() {
-        List<BlogLooper> all = looperDao.findAllNormalLoopersByState(Constants.DEFAULT_STATE);
+        List<BlogLooper> all = looperDao.findAllNormalLoopersByState(Constants.STATE_NORMAL);
         return ResponseResult.SUCCESS("获取所有轮播图成功").setData(all);
     }
 }

@@ -2,11 +2,10 @@ package cn.manpok.blogsystem.dao;
 
 import cn.manpok.blogsystem.pojo.BlogFriendLink;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 
-public interface IFriendLinkDao extends JpaRepository<BlogFriendLink, String>, JpaSpecificationExecutor<BlogFriendLink> {
+public interface IFriendLinkDao extends JpaRepository<BlogFriendLink, String> {
 
     BlogFriendLink findFriendLinkById(String id);
 
