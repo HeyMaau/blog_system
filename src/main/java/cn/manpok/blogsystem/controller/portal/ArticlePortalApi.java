@@ -70,4 +70,11 @@ public class ArticlePortalApi {
         log.info("门户获取推荐文章 ----> " + articleID);
         return null;
     }
+
+    @GetMapping("/top/list")
+    public ResponseResult getTopArticles(@RequestParam(value = "category", required = false) String category) {
+        log.info("门户获取置顶文章 ----> ");
+        return articleAdminService.getArticles(Constants.Page.DEFAULT_PAGE, Constants.Page.TOP_ARTICLES_SIZE,
+                category, null, Constants.Article.STATE_TOP);
+    }
 }
