@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin/web_size_info")
 @PreAuthorize("@permission.admin")
-public class WebSizeInfoApi {
+public class WebSizeInfoAdminApi {
 
     @Autowired
     private IWebSizeInfoService webSizeInfoService;
