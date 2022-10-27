@@ -229,4 +229,19 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setUpdateTime(new Date());
         return ResponseResult.SUCCESS("修改文章成功");
     }
+
+    @Override
+    public ResponseResult getNormalArticle(String articleID) {
+        BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
+        if (queryArticle == null) {
+            return ResponseResult.FAIL("文章不存在");
+        }
+        String state = queryArticle.getState();
+        if (state.equals(Constants.Article.STATE_DELETE) || state.equals(Constants.Article.STATE_DRAFT)) {
+            return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
+        }
+        return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
+    }
+
+
 }

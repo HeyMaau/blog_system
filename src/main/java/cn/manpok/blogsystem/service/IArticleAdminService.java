@@ -17,4 +17,6 @@ public interface IArticleAdminService {
     ResponseResult updateArticleState(String articleID);
 
     ResponseResult updateArticle(BlogArticle blogArticle);
+
+    ResponseResult getNormalArticle(String articleID);
 }

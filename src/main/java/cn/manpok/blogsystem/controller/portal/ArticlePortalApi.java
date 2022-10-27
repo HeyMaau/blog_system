@@ -1,7 +1,9 @@
 package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IArticleAdminService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/portal/article")
 public class ArticlePortalApi {
+
+    @Autowired
+    private IArticleAdminService articleAdminService;
 
     /**
      * 门户获取文章列表
@@ -53,7 +58,7 @@ public class ArticlePortalApi {
     @GetMapping("/{articleID}")
     public ResponseResult getArticleDetail(@PathVariable("articleID") String articleID) {
         log.info("门户获取文章详情 ----> " + articleID);
-        return null;
+        return articleAdminService.getNormalArticle(articleID);
     }
 
     /**
