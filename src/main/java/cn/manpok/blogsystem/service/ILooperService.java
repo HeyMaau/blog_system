@@ -13,4 +13,10 @@ public interface ILooperService {
     ResponseResult updateLooper(BlogLooper blogLooper);
 
     ResponseResult deleteLooper(String looperID);
+
+    /**
+     * 给门户获取所有轮播图，不包含删除状态的轮播图
+     * @return
+     */
+    ResponseResult getNormalLoopers();
 }

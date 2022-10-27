@@ -1,6 +1,7 @@
 package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.ILooperService;
 import cn.manpok.blogsystem.service.IWebSizeInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class WebSizeInfoPortalApi {
 
     @Autowired
     private IWebSizeInfoService webSizeInfoService;
+
+    @Autowired
+    private ILooperService looperService;
 
     /**
      * 门户获取所有分类
@@ -60,7 +64,7 @@ public class WebSizeInfoPortalApi {
     @GetMapping("/loopers")
     public ResponseResult getLoopers() {
         log.info("门户获取轮播图");
-        return null;
+        return looperService.getNormalLoopers();
     }
 
     /**

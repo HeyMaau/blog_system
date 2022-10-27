@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -99,5 +100,11 @@ public class LooperServiceImpl implements ILooperService {
             return ResponseResult.FAIL("删除轮播图失败");
         }
         return ResponseResult.SUCCESS("删除轮播图成功");
+    }
+
+    @Override
+    public ResponseResult getNormalLoopers() {
+        List<BlogLooper> all = looperDao.findAllNormalLoopersByState(Constants.DEFAULT_STATE);
+        return ResponseResult.SUCCESS("获取所有轮播图成功").setData(all);
     }
 }
