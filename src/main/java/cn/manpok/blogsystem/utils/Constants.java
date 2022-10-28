@@ -81,4 +81,12 @@ public interface Constants {
         String TYPE_RICH_TEXT = "0";
         String TYPE_MARKDOWN = "1";
     }
+
+    /**
+     * 标签相关常量
+     */
+    interface Label {
+        String LABEL_SEPARATOR = "-";
+        int INITIAL_COUNT = 1;
+    }
 }

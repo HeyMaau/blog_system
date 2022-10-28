@@ -10,6 +10,7 @@ import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IArticleAdminService;
+import cn.manpok.blogsystem.service.ILabelService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.PageUtil;
@@ -47,6 +48,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Autowired
     private ICategoryDao categoryDao;
+
+    @Autowired
+    private ILabelService labelService;
 
     @Override
     public ResponseResult addArticle(BlogArticle blogArticle) {
@@ -121,6 +125,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         article2Save.setCreateTime(date);
         article2Save.setUpdateTime(date);
         articleAdminDao.save(article2Save);
+        //保存标签数据
+        labelService.addLabelInDB(blogArticle.getLabels());
         return ResponseResult.SUCCESS("添加文章成功").setData(article2Save.getId());
     }
 
