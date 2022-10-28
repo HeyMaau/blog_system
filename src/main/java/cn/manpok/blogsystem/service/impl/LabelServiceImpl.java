@@ -2,10 +2,15 @@ package cn.manpok.blogsystem.service.impl;
 
 import cn.manpok.blogsystem.dao.ILabelDao;
 import cn.manpok.blogsystem.pojo.BlogLabel;
+import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ILabelService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.Snowflake;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -50,5 +55,12 @@ public class LabelServiceImpl implements ILabelService {
                 queryLabel.setUpdateTime(date);
             }
         }
+    }
+
+    @Override
+    public ResponseResult getLabelsData(int size) {
+        Pageable pageable = PageRequest.of(Constants.Page.DEFAULT_PAGE - 1, size, Sort.Direction.DESC, "count");
+        Page<BlogLabel> all = labelDao.findAll(pageable);
+        return ResponseResult.SUCCESS("获取标签数据成功").setData(all);
     }
 }

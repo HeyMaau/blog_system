@@ -2,6 +2,7 @@ package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IArticleAdminService;
+import cn.manpok.blogsystem.service.ILabelService;
 import cn.manpok.blogsystem.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class ArticlePortalApi {
 
     @Autowired
     private IArticleAdminService articleAdminService;
+
+    @Autowired
+    private ILabelService labelService;
 
     /**
      * 门户获取文章列表
@@ -76,5 +80,11 @@ public class ArticlePortalApi {
         log.info("门户获取置顶文章 ----> ");
         return articleAdminService.getArticles(Constants.Page.DEFAULT_PAGE, Constants.Page.TOP_ARTICLES_SIZE,
                 category, null, Constants.Article.STATE_TOP);
+    }
+
+    @GetMapping("/labels")
+    public ResponseResult getLabelsData(@RequestParam("size") int size) {
+        log.info("门户获取标签信息");
+        return labelService.getLabelsData(size);
     }
 }

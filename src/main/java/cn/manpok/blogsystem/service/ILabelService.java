@@ -1,5 +1,7 @@
 package cn.manpok.blogsystem.service;
 
+import cn.manpok.blogsystem.response.ResponseResult;
+
 public interface ILabelService {
 
     /**
@@ -10,4 +12,6 @@ public interface ILabelService {
      * @return
      */
     void addLabelInDB(String labelStr);
+
+    ResponseResult getLabelsData(int size);
 }
