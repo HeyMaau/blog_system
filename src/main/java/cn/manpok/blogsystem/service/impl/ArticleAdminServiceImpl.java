@@ -62,6 +62,11 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             article2Save.setId(String.valueOf(snowflake.nextId()));
             BlogUser user = userService.checkUserToken();
             article2Save.setUserId(user.getId());
+        } else {
+            //已发布的文章不允许再请求本接口
+            if (article2Save.getState().equals(Constants.Article.STATE_PUBLISH)) {
+                return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
+            }
         }
         //检查分类ID是否为空
         BlogCategory queryCategory = categoryDao.findCategoryById(blogArticle.getCategoryId());
@@ -76,14 +81,18 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         //检查文章类型：草稿、发表，其他类型在此API不允许
         String state = blogArticle.getState();
         if (state.equals(Constants.Article.STATE_DRAFT)) {
-            //草稿类型：不允许标题、内容、摘要都为空
+            //草稿类型：
+            //1、不允许标题为空
+            if (TextUtil.isEmpty(blogArticle.getTitle())) {
+                return ResponseResult.FAIL("草稿标题为空");
+            }
+            //2、内容、摘要都为空
             if (TextUtil.isEmpty(blogArticle.getContent())
-                    && TextUtil.isEmpty(blogArticle.getTitle())
                     && TextUtil.isEmpty(blogArticle.getSummary())) {
-                return ResponseResult.FAIL("草稿的标题、内容、摘要均为空");
+                return ResponseResult.FAIL("草稿的内容、摘要均为空");
             }
         } else if (state.equals(Constants.Article.STATE_PUBLISH)) {
-            //发布类型：标题、内容、摘要不允许为空
+            //发布类型：标题、内容、摘要、标签都不允许为空
             if (TextUtil.isEmpty(blogArticle.getTitle())) {
                 return ResponseResult.FAIL("文章标题为空");
             }
@@ -92,6 +101,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             }
             if (TextUtil.isEmpty(blogArticle.getSummary())) {
                 return ResponseResult.FAIL("文章摘要为空");
+            }
+            if (TextUtil.isEmpty(blogArticle.getLabels())) {
+                return ResponseResult.FAIL("文章标签为空");
             }
         } else {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
