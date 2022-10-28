@@ -19,4 +19,6 @@ public interface IArticleAdminService {
     ResponseResult updateArticle(BlogArticle blogArticle);
 
     ResponseResult getNormalArticle(String articleID);
+
+    ResponseResult getArticlesByLabel(int page, int size, String label);
 }

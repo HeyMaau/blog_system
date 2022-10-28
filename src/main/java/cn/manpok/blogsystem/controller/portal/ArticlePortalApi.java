@@ -87,4 +87,12 @@ public class ArticlePortalApi {
         log.info("门户获取标签信息");
         return labelService.getLabelsData(size);
     }
+
+    @GetMapping("/list/label/{labelName}")
+    public ResponseResult getArticlesByLabel(@PathVariable("labelName") String labelName,
+                                             @RequestParam("page") int page,
+                                             @RequestParam("size") int size) {
+        log.info("门户根据标签获取文章列表 ----> " + labelName);
+        return articleAdminService.getArticlesByLabel(page, size, labelName);
+    }
 }

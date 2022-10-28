@@ -261,5 +261,15 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
     }
 
+    @Override
+    public ResponseResult getArticlesByLabel(int page, int size, String label) {
+        //检查页码参数
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        //构建分页
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "updateTime");
+        Page<BlogArticleSimple> all = articleAdminSimpleDao.findAllArticlesByLabelsContaining(label, pageable);
+        return ResponseResult.SUCCESS("获取文章列表成功").setData(all);
+    }
+
 
 }
