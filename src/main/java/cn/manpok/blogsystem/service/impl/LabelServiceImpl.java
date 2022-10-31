@@ -32,12 +32,8 @@ public class LabelServiceImpl implements ILabelService {
     @Override
     public void addLabelInDB(String labelStr) {
         List<String> labelList = new ArrayList<>();
-        if (labelStr.contains(Constants.Label.LABEL_SEPARATOR)) {
-            String[] split = labelStr.split(Constants.Label.LABEL_SEPARATOR);
-            labelList.addAll(Arrays.asList(split));
-        } else {
-            labelList.add(labelStr);
-        }
+        String[] split = labelStr.split(Constants.Label.LABEL_SEPARATOR);
+        labelList.addAll(Arrays.asList(split));
         for (String labelName : labelList) {
             BlogLabel queryLabel = labelDao.findLabelByName(labelName);
             Date date = new Date();

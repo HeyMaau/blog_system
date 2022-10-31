@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 public interface IArticleAdminSimpleDao extends JpaRepository<BlogArticleSimple, String>, JpaSpecificationExecutor<BlogArticleSimple> {
 
     Page<BlogArticleSimple> findAllArticlesByLabelsContaining(String label, Pageable pageable);
+
+    BlogArticleSimple findArticleSimpleById(String id);
 }

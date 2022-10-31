@@ -2,6 +2,7 @@ package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IArticleAdminService;
+import cn.manpok.blogsystem.service.IArticlePortalService;
 import cn.manpok.blogsystem.service.ILabelService;
 import cn.manpok.blogsystem.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,9 @@ public class ArticlePortalApi {
 
     @Autowired
     private ILabelService labelService;
+
+    @Autowired
+    private IArticlePortalService articlePortalService;
 
     /**
      * 门户获取文章列表
@@ -70,9 +74,9 @@ public class ArticlePortalApi {
      * @return
      */
     @GetMapping("/recommend/{articleID}")
-    public ResponseResult getRecommendArticle(@PathVariable("articleID") String articleID) {
+    public ResponseResult getRecommendArticle(@PathVariable("articleID") String articleID, @RequestParam("size") int size) {
         log.info("门户获取推荐文章 ----> " + articleID);
-        return null;
+        return articlePortalService.getRecommendArticle(articleID, size);
     }
 
     @GetMapping("/top/list")
