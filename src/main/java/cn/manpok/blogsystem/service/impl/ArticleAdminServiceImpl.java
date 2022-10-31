@@ -225,6 +225,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         if (TextUtil.isEmpty(blogArticle.getSummary())) {
             return ResponseResult.FAIL("文章摘要为空");
         }
+        if (TextUtil.isEmpty(blogArticle.getLabels())) {
+            return ResponseResult.FAIL("文章标签为空");
+        }
         String type = blogArticle.getType();
         if (!type.equals(Constants.Article.TYPE_RICH_TEXT) && !type.equals(Constants.Article.TYPE_MARKDOWN)) {
             return ResponseResult.FAIL("文章类型错误");
@@ -237,6 +240,11 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         if (queryCategory == null) {
             return ResponseResult.FAIL("分类不存在");
         }
+        if (!queryArticle.getState().equals(Constants.Article.STATE_PUBLISH)) {
+            return ResponseResult.FAIL("文章未发表");
+        }
+        //更新标签
+        labelService.updateLabelInDB(queryArticle.getLabels(), blogArticle.getLabels());
         //更新数据
         queryArticle.setTitle(blogArticle.getTitle());
         queryArticle.setContent(blogArticle.getContent());

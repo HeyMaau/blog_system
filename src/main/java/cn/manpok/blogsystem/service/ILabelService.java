@@ -14,4 +14,12 @@ public interface ILabelService {
     void addLabelInDB(String labelStr);
 
     ResponseResult getLabelsData(int size);
+
+    /**
+     * 仅用于用于修改文章时同步修改数据库中的标签数据
+     *
+     * @param oldLabels
+     * @param newLabels
+     */
+    void updateLabelInDB(String oldLabels, String newLabels);
 }
