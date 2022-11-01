@@ -10,9 +10,14 @@ import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.ICommentPortalService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import cn.manpok.blogsystem.utils.TextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -81,5 +86,13 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         }
         queryComment.setState(Constants.STATE_FORBIDDEN);
         return ResponseResult.SUCCESS("删除评论成功");
+    }
+
+    @Override
+    public ResponseResult getComments(String articleID, int page, int size) {
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
+        Page<BlogComment> all = commentPortalDao.findAllCommentsByArticleId(articleID, pageable);
+        return ResponseResult.SUCCESS("获取所有评论成功").setData(all);
     }
 }

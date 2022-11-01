@@ -7,4 +7,6 @@ public interface ICommentPortalService {
     ResponseResult addComment(BlogComment blogComment);
 
     ResponseResult deleteCommend(String commentID);
+
+    ResponseResult getComments(String articleID, int page, int size);
 }

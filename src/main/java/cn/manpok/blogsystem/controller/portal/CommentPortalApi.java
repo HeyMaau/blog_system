@@ -61,8 +61,9 @@ public class CommentPortalApi {
      * @return
      */
     @GetMapping("/list/{articleID}")
-    public ResponseResult getCommentsByArticle(@PathVariable("articleID") String articleID) {
+    public ResponseResult getCommentsByArticle(@PathVariable("articleID") String articleID,
+                                               @RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("门户获取文章下的所有评论 ----> " + articleID);
-        return null;
+        return commentPortalService.getComments(articleID, page, size);
     }
 }
