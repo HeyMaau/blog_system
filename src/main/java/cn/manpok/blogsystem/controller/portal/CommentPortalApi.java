@@ -51,7 +51,7 @@ public class CommentPortalApi {
     @PutMapping
     public ResponseResult updateComment(@RequestBody BlogComment blogComment) {
         log.info("修改评论 ----> " + blogComment.toString());
-        return null;
+        return commentPortalService.updateComment(blogComment);
     }
 
     /**

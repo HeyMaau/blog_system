@@ -95,4 +95,28 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         Page<BlogComment> all = commentPortalDao.findAllCommentsByArticleId(articleID, pageable);
         return ResponseResult.SUCCESS("获取所有评论成功").setData(all);
     }
+
+    @Override
+    public ResponseResult updateComment(BlogComment blogComment) {
+        //查询数据库
+        BlogComment queryComment = commentPortalDao.findCommentById(blogComment.getId());
+        if (queryComment == null) {
+            return ResponseResult.FAIL("评论不存在");
+        }
+        //检查用户登录
+        BlogUser user = userService.checkUserToken();
+        if (user == null) {
+            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
+        }
+        if (!queryComment.getUserId().equals(user.getId())) {
+            return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
+        }
+        //检查评论内容
+        if (TextUtil.isEmpty(blogComment.getContent())) {
+            return ResponseResult.FAIL("评论内容为空");
+        }
+        queryComment.setContent(blogComment.getContent());
+        queryComment.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("修改评论成功");
+    }
 }
