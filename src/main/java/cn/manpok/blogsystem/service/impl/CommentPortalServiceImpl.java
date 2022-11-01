@@ -65,4 +65,21 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         commentPortalDao.save(blogComment);
         return ResponseResult.SUCCESS("发表评论成功");
     }
+
+    @Override
+    public ResponseResult deleteCommend(String commentID) {
+        //数据库查询对应的评论
+        BlogComment queryComment = commentPortalDao.findCommentById(commentID);
+        if (queryComment == null) {
+            return ResponseResult.FAIL("评论不存在");
+        }
+        //获取用户登录信息
+        BlogUser user = userService.checkUserToken();
+        //对比评论所属用户ID是否为登录用户ID，只有自己的评论才可以删除
+        if (!queryComment.getUserId().equals(user.getId())) {
+            return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
+        }
+        queryComment.setState(Constants.STATE_FORBIDDEN);
+        return ResponseResult.SUCCESS("删除评论成功");
+    }
 }

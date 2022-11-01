@@ -39,7 +39,7 @@ public class CommentPortalApi {
     @DeleteMapping("/{commentID}")
     public ResponseResult deleteComment(@PathVariable("commentID") String commentID) {
         log.info("删除评论 ----> " + commentID);
-        return null;
+        return commentPortalService.deleteCommend(commentID);
     }
 
     /**
