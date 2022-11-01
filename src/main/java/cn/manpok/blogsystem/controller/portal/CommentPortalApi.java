@@ -2,7 +2,9 @@ package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.pojo.BlogComment;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.ICommentPortalService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/portal/comment")
 public class CommentPortalApi {
 
+    @Autowired
+    private ICommentPortalService commentPortalService;
+
     /**
      * 添加评论
      *
@@ -22,7 +27,7 @@ public class CommentPortalApi {
     @PostMapping
     public ResponseResult addComment(@RequestBody BlogComment blogComment) {
         log.info("添加评论 ----> " + blogComment.toString());
-        return null;
+        return commentPortalService.addComment(blogComment);
     }
 
     /**
