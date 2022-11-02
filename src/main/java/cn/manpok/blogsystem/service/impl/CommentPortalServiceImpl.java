@@ -18,8 +18,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.Date;
 
@@ -91,8 +96,18 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
     @Override
     public ResponseResult getComments(String articleID, int page, int size) {
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
-        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
-        Page<BlogComment> all = commentPortalDao.findAllCommentsByArticleId(articleID, pageable);
+        Sort.Order stateOrder = new Sort.Order(Sort.Direction.DESC, "state");
+        Sort.Order createTimeOrder = new Sort.Order(Sort.Direction.ASC, "createTime");
+        Sort sort = Sort.by(stateOrder, createTimeOrder);
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, sort);
+        Page<BlogComment> all = commentPortalDao.findAll(new Specification<BlogComment>() {
+            @Override
+            public Predicate toPredicate(Root<BlogComment> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                Predicate statePredicate = criteriaBuilder.notEqual(root.get("state"), Constants.STATE_FORBIDDEN);
+                Predicate articlePredicate = criteriaBuilder.equal(root.get("articleId"), articleID);
+                return criteriaBuilder.and(statePredicate, articlePredicate);
+            }
+        }, pageable);
         return ResponseResult.SUCCESS("获取所有评论成功").setData(all);
     }
 
