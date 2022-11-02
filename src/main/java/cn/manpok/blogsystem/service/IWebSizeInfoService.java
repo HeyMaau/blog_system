@@ -12,4 +12,7 @@ public interface IWebSizeInfoService {
     ResponseResult getSeoInfo();
 
     ResponseResult getWebSizeViewCount();
+
+    void updateWebSizeViewCount();
+
 }

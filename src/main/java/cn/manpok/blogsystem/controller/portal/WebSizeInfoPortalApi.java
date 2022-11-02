@@ -8,6 +8,7 @@ import cn.manpok.blogsystem.service.IWebSizeInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -84,5 +85,13 @@ public class WebSizeInfoPortalApi {
     public ResponseResult getFriendLinks() {
         log.info("门户获取所有友情链接");
         return friendLinkService.getNormalFriendLinks();
+    }
+
+    /**
+     * 埋点：更新网页访问量
+     */
+    @PutMapping("/view_count")
+    public void updateWebSizeViewCount() {
+        webSizeInfoService.updateWebSizeViewCount();
     }
 }

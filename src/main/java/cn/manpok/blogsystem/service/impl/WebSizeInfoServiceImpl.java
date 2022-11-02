@@ -5,8 +5,10 @@ import cn.manpok.blogsystem.pojo.BlogSetting;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IWebSizeInfoService;
 import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import cn.manpok.blogsystem.utils.TextUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import java.util.Map;
 
 @Service
 @Transactional
+@Slf4j
 public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
 
     @Autowired
@@ -25,6 +28,9 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
 
     @Autowired
     private Snowflake snowflake;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Override
     public ResponseResult updateWebSizeTitle(String title) {
@@ -119,17 +125,50 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         BlogSetting queryViewCount = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
         //如果为空，则创建一个新的
         if (queryViewCount == null) {
-            queryViewCount = new BlogSetting();
-            queryViewCount.setId(String.valueOf(snowflake.nextId()));
-            queryViewCount.setKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
-            queryViewCount.setValue("1");
-            Date date = new Date();
-            queryViewCount.setCreateTime(date);
-            queryViewCount.setUpdateTime(date);
+            queryViewCount = initViewCountInDB();
+        }
+        //从redis中查询访问量数据
+        Integer viewCount = (Integer) redisUtil.get(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+        //如果redis中有数据，将新的数据保存到数据库中
+        if (viewCount != null) {
+            queryViewCount.setValue(String.valueOf(viewCount));
+            queryViewCount.setUpdateTime(new Date());
             webSizeInfoDao.save(queryViewCount);
         }
-        Map<String, String> result = new HashMap<>();
+        Map<String, String> result = new HashMap<>(1);
         result.put("view_count", queryViewCount.getValue());
         return ResponseResult.SUCCESS("查询网站访问量成功").setData(result);
+    }
+
+    /**
+     * 初始化数据库中的访问量
+     */
+    private BlogSetting initViewCountInDB() {
+        BlogSetting blogSetting = new BlogSetting();
+        blogSetting.setId(String.valueOf(snowflake.nextId()));
+        blogSetting.setKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+        blogSetting.setValue("1");
+        Date date = new Date();
+        blogSetting.setCreateTime(date);
+        blogSetting.setUpdateTime(date);
+        webSizeInfoDao.save(blogSetting);
+        return blogSetting;
+    }
+
+    @Override
+    public void updateWebSizeViewCount() {
+        //先查询redis
+        Integer viewCount = (Integer) redisUtil.get(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+        if (viewCount == null) {
+            //如果redis中没有访问量数据，则从数据库中查询
+            BlogSetting queryViewCountInDB = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+            if (queryViewCountInDB == null) {
+                queryViewCountInDB = initViewCountInDB();
+            }
+            viewCount = Integer.valueOf(queryViewCountInDB.getValue());
+        }
+        //如果redis里面有，则直接redis数据+1
+        redisUtil.set(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT, ++viewCount);
+        log.info("viewCount ----> " + viewCount);
     }
 }
