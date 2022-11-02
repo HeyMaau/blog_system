@@ -89,4 +89,11 @@ public interface Constants {
         String LABEL_SEPARATOR = "-";
         int INITIAL_COUNT = 1;
     }
+
+    /**
+     * 评论相关常量
+     */
+    interface Comment {
+        String STATE_TOP = "2";
+    }
 }

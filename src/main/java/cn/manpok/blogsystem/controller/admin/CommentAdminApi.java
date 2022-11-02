@@ -65,6 +65,6 @@ public class CommentAdminApi {
     @PutMapping("/top/{commentID}")
     public ResponseResult topComment(@PathVariable("commentID") String commentID) {
         log.info("置顶评论 ----> " + commentID);
-        return null;
+        return commentAdminService.topComment(commentID);
     }
 }

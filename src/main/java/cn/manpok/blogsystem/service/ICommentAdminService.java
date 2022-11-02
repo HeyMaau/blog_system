@@ -4,4 +4,6 @@ import cn.manpok.blogsystem.response.ResponseResult;
 
 public interface ICommentAdminService {
     ResponseResult getComment(String commentID);
+
+    ResponseResult topComment(String commentID);
 }
