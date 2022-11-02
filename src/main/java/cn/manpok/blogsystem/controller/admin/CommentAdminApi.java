@@ -63,9 +63,10 @@ public class CommentAdminApi {
      * @return
      */
     @GetMapping("/list")
-    public ResponseResult getComments(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public ResponseResult getComments(@RequestParam("page") int page, @RequestParam("size") int size,
+                                      @RequestParam(value = "state", required = false) String state) {
         log.info("获取评论列表 ----> ");
-        return null;
+        return commentAdminService.getComments(page, size, state);
     }
 
     /**

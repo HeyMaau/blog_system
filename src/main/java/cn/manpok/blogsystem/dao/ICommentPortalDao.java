@@ -11,5 +11,4 @@ public interface ICommentPortalDao extends JpaRepository<BlogComment, String> {
 
     Page<BlogComment> findAllCommentsByArticleId(String articleID, Pageable pageable);
 
-    int deleteCommentById(String id);
 }
