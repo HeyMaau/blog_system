@@ -1,7 +1,10 @@
 package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.ICommentAdminService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -10,7 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/admin/comment")
-public class CommentApi {
+@PreAuthorize("@permission.admin")
+public class CommentAdminApi {
+
+    @Autowired
+    private ICommentAdminService commentAdminService;
 
     /**
      * 删除评论
@@ -33,7 +40,7 @@ public class CommentApi {
     @GetMapping("/{commentID}")
     public ResponseResult getComment(@PathVariable("commentID") String commentID) {
         log.info("获取评论 ----> " + commentID);
-        return null;
+        return commentAdminService.getComment(commentID);
     }
 
     /**
