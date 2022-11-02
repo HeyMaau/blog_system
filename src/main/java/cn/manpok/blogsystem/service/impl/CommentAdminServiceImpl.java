@@ -47,4 +47,27 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
             }
         }
     }
+
+    @Override
+    public ResponseResult deleteCommentByState(String commentID) {
+        BlogComment queryComment = commentPortalDao.findCommentById(commentID);
+        if (queryComment == null) {
+            return ResponseResult.FAIL("评论不存在");
+        }
+        queryComment.setState(Constants.STATE_FORBIDDEN);
+        return ResponseResult.SUCCESS("通过状态删除评论成功");
+    }
+
+    @Override
+    public ResponseResult deleteComment(String commentID) {
+        BlogComment queryComment = commentPortalDao.findCommentById(commentID);
+        if (queryComment == null) {
+            return ResponseResult.FAIL("评论不存在");
+        }
+        int deleteCount = commentPortalDao.deleteCommentById(commentID);
+        if (deleteCount < 1) {
+            return ResponseResult.FAIL("删除评论失败");
+        }
+        return ResponseResult.SUCCESS("删除评论成功");
+    }
 }

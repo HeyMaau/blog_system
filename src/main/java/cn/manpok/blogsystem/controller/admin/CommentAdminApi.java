@@ -20,6 +20,18 @@ public class CommentAdminApi {
     private ICommentAdminService commentAdminService;
 
     /**
+     * 通过改变状态删除评论
+     *
+     * @param commentID
+     * @return
+     */
+    @DeleteMapping("/state/{commentID}")
+    public ResponseResult deleteCommentByState(@PathVariable("commentID") String commentID) {
+        log.info("通过改变状态删除评论 ----> " + commentID);
+        return commentAdminService.deleteCommentByState(commentID);
+    }
+
+    /**
      * 删除评论
      *
      * @param commentID
@@ -28,7 +40,7 @@ public class CommentAdminApi {
     @DeleteMapping("/{commentID}")
     public ResponseResult deleteComment(@PathVariable("commentID") String commentID) {
         log.info("删除评论 ----> " + commentID);
-        return null;
+        return commentAdminService.deleteComment(commentID);
     }
 
     /**
