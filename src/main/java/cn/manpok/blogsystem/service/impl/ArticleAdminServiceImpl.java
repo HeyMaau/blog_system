@@ -11,6 +11,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IArticleAdminService;
 import cn.manpok.blogsystem.service.ILabelService;
+import cn.manpok.blogsystem.service.ISolrSearchService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.PageUtil;
@@ -51,6 +52,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Autowired
     private ILabelService labelService;
+
+    @Autowired
+    private ISolrSearchService solrSearchService;
 
     @Override
     public ResponseResult addArticle(BlogArticle blogArticle) {
@@ -127,6 +131,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         articleAdminDao.save(article2Save);
         //保存标签数据
         labelService.addLabelInDB(blogArticle.getLabels());
+        //保存到SOLR
+        solrSearchService.addArticle(article2Save);
         return ResponseResult.SUCCESS("添加文章成功").setData(article2Save.getId());
     }
 

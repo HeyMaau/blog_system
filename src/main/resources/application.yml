@@ -31,3 +31,5 @@ blog.system.image.dir.path: D:\WorkSpace\Java\images
 blog.system.image.max.size: 2097152
 # 读取图片缓冲区带下
 blog.system.image.inputstream.buffer: 8192
+# solr地址
+blog.system.solr.path: http://192.168.144.128:8983/solr/ik_core
