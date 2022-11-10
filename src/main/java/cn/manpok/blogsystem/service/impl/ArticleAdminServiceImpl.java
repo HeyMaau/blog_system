@@ -261,6 +261,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setLabels(blogArticle.getLabels());
         queryArticle.setCategoryId(blogArticle.getCategoryId());
         queryArticle.setUpdateTime(new Date());
+        //更新solr
+        solrSearchService.updateArticle(queryArticle);
         return ResponseResult.SUCCESS("修改文章成功");
     }
 

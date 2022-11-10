@@ -7,4 +7,6 @@ public interface ISolrSearchService {
     void addArticle(BlogArticle blogArticle);
 
     void deleteArticle(String articleID);
+
+    void updateArticle(BlogArticle blogArticle);
 }
