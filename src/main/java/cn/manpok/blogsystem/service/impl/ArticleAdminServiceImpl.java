@@ -203,6 +203,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
     @Override
     public ResponseResult deleteArticle(String articleID) {
         int deleteCount = articleAdminDao.deleteArticleById(articleID);
+        //solr中的文章也要删除
+        solrSearchService.deleteArticle(articleID);
         if (deleteCount < 1) {
             return ResponseResult.FAIL("删除文章失败");
         }

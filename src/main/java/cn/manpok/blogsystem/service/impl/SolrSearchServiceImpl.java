@@ -29,10 +29,22 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
         try {
             solrClient.add(document);
             solrClient.commit();
-            log.info("文章保存SOLR成功");
+            log.info("文章保存SOLR成功 ----> " + blogArticle.getId());
         } catch (Exception e) {
             e.printStackTrace();
-            log.info("文章保存SOLR异常");
+            log.info("文章保存SOLR失败 ----> " + blogArticle.getId());
+        }
+    }
+
+    @Override
+    public void deleteArticle(String articleID) {
+        try {
+            solrClient.deleteById(articleID);
+            solrClient.commit();
+            log.info("solr删除文章成功 ----> " + articleID);
+        } catch (Exception e) {
+            log.info("solr删除文章失败 ----> " + articleID);
+            e.printStackTrace();
         }
     }
 }
