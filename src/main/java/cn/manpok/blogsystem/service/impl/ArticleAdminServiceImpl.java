@@ -276,6 +276,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         if (state.equals(Constants.Article.STATE_DELETE) || state.equals(Constants.Article.STATE_DRAFT)) {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
         }
+        long viewCount = queryArticle.getViewCount();
+        queryArticle.setViewCount(++viewCount);
         return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
     }
 
