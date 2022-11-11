@@ -13,10 +13,8 @@ import cn.manpok.blogsystem.service.IArticleAdminService;
 import cn.manpok.blogsystem.service.ILabelService;
 import cn.manpok.blogsystem.service.ISolrSearchService;
 import cn.manpok.blogsystem.service.IUserService;
-import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.PageUtil;
-import cn.manpok.blogsystem.utils.Snowflake;
-import cn.manpok.blogsystem.utils.TextUtil;
+import cn.manpok.blogsystem.utils.*;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -55,6 +53,12 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Autowired
     private ISolrSearchService solrSearchService;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private Gson gson;
 
     @Override
     public ResponseResult addArticle(BlogArticle blogArticle) {
@@ -268,6 +272,30 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Override
     public ResponseResult getNormalArticle(String articleID) {
+        //先从缓存中查文章对应的阅读量
+        Long viewCountCache = (Long) redisUtil.get(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID);
+        if (viewCountCache == null) {
+            BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
+            long viewCount = queryArticle.getViewCount();
+            queryArticle.setViewCount(++viewCount);
+            redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
+            redisUtil.set(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID, viewCount);
+            return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
+        }
+        //若有阅读量缓存，则从redis中查文章的缓存
+        String articleCache = (String) redisUtil.get(Constants.Article.KEY_ARTICLE_CACHE + articleID);
+        if (!TextUtil.isEmpty(articleCache)) {
+            //如果缓存中有，则直接返回结果，不再查询数据库
+            BlogArticle article = gson.fromJson(articleCache, BlogArticle.class);
+            //阅读量+1
+            article.setViewCount(++viewCountCache);
+            //刷新阅读量缓存
+            redisUtil.set(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID, viewCountCache);
+            //刷新文章缓存
+            redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(article), Constants.TimeValue.HOUR_2);
+            return ResponseResult.SUCCESS("获取文章成功").setData(article);
+        }
+        //缓存中没有，则从数据库中查询
         BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
         if (queryArticle == null) {
             return ResponseResult.FAIL("文章不存在");
@@ -276,8 +304,12 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         if (state.equals(Constants.Article.STATE_DELETE) || state.equals(Constants.Article.STATE_DRAFT)) {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
         }
-        long viewCount = queryArticle.getViewCount();
-        queryArticle.setViewCount(++viewCount);
+        //将文章访问量缓存写回数据库
+        queryArticle.setViewCount(++viewCountCache);
+        //刷新文章访问量缓存
+        redisUtil.set(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID, viewCountCache);
+        //保存文章缓存
+        redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(queryArticle));
         return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
     }
 

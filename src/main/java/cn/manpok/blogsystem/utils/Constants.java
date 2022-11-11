@@ -80,6 +80,8 @@ public interface Constants {
         int INITIAL_VIEW_COUNT = 1;
         String TYPE_RICH_TEXT = "0";
         String TYPE_MARKDOWN = "1";
+        String KEY_ARTICLE_CACHE = "key_article_cache_";
+        String KEY_VIEW_COUNT_CACHE = "key_view_count_cache_";
     }
 
     /**

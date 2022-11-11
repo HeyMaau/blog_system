@@ -73,6 +73,9 @@ public class UserServiceImpl implements IUserService {
     @Autowired
     private HttpServletResponse response;
 
+    @Autowired
+    private Gson gson;
+
     /**
      * 初始化邮箱设置
      */
@@ -360,7 +363,6 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户不存在");
         }
         //深拷贝去除用户敏感信息：密码、email、IP地址
-        Gson gson = new Gson();
         String userJson = gson.toJson(queryUser);
         BlogUser cloneUser = gson.fromJson(userJson, BlogUser.class);
         cloneUser.setPassword("");
