@@ -1,6 +1,7 @@
 package cn.manpok.blogsystem.service;
 
 import cn.manpok.blogsystem.pojo.BlogArticle;
+import cn.manpok.blogsystem.response.ResponseResult;
 
 public interface ISolrSearchService {
 
@@ -9,4 +10,6 @@ public interface ISolrSearchService {
     void deleteArticle(String articleID);
 
     void updateArticle(BlogArticle blogArticle);
+
+    ResponseResult queryArticle(String keyword, String categoryID, Integer sort, int page, int size);
 }

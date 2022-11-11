@@ -96,4 +96,24 @@ public interface Constants {
     interface Comment {
         String STATE_TOP = "2";
     }
+
+    /**
+     * 搜索相关常量
+     */
+    interface Search {
+        int SORT_CREATE_TIME_ASC = 1;
+        int SORT_CREATE_TIME_DESC = 2;
+        int SORT_VIEW_COUNT_ASC = 3;
+        int SORT_VIEW_COUNT_DESC = 4;
+        String DEFAULT_FIELD = "search_item";
+        String FIELD_VIEW_COUNT = "view_count";
+        String FIELD_CREATE_TIME = "create_time";
+        String FIELD_CATEGORY_ID = "category_id";
+        String FIELD_TITLE = "title";
+        String FIELD_CONTENT = "content";
+        String FIELD_ID = "id";
+        String HIGHLIGHT_PRE = "<font color='red'>";
+        String HIGHLIGHT_POST = "</font>";
+        int HIGHLIGHT_FRAG_SIZE = 500;
+    }
 }

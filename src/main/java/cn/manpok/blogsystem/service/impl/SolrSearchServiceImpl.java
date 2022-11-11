@@ -1,12 +1,23 @@
 package cn.manpok.blogsystem.service.impl;
 
 import cn.manpok.blogsystem.pojo.BlogArticle;
+import cn.manpok.blogsystem.pojo.BlogSolrSearch;
+import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ISolrSearchService;
+import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.ListUtil;
+import cn.manpok.blogsystem.utils.PageUtil;
+import cn.manpok.blogsystem.utils.TextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -43,6 +54,73 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
     @Override
     public void updateArticle(BlogArticle blogArticle) {
         addArticle(blogArticle);
+    }
+
+    @Override
+    public ResponseResult queryArticle(String keyword, String categoryID, Integer sort, int page, int size) {
+        //检查参数
+        if (TextUtil.isEmpty(keyword)) {
+            return ResponseResult.FAIL("关键词为空");
+        }
+        SolrQuery solrQuery = new SolrQuery();
+        //默认搜索域
+        solrQuery.set("df", Constants.Search.DEFAULT_FIELD);
+        //搜索关键词
+        solrQuery.setQuery(keyword);
+        //排序：按发表时间先后，或者按照阅读量高低
+        if (sort == null) {
+            //默认按照阅读量从高到低的顺序
+            sort = Constants.Search.SORT_VIEW_COUNT_DESC;
+        }
+        switch (sort) {
+            case Constants.Search.SORT_CREATE_TIME_ASC -> solrQuery.setSort(Constants.Search.FIELD_CREATE_TIME, SolrQuery.ORDER.asc);
+            case Constants.Search.SORT_CREATE_TIME_DESC -> solrQuery.setSort(Constants.Search.FIELD_CREATE_TIME, SolrQuery.ORDER.desc);
+            case Constants.Search.SORT_VIEW_COUNT_ASC -> solrQuery.setSort(Constants.Search.FIELD_VIEW_COUNT, SolrQuery.ORDER.asc);
+            case Constants.Search.SORT_VIEW_COUNT_DESC -> solrQuery.setSort(Constants.Search.FIELD_VIEW_COUNT, SolrQuery.ORDER.desc);
+        }
+        //分类关键词
+        if (!TextUtil.isEmpty(categoryID)) {
+            solrQuery.setFilterQueries(Constants.Search.FIELD_CATEGORY_ID + ":" + categoryID);
+        }
+        //设置分页
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        solrQuery.setRows(pageInfo.size);
+        int start = (pageInfo.page - 1) * pageInfo.size;
+        solrQuery.setStart(start);
+        //设置高亮
+        solrQuery.setHighlight(true);
+        solrQuery.setHighlightSimplePre(Constants.Search.HIGHLIGHT_PRE);
+        solrQuery.setHighlightSimplePost(Constants.Search.HIGHLIGHT_POST);
+        solrQuery.addHighlightField(Constants.Search.FIELD_TITLE);
+        solrQuery.addHighlightField(Constants.Search.FIELD_CONTENT);
+        solrQuery.setHighlightFragsize(Constants.Search.HIGHLIGHT_FRAG_SIZE);
+        QueryResponse response = null;
+        try {
+            response = solrClient.query(solrQuery);
+        } catch (Exception e) {
+            log.error("solr查询异常");
+            e.printStackTrace();
+        }
+        if (response != null) {
+            Map<String, Map<String, List<String>>> highlightings = response.getHighlighting();
+            //把查询结果转换为对应的bean类
+            List<BlogSolrSearch> searchList = response.getBeans(BlogSolrSearch.class);
+            //获取高亮的结果
+            for (BlogSolrSearch search : searchList) {
+                //获取ID，根据ID获取对应的高亮信息
+                Map<String, List<String>> highlighting = highlightings.get(search.getId());
+                //目前高亮信息有两个字段：标题、内容
+                List<String> titleHighlightList = highlighting.get(Constants.Search.FIELD_TITLE);
+                List<String> contentHighlightList = highlighting.get(Constants.Search.FIELD_CONTENT);
+                if (!ListUtil.isEmpty(titleHighlightList)) {
+                    search.setTitle(titleHighlightList.get(0));
+                }
+                if (!ListUtil.isEmpty(contentHighlightList)) {
+                    search.setContent(contentHighlightList.get(0));
+                }
+            }
+        }
+        return ResponseResult.SUCCESS("搜索成功");
     }
 
     private SolrInputDocument createDocument(BlogArticle blogArticle) {
