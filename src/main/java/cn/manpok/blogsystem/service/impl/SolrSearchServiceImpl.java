@@ -9,11 +9,15 @@ import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.ListUtil;
 import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.TextUtil;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.ast.Node;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +30,12 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
 
     @Autowired
     private SolrClient solrClient;
+
+    @Autowired
+    private Parser parser;
+
+    @Autowired
+    private HtmlRenderer renderer;
 
     @Override
     public void addArticle(BlogArticle blogArticle) {
@@ -127,16 +137,52 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
         return ResponseResult.FAIL("搜索失败");
     }
 
+    /**
+     * 创建添加到solr的文档
+     *
+     * @param blogArticle
+     * @return
+     */
     private SolrInputDocument createDocument(BlogArticle blogArticle) {
         SolrInputDocument document = new SolrInputDocument();
         document.addField("id", blogArticle.getId());
         document.addField("view_count", blogArticle.getViewCount());
         document.addField("title", blogArticle.getTitle());
-        document.addField("content", blogArticle.getContent());
+        //内容转纯文本存入solr，先判断文章格式类型
+        //如果是MD，则先转HTML
+        String html;
+        if (blogArticle.getType().equals(Constants.Article.TYPE_MARKDOWN)) {
+            html = md2Html(blogArticle.getContent());
+        } else {
+            html = blogArticle.getContent();
+        }
+        String text = html2Text(html);
+        document.addField("content", text);
         document.addField("labels", blogArticle.getLabels());
         document.addField("category_id", blogArticle.getCategoryId());
         document.addField("create_time", blogArticle.getCreateTime());
         document.addField("update_time", blogArticle.getUpdateTime());
         return document;
+    }
+
+    /**
+     * Markdown转HTML
+     *
+     * @param md
+     * @return
+     */
+    private String md2Html(String md) {
+        Node document = parser.parse(md);
+        return renderer.render(document);
+    }
+
+    /**
+     * HTML转纯文本
+     *
+     * @param html
+     * @return
+     */
+    private String html2Text(String html) {
+        return Jsoup.parse(html).text();
     }
 }
