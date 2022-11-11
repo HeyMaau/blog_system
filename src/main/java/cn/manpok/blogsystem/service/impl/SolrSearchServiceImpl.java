@@ -1,6 +1,7 @@
 package cn.manpok.blogsystem.service.impl;
 
 import cn.manpok.blogsystem.pojo.BlogArticle;
+import cn.manpok.blogsystem.pojo.BlogPaging;
 import cn.manpok.blogsystem.pojo.BlogSolrSearch;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ISolrSearchService;
@@ -119,8 +120,11 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
                     search.setContent(contentHighlightList.get(0));
                 }
             }
+            //设置返回的分页数据
+            BlogPaging blogPaging = new BlogPaging(pageInfo.size, searchList.size(), pageInfo.page, searchList);
+            return ResponseResult.SUCCESS("搜索成功").setData(blogPaging);
         }
-        return ResponseResult.SUCCESS("搜索成功");
+        return ResponseResult.FAIL("搜索失败");
     }
 
     private SolrInputDocument createDocument(BlogArticle blogArticle) {
