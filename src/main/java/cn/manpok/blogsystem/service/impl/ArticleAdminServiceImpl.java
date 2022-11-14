@@ -3,6 +3,7 @@ package cn.manpok.blogsystem.service.impl;
 import cn.manpok.blogsystem.dao.IArticleAdminDao;
 import cn.manpok.blogsystem.dao.IArticleAdminSimpleDao;
 import cn.manpok.blogsystem.dao.ICategoryDao;
+import cn.manpok.blogsystem.dao.ICommentAdminDao;
 import cn.manpok.blogsystem.pojo.BlogArticle;
 import cn.manpok.blogsystem.pojo.BlogArticleSimple;
 import cn.manpok.blogsystem.pojo.BlogCategory;
@@ -15,6 +16,7 @@ import cn.manpok.blogsystem.service.ISolrSearchService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
 import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +33,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@Slf4j
 public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Autowired
@@ -59,6 +62,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Autowired
     private Gson gson;
+
+    @Autowired
+    private ICommentAdminDao commentAdminDao;
 
     @Override
     public ResponseResult addArticle(BlogArticle blogArticle) {
@@ -206,6 +212,10 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
 
     @Override
     public ResponseResult deleteArticle(String articleID) {
+        //先删除文章下所有的评论
+        int commentsDeleteCount = commentAdminDao.deleteCommentsByArticleId(articleID);
+        log.info("删除文章 ----> " + articleID + "所有评论 ----> " + commentsDeleteCount);
+        //再删除数据库中的文章
         int deleteCount = articleAdminDao.deleteArticleById(articleID);
         //solr中的文章也要删除
         solrSearchService.deleteArticle(articleID);
