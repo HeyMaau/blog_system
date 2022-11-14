@@ -270,6 +270,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setUpdateTime(new Date());
         //更新solr
         solrSearchService.updateArticle(queryArticle);
+        //更新redis中的缓存
+        redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + blogArticle.getId(), gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
         return ResponseResult.SUCCESS("修改文章成功");
     }
 
