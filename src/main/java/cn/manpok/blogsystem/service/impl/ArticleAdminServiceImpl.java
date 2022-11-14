@@ -209,6 +209,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         int deleteCount = articleAdminDao.deleteArticleById(articleID);
         //solr中的文章也要删除
         solrSearchService.deleteArticle(articleID);
+        //redis中的缓存也要删掉，包括阅读量和文章
+        redisUtil.del(Constants.Article.KEY_ARTICLE_CACHE + articleID);
+        redisUtil.del(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID);
         if (deleteCount < 1) {
             return ResponseResult.FAIL("删除文章失败");
         }
