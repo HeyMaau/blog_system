@@ -131,7 +131,7 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
                 }
             }
             //设置返回的分页数据
-            BlogPaging blogPaging = new BlogPaging(pageInfo.size, searchList.size(), pageInfo.page, searchList);
+            BlogPaging<List<BlogSolrSearch>> blogPaging = new BlogPaging<>(pageInfo.size, searchList.size(), pageInfo.page, searchList);
             return ResponseResult.SUCCESS("搜索成功").setData(blogPaging);
         }
         return ResponseResult.FAIL("搜索失败");

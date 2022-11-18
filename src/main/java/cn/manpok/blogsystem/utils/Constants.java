@@ -97,6 +97,7 @@ public interface Constants {
      */
     interface Comment {
         String STATE_TOP = "2";
+        String KEY_COMMENTS_CACHE = "key_comments_cache_";
     }
 
     /**

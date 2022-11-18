@@ -4,15 +4,16 @@ import cn.manpok.blogsystem.dao.IArticleAdminSimpleDao;
 import cn.manpok.blogsystem.dao.ICommentPortalDao;
 import cn.manpok.blogsystem.pojo.BlogArticleSimple;
 import cn.manpok.blogsystem.pojo.BlogComment;
+import cn.manpok.blogsystem.pojo.BlogPaging;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.ICommentPortalService;
 import cn.manpok.blogsystem.service.IUserService;
-import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.PageUtil;
-import cn.manpok.blogsystem.utils.Snowflake;
-import cn.manpok.blogsystem.utils.TextUtil;
+import cn.manpok.blogsystem.utils.*;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,9 +28,11 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
+@Slf4j
 public class CommentPortalServiceImpl implements ICommentPortalService {
 
     @Autowired
@@ -43,6 +46,12 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
 
     @Autowired
     private ICommentPortalDao commentPortalDao;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private Gson gson;
 
     @Override
     public ResponseResult addComment(BlogComment blogComment) {
@@ -96,6 +105,15 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
     @Override
     public ResponseResult getComments(String articleID, int page, int size) {
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        if (pageInfo.page == 1) {
+            String commentsStr = (String) redisUtil.get(Constants.Comment.KEY_COMMENTS_CACHE + articleID);
+            if (!TextUtil.isEmpty(commentsStr)) {
+                BlogPaging<List<BlogComment>> commentsCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogComment>>>() {
+                }.getType());
+                log.info("从redis中取出文章评论 ----> " + articleID);
+                return ResponseResult.SUCCESS("获取所有评论成功").setData(commentsCache);
+            }
+        }
         Sort.Order stateOrder = new Sort.Order(Sort.Direction.DESC, "state");
         Sort.Order createTimeOrder = new Sort.Order(Sort.Direction.ASC, "createTime");
         Sort sort = Sort.by(stateOrder, createTimeOrder);
@@ -108,7 +126,14 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
                 return criteriaBuilder.and(statePredicate, articlePredicate);
             }
         }, pageable);
-        return ResponseResult.SUCCESS("获取所有评论成功").setData(all);
+        //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
+        BlogPaging<List<BlogComment>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
+        //如果是第一页的评论，缓存到redis中
+        if (pageInfo.page == 1) {
+            redisUtil.set(Constants.Comment.KEY_COMMENTS_CACHE + articleID, gson.toJson(paging), Constants.TimeValue.MIN_10);
+            log.info("文章第一页评论已缓存到redis ----> " + articleID);
+        }
+        return ResponseResult.SUCCESS("获取所有评论成功").setData(paging);
     }
 
     @Override

@@ -3,7 +3,7 @@ package cn.manpok.blogsystem.pojo;
 /**
  * 分页用
  */
-public class BlogPaging {
+public class BlogPaging<T> {
 
     /**
      * 每页条数
@@ -13,7 +13,7 @@ public class BlogPaging {
     /**
      * 总条数
      */
-    private int total;
+    private long total;
 
     /**
      * 当前页码
@@ -23,9 +23,9 @@ public class BlogPaging {
     /**
      * 数据
      */
-    private Object data;
+    private T data;
 
-    public BlogPaging(int pageSize, int total, int currentPage, Object data) {
+    public BlogPaging(int pageSize, long total, int currentPage, T data) {
         this.pageSize = pageSize;
         this.total = total;
         this.currentPage = currentPage;
@@ -40,11 +40,11 @@ public class BlogPaging {
         this.pageSize = pageSize;
     }
 
-    public int getTotal() {
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(int total) {
+    public void setTotal(long total) {
         this.total = total;
     }
 
@@ -56,11 +56,11 @@ public class BlogPaging {
         this.currentPage = currentPage;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

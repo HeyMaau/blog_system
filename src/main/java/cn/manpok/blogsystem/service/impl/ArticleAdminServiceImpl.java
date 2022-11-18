@@ -291,6 +291,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         Long viewCountCache = (Long) redisUtil.get(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID);
         if (viewCountCache == null) {
             BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
+            if (queryArticle == null) {
+                return ResponseResult.FAIL("文章不存在");
+            }
             long viewCount = queryArticle.getViewCount();
             queryArticle.setViewCount(++viewCount);
             redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
