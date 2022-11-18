@@ -4,10 +4,7 @@ import cn.manpok.blogsystem.dao.IArticleAdminDao;
 import cn.manpok.blogsystem.dao.IArticleAdminSimpleDao;
 import cn.manpok.blogsystem.dao.ICategoryDao;
 import cn.manpok.blogsystem.dao.ICommentAdminDao;
-import cn.manpok.blogsystem.pojo.BlogArticle;
-import cn.manpok.blogsystem.pojo.BlogArticleSimple;
-import cn.manpok.blogsystem.pojo.BlogCategory;
-import cn.manpok.blogsystem.pojo.BlogUser;
+import cn.manpok.blogsystem.pojo.*;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IArticleAdminService;
@@ -15,6 +12,7 @@ import cn.manpok.blogsystem.service.ILabelService;
 import cn.manpok.blogsystem.service.ISolrSearchService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
+import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,6 +148,15 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
     public ResponseResult getArticles(int page, int size, String categoryID, String keywords, String state) {
         //检查页码参数
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        if (pageInfo.page == 1) {
+            String commentsStr = (String) redisUtil.get(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+            if (!TextUtil.isEmpty(commentsStr)) {
+                BlogPaging<List<BlogArticleSimple>> articleListCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogArticleSimple>>>() {
+                }.getType());
+                log.info("从redis中取出文章列表第一页");
+                return ResponseResult.SUCCESS("获取文章列表成功").setData(articleListCache);
+            }
+        }
         //构建分页
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "updateTime");
         //构建条件查询
@@ -178,7 +185,14 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             //条件一、条件二、条件三用and连接
             return criteriaBuilder.and(predicates);
         }, pageable);
-        return ResponseResult.SUCCESS("获取文章列表成功").setData(all);
+        //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
+        BlogPaging<List<BlogArticleSimple>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
+        //如果是第一页的评论，缓存到redis中
+        if (pageInfo.page == 1) {
+            redisUtil.set(Constants.Article.KEY_ARTICLE_LIST_CACHE, gson.toJson(paging), Constants.TimeValue.MIN_10);
+            log.info("文章列表第一页已缓存到redis");
+        }
+        return ResponseResult.SUCCESS("获取文章列表成功").setData(paging);
     }
 
     @Override
