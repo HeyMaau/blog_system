@@ -139,8 +139,11 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         articleAdminDao.save(article2Save);
         //保存标签数据
         labelService.addLabelInDB(blogArticle.getLabels());
-        //保存到SOLR
-        solrSearchService.addArticle(article2Save);
+        //只有发表的文章才保存到SOLR，并清空redis缓存
+        if (state.equals(Constants.Article.STATE_PUBLISH)) {
+            solrSearchService.addArticle(article2Save);
+            redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+        }
         return ResponseResult.SUCCESS("添加文章成功").setData(article2Save.getId());
     }
 
@@ -221,6 +224,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
         }
         queryArticle.setState(Constants.Article.STATE_TOP);
+        //删除redis中的文章列表缓存
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
         return ResponseResult.SUCCESS("置顶文章成功");
     }
 
@@ -233,9 +238,10 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         int deleteCount = articleAdminDao.deleteArticleById(articleID);
         //solr中的文章也要删除
         solrSearchService.deleteArticle(articleID);
-        //redis中的缓存也要删掉，包括阅读量和文章
+        //redis中的缓存也要删掉，包括阅读量和文章和文章列表
         redisUtil.del(Constants.Article.KEY_ARTICLE_CACHE + articleID);
         redisUtil.del(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID);
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
         if (deleteCount < 1) {
             return ResponseResult.FAIL("删除文章失败");
         }
@@ -249,6 +255,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             return ResponseResult.FAIL("文章不存在");
         }
         queryArticle.setState(Constants.Article.STATE_DELETE);
+        //删除redis中的文章列表缓存
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
         return ResponseResult.SUCCESS("删除文章成功");
     }
 
@@ -296,6 +304,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         solrSearchService.updateArticle(queryArticle);
         //更新redis中的缓存
         redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + blogArticle.getId(), gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
+        //删除redis中的文章列表缓存
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
         return ResponseResult.SUCCESS("修改文章成功");
     }
 
