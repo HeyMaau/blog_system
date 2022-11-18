@@ -8,6 +8,7 @@ import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.ICommentAdminService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.PageUtil;
+import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.TextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,6 +34,9 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
     @Autowired
     private ICommentAdminDao commentAdminDao;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Override
     public ResponseResult getComment(String commentID) {
         BlogComment queryComment = commentPortalDao.findCommentById(commentID);
@@ -51,10 +55,14 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
         switch (queryComment.getState()) {
             case Constants.STATE_NORMAL -> {
                 queryComment.setState(Constants.Comment.STATE_TOP);
+                //清除redis中的缓存
+                redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
                 return ResponseResult.SUCCESS("置顶评论成功");
             }
             case Constants.Comment.STATE_TOP -> {
                 queryComment.setState(Constants.STATE_NORMAL);
+                //清除redis中的缓存
+                redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
                 return ResponseResult.SUCCESS("取消置顶评论成功");
             }
             default -> {
@@ -70,6 +78,8 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
             return ResponseResult.FAIL("评论不存在");
         }
         queryComment.setState(Constants.STATE_FORBIDDEN);
+        //清除redis中的缓存
+        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
         return ResponseResult.SUCCESS("通过状态删除评论成功");
     }
 
@@ -83,6 +93,8 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
         if (deleteCount < 1) {
             return ResponseResult.FAIL("删除评论失败");
         }
+        //清除redis中的缓存
+        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
         return ResponseResult.SUCCESS("删除评论成功");
     }
 

@@ -82,6 +82,8 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         blogComment.setCreateTime(date);
         blogComment.setUpdateTime(date);
         commentPortalDao.save(blogComment);
+        //清除redis中的缓存
+        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + blogComment.getArticleId());
         return ResponseResult.SUCCESS("发表评论成功");
     }
 
@@ -99,6 +101,8 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
         }
         queryComment.setState(Constants.STATE_FORBIDDEN);
+        //清除redis中的缓存
+        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
         return ResponseResult.SUCCESS("删除评论成功");
     }
 
@@ -157,6 +161,8 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         }
         queryComment.setContent(blogComment.getContent());
         queryComment.setUpdateTime(new Date());
+        //清除redis中的缓存
+        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + blogComment.getArticleId());
         return ResponseResult.SUCCESS("修改评论成功");
     }
 }
