@@ -1,5 +1,6 @@
 package cn.manpok.blogsystem.controller.admin;
 
+import cn.manpok.blogsystem.interceptors.CheckRepeatedCommit;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IImageService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,7 @@ public class ImageApi {
      * @param imageFile
      * @return
      */
+    @CheckRepeatedCommit
     @PostMapping
     public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile) {
         return imageService.uploadImage(imageFile);

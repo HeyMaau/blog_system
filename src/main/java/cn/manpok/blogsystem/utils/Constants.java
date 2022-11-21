@@ -7,6 +7,8 @@ public interface Constants {
 
     String STATE_NORMAL = "1";
     String STATE_FORBIDDEN = "0";
+    String KEY_COMMIT_RECORD = "key_commit_record_";
+    String VALUE_TRUE = "true";
 
     interface User {
         String DEFAULT_AVATAR = "www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png";
@@ -49,6 +51,7 @@ public interface Constants {
      */
     interface TimeValue {
         int SECOND = 1;
+        int SECOND_30 = SECOND * 30;
         int MIN = SECOND * 60;
         int MIN_2 = MIN * 2;
         int MIN_5 = MIN * 5;

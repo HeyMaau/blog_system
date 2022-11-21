@@ -1,5 +1,6 @@
 package cn.manpok.blogsystem.controller.admin;
 
+import cn.manpok.blogsystem.interceptors.CheckRepeatedCommit;
 import cn.manpok.blogsystem.pojo.BlogArticle;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IArticleAdminService;
@@ -26,6 +27,7 @@ public class ArticleAdminApi {
      * @param blogArticle
      * @return
      */
+    @CheckRepeatedCommit
     @PostMapping
     public ResponseResult addArticle(@RequestBody BlogArticle blogArticle) {
         log.info("添加文章 ----> " + blogArticle.toString());
@@ -50,6 +52,7 @@ public class ArticleAdminApi {
      * @param blogArticle
      * @return
      */
+    @CheckRepeatedCommit
     @PutMapping
     public ResponseResult updateArticle(@RequestBody BlogArticle blogArticle) {
         log.info("修改文章 ----> " + blogArticle.toString());

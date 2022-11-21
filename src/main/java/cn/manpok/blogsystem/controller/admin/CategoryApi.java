@@ -1,5 +1,6 @@
 package cn.manpok.blogsystem.controller.admin;
 
+import cn.manpok.blogsystem.interceptors.CheckRepeatedCommit;
 import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ICategoryService;
@@ -26,6 +27,7 @@ public class CategoryApi {
      * @param blogCategory
      * @return
      */
+    @CheckRepeatedCommit
     @PostMapping
     public ResponseResult addCategory(@RequestBody BlogCategory blogCategory) {
         log.info("添加分类 ----> " + blogCategory.toString());
@@ -50,6 +52,7 @@ public class CategoryApi {
      * @param blogCategory
      * @return
      */
+    @CheckRepeatedCommit
     @PutMapping
     public ResponseResult updateCategory(@RequestBody BlogCategory blogCategory) {
         log.info("修改分类 ----> " + blogCategory.toString());

@@ -1,5 +1,6 @@
 package cn.manpok.blogsystem.controller.portal;
 
+import cn.manpok.blogsystem.interceptors.CheckRepeatedCommit;
 import cn.manpok.blogsystem.pojo.BlogComment;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ICommentPortalService;
@@ -24,6 +25,7 @@ public class CommentPortalApi {
      * @param blogComment
      * @return
      */
+    @CheckRepeatedCommit
     @PostMapping
     public ResponseResult addComment(@RequestBody BlogComment blogComment) {
         log.info("添加评论 ----> " + blogComment.toString());

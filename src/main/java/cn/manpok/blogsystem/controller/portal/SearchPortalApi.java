@@ -1,5 +1,6 @@
 package cn.manpok.blogsystem.controller.portal;
 
+import cn.manpok.blogsystem.interceptors.CheckRepeatedCommit;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ISolrSearchService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,7 @@ public class SearchPortalApi {
      * @param page
      * @return
      */
+    @CheckRepeatedCommit
     @GetMapping("/{keyword}")
     public ResponseResult doSearch(@PathVariable("keyword") String keyword,
                                    @RequestParam(value = "category_id", required = false) String categoryID,
