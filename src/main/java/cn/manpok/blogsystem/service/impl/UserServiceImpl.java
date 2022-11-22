@@ -591,7 +591,9 @@ public class UserServiceImpl implements IUserService {
                 createToken(queryUser);
                 return queryUser;
             } catch (Exception e) {
-                //如果refreshToken过期了，则返回空
+                //如果refreshToken过期了，则返回空，并删除数据库中的refreshToken
+                int deleteCount = refreshTokenDao.deleteByTokenMD5(tokenMD5);
+                log.info("删除refreshToken ----> " + deleteCount + " ----> " + tokenMD5);
                 return null;
             }
         }
