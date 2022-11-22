@@ -4,6 +4,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IQRCodeService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.QRCodeUtil;
+import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class QRCodeServiceImpl implements IQRCodeService {
     @Autowired
     private HttpServletResponse response;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @Override
     public ResponseResult getQRCodeInfo() {
         //产生一个随机ID，返回给前端，用于下次请求二维码图片
@@ -41,6 +45,7 @@ public class QRCodeServiceImpl implements IQRCodeService {
     @Override
     public void getQRCodeImg(String code) {
         log.info(code + " ----> 请求二维码");
+        redisUtil.set(Constants.APP.KEY_QR_CODE_STATE + code, Constants.APP.STATE_QR_CODE_FALSE, Constants.TimeValue.MIN_5);
         String content = Constants.APP.APP_DOWNLOAD_LINK + code;
         try (ServletOutputStream outputStream = response.getOutputStream()) {
             QRCodeUtil.createCodeToOutputStream(content, outputStream);

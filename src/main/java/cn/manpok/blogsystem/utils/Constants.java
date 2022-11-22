@@ -129,5 +129,9 @@ public interface Constants {
      */
     interface APP {
         String APP_DOWNLOAD_LINK = "http://manpok.top/app/download/";
+        String KEY_QR_CODE_STATE = "key_qr_code_state_";
+        String STATE_QR_CODE_TRUE = "true";
+        String STATE_QR_CODE_FALSE = "false";
+        String STATE_QR_CODE_ENQUIRE = "enquire";
     }
 }
