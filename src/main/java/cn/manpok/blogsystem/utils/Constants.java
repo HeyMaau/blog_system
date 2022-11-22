@@ -123,4 +123,11 @@ public interface Constants {
         String HIGHLIGHT_POST = "</font>";
         int HIGHLIGHT_FRAG_SIZE = 500;
     }
+
+    /**
+     * 手机客户端相关常量
+     */
+    interface APP {
+        String APP_DOWNLOAD_LINK = "http://manpok.top/app/download/";
+    }
 }
