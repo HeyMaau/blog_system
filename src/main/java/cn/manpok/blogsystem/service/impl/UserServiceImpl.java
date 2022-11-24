@@ -352,8 +352,8 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户名或密码不正确");
         }
         //5、生成token和refreshToken
-        createToken(queryUser);
-        return ResponseResult.SUCCESS("登录成功");
+        String tokenKey = createToken(queryUser);
+        return ResponseResult.SUCCESS("登录成功").setData(tokenKey);
     }
 
     @Override
@@ -605,7 +605,7 @@ public class UserServiceImpl implements IUserService {
      *
      * @param blogUser
      */
-    private void createToken(BlogUser blogUser) {
+    private String createToken(BlogUser blogUser) {
         //生成token
         Map<String, String> payload = ClaimUtil.userBean2Claims(blogUser);
         String token = JWTUtil.generateToken(payload);
@@ -616,7 +616,7 @@ public class UserServiceImpl implements IUserService {
         CookieUtil.setupCookie(response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
         //如果是管理员账户，则不保存refreshToken
         if (blogUser.getRoles().equals(Constants.User.ROLE_ADMIN)) {
-            return;
+            return tokenMD5;
         }
         //生成refresh token保存到数据库
         //先把原来的refreshToken删除
@@ -635,5 +635,6 @@ public class UserServiceImpl implements IUserService {
         blogRefreshToken.setCreateTime(new Date());
         blogRefreshToken.setUpdateTime(new Date());
         refreshTokenDao.save(blogRefreshToken);
+        return tokenMD5;
     }
 }
