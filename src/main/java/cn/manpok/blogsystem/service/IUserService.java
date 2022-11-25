@@ -31,6 +31,8 @@ public interface IUserService {
 
     BlogUser checkUserToken();
 
+    BlogUser checkUserToken(String tokenKey);
+
     ResponseResult forgetPassword(String email, String verifyCode);
 
     ResponseResult resetPassword(String email, BlogUser blogUser);

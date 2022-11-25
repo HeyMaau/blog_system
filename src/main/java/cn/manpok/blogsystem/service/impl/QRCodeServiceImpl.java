@@ -1,7 +1,10 @@
 package cn.manpok.blogsystem.service.impl;
 
+import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IQRCodeService;
+import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.QRCodeUtil;
 import cn.manpok.blogsystem.utils.RedisUtil;
@@ -33,6 +36,9 @@ public class QRCodeServiceImpl implements IQRCodeService {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    private IUserService userService;
+
     @Override
     public ResponseResult getQRCodeInfo() {
         //产生一个随机ID，返回给前端，用于下次请求二维码图片
@@ -53,5 +59,19 @@ public class QRCodeServiceImpl implements IQRCodeService {
             e.printStackTrace();
         }
 
+    }
+
+    @Override
+    public ResponseResult changeQRCodeState2Enquire(String code, Map<String, String> tokenMap) {
+        String tokenKey = null;
+        if (tokenMap != null) {
+            tokenKey = tokenMap.get(Constants.User.KEY_TOKEN_KEY);
+        }
+        BlogUser user = userService.checkUserToken(tokenKey);
+        if (user != null) {
+            redisUtil.set(Constants.APP.KEY_QR_CODE_STATE + code, Constants.APP.STATE_QR_CODE_ENQUIRE, Constants.TimeValue.MIN);
+            return ResponseResult.SUCCESS("验证码扫描成功");
+        }
+        return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
     }
 }

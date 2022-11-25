@@ -22,6 +22,7 @@ public interface Constants {
         String KEY_USER_TOKEN = "key_user_token_";
         String KEY_TOKEN_COOKIE = "manpok_blog_system_token";
         String KEY_FORGET_PASSWORD_TOKEN_COOKIE = "key_forget_password_token_cookie";
+        String KEY_TOKEN_KEY = "token_key";
     }
 
     interface Setting {

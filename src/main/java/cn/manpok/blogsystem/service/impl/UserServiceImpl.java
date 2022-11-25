@@ -353,7 +353,10 @@ public class UserServiceImpl implements IUserService {
         }
         //5、生成token和refreshToken
         String tokenKey = createToken(queryUser);
-        return ResponseResult.SUCCESS("登录成功").setData(tokenKey);
+        //6、封装返回结果
+        Map<String, String> result = new HashMap<>();
+        result.put("token_key", tokenKey);
+        return ResponseResult.SUCCESS("登录成功").setData(result);
     }
 
     @Override
@@ -447,15 +450,25 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public BlogUser checkUserToken() {
-        String tokenMD5 = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+        String tokenKey = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+        return checkUserToken(tokenKey);
+    }
+
+    /**
+     * 检查手机用户的token是否有效，并转换为BlogUser
+     *
+     * @return
+     */
+    @Override
+    public BlogUser checkUserToken(String tokenKey) {
         //如果cookie为空，直接返回
-        if (TextUtil.isEmpty(tokenMD5)) {
+        if (TextUtil.isEmpty(tokenKey)) {
             return null;
         }
-        String token = (String) redisUtil.get(Constants.User.KEY_USER_TOKEN + tokenMD5);
+        String token = (String) redisUtil.get(Constants.User.KEY_USER_TOKEN + tokenKey);
         //如果redis中的token为空，则去查询refreshToken
         if (TextUtil.isEmpty(token)) {
-            return checkUserRefreshToken(tokenMD5);
+            return checkUserRefreshToken(tokenKey);
         }
         try {
             //token有效，直接返回解析后的BlogUser
@@ -464,10 +477,9 @@ public class UserServiceImpl implements IUserService {
             return ClaimUtil.Claims2UserBean(claims);
         } catch (Exception e) {
             //说明token过期，去查询refreshToken
-            return checkUserRefreshToken(tokenMD5);
+            return checkUserRefreshToken(tokenKey);
         }
     }
-
 
     @Override
     public ResponseResult forgetPassword(String email, String verifyCode) {
