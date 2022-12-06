@@ -49,4 +49,9 @@ public class QRCodeApi {
     public ResponseResult changeQRCodeState2Enquire(@PathVariable("code") String code, @RequestBody Map<String, String> tokenMap) {
         return qrCodeService.changeQRCodeState2Enquire(code, tokenMap);
     }
+
+    @GetMapping("/confirm/{code}")
+    public ResponseResult changeQRCodeState2Confirm(@PathVariable("code") String code) {
+        return qrCodeService.changeQRCodeState2Confirm(code);
+    }
 }

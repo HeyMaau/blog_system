@@ -15,7 +15,8 @@ public enum ResponseState {
     EMAIL_NOT_CORRECT(false, 40007, "邮箱不正确"),
     IMAGE_TYPE_NOT_SUPPORT(false, 40008, "图片格式错误"),
     IMAGE_UPLOAD_FAILED(false, 40009, "图片上传失败"),
-    OPERATION_NOT_PERMITTED(false, 40010, "操作不允许");
+    OPERATION_NOT_PERMITTED(false, 40010, "操作不允许"),
+    QR_CODE_STATE_ILLEGAL(false, 40011, "二维码状态非法");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;
