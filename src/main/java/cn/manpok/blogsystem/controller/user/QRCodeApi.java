@@ -54,4 +54,9 @@ public class QRCodeApi {
     public ResponseResult changeQRCodeState2Confirm(@PathVariable("code") String code) {
         return qrCodeService.changeQRCodeState2Confirm(code);
     }
+
+    @GetMapping("/state/{code}")
+    public ResponseResult checkQRCodeState(@PathVariable("code") String code) {
+        return qrCodeService.checkQRCodeState(code);
+    }
 }

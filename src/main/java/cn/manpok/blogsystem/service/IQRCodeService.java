@@ -13,4 +13,6 @@ public interface IQRCodeService {
     ResponseResult changeQRCodeState2Enquire(String code, Map<String, String> tokenMap);
 
     ResponseResult changeQRCodeState2Confirm(String code);
+
+    ResponseResult checkQRCodeState(String code);
 }

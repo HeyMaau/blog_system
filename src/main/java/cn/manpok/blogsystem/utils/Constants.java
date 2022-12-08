@@ -51,6 +51,7 @@ public interface Constants {
      * 基本单位：秒
      */
     interface TimeValue {
+        int MESC_100 = 100;
         int SECOND = 1;
         int SECOND_30 = SECOND * 30;
         int MIN = SECOND * 60;

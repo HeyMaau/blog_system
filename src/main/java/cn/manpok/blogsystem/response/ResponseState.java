@@ -16,7 +16,10 @@ public enum ResponseState {
     IMAGE_TYPE_NOT_SUPPORT(false, 40008, "图片格式错误"),
     IMAGE_UPLOAD_FAILED(false, 40009, "图片上传失败"),
     OPERATION_NOT_PERMITTED(false, 40010, "操作不允许"),
-    QR_CODE_STATE_ILLEGAL(false, 40011, "二维码状态非法");
+    QR_CODE_STATE_ILLEGAL(false, 40011, "二维码状态非法"),
+    QR_CODE_STATE_EXPIRED(false, 40012, "二维码过期"),
+    QR_CODE_STATE_NOT_CONFIRM(false, 40013, "二维码未确认"),
+    LONG_POLL_TIME_OUT(false, 40014, "长轮询超时");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;

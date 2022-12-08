@@ -3,6 +3,7 @@ package cn.manpok.blogsystem.service.impl;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
+import cn.manpok.blogsystem.service.IAsyncTaskService;
 import cn.manpok.blogsystem.service.IQRCodeService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
@@ -16,6 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @Service
 @Slf4j
@@ -35,6 +40,9 @@ public class QRCodeServiceImpl implements IQRCodeService {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IAsyncTaskService asyncTaskService;
 
     @Override
     public ResponseResult getQRCodeInfo() {
@@ -88,5 +96,21 @@ public class QRCodeServiceImpl implements IQRCodeService {
         redisUtil.set(Constants.APP.KEY_QR_CODE_STATE + code, Constants.APP.STATE_QR_CODE_TRUE, Constants.TimeValue.MIN);
         log.info("二维码确认成功 ----> " + code);
         return ResponseResult.SUCCESS("二维码确认成功");
+    }
+
+    @Override
+    public ResponseResult checkQRCodeState(String code) {
+        Future<ResponseResult> future = asyncTaskService.checkQRCodeState(code);
+        try {
+            future.get(Constants.TimeValue.SECOND_30, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+            return ResponseResult.FAIL(ResponseState.LONG_POLL_TIME_OUT);
+        }
+        return ResponseResult.SUCCESS("扫码登录成功");
     }
 }
