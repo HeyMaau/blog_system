@@ -42,4 +42,6 @@ public interface IUserService {
     ResponseResult logout();
 
     ResponseResult updatePassword(BlogUser blogUser);
+
+    String createToken(BlogUser blogUser);
 }

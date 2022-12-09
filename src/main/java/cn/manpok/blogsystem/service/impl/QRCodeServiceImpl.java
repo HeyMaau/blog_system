@@ -44,6 +44,10 @@ public class QRCodeServiceImpl implements IQRCodeService {
     @Autowired
     private IAsyncTaskService asyncTaskService;
 
+    private final int SUCCESS_CODE = 20000;
+
+    private final Map<String, BlogUser> tokenCache = new HashMap<>();
+
     @Override
     public ResponseResult getQRCodeInfo() {
         //产生一个随机ID，返回给前端，用于下次请求二维码图片
@@ -80,6 +84,7 @@ public class QRCodeServiceImpl implements IQRCodeService {
         BlogUser user = userService.checkUserToken(tokenKey);
         if (user != null) {
             redisUtil.set(Constants.APP.KEY_QR_CODE_STATE + code, Constants.APP.STATE_QR_CODE_ENQUIRE, Constants.TimeValue.MIN);
+            tokenCache.put(code, user);
             log.info("验证码扫描成功 ----> " + code);
             return ResponseResult.SUCCESS("验证码扫描成功").setData(user);
         }
@@ -100,9 +105,12 @@ public class QRCodeServiceImpl implements IQRCodeService {
 
     @Override
     public ResponseResult checkQRCodeState(String code) {
+        //调用异步服务轮询二维码状态
         Future<ResponseResult> future = asyncTaskService.checkQRCodeState(code);
+        ResponseResult result = null;
         try {
-            return future.get(Constants.TimeValue.SECOND_30, TimeUnit.SECONDS);
+            //阻塞获取返回的信息
+            result = future.get(Constants.TimeValue.SECOND_30, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -111,6 +119,13 @@ public class QRCodeServiceImpl implements IQRCodeService {
             e.printStackTrace();
             return ResponseResult.FAIL(ResponseState.LONG_POLL_TIME_OUT);
         }
-        return ResponseResult.FAIL(ResponseState.REQUEST_TIMEOUT);
+        if (result.getCode() == SUCCESS_CODE) {
+            //如果返回成功，则生成token返回给前端
+            BlogUser user = tokenCache.get(code);
+            userService.createToken(user);
+        }
+        //成功或者二维码过期都要清空缓存
+        tokenCache.remove(code);
+        return result;
     }
 }

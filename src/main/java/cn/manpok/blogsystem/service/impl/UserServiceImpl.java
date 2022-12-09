@@ -617,7 +617,8 @@ public class UserServiceImpl implements IUserService {
      *
      * @param blogUser
      */
-    private String createToken(BlogUser blogUser) {
+    @Override
+    public String createToken(BlogUser blogUser) {
         //生成token
         Map<String, String> payload = ClaimUtil.userBean2Claims(blogUser);
         String token = JWTUtil.generateToken(payload);
