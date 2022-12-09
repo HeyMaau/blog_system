@@ -50,20 +50,20 @@ public class QRCodeServiceImpl implements IQRCodeService {
         long randomID = snowflake.nextId();
         Map<String, String> result = new HashMap<>(1);
         result.put("code", String.valueOf(randomID));
+        log.info("请求二维码ID ---->" + randomID);
+        redisUtil.set(Constants.APP.KEY_QR_CODE_STATE + randomID, Constants.APP.STATE_QR_CODE_FALSE, Constants.TimeValue.MIN_5);
         return ResponseResult.SUCCESS("获取二维码ID成功").setData(result);
     }
 
     @Override
     public void getQRCodeImg(String code) {
         log.info(code + " ----> 请求二维码");
-        redisUtil.set(Constants.APP.KEY_QR_CODE_STATE + code, Constants.APP.STATE_QR_CODE_FALSE, Constants.TimeValue.MIN_5);
         String content = Constants.APP.APP_DOWNLOAD_LINK + code;
         try (ServletOutputStream outputStream = response.getOutputStream()) {
             QRCodeUtil.createCodeToOutputStream(content, outputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -102,7 +102,7 @@ public class QRCodeServiceImpl implements IQRCodeService {
     public ResponseResult checkQRCodeState(String code) {
         Future<ResponseResult> future = asyncTaskService.checkQRCodeState(code);
         try {
-            future.get(Constants.TimeValue.SECOND_30, TimeUnit.SECONDS);
+            return future.get(Constants.TimeValue.SECOND_30, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -111,6 +111,6 @@ public class QRCodeServiceImpl implements IQRCodeService {
             e.printStackTrace();
             return ResponseResult.FAIL(ResponseState.LONG_POLL_TIME_OUT);
         }
-        return ResponseResult.SUCCESS("扫码登录成功");
+        return ResponseResult.FAIL(ResponseState.REQUEST_TIMEOUT);
     }
 }

@@ -27,6 +27,15 @@ public class ResponseResult {
      *
      * @return
      */
+    public static ResponseResult SUCCESS(ResponseState responseState) {
+        return new ResponseResult(responseState);
+    }
+
+    /**
+     * 操作成功返回
+     *
+     * @return
+     */
     public static ResponseResult SUCCESS(String message) {
         ResponseResult responseResult = new ResponseResult(ResponseState.SUCCESS);
         responseResult.setMessage(message);
@@ -63,8 +72,7 @@ public class ResponseResult {
      * @return
      */
     public static ResponseResult FAIL(ResponseState responseState) {
-        ResponseResult responseResult = new ResponseResult(responseState);
-        return responseResult;
+        return new ResponseResult(responseState);
     }
 
     public boolean isSuccess() {

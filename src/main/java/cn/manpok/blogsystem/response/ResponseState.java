@@ -4,7 +4,7 @@ public enum ResponseState {
 
     SUCCESS(true, 20000, "操作成功"),
     REGISTER_SUCCESS(true, 20001, "注册成功"),
-    USER_FORBIDDEN(false, 20002, "用户已禁止"),
+    SCAN_QR_CODE_SUCCESS(true, 20002, "扫描二维码成功"),
     FAIL(false, 40000, "操作失败"),
     NOT_LOGIN(false, 40001, "用户未登录"),
     PERMISSION_DENIED(false, 40002, "权限不足"),
@@ -19,7 +19,8 @@ public enum ResponseState {
     QR_CODE_STATE_ILLEGAL(false, 40011, "二维码状态非法"),
     QR_CODE_STATE_EXPIRED(false, 40012, "二维码过期"),
     QR_CODE_STATE_NOT_CONFIRM(false, 40013, "二维码未确认"),
-    LONG_POLL_TIME_OUT(false, 40014, "长轮询超时");
+    LONG_POLL_TIME_OUT(false, 40014, "长轮询超时"),
+    USER_FORBIDDEN(false, 40015, "用户已禁止");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;
