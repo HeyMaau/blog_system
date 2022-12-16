@@ -25,6 +25,10 @@ spring:
       max-file-size: 5MB
       max-request-size: 50MB
 
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
 # 图片本地保存路径
 blog.system.image.dir.path: D:\WorkSpace\Java\images
 # 图片大小限制，单位b，大小2M
