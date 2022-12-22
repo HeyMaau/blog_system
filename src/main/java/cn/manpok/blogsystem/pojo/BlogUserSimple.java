@@ -22,6 +22,9 @@ public class BlogUserSimple {
     @Column(name = "avatar")
     private String avatar;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "sign")
     private String sign;
 
@@ -66,6 +69,14 @@ public class BlogUserSimple {
         this.avatar = avatar;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getSign() {
         return sign;
     }
@@ -100,11 +111,12 @@ public class BlogUserSimple {
 
     @Override
     public String toString() {
-        return "BlogUser{" +
+        return "BlogUserSimple{" +
                 "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
                 ", roles='" + roles + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", email='" + email + '\'' +
                 ", sign='" + sign + '\'' +
                 ", state='" + state + '\'' +
                 ", createTime=" + createTime +

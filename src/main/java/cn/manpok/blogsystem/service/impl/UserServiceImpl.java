@@ -447,7 +447,9 @@ public class UserServiceImpl implements IUserService {
             //检索用户名
             if (!TextUtil.isEmpty(userName)) {
                 Predicate userNamePredicate = criteriaBuilder.like(root.get("userName"), "%" + userName + "%");
-                predicateList.add(userNamePredicate);
+                Predicate emailPredicate = criteriaBuilder.equal(root.get("email"), userName);
+                Predicate or = criteriaBuilder.or(userNamePredicate, emailPredicate);
+                predicateList.add(or);
             }
             if (!TextUtil.isEmpty(state)) {
                 Predicate statePredicate = criteriaBuilder.equal(root.get("state"), state);
