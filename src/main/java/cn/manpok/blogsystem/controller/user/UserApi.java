@@ -174,16 +174,18 @@ public class UserApi {
     }
 
     /**
-     * 获取所有用户信息
-     *
+     * @param userName 搜索用户名关键字
+     * @param state    用户状态
      * @param page
      * @param size
      * @return
      */
     @GetMapping("/list")
-    @PreAuthorize("@permission.isAdmin()")
-    public ResponseResult getUsers(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return userService.getUsers(page, size);
+    @PreAuthorize("@permission.admin")
+    public ResponseResult getUsers(@RequestParam(value = "user_name", required = false) String userName,
+                                   @RequestParam(value = "state", required = false) String state,
+                                   @RequestParam("page") int page, @RequestParam("size") int size) {
+        return userService.getUsers(userName, state, page, size);
     }
 
     /**

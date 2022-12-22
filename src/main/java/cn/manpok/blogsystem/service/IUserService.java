@@ -27,7 +27,7 @@ public interface IUserService {
 
     ResponseResult deleteUser(String userID);
 
-    ResponseResult getUsers(int page, int size);
+    ResponseResult getUsers(String userName, String state, int page, int size);
 
     BlogUser checkUserToken();
 

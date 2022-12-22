@@ -3,9 +3,11 @@ package cn.manpok.blogsystem.service.impl;
 import cn.manpok.blogsystem.dao.IRefreshTokenDao;
 import cn.manpok.blogsystem.dao.ISettingDao;
 import cn.manpok.blogsystem.dao.IUserDao;
+import cn.manpok.blogsystem.dao.IUserSimpleDao;
 import cn.manpok.blogsystem.pojo.BlogRefreshToken;
 import cn.manpok.blogsystem.pojo.BlogSetting;
 import cn.manpok.blogsystem.pojo.BlogUser;
+import cn.manpok.blogsystem.pojo.BlogUserSimple;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IAsyncTaskService;
@@ -24,19 +26,19 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import javax.persistence.criteria.Predicate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.awt.*;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -51,6 +53,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IUserDao userDao;
+
+    @Autowired
+    private IUserSimpleDao userSimpleDao;
 
     @Autowired
     private ISettingDao settingDao;
@@ -435,11 +440,27 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseResult getUsers(int page, int size) {
+    public ResponseResult getUsers(String userName, String state, int page, int size) {
+        //构建查询条件
+        Specification<BlogUserSimple> specification = (root, query, criteriaBuilder) -> {
+            List<Predicate> predicateList = new ArrayList<>();
+            //检索用户名
+            if (!TextUtil.isEmpty(userName)) {
+                Predicate userNamePredicate = criteriaBuilder.like(root.get("userName"), "%" + userName + "%");
+                predicateList.add(userNamePredicate);
+            }
+            if (!TextUtil.isEmpty(state)) {
+                Predicate statePredicate = criteriaBuilder.equal(root.get("state"), state);
+                predicateList.add(statePredicate);
+            }
+            Predicate[] predicates = new Predicate[predicateList.size()];
+            predicates = predicateList.toArray(predicates);
+            return criteriaBuilder.and(predicates);
+        };
         //检查分页参数
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
-        Page<BlogUser> users = userDao.findAllUsers(pageable);
+        Page<BlogUserSimple> users = userSimpleDao.findAll(specification, pageable);
         return ResponseResult.SUCCESS("查询所有用户成功").setData(users);
     }
 
