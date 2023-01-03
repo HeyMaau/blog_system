@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/admin/category")
-@PreAuthorize("@permission.isAdmin()")
+@RequestMapping("/category")
+@PreAuthorize("@permission.admin")
 public class CategoryApi {
 
     @Autowired
@@ -82,5 +82,11 @@ public class CategoryApi {
     public ResponseResult getCategories(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有分类 ----> ");
         return categoryService.getCategories(page, size);
+    }
+
+    @PutMapping("/{categoryID}")
+    public ResponseResult recoverCategory(@PathVariable("categoryID") String categoryID) {
+        log.info("恢复分类 ----> " + categoryID);
+        return categoryService.recoverCategory(categoryID);
     }
 }

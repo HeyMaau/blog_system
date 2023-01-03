@@ -15,4 +15,6 @@ public interface ICategoryService {
     ResponseResult deleteCategory(String categoryID);
 
     ResponseResult getNormalCategories();
+
+    ResponseResult recoverCategory(String categoryID);
 }

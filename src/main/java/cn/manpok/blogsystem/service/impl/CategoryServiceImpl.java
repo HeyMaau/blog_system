@@ -110,4 +110,14 @@ public class CategoryServiceImpl implements ICategoryService {
         List<BlogCategory> all = categoryDao.findAllCategoriesByState(Constants.STATE_NORMAL);
         return ResponseResult.SUCCESS("获取所有分类成功").setData(all);
     }
+
+    @Override
+    public ResponseResult recoverCategory(String categoryID) {
+        BlogCategory queryCategory = categoryDao.findCategoryById(categoryID);
+        if (queryCategory == null) {
+            return ResponseResult.FAIL("文章分类不存在");
+        }
+        queryCategory.setState(Constants.STATE_NORMAL);
+        return ResponseResult.SUCCESS("恢复文章分类成功");
+    }
 }
