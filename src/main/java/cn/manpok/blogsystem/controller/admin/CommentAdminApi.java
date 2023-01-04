@@ -80,4 +80,16 @@ public class CommentAdminApi {
         log.info("置顶评论 ----> " + commentID);
         return commentAdminService.topComment(commentID);
     }
+
+    /**
+     * 把评论从删除状态恢复到正常状态
+     *
+     * @param commentID
+     * @return
+     */
+    @PutMapping("/recover/{commentID}")
+    public ResponseResult recoverComment(@PathVariable("commentID") String commentID) {
+        log.info("恢复评论 ----> " + commentID);
+        return commentAdminService.recoverComment(commentID);
+    }
 }

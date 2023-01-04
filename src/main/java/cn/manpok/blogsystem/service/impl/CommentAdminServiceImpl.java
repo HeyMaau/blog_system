@@ -113,4 +113,14 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
         }, pageable);
         return ResponseResult.SUCCESS("获取评论列表成功").setData(all);
     }
+
+    @Override
+    public ResponseResult recoverComment(String commentID) {
+        BlogComment queryComment = commentPortalDao.findCommentById(commentID);
+        if (queryComment == null) {
+            return ResponseResult.FAIL("评论不存在");
+        }
+        queryComment.setState(Constants.STATE_NORMAL);
+        return ResponseResult.SUCCESS("恢复评论成功");
+    }
 }

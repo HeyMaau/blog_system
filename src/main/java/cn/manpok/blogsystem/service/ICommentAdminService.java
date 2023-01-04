@@ -12,4 +12,6 @@ public interface ICommentAdminService {
     ResponseResult deleteComment(String commentID);
 
     ResponseResult getComments(int page, int size, String state);
+
+    ResponseResult recoverComment(String commentID);
 }

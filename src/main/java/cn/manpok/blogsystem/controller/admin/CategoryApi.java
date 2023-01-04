@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/admin/category")
 @PreAuthorize("@permission.admin")
 public class CategoryApi {
 
@@ -84,6 +84,12 @@ public class CategoryApi {
         return categoryService.getCategories(page, size);
     }
 
+    /**
+     * 把分类从删除状态恢复到正常状态
+     *
+     * @param categoryID
+     * @return
+     */
     @PutMapping("/{categoryID}")
     public ResponseResult recoverCategory(@PathVariable("categoryID") String categoryID) {
         log.info("恢复分类 ----> " + categoryID);
