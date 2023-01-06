@@ -34,6 +34,9 @@ public class BlogArticleSimple {
     private BlogUserSimple user;
     @Column(name = "cover")
     private String cover;
+    @OneToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private BlogCategory category;
 
 
     public String getId() {
@@ -140,6 +143,14 @@ public class BlogArticleSimple {
         this.user = user;
     }
 
+    public BlogCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(BlogCategory category) {
+        this.category = category;
+    }
+
     public String getCover() {
         return cover;
     }
@@ -150,7 +161,7 @@ public class BlogArticleSimple {
 
     @Override
     public String toString() {
-        return "BlogArticle{" +
+        return "BlogArticleSimple{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", userId='" + userId + '\'' +
@@ -164,6 +175,7 @@ public class BlogArticleSimple {
                 ", updateTime=" + updateTime +
                 ", user=" + user +
                 ", cover='" + cover + '\'' +
+                ", category=" + category +
                 '}';
     }
 }

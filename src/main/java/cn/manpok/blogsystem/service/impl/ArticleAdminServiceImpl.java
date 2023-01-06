@@ -217,6 +217,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         //如果文章已置顶，则取消置顶
         if (state.equals(Constants.Article.STATE_TOP)) {
             queryArticle.setState(Constants.Article.STATE_PUBLISH);
+            //删除redis中的文章列表缓存
+            redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
             return ResponseResult.SUCCESS("取消置顶文章成功");
         }
         //只有已发布的文章才允许置顶操作
