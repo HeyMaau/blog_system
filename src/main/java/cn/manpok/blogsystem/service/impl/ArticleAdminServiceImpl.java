@@ -12,7 +12,6 @@ import cn.manpok.blogsystem.service.ILabelService;
 import cn.manpok.blogsystem.service.ISolrSearchService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,15 +150,6 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
     public ResponseResult getArticles(int page, int size, String categoryID, String keywords, String state) {
         //检查页码参数
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
-        if (pageInfo.page == 1) {
-            String commentsStr = (String) redisUtil.get(Constants.Article.KEY_ARTICLE_LIST_CACHE);
-            if (!TextUtil.isEmpty(commentsStr)) {
-                BlogPaging<List<BlogArticleSimple>> articleListCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogArticleSimple>>>() {
-                }.getType());
-                log.info("从redis中取出文章列表第一页");
-                return ResponseResult.SUCCESS("获取文章列表成功").setData(articleListCache);
-            }
-        }
         //构建分页
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "updateTime");
         //构建条件查询
@@ -168,9 +158,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             //条件一：当关键词不为空时，模糊匹配标题、内容、摘要，用or连接
             if (!TextUtil.isEmpty(keywords)) {
                 Predicate title = criteriaBuilder.like(root.get("title"), "%" + keywords + "%");
-                Predicate content = criteriaBuilder.like(root.get("content"), "%" + keywords + "%");
                 Predicate summary = criteriaBuilder.like(root.get("summary"), "%" + keywords + "%");
-                Predicate keywordsPredicate = criteriaBuilder.or(title, content, summary);
+                Predicate keywordsPredicate = criteriaBuilder.or(title, summary);
                 predicateList.add(keywordsPredicate);
             }
             //条件二：当文章状态不为空时，筛选文章状态
@@ -188,14 +177,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             //条件一、条件二、条件三用and连接
             return criteriaBuilder.and(predicates);
         }, pageable);
-        //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
-        BlogPaging<List<BlogArticleSimple>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
-        //如果是第一页的评论，缓存到redis中
-        if (pageInfo.page == 1) {
-            redisUtil.set(Constants.Article.KEY_ARTICLE_LIST_CACHE, gson.toJson(paging), Constants.TimeValue.MIN_10);
-            log.info("文章列表第一页已缓存到redis");
-        }
-        return ResponseResult.SUCCESS("获取文章列表成功").setData(paging);
+        return ResponseResult.SUCCESS("获取文章列表成功").setData(all);
     }
 
     @Override
