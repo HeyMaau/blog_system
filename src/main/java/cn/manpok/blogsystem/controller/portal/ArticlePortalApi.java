@@ -31,12 +31,13 @@ public class ArticlePortalApi {
      *
      * @param page
      * @param size
+     * @param categoryID 分类ID
      * @return
      */
     @GetMapping("/list")
-    public ResponseResult getArticles(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public ResponseResult getNormalArticles(@RequestParam("page") int page, @RequestParam("size") int size, @RequestParam(value = "categoryID", required = false) String categoryID) {
         log.info("门户获取文章列表");
-        return articleAdminService.getArticles(page, size, null, null, Constants.Article.STATE_PUBLISH);
+        return articlePortalService.getNormalArticles(page, size, categoryID);
     }
 
     /**
@@ -64,7 +65,7 @@ public class ArticlePortalApi {
     @GetMapping("/{articleID}")
     public ResponseResult getArticleDetail(@PathVariable("articleID") String articleID) {
         log.info("门户获取文章详情 ----> " + articleID);
-        return articleAdminService.getNormalArticle(articleID);
+        return articlePortalService.getNormalArticle(articleID);
     }
 
     /**
