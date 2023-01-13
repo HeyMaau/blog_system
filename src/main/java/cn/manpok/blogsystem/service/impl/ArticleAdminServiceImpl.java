@@ -114,9 +114,6 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             if (TextUtil.isEmpty(blogArticle.getContent())) {
                 return ResponseResult.FAIL("文章内容为空");
             }
-            if (TextUtil.isEmpty(blogArticle.getSummary())) {
-                return ResponseResult.FAIL("文章摘要为空");
-            }
             if (TextUtil.isEmpty(blogArticle.getLabels())) {
                 return ResponseResult.FAIL("文章标签为空");
             }
@@ -131,6 +128,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         article2Save.setState(blogArticle.getState());
         article2Save.setSummary(blogArticle.getSummary());
         article2Save.setLabels(blogArticle.getLabels());
+        article2Save.setCover(blogArticle.getCover());
         article2Save.setViewCount(Constants.Article.INITIAL_VIEW_COUNT);
         Date date = new Date();
         article2Save.setCreateTime(date);
