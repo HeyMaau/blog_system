@@ -251,9 +251,6 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         if (TextUtil.isEmpty(blogArticle.getContent())) {
             return ResponseResult.FAIL("文章内容为空");
         }
-        if (TextUtil.isEmpty(blogArticle.getSummary())) {
-            return ResponseResult.FAIL("文章摘要为空");
-        }
         if (TextUtil.isEmpty(blogArticle.getLabels())) {
             return ResponseResult.FAIL("文章标签为空");
         }
@@ -281,6 +278,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setSummary(blogArticle.getSummary());
         queryArticle.setLabels(blogArticle.getLabels());
         queryArticle.setCategoryId(blogArticle.getCategoryId());
+        queryArticle.setCover(blogArticle.getCover());
         queryArticle.setUpdateTime(new Date());
         //更新solr
         solrSearchService.updateArticle(queryArticle);
