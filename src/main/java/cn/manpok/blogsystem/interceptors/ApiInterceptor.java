@@ -34,11 +34,18 @@ public class ApiInterceptor implements HandlerInterceptor {
             if (checkRepeatedCommit != null) {
                 //获取用户的token key
                 String tokenKey = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+                //拼接redis的key
+                String methodName = handlerMethod.getMethod().getName();
+                StringBuilder redisKey = new StringBuilder();
+                redisKey.append(Constants.KEY_COMMIT_RECORD);
+                redisKey.append(tokenKey);
+                redisKey.append("_");
+                redisKey.append(methodName);
                 //从redis中获取已提交的记录
-                String commitRecord = (String) redisUtil.get(Constants.KEY_COMMIT_RECORD + tokenKey);
+                String commitRecord = (String) redisUtil.get(redisKey.toString());
                 if (TextUtil.isEmpty(commitRecord)) {
                     //如果没有记录，放行，并记录
-                    redisUtil.set(Constants.KEY_COMMIT_RECORD + tokenKey, Constants.VALUE_TRUE, Constants.TimeValue.SECOND_30);
+                    redisUtil.set(redisKey.toString(), Constants.VALUE_TRUE, Constants.TimeValue.SECOND_30);
                     return true;
                 }
                 ResponseResult result = ResponseResult.FAIL("频繁提交，请稍后再试！");
