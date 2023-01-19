@@ -7,6 +7,8 @@ spring:
     password: root
     url: jdbc:mysql://192.168.144.128:3306/blog?characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_general_ci
 
   mvc:
     pathmatch:
