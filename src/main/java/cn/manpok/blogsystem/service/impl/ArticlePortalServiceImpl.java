@@ -16,6 +16,7 @@ import cn.manpok.blogsystem.utils.TextUtil;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -106,6 +107,11 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
             //条件一、条件二用and连接
             return criteriaBuilder.and(predicates);
         }, pageable);
+        //返回前端的文章内容需要去除html标签
+        for (BlogArticle article : all.getContent()) {
+            String text = Jsoup.parse(article.getContent()).text();
+            article.setContent(text);
+        }
         //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
         BlogPaging<List<BlogArticle>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
         //如果是第一页的文章，缓存到redis中
