@@ -81,16 +81,16 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
         if (pageInfo.page == 1) {
             String commentsStr = (String) redisUtil.get(Constants.Article.KEY_ARTICLE_LIST_CACHE);
             if (!TextUtil.isEmpty(commentsStr)) {
-                BlogPaging<List<BlogArticleSimple>> articleListCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogArticleSimple>>>() {
+                BlogPaging<List<BlogArticle>> articleListCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogArticle>>>() {
                 }.getType());
                 log.info("从redis中取出文章列表第一页");
                 return ResponseResult.SUCCESS("获取文章列表成功").setData(articleListCache);
             }
         }
         //构建分页
-        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "state", "updateTime");
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "state", "createTime");
         //构建条件查询
-        Page<BlogArticleSimple> all = articleAdminSimpleDao.findAll((Specification<BlogArticleSimple>) (root, query, criteriaBuilder) -> {
+        Page<BlogArticle> all = articleAdminDao.findAll((Specification<BlogArticle>) (root, query, criteriaBuilder) -> {
             List<Predicate> predicateList = new ArrayList<>();
             //条件一：筛选文章状态为发布或置顶的
             Predicate statePublishPredicate = criteriaBuilder.equal(root.get("state"), Constants.Article.STATE_PUBLISH);
@@ -107,7 +107,7 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
             return criteriaBuilder.and(predicates);
         }, pageable);
         //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
-        BlogPaging<List<BlogArticleSimple>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
+        BlogPaging<List<BlogArticle>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
         //如果是第一页的文章，缓存到redis中
         if (pageInfo.page == 1) {
             redisUtil.set(Constants.Article.KEY_ARTICLE_LIST_CACHE, gson.toJson(paging), Constants.TimeValue.MIN_10);
