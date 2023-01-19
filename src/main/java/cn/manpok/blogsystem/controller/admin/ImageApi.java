@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 @RestController
 @RequestMapping("/admin/image")
-@PreAuthorize("@permission.admin")
 public class ImageApi {
 
     @Autowired
@@ -28,6 +27,7 @@ public class ImageApi {
      * @return
      */
     @CheckRepeatedCommit
+    @PreAuthorize("@permission.admin")
     @PostMapping
     public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile) {
         return imageService.uploadImage(imageFile);
@@ -40,6 +40,7 @@ public class ImageApi {
      * @return
      */
     @DeleteMapping("/{imageID}")
+    @PreAuthorize("@permission.admin")
     public ResponseResult deleteImage(@PathVariable("imageID") String imageID) {
         log.info("删除图片 ----> " + imageID);
         return imageService.deleteImage(imageID);
@@ -64,6 +65,7 @@ public class ImageApi {
      * @return
      */
     @GetMapping("/list")
+    @PreAuthorize("@permission.admin")
     public ResponseResult getImages(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有图片 ----> ");
         return imageService.getImages(page, size);
