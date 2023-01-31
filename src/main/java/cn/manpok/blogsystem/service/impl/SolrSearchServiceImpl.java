@@ -19,6 +19,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
     private HtmlRenderer renderer;
 
     @Override
+    @Async("asyncTaskServiceExecutor")
     public void addArticle(BlogArticle blogArticle) {
         SolrInputDocument document = createDocument(blogArticle);
         try {
