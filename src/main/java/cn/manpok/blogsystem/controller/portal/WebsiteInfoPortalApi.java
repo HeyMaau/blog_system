@@ -4,7 +4,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ICategoryService;
 import cn.manpok.blogsystem.service.IFriendLinkService;
 import cn.manpok.blogsystem.service.ILooperService;
-import cn.manpok.blogsystem.service.IWebSizeInfoService;
+import cn.manpok.blogsystem.service.IWebsiteInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("/portal/web_size_info")
-public class WebSizeInfoPortalApi {
+@RequestMapping("/portal/website_info")
+public class WebsiteInfoPortalApi {
 
     @Autowired
-    private IWebSizeInfoService webSizeInfoService;
+    private IWebsiteInfoService websiteInfoService;
 
     @Autowired
     private ILooperService looperService;
@@ -49,9 +49,9 @@ public class WebSizeInfoPortalApi {
      * @return
      */
     @GetMapping("/title")
-    public ResponseResult getWebSizeTitle() {
+    public ResponseResult getWebsiteTitle() {
         log.info("门户获取网站标题");
-        return webSizeInfoService.getWebSizeTitle();
+        return websiteInfoService.getWebsiteTitle();
     }
 
     /**
@@ -60,9 +60,9 @@ public class WebSizeInfoPortalApi {
      * @return
      */
     @GetMapping("/view_count")
-    public ResponseResult getWebSizeViewCount() {
+    public ResponseResult getWebsiteViewCount() {
         log.info("门户获取网站访问量");
-        return webSizeInfoService.getWebSizeViewCount();
+        return websiteInfoService.getWebsiteViewCount();
     }
 
     /**
@@ -91,7 +91,7 @@ public class WebSizeInfoPortalApi {
      * 埋点：更新网页访问量
      */
     @PutMapping("/view_count")
-    public void updateWebSizeViewCount() {
-        webSizeInfoService.updateWebSizeViewCount();
+    public void updateWebsiteViewCount() {
+        websiteInfoService.updateWebsiteViewCount();
     }
 }

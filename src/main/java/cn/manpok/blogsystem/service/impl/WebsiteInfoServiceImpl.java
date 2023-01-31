@@ -1,9 +1,9 @@
 package cn.manpok.blogsystem.service.impl;
 
-import cn.manpok.blogsystem.dao.IWebSizeInfoDao;
+import cn.manpok.blogsystem.dao.IWebsiteInfoDao;
 import cn.manpok.blogsystem.pojo.BlogSetting;
 import cn.manpok.blogsystem.response.ResponseResult;
-import cn.manpok.blogsystem.service.IWebSizeInfoService;
+import cn.manpok.blogsystem.service.IWebsiteInfoService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
@@ -21,10 +21,10 @@ import java.util.Map;
 @Service
 @Transactional
 @Slf4j
-public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
+public class WebsiteInfoServiceImpl implements IWebsiteInfoService {
 
     @Autowired
-    private IWebSizeInfoDao webSizeInfoDao;
+    private IWebsiteInfoDao websiteInfoDao;
 
     @Autowired
     private Snowflake snowflake;
@@ -33,12 +33,12 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
     private RedisUtil redisUtil;
 
     @Override
-    public ResponseResult updateWebSizeTitle(String title) {
+    public ResponseResult updateWebsiteTitle(String title) {
         if (TextUtil.isEmpty(title)) {
             return ResponseResult.FAIL("网站标题为空");
         }
         //先从数据库中查询出来
-        BlogSetting queryTitle = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
+        BlogSetting queryTitle = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
         //如果为空，则创建新的
         Date date = new Date();
         if (queryTitle == null) {
@@ -49,13 +49,13 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         }
         queryTitle.setValue(title);
         queryTitle.setUpdateTime(date);
-        webSizeInfoDao.save(queryTitle);
+        websiteInfoDao.save(queryTitle);
         return ResponseResult.SUCCESS("保存网站标题成功");
     }
 
     @Override
-    public ResponseResult getWebSizeTitle() {
-        BlogSetting queryTitle = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
+    public ResponseResult getWebsiteTitle() {
+        BlogSetting queryTitle = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_TITLE);
         if (queryTitle == null) {
             return ResponseResult.FAIL("网站标题为空");
         }
@@ -74,8 +74,8 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
             return ResponseResult.FAIL("SEO描述为空");
         }
         //从数据库中查询
-        BlogSetting queryKeywords = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_KEYWORDS);
-        BlogSetting queryDescription = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_DESCRIPTION);
+        BlogSetting queryKeywords = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_KEYWORDS);
+        BlogSetting queryDescription = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_DESCRIPTION);
         //若关键字为空，则创建，并保存
         Date date = new Date();
         if (queryKeywords == null) {
@@ -95,16 +95,16 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         }
         queryDescription.setValue(description);
         queryDescription.setUpdateTime(date);
-        webSizeInfoDao.save(queryKeywords);
-        webSizeInfoDao.save(queryDescription);
+        websiteInfoDao.save(queryKeywords);
+        websiteInfoDao.save(queryDescription);
         return ResponseResult.SUCCESS("修改网站SEO信息成功");
     }
 
     @Override
     public ResponseResult getSeoInfo() {
         //从数据库中查询
-        BlogSetting queryKeywords = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_KEYWORDS);
-        BlogSetting queryDescription = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_DESCRIPTION);
+        BlogSetting queryKeywords = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_KEYWORDS);
+        BlogSetting queryDescription = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_SEO_DESCRIPTION);
         Map<String, String> result = new HashMap<>(2);
         if (queryKeywords == null) {
             result.put("keywords", "");
@@ -120,9 +120,9 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
     }
 
     @Override
-    public ResponseResult getWebSizeViewCount() {
+    public ResponseResult getWebsiteViewCount() {
         //先从数据库中查询
-        BlogSetting queryViewCount = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+        BlogSetting queryViewCount = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
         //如果为空，则创建一个新的
         if (queryViewCount == null) {
             queryViewCount = initViewCountInDB();
@@ -133,7 +133,7 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         if (viewCount != null) {
             queryViewCount.setValue(String.valueOf(viewCount));
             queryViewCount.setUpdateTime(new Date());
-            webSizeInfoDao.save(queryViewCount);
+            websiteInfoDao.save(queryViewCount);
         }
         Map<String, String> result = new HashMap<>(1);
         result.put("view_count", queryViewCount.getValue());
@@ -151,17 +151,17 @@ public class WebSizeInfoServiceImpl implements IWebSizeInfoService {
         Date date = new Date();
         blogSetting.setCreateTime(date);
         blogSetting.setUpdateTime(date);
-        webSizeInfoDao.save(blogSetting);
+        websiteInfoDao.save(blogSetting);
         return blogSetting;
     }
 
     @Override
-    public void updateWebSizeViewCount() {
+    public void updateWebsiteViewCount() {
         //先查询redis
         Integer viewCount = (Integer) redisUtil.get(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
         if (viewCount == null) {
             //如果redis中没有访问量数据，则从数据库中查询
-            BlogSetting queryViewCountInDB = webSizeInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
+            BlogSetting queryViewCountInDB = websiteInfoDao.findSettingByKey(Constants.Setting.WEB_SIZE_INFO_VIEW_COUNT);
             if (queryViewCountInDB == null) {
                 queryViewCountInDB = initViewCountInDB();
             }

@@ -1,7 +1,7 @@
 package cn.manpok.blogsystem.controller.admin;
 
 import cn.manpok.blogsystem.response.ResponseResult;
-import cn.manpok.blogsystem.service.IWebSizeInfoService;
+import cn.manpok.blogsystem.service.IWebsiteInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/admin/web_size_info")
+@RequestMapping("/admin/website_info")
 @PreAuthorize("@permission.admin")
-public class WebSizeInfoAdminApi {
+public class WebsiteInfoAdminApi {
 
     @Autowired
-    private IWebSizeInfoService webSizeInfoService;
+    private IWebsiteInfoService websiteInfoService;
 
     /**
      * 获取网站标题
@@ -25,9 +25,9 @@ public class WebSizeInfoAdminApi {
      * @return
      */
     @GetMapping("/title")
-    public ResponseResult getWebSizeTitle() {
+    public ResponseResult getWebsiteTitle() {
         log.info("获取网站标题");
-        return webSizeInfoService.getWebSizeTitle();
+        return websiteInfoService.getWebsiteTitle();
     }
 
     /**
@@ -37,9 +37,9 @@ public class WebSizeInfoAdminApi {
      * @return
      */
     @PutMapping("/title")
-    public ResponseResult updateWebSizeTitle(@RequestParam("title") String title) {
+    public ResponseResult updateWebsiteTitle(@RequestParam("title") String title) {
         log.info("修改网站标题 ----> " + title);
-        return webSizeInfoService.updateWebSizeTitle(title);
+        return websiteInfoService.updateWebsiteTitle(title);
     }
 
     /**
@@ -50,7 +50,7 @@ public class WebSizeInfoAdminApi {
     @GetMapping("/seo")
     public ResponseResult getSeoInfo() {
         log.info("获取网站SEO信息");
-        return webSizeInfoService.getSeoInfo();
+        return websiteInfoService.getSeoInfo();
     }
 
     /**
@@ -63,7 +63,7 @@ public class WebSizeInfoAdminApi {
     @PutMapping("/seo")
     public ResponseResult updateSeoInfo(@RequestParam("keywords") String keywords, @RequestParam("description") String description) {
         log.info("修改网站SEO信息 ----> " + "keywords: " + keywords + "description: " + description);
-        return webSizeInfoService.updateSeoInfo(keywords, description);
+        return websiteInfoService.updateSeoInfo(keywords, description);
     }
 
     /**
@@ -72,8 +72,8 @@ public class WebSizeInfoAdminApi {
      * @return
      */
     @GetMapping("/view_count")
-    public ResponseResult getWebSizeViewCount() {
+    public ResponseResult getWebsiteViewCount() {
         log.info("获取网站统计信息");
-        return webSizeInfoService.getWebSizeViewCount();
+        return websiteInfoService.getWebsiteViewCount();
     }
 }
