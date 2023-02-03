@@ -80,9 +80,13 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
         //检查页码参数
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         if (pageInfo.page == 1) {
-            String commentsStr = (String) redisUtil.get(Constants.Article.KEY_ARTICLE_LIST_CACHE);
-            if (!TextUtil.isEmpty(commentsStr)) {
-                BlogPaging<List<BlogArticle>> articleListCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogArticle>>>() {
+            String key = Constants.Article.KEY_ARTICLE_LIST_CACHE;
+            if (categoryID != null) {
+                key += categoryID;
+            }
+            String articlesStr = (String) redisUtil.get(key);
+            if (!TextUtil.isEmpty(articlesStr)) {
+                BlogPaging<List<BlogArticle>> articleListCache = gson.fromJson(articlesStr, new TypeToken<BlogPaging<List<BlogArticle>>>() {
                 }.getType());
                 log.info("从redis中取出文章列表第一页");
                 return ResponseResult.SUCCESS("获取文章列表成功").setData(articleListCache);
@@ -116,7 +120,11 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
         BlogPaging<List<BlogArticle>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
         //如果是第一页的文章，缓存到redis中
         if (pageInfo.page == 1) {
-            redisUtil.set(Constants.Article.KEY_ARTICLE_LIST_CACHE, gson.toJson(paging), Constants.TimeValue.MIN_10);
+            String key = Constants.Article.KEY_ARTICLE_LIST_CACHE;
+            if (categoryID != null) {
+                key += categoryID;
+            }
+            redisUtil.set(key, gson.toJson(paging), Constants.TimeValue.MIN_10);
             log.info("文章列表第一页已缓存到redis");
         }
         return ResponseResult.SUCCESS("获取文章列表成功").setData(paging);
