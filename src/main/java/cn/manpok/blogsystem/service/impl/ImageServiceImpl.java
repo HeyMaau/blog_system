@@ -92,6 +92,8 @@ public class ImageServiceImpl implements IImageService {
             if (queryImageByMD5 != null) {
                 result.put("image_id", queryImageByMD5.getId());
                 result.put("image_name", queryImageByMD5.getName());
+                //引用次数+1
+
                 log.info("图片已存在，触发秒传 ----> " + queryImageByMD5.getId());
                 return ResponseResult.SUCCESS("图片上传成功").setData(result);
             }
@@ -123,6 +125,7 @@ public class ImageServiceImpl implements IImageService {
         BlogUser user = userService.checkUserToken();
         image.setUserId(user.getId());
         image.setMD5(MD5);
+        image.setRefCount(1);
         imageDao.save(image);
         //写入
         try {

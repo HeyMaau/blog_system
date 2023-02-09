@@ -26,7 +26,8 @@ public class BlogImage {
     private String name;
     @Column(name = "MD5")
     private String MD5;
-
+    @Column(name = "ref_count")
+    private long refCount;
 
     public String getId() {
         return id;
@@ -95,6 +96,14 @@ public class BlogImage {
         this.MD5 = MD5;
     }
 
+    public long getRefCount() {
+        return refCount;
+    }
+
+    public void setRefCount(long refCount) {
+        this.refCount = refCount;
+    }
+
     @Override
     public String toString() {
         return "BlogImage{" +
@@ -106,6 +115,7 @@ public class BlogImage {
                 ", updateTime=" + updateTime +
                 ", name='" + name + '\'' +
                 ", MD5='" + MD5 + '\'' +
+                ", refCount=" + refCount +
                 '}';
     }
 }
