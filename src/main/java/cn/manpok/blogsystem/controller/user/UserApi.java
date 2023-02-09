@@ -222,9 +222,24 @@ public class UserApi {
         return userService.logout();
     }
 
+    /**
+     * 用户修改密码
+     * @param blogUser
+     * @return
+     */
     @PutMapping("/password")
     public ResponseResult updatePassword(@RequestBody BlogUser blogUser) {
         log.info("用户修改密码 ----> " + blogUser);
         return userService.updatePassword(blogUser);
+    }
+
+    /**
+     * 获取管理员信息
+     * @return
+     */
+    @GetMapping("/admin")
+    public ResponseResult getAdminInfo() {
+        log.info("门户获取管理员信息");
+        return userService.getAdminInfo();
     }
 }

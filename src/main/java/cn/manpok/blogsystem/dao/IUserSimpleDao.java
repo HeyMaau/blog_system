@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface IUserSimpleDao extends JpaRepository<BlogUserSimple, String>, JpaSpecificationExecutor<BlogUserSimple> {
+
+    BlogUserSimple findUserByRoles(String role);
 }

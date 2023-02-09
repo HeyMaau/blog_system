@@ -674,4 +674,13 @@ public class UserServiceImpl implements IUserService {
         refreshTokenDao.save(blogRefreshToken);
         return tokenMD5;
     }
+
+    @Override
+    public ResponseResult getAdminInfo() {
+        BlogUserSimple adminInfo = userSimpleDao.findUserByRoles(Constants.User.ROLE_ADMIN);
+        if (adminInfo != null) {
+            return ResponseResult.SUCCESS().setData(adminInfo);
+        }
+        return ResponseResult.FAIL("获取管理员信息失败");
+    }
 }

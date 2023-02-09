@@ -44,4 +44,6 @@ public interface IUserService {
     ResponseResult updatePassword(BlogUser blogUser);
 
     String createToken(BlogUser blogUser);
+
+    ResponseResult getAdminInfo();
 }
