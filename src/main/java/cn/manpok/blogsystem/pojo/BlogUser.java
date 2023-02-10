@@ -46,23 +46,11 @@ public class BlogUser {
     @Column(name = "update_time")
     private Date updateTime;
 
-    public BlogUser() {
-    }
+    @Column(name = "major")
+    private String major;
 
-    public BlogUser(String id, String userName, String roles, String avatar, String email, String sign, String state, String regIP, String loginIP, Date createTime, Date updateTime) {
-        this.id = id;
-        this.userName = userName;
-        this.roles = roles;
-        this.avatar = avatar;
-        this.email = email;
-        this.sign = sign;
-        this.state = state;
-        this.regIP = regIP;
-        this.loginIP = loginIP;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.password = "";
-    }
+    @Column(name = "hub_site")
+    private String hubSite;
 
     public String getId() {
         return id;
@@ -160,6 +148,22 @@ public class BlogUser {
         this.updateTime = updateTime;
     }
 
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getHubSite() {
+        return hubSite;
+    }
+
+    public void setHubSite(String hubSite) {
+        this.hubSite = hubSite;
+    }
+
     @Override
     public String toString() {
         return "BlogUser{" +
@@ -175,6 +179,8 @@ public class BlogUser {
                 ", loginIP='" + loginIP + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", major='" + major + '\'' +
+                ", hubSite='" + hubSite + '\'' +
                 '}';
     }
 }

@@ -37,6 +37,12 @@ public class BlogUserSimple {
     @Column(name = "update_time")
     private Date updateTime;
 
+    @Column(name = "major")
+    private String major;
+
+    @Column(name = "hub_site")
+    private String hubSite;
+
     public String getId() {
         return id;
     }
@@ -109,6 +115,22 @@ public class BlogUserSimple {
         this.updateTime = updateTime;
     }
 
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getHubSite() {
+        return hubSite;
+    }
+
+    public void setHubSite(String hubSite) {
+        this.hubSite = hubSite;
+    }
+
     @Override
     public String toString() {
         return "BlogUserSimple{" +
@@ -121,6 +143,8 @@ public class BlogUserSimple {
                 ", state='" + state + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", major='" + major + '\'' +
+                ", hubSite='" + hubSite + '\'' +
                 '}';
     }
 }
