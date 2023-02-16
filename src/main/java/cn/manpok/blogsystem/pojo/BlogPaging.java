@@ -21,6 +21,11 @@ public class BlogPaging<T> {
     private int currentPage;
 
     /**
+     * 没有更多的数据了
+     */
+    private boolean noMore;
+
+    /**
      * 数据
      */
     private T data;
@@ -62,6 +67,10 @@ public class BlogPaging<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public boolean isNoMore() {
+        return ((long) currentPage * pageSize) == total;
     }
 
     @Override
