@@ -37,13 +37,13 @@ import java.util.Map;
 @Transactional
 public class ImageServiceImpl implements IImageService {
 
-    @Value("${blog.system.image.dir.path}")
+    @Value("${blog.system.image.dir-path}")
     private String imagePath;
 
-    @Value("${blog.system.image.max.size}")
+    @Value("${blog.system.image.max-size}")
     private long maxImageSize;
 
-    @Value("${blog.system.image.inputstream.buffer}")
+    @Value("${blog.system.image.input-stream.buffer}")
     private int bufferSize;
 
     @Autowired

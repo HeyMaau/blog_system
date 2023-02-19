@@ -11,7 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Random;
 
 @SpringBootApplication
-@EnableSwagger2
 public class BlogSystemApplication {
 
     public static void main(String[] args) {
