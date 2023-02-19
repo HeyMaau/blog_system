@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: blog_system
+
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.144.128:3306/blog?characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_general_ci
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jpa:
+    show-sql: true
+
+  redis:
+    host: 192.168.144.128
+    port: 6379
+    password: root
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 50MB
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# 图片本地保存路径
+blog.system.image.dir.path: D:\WorkSpace\Java\images
+# 图片大小限制，单位b，大小2M
+blog.system.image.max.size: 2097152
+# 读取图片缓冲区带下
+blog.system.image.inputstream.buffer: 8192
+# solr地址
+blog.system.solr.path: http://192.168.144.128:8983/solr/ik_core
