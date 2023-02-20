@@ -121,8 +121,6 @@ public interface Constants {
         String FIELD_TITLE = "title";
         String FIELD_CONTENT = "content";
         String FIELD_ID = "id";
-        String HIGHLIGHT_PRE = "<font color='red'>";
-        String HIGHLIGHT_POST = "</font>";
         int HIGHLIGHT_FRAG_SIZE = 500;
     }
 

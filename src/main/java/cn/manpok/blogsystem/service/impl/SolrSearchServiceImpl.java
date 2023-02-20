@@ -102,8 +102,6 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
         solrQuery.setStart(start);
         //设置高亮
         solrQuery.setHighlight(true);
-        solrQuery.setHighlightSimplePre(Constants.Search.HIGHLIGHT_PRE);
-        solrQuery.setHighlightSimplePost(Constants.Search.HIGHLIGHT_POST);
         solrQuery.addHighlightField(Constants.Search.FIELD_TITLE);
         solrQuery.addHighlightField(Constants.Search.FIELD_CONTENT);
         solrQuery.setHighlightFragsize(Constants.Search.HIGHLIGHT_FRAG_SIZE);
