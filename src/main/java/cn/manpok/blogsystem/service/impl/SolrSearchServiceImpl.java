@@ -130,8 +130,10 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
                     search.setContent(contentHighlightList.get(0));
                 }
             }
+            //获取分页总数
+            long numFound = response.getResults().getNumFound();
             //设置返回的分页数据
-            BlogPaging<List<BlogSolrSearch>> blogPaging = new BlogPaging<>(pageInfo.size, searchList.size(), pageInfo.page, searchList);
+            BlogPaging<List<BlogSolrSearch>> blogPaging = new BlogPaging<>(pageInfo.size, numFound, pageInfo.page, searchList);
             return ResponseResult.SUCCESS("搜索成功").setData(blogPaging);
         }
         return ResponseResult.FAIL("搜索失败");
