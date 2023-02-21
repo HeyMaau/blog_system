@@ -70,7 +70,7 @@ public class BlogPaging<T> {
     }
 
     public boolean isNoMore() {
-        return ((long) currentPage * pageSize) == total;
+        return ((long) currentPage * pageSize) >= total;
     }
 
     @Override
