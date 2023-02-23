@@ -9,24 +9,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CookieUtil {
 
-    /**
-     * cookie的域名
-     */
-    private static final String DOMAIN = "localhost";
-
-    public static void setupCookie(HttpServletResponse response, String key, String value) {
-        setupCookie(response, key, value, Constants.TimeValue.YEAR);
+    public static void setupCookie(HttpServletRequest request, HttpServletResponse response, String key, String value) {
+        setupCookie(request, response, key, value, Constants.TimeValue.YEAR);
     }
 
     /**
+     * @param request
      * @param response
      * @param key
      * @param value
      * @param ttl      过期时间 单位：秒
      */
-    public static void setupCookie(HttpServletResponse response, String key, String value, int ttl) {
+    public static void setupCookie(HttpServletRequest request, HttpServletResponse response, String key, String value, int ttl) {
         Cookie cookie = new Cookie(key, value);
-        cookie.setDomain(DOMAIN);
+        cookie.setDomain(request.getServerName());
         cookie.setMaxAge(ttl);
         cookie.setPath("/");
         response.addCookie(cookie);
@@ -45,7 +41,7 @@ public class CookieUtil {
         return null;
     }
 
-    public static void deleteCookie(HttpServletResponse response, String key) {
-        setupCookie(response, key, null, 0);
+    public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String key) {
+        setupCookie(request, response, key, null, 0);
     }
 }

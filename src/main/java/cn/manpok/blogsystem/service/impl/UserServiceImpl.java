@@ -514,7 +514,7 @@ public class UserServiceImpl implements IUserService {
         Map<String, String> payload = new HashMap<>();
         payload.put("email", email);
         String token = JWTUtil.generateToken(payload, Constants.TimeValue.MIN_10);
-        CookieUtil.setupCookie(response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE, token, Constants.TimeValue.MIN_10);
+        CookieUtil.setupCookie(request, response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE, token, Constants.TimeValue.MIN_10);
         return ResponseResult.SUCCESS("验证码通过");
     }
 
@@ -532,7 +532,7 @@ public class UserServiceImpl implements IUserService {
         BlogUser queryUser = userDao.findByEmail(email);
         queryUser.setPassword(encodePassword);
         //重置密码后要把cookie删掉
-        CookieUtil.deleteCookie(response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE);
+        CookieUtil.deleteCookie(request, response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE);
         return ResponseResult.SUCCESS("重置密码成功");
     }
 
@@ -568,7 +568,7 @@ public class UserServiceImpl implements IUserService {
         //删除refreshToken
         refreshTokenDao.deleteByUserId(userInToken.getId());
         //删除cookie
-        CookieUtil.deleteCookie(response, Constants.User.KEY_TOKEN_COOKIE);
+        CookieUtil.deleteCookie(request, response, Constants.User.KEY_TOKEN_COOKIE);
         return ResponseResult.SUCCESS("退出登录成功");
     }
 
@@ -651,10 +651,10 @@ public class UserServiceImpl implements IUserService {
         redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_2);
         //如果是管理员账户，则不保存refreshToken，Cookie的保存时间为两小时
         if (blogUser.getRoles().equals(Constants.User.ROLE_ADMIN)) {
-            CookieUtil.setupCookie(response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5, Constants.TimeValue.HOUR_2);
+            CookieUtil.setupCookie(request, response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5, Constants.TimeValue.HOUR_2);
             return tokenMD5;
         }
-        CookieUtil.setupCookie(response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
+        CookieUtil.setupCookie(request, response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
         //生成refresh token保存到数据库
         //先把原来的refreshToken删除
         int deleteCount = refreshTokenDao.deleteByUserId(blogUser.getId());
