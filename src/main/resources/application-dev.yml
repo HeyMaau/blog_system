@@ -38,7 +38,7 @@ blog:
       dir-path: D:\WorkSpace\Java\images
       # 图片大小限制，单位b，大小2M
       max-size: 2097152
-      # 读取图片缓冲区带下
+      # 读取图片缓冲区带
       input-stream:
         buffer: 8192
     # solr地址

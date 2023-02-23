@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Slf4j
 @RestController
-@RequestMapping("/admin/image")
+@RequestMapping("/image")
 public class ImageApi {
 
     @Autowired
