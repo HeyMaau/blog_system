@@ -26,6 +26,8 @@ public class BlogCategory {
     private Date createTime;
     @Column(name = "update_time")
     private Date updateTime;
+    @Column(name = "cover")
+    private String cover;
 
 
     public String getId() {
@@ -97,6 +99,14 @@ public class BlogCategory {
         this.updateTime = updateTime;
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
+
     @Override
     public String toString() {
         return "BlogCategory{" +
@@ -105,9 +115,10 @@ public class BlogCategory {
                 ", pinyin='" + pinyin + '\'' +
                 ", description='" + description + '\'' +
                 ", order=" + order +
-                ", status='" + state + '\'' +
+                ", state='" + state + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", cover='" + cover + '\'' +
                 '}';
     }
 }

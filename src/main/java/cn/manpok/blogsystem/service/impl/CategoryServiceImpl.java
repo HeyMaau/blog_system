@@ -41,6 +41,9 @@ public class CategoryServiceImpl implements ICategoryService {
         if (TextUtil.isEmpty(blogCategory.getPinyin())) {
             return ResponseResult.FAIL("分类名称拼音为空");
         }
+        if (TextUtil.isEmpty(blogCategory.getCover())) {
+            return ResponseResult.FAIL("分类封面为空");
+        }
         //补充数据
         blogCategory.setId(String.valueOf(snowflake.nextId()));
         blogCategory.setState(Constants.STATE_NORMAL);
@@ -81,6 +84,9 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         if (TextUtil.isEmpty(blogCategory.getPinyin())) {
             return ResponseResult.FAIL("分类名称拼音为空");
+        }
+        if (TextUtil.isEmpty(blogCategory.getCover())) {
+            return ResponseResult.FAIL("分类封面为空");
         }
         //先从数据库查询
         BlogCategory queryCategory = categoryDao.findCategoryById(blogCategory.getId());
