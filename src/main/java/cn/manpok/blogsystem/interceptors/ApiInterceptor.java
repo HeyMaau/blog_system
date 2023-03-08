@@ -32,7 +32,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             CheckRepeatedCommit checkRepeatedCommit = handlerMethod.getMethodAnnotation(CheckRepeatedCommit.class);
             if (checkRepeatedCommit != null) {
                 //获取用户的token key
-                String tokenKey = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
+                String tokenKey = request.getHeader(Constants.User.KEY_HEADER_AUTHORIZATION);
                 //拼接redis的key
                 String methodName = handlerMethod.getMethod().getName();
                 StringBuilder redisKey = new StringBuilder();

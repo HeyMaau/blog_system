@@ -118,9 +118,9 @@ public class UserApi {
      * @return
      */
     @PutMapping("/reset")
-    public ResponseResult resetPassword(@RequestParam("email") String email, @RequestBody BlogUser blogUser) {
+    public ResponseResult resetPassword(@RequestParam("email") String email, @RequestParam("token") String token, @RequestBody BlogUser blogUser) {
         log.info("用户重设密码 ----> " + email);
-        return userService.resetPassword(email, blogUser);
+        return userService.resetPassword(email, token, blogUser);
     }
 
     /**
@@ -224,6 +224,7 @@ public class UserApi {
 
     /**
      * 用户修改密码
+     *
      * @param blogUser
      * @return
      */

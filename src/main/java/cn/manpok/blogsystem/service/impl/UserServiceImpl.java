@@ -473,7 +473,7 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public BlogUser checkUserToken() {
-        String tokenKey = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
+        String tokenKey = request.getHeader(Constants.User.KEY_HEADER_AUTHORIZATION);
         return checkUserToken(tokenKey);
     }
 
@@ -514,17 +514,22 @@ public class UserServiceImpl implements IUserService {
         Map<String, String> payload = new HashMap<>();
         payload.put("email", email);
         String token = JWTUtil.generateToken(payload, Constants.TimeValue.MIN_10);
-        CookieUtil.setupCookie(request, response, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE, token, Constants.TimeValue.MIN_10);
-        return ResponseResult.SUCCESS("验证码通过");
+        Map<String, String> data = new HashMap<>(1);
+        data.put("reset_token", token);
+        return ResponseResult.SUCCESS("验证码通过").setData(data);
     }
 
     @Override
-    public ResponseResult resetPassword(String email, BlogUser blogUser) {
-        String token = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
+    public ResponseResult resetPassword(String email, String token, BlogUser blogUser) {
         if (TextUtil.isEmpty(token)) {
             return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
         }
-        String emailInToken = JWTUtil.decodeToken(token).getClaim("email").asString();
+        String emailInToken;
+        try {
+            emailInToken = JWTUtil.decodeToken(token).getClaim("email").asString();
+        } catch (Exception e) {
+            return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
+        }
         if (!email.equals(emailInToken)) {
             return ResponseResult.FAIL(ResponseState.EMAIL_NOT_CORRECT);
         }
@@ -563,7 +568,7 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
         }
         //删除redis里面的token
-        String tokenMD5 = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
+        String tokenMD5 = request.getHeader(Constants.User.KEY_HEADER_AUTHORIZATION);
         redisUtil.del(Constants.User.KEY_USER_TOKEN + tokenMD5);
         //删除refreshToken
         refreshTokenDao.deleteByUserId(userInToken.getId());
@@ -651,10 +656,8 @@ public class UserServiceImpl implements IUserService {
         redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_2);
         //如果是管理员账户，则不保存refreshToken，Cookie的保存时间为两小时
         if (blogUser.getRoles().equals(Constants.User.ROLE_ADMIN)) {
-            CookieUtil.setupCookie(request, response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5, Constants.TimeValue.HOUR_2);
             return tokenMD5;
         }
-        CookieUtil.setupCookie(request, response, Constants.User.KEY_TOKEN_COOKIE, tokenMD5);
         //生成refresh token保存到数据库
         //先把原来的refreshToken删除
         int deleteCount = refreshTokenDao.deleteByUserId(blogUser.getId());
