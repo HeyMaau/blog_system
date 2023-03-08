@@ -473,7 +473,7 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public BlogUser checkUserToken() {
-        String tokenKey = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+        String tokenKey = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
         return checkUserToken(tokenKey);
     }
 
@@ -520,7 +520,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ResponseResult resetPassword(String email, BlogUser blogUser) {
-        String token = CookieUtil.getCookie(request, Constants.User.KEY_FORGET_PASSWORD_TOKEN_COOKIE);
+        String token = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
         if (TextUtil.isEmpty(token)) {
             return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
         }
@@ -563,7 +563,7 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
         }
         //删除redis里面的token
-        String tokenMD5 = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+        String tokenMD5 = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
         redisUtil.del(Constants.User.KEY_USER_TOKEN + tokenMD5);
         //删除refreshToken
         refreshTokenDao.deleteByUserId(userInToken.getId());

@@ -2,7 +2,6 @@ package cn.manpok.blogsystem.interceptors;
 
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.CookieUtil;
 import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.TextUtil;
 import com.google.gson.Gson;
@@ -33,7 +32,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             CheckRepeatedCommit checkRepeatedCommit = handlerMethod.getMethodAnnotation(CheckRepeatedCommit.class);
             if (checkRepeatedCommit != null) {
                 //获取用户的token key
-                String tokenKey = CookieUtil.getCookie(request, Constants.User.KEY_TOKEN_COOKIE);
+                String tokenKey = request.getHeader(Constants.User.KET_HEADER_AUTHORIZATION);
                 //拼接redis的key
                 String methodName = handlerMethod.getMethod().getName();
                 StringBuilder redisKey = new StringBuilder();
