@@ -172,7 +172,7 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
         //刷新文章访问量缓存
         redisUtil.set(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID, viewCountCache);
         //保存文章缓存
-        redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(queryArticle));
+        redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
         return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
     }
 }
