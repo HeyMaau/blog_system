@@ -21,8 +21,6 @@ public class BlogArticle {
     private String type;
     @Column(name = "state")
     private String state;
-    @Column(name = "summary")
-    private String summary;
     @Column(name = "labels")
     private String labels;
     @Column(name = "view_count")
@@ -101,15 +99,6 @@ public class BlogArticle {
     }
 
 
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
-    }
-
-
     public String getLabels() {
         return labels;
     }
@@ -169,7 +158,6 @@ public class BlogArticle {
                 ", content='" + content + '\'' +
                 ", type='" + type + '\'' +
                 ", state='" + state + '\'' +
-                ", summary='" + summary + '\'' +
                 ", labels='" + labels + '\'' +
                 ", viewCount=" + viewCount +
                 ", createTime=" + createTime +

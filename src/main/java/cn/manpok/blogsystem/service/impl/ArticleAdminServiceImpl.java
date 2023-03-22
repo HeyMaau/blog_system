@@ -97,14 +97,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         String state = blogArticle.getState();
         if (state.equals(Constants.Article.STATE_DRAFT)) {
             //草稿类型：
-            //1、不允许标题为空
+            //不允许标题为空
             if (TextUtil.isEmpty(blogArticle.getTitle())) {
                 return ResponseResult.FAIL("草稿标题为空");
-            }
-            //2、内容、摘要都为空
-            if (TextUtil.isEmpty(blogArticle.getContent())
-                    && TextUtil.isEmpty(blogArticle.getSummary())) {
-                return ResponseResult.FAIL("草稿的内容、摘要均为空");
             }
         } else if (state.equals(Constants.Article.STATE_PUBLISH)) {
             //发布类型：标题、内容、摘要、标签都不允许为空
@@ -126,7 +121,6 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         article2Save.setContent(blogArticle.getContent());
         article2Save.setType(blogArticle.getType());
         article2Save.setState(blogArticle.getState());
-        article2Save.setSummary(blogArticle.getSummary());
         article2Save.setLabels(blogArticle.getLabels());
         article2Save.setCover(blogArticle.getCover());
         article2Save.setViewCount(Constants.Article.INITIAL_VIEW_COUNT);
@@ -275,7 +269,6 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setTitle(blogArticle.getTitle());
         queryArticle.setContent(blogArticle.getContent());
         queryArticle.setType(blogArticle.getType());
-        queryArticle.setSummary(blogArticle.getSummary());
         queryArticle.setLabels(blogArticle.getLabels());
         queryArticle.setCategoryId(blogArticle.getCategoryId());
         queryArticle.setCover(blogArticle.getCover());
