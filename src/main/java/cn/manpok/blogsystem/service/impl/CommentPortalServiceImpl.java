@@ -55,11 +55,6 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
 
     @Override
     public ResponseResult addComment(BlogComment blogComment) {
-        //检查登录状态
-        BlogUser user = userService.checkUserToken();
-        if (user == null) {
-            return ResponseResult.FAIL(ResponseState.NOT_LOGIN);
-        }
         //检查评论的参数，必填项：文章ID，内容
         String articleID = blogComment.getArticleId();
         if (TextUtil.isEmpty(articleID)) {
@@ -74,9 +69,6 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         }
         //补充数据
         blogComment.setId(String.valueOf(snowflake.nextId()));
-        blogComment.setUserId(user.getId());
-        blogComment.setUserName(user.getUserName());
-        blogComment.setUserAvatar(user.getAvatar());
         blogComment.setState(Constants.STATE_NORMAL);
         Date date = new Date();
         blogComment.setCreateTime(date);
