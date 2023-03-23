@@ -1,14 +1,12 @@
 package cn.manpok.blogsystem.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "comments")
-public class BlogComment {
+public class BlogCommentSimple {
 
     @Id
     private String id;
@@ -18,8 +16,6 @@ public class BlogComment {
     private String articleId;
     @Column(name = "content")
     private String content;
-    @Column(name = "user_id")
-    private String userId;
     @Column(name = "user_avatar")
     private String userAvatar;
     @Column(name = "user_name")
@@ -34,9 +30,8 @@ public class BlogComment {
     private String replyCommentId;
     @Column(name = "reply_user_name")
     private String replyUserName;
-    @Column(name = "user_email")
-    private String userEmail;
-
+    @Transient
+    private List<BlogCommentSimple> children;
 
     public String getId() {
         return id;
@@ -71,15 +66,6 @@ public class BlogComment {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
 
@@ -145,22 +131,21 @@ public class BlogComment {
         this.replyUserName = replyUserName;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public List<BlogCommentSimple> getChildren() {
+        return children;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setChildren(List<BlogCommentSimple> children) {
+        this.children = children;
     }
 
     @Override
     public String toString() {
-        return "BlogComment{" +
+        return "BlogCommentSimple{" +
                 "id='" + id + '\'' +
                 ", parentCommentId='" + parentCommentId + '\'' +
                 ", articleId='" + articleId + '\'' +
                 ", content='" + content + '\'' +
-                ", userId='" + userId + '\'' +
                 ", userAvatar='" + userAvatar + '\'' +
                 ", userName='" + userName + '\'' +
                 ", state='" + state + '\'' +
@@ -168,7 +153,7 @@ public class BlogComment {
                 ", updateTime=" + updateTime +
                 ", replyCommentId='" + replyCommentId + '\'' +
                 ", replyUserName='" + replyUserName + '\'' +
-                ", userEmail='" + userEmail + '\'' +
+                ", children=" + children +
                 '}';
     }
 }

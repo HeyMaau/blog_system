@@ -2,10 +2,8 @@ package cn.manpok.blogsystem.service.impl;
 
 import cn.manpok.blogsystem.dao.IArticleAdminSimpleDao;
 import cn.manpok.blogsystem.dao.ICommentPortalDao;
-import cn.manpok.blogsystem.pojo.BlogArticleSimple;
-import cn.manpok.blogsystem.pojo.BlogComment;
-import cn.manpok.blogsystem.pojo.BlogPaging;
-import cn.manpok.blogsystem.pojo.BlogUser;
+import cn.manpok.blogsystem.dao.ICommentSimplePortalDao;
+import cn.manpok.blogsystem.pojo.*;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.ICommentPortalService;
@@ -52,6 +50,9 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
 
     @Autowired
     private Gson gson;
+
+    @Autowired
+    private ICommentSimplePortalDao commentSimplePortalDao;
 
     @Override
     public ResponseResult addComment(BlogComment blogComment) {
@@ -104,29 +105,36 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         if (pageInfo.page == 1) {
             String commentsStr = (String) redisUtil.get(Constants.Comment.KEY_COMMENTS_CACHE + articleID);
             if (!TextUtil.isEmpty(commentsStr)) {
-                BlogPaging<List<BlogComment>> commentsCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogComment>>>() {
+                BlogPaging<List<BlogCommentSimple>> commentsCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogCommentSimple>>>() {
                 }.getType());
                 log.info("从redis中取出文章评论 ----> " + articleID);
                 return ResponseResult.SUCCESS("获取所有评论成功").setData(commentsCache);
             }
         }
+        //先找出文章的根评论
         Sort.Order stateOrder = new Sort.Order(Sort.Direction.DESC, "state");
         Sort.Order createTimeOrder = new Sort.Order(Sort.Direction.ASC, "createTime");
         Sort sort = Sort.by(stateOrder, createTimeOrder);
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, sort);
-        Page<BlogComment> all = commentPortalDao.findAll(new Specification<BlogComment>() {
+        Page<BlogCommentSimple> rootComments = commentSimplePortalDao.findAll(new Specification<BlogCommentSimple>() {
             @Override
-            public Predicate toPredicate(Root<BlogComment> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+            public Predicate toPredicate(Root<BlogCommentSimple> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 Predicate statePredicate = criteriaBuilder.notEqual(root.get("state"), Constants.STATE_FORBIDDEN);
                 Predicate articlePredicate = criteriaBuilder.equal(root.get("articleId"), articleID);
-                return criteriaBuilder.and(statePredicate, articlePredicate);
+                Predicate parentCommentPredicate = criteriaBuilder.isNull(root.get("parentCommentId"));
+                return criteriaBuilder.and(statePredicate, articlePredicate, parentCommentPredicate);
             }
         }, pageable);
+        //根据根评论找出所属的子评论（回复评论）
+        for (BlogCommentSimple rootComment : rootComments.getContent()) {
+            List<BlogCommentSimple> children = commentSimplePortalDao.findChildrenByParentCommentId(rootComment.getId());
+            rootComment.setChildren(children);
+        }
         //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
-        BlogPaging<List<BlogComment>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
+        BlogPaging<List<BlogCommentSimple>> paging = new BlogPaging<>(pageInfo.size, rootComments.getTotalElements(), pageInfo.page, rootComments.getContent());
         //如果是第一页的评论，缓存到redis中
         if (pageInfo.page == 1) {
-            redisUtil.set(Constants.Comment.KEY_COMMENTS_CACHE + articleID, gson.toJson(paging), Constants.TimeValue.MIN_10);
+            redisUtil.set(Constants.Comment.KEY_COMMENTS_CACHE + articleID, gson.toJson(paging), Constants.TimeValue.HOUR_2);
             log.info("文章第一页评论已缓存到redis ----> " + articleID);
         }
         return ResponseResult.SUCCESS("获取所有评论成功").setData(paging);
