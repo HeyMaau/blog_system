@@ -68,6 +68,12 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         if (TextUtil.isEmpty(blogComment.getContent())) {
             return ResponseResult.FAIL("评论内容为空");
         }
+        if (TextUtil.isEmpty(blogComment.getUserEmail())) {
+            return ResponseResult.FAIL("Email为空");
+        }
+        if (TextUtil.isEmpty(blogComment.getUserName())) {
+            return ResponseResult.FAIL("昵称为空");
+        }
         //补充数据
         blogComment.setId(String.valueOf(snowflake.nextId()));
         blogComment.setState(Constants.STATE_NORMAL);
