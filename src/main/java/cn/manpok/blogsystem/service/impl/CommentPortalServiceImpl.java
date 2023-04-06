@@ -19,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -77,6 +78,8 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         //补充数据
         blogComment.setId(String.valueOf(snowflake.nextId()));
         blogComment.setState(Constants.STATE_NORMAL);
+        //用EMAIL的MD5作为头像值
+        blogComment.setUserAvatar(DigestUtils.md5DigestAsHex(blogComment.getUserEmail().getBytes()));
         Date date = new Date();
         blogComment.setCreateTime(date);
         blogComment.setUpdateTime(date);
