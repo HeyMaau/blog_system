@@ -25,6 +25,8 @@ public interface IUserService {
 
     ResponseResult updateUserInfo(BlogUser blogUser);
 
+    ResponseResult updateUserInfoByAdmin(BlogUser blogUser);
+
     ResponseResult deleteUser(String userID);
 
     ResponseResult getUsers(String userName, String state, int page, int size);

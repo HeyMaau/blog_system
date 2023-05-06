@@ -161,6 +161,18 @@ public class UserApi {
     }
 
     /**
+     * 管理员修改用户信息
+     * @param blogUser
+     * @return
+     */
+    @PutMapping("/user_info/admin")
+    @PreAuthorize("@permission.admin")
+    public ResponseResult updateUserInfoByAdmin(@RequestBody BlogUser blogUser) {
+        log.info("管理员修改用户信息 ----> " + blogUser.toString());
+        return userService.updateUserInfoByAdmin(blogUser);
+    }
+
+    /**
      * 删除用户
      *
      * @param userID

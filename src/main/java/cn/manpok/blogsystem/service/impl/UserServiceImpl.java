@@ -429,6 +429,21 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public ResponseResult updateUserInfoByAdmin(BlogUser blogUser) {
+        if (TextUtil.isEmpty(blogUser.getUserName())) {
+            return ResponseResult.FAIL("用户名不能为空");
+        }
+        BlogUser queryUserByID = userDao.findUserById(blogUser.getId());
+        queryUserByID.setUserName(blogUser.getUserName());
+        queryUserByID.setMajor(blogUser.getMajor());
+        queryUserByID.setHubSite(blogUser.getHubSite());
+        queryUserByID.setAvatar(blogUser.getAvatar());
+        queryUserByID.setSign(blogUser.getSign());
+        queryUserByID.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("修改用户信息成功");
+    }
+
+    @Override
     public ResponseResult deleteUser(String userID) {
         //把对应用户的状态改为禁止
         BlogUser queryUserByID = userDao.findUserById(userID);
