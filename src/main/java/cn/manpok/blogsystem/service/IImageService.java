@@ -11,4 +11,6 @@ public interface IImageService {
     ResponseResult getImages(int page, int size);
 
     ResponseResult deleteImage(String imageID);
+
+    void getCommentAvatar(String key);
 }

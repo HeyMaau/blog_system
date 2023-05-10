@@ -70,4 +70,15 @@ public class ImageApi {
         log.info("获取所有图片 ----> ");
         return imageService.getImages(page, size);
     }
+
+    /**
+     * 获取评论的头像
+     *
+     * @param key
+     */
+    @GetMapping("/comment/{key}")
+    public void getCommentAvatar(@PathVariable("key") String key) {
+        log.info("获取评论头像 ----> " + key);
+        imageService.getCommentAvatar(key);
+    }
 }

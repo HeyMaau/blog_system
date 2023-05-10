@@ -41,6 +41,10 @@ blog:
       # 读取图片缓冲区带
       input-stream:
         buffer: 8192
+      # multi-avatar地址
+      multi-avatar-url: https://api.multiavatar.com/{1}.png?apikey={2}
+      # multi-avatar-api-key
+      multi-avatar-api-key: XXXX
     # solr地址
     solr:
       path: http://192.168.144.128:8983/solr/ik_core

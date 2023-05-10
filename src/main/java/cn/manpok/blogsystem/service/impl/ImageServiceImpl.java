@@ -17,8 +17,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
@@ -57,6 +60,15 @@ public class ImageServiceImpl implements IImageService {
 
     @Autowired
     private HttpServletResponse response;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Value("${blog.system.image.multi-avatar-url}")
+    private String multiAvatarUrl;
+
+    @Value("${blog.system.image.multi-avatar-api-key}")
+    private String multiAvatarApiKey;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.Image.DATE_FORMAT);
 
@@ -197,6 +209,25 @@ public class ImageServiceImpl implements IImageService {
         }
         queryImage.setState(Constants.STATE_FORBIDDEN);
         return ResponseResult.SUCCESS("删除图片成功");
+    }
+
+    @Override
+    public void getCommentAvatar(String key) {
+        ResponseEntity<byte[]> responseEntity = restTemplate.getForEntity(multiAvatarUrl, byte[].class, key, multiAvatarApiKey);
+        HttpStatus statusCode = responseEntity.getStatusCode();
+        if (statusCode.is2xxSuccessful()) {
+            byte[] body = responseEntity.getBody();
+            if (body != null) {
+                try (ServletOutputStream outputStream = response.getOutputStream()) {
+                    outputStream.write(body);
+                } catch (Exception e) {
+                    log.error("从MultiAvatar获取图片失败");
+                    log.error(e.toString());
+                }
+            } else {
+                log.info("MultiAvatar获取图片为空");
+            }
+        }
     }
 
     /**
