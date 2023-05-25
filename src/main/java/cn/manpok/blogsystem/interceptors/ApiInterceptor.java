@@ -44,7 +44,7 @@ public class ApiInterceptor implements HandlerInterceptor {
                 String commitRecord = (String) redisUtil.get(redisKey.toString());
                 if (TextUtil.isEmpty(commitRecord)) {
                     //如果没有记录，放行，并记录
-                    redisUtil.set(redisKey.toString(), Constants.VALUE_TRUE, Constants.TimeValue.SECOND_30);
+                    redisUtil.set(redisKey.toString(), Constants.VALUE_TRUE, Constants.TimeValue.SECOND_5);
                     return true;
                 }
                 ResponseResult result = ResponseResult.FAIL("频繁提交，请稍后再试！");

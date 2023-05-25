@@ -56,6 +56,7 @@ public interface Constants {
     interface TimeValue {
         int MESC_100 = 100;
         int SECOND = 1;
+        int SECOND_5 = SECOND * 5;
         int SECOND_30 = SECOND * 30;
         int MIN = SECOND * 60;
         int MIN_2 = MIN * 2;
