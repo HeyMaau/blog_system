@@ -24,10 +24,8 @@ public class BlogImage {
     private Date updateTime;
     @Column(name = "name")
     private String name;
-    @Column(name = "MD5")
-    private String MD5;
-    @Column(name = "ref_count")
-    private long refCount;
+    @Column(name = "type")
+    private String type;
 
     public String getId() {
         return id;
@@ -37,7 +35,6 @@ public class BlogImage {
         this.id = id;
     }
 
-
     public String getUserId() {
         return userId;
     }
@@ -46,7 +43,6 @@ public class BlogImage {
         this.userId = userId;
     }
 
-
     public String getUrl() {
         return url;
     }
@@ -54,7 +50,6 @@ public class BlogImage {
     public void setUrl(String url) {
         this.url = url;
     }
-
 
     public String getState() {
         return state;
@@ -88,20 +83,12 @@ public class BlogImage {
         this.name = name;
     }
 
-    public String getMD5() {
-        return MD5;
+    public String getType() {
+        return type;
     }
 
-    public void setMD5(String MD5) {
-        this.MD5 = MD5;
-    }
-
-    public long getRefCount() {
-        return refCount;
-    }
-
-    public void setRefCount(long refCount) {
-        this.refCount = refCount;
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
@@ -114,8 +101,7 @@ public class BlogImage {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", name='" + name + '\'' +
-                ", MD5='" + MD5 + '\'' +
-                ", refCount=" + refCount +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

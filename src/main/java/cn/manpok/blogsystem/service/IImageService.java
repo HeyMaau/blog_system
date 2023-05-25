@@ -4,7 +4,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface IImageService {
-    ResponseResult uploadImage(MultipartFile imageFile);
+    ResponseResult uploadImage(MultipartFile imageFile, String type);
 
     void getImage(String imageID);
 
@@ -13,4 +13,6 @@ public interface IImageService {
     ResponseResult deleteImage(String imageID);
 
     void getCommentAvatar(String key);
+
+    void removeArticleUnusedImages();
 }

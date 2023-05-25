@@ -35,6 +35,8 @@ public interface Constants {
     }
 
     interface Image {
+        String TYPE_NORMAL_IMAGE = "0";
+        String TYPE_ARTICLE_IMAGE = "1";
         String DATE_FORMAT = "yyyy_MM_dd";
         String CONTENT_TYPE_PREFIX = "image/";
         String TYPE_JPG = "jpg";

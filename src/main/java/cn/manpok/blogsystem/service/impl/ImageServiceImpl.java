@@ -1,6 +1,8 @@
 package cn.manpok.blogsystem.service.impl;
 
+import cn.manpok.blogsystem.dao.IArticleAdminDao;
 import cn.manpok.blogsystem.dao.IImageDao;
+import cn.manpok.blogsystem.pojo.BlogArticle;
 import cn.manpok.blogsystem.pojo.BlogImage;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
@@ -11,6 +13,10 @@ import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -19,8 +25,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -29,11 +36,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -59,6 +63,9 @@ public class ImageServiceImpl implements IImageService {
     private IImageDao imageDao;
 
     @Autowired
+    private IArticleAdminDao articleAdminDao;
+
+    @Autowired
     private HttpServletResponse response;
 
     @Autowired
@@ -73,14 +80,14 @@ public class ImageServiceImpl implements IImageService {
     private SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.Image.DATE_FORMAT);
 
     @Override
-    public ResponseResult uploadImage(MultipartFile imageFile) {
+    public ResponseResult uploadImage(MultipartFile imageFile, String type) {
         //判断文件是否存在
         if (imageFile == null) {
             return ResponseResult.FAIL("图片为空");
         }
         //限制图片类型为jpg、png、gif、jpeg
-        String type = checkImageContentType(imageFile.getContentType());
-        if (type == null) {
+        String contentType = checkImageContentType(imageFile.getContentType());
+        if (contentType == null) {
             return ResponseResult.FAIL(ResponseState.IMAGE_TYPE_NOT_SUPPORT);
         }
         //如果图片大于2M不能上传
@@ -89,27 +96,8 @@ public class ImageServiceImpl implements IImageService {
             return ResponseResult.FAIL("图片大小超过2MB");
         }
         //把文件写到磁盘上
-        //先查询MD5，如果有重复，直接返回结果
-        String MD5 = null;
-        try {
-            MD5 = DigestUtils.md5DigestAsHex(imageFile.getBytes());
-        } catch (IOException e) {
-            log.error("图片MD5获取失败");
-            e.printStackTrace();
-        }
         //返回给前端的结果
         Map<String, String> result = new HashMap<>(2);
-        if (MD5 != null) {
-            BlogImage queryImageByMD5 = imageDao.findImageByMD5(MD5);
-            if (queryImageByMD5 != null) {
-                result.put("image_id", queryImageByMD5.getId());
-                result.put("image_name", queryImageByMD5.getName());
-                //引用次数+1
-
-                log.info("图片已存在，触发秒传 ----> " + queryImageByMD5.getId());
-                return ResponseResult.SUCCESS("图片上传成功").setData(result);
-            }
-        }
         //命名规则：基本路径+日期+图片类型+文件名，文件名用ID+后缀名
         //日期
         Date currentDate = new Date();
@@ -117,8 +105,8 @@ public class ImageServiceImpl implements IImageService {
         //id
         String id = String.valueOf(snowflake.nextId());
         //最终文件路径、文件名
-        String imageFilePath = imagePath + File.separator + dateFormatStr + File.separator + type;
-        String fileName = id + "." + type;
+        String imageFilePath = imagePath + File.separator + dateFormatStr + File.separator + contentType;
+        String fileName = id + "." + contentType;
         File file = new File(imageFilePath, fileName);
         //创建目录
         File parentFile = file.getParentFile();
@@ -130,14 +118,13 @@ public class ImageServiceImpl implements IImageService {
         String originalFilename = imageFile.getOriginalFilename();
         image.setName(originalFilename);
         image.setId(id);
-        image.setUrl(dateFormatStr + File.separator + type + File.separator + fileName);
+        image.setUrl(dateFormatStr + File.separator + contentType + File.separator + fileName);
         image.setState(Constants.STATE_NORMAL);
         image.setCreateTime(currentDate);
         image.setUpdateTime(currentDate);
+        image.setType(type);
         BlogUser user = userService.checkUserToken();
         image.setUserId(user.getId());
-        image.setMD5(MD5);
-        image.setRefCount(1);
         imageDao.save(image);
         //写入
         try {
@@ -226,6 +213,31 @@ public class ImageServiceImpl implements IImageService {
                 }
             } else {
                 log.info("MultiAvatar获取图片为空");
+            }
+        }
+    }
+
+    @Override
+    @Async("asyncTaskServiceExecutor")
+    @Scheduled(cron = "0 0 2 ? * 1")
+    public void removeArticleUnusedImages() {
+        Set<String> imageSet = new HashSet<>();
+        List<BlogArticle> articleList = articleAdminDao.findAll();
+        for (BlogArticle article : articleList) {
+            Document document = Jsoup.parse(article.getContent());
+            Elements imgs = document.getElementsByTag("img");
+            for (Element img : imgs) {
+                String src = img.attr("src");
+                int index = src.lastIndexOf("/");
+                String id = src.substring(index + 1);
+                imageSet.add(id);
+            }
+        }
+        List<BlogImage> imageList = imageDao.findAll();
+        for (BlogImage image : imageList) {
+            if (!imageSet.contains(image.getId()) && image.getType().equals(Constants.Image.TYPE_ARTICLE_IMAGE)) {
+                image.setState(Constants.STATE_FORBIDDEN);
+                log.info("标记文章图片为删除状态 ----> " + image.getId());
             }
         }
     }

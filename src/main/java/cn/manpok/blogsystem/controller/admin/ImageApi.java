@@ -29,8 +29,8 @@ public class ImageApi {
     @CheckRepeatedCommit
     @PreAuthorize("@permission.admin")
     @PostMapping
-    public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile) {
-        return imageService.uploadImage(imageFile);
+    public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile, @RequestParam(value = "type", required = false, defaultValue = "0") String type) {
+        return imageService.uploadImage(imageFile, type);
     }
 
     /**
