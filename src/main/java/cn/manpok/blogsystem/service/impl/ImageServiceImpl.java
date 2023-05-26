@@ -242,6 +242,38 @@ public class ImageServiceImpl implements IImageService {
         }
     }
 
+    @Override
+    @Async("asyncTaskServiceExecutor")
+    @Scheduled(cron = "0 0 4 ? * 1")
+    public void deleteImagePhysically() {
+        List<BlogImage> imageList = imageDao.findAllByState(Constants.STATE_FORBIDDEN);
+        for (BlogImage image : imageList) {
+            File file = new File(imagePath + File.separator + image.getUrl());
+            if (file.exists()) {
+                File parentFile = file.getParentFile();
+                File grandParent = parentFile.getParentFile();
+                boolean delete = file.delete();
+                if (delete) {
+                    log.info("删除本地图片成功 ----> " + image.getId());
+                } else {
+                    log.error("删除本地图片失败 ----> " + image.getId());
+                }
+                if (parentFile.list() == null || parentFile.list().length == 0) {
+                    parentFile.delete();
+                }
+                if (grandParent.list() == null || grandParent.list().length == 0) {
+                    grandParent.delete();
+                }
+            }
+        }
+        int count = imageDao.deleteAllByState(Constants.STATE_FORBIDDEN);
+        if (count == 0) {
+            log.info("没有本地图片需要清理");
+        } else {
+            log.info("已清除" + count + "张本地图片");
+        }
+    }
+
     /**
      * 检查图片类型
      *

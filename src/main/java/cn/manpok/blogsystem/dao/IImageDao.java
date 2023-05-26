@@ -15,4 +15,8 @@ public interface IImageDao extends JpaRepository<BlogImage, String>, JpaSpecific
     Page<BlogImage> findImagesByUserIdAndState(String userID, String state, Pageable pageable);
 
     List<BlogImage> findAllByType(String type);
+
+    List<BlogImage> findAllByState(String state);
+
+    int deleteAllByState(String state);
 }
