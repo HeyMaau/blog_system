@@ -233,9 +233,9 @@ public class ImageServiceImpl implements IImageService {
                 imageSet.add(id);
             }
         }
-        List<BlogImage> imageList = imageDao.findAll();
+        List<BlogImage> imageList = imageDao.findAllByType(Constants.Image.TYPE_ARTICLE_IMAGE);
         for (BlogImage image : imageList) {
-            if (!imageSet.contains(image.getId()) && image.getType().equals(Constants.Image.TYPE_ARTICLE_IMAGE)) {
+            if (!imageSet.contains(image.getId())) {
                 image.setState(Constants.STATE_FORBIDDEN);
                 log.info("标记文章图片为删除状态 ----> " + image.getId());
             }
