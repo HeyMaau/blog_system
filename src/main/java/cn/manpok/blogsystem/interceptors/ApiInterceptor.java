@@ -76,7 +76,7 @@ public class ApiInterceptor implements HandlerInterceptor {
             redisUtil.set(Constants.KEY_BLOCK_IP + ip, Constants.VALUE_TRUE, Constants.TimeValue.HOUR_2);
             return;
         }
-        redisUtil.set(Constants.KEY_IP_ACCESS_COUNT + ip, ++count);
+        redisUtil.set(Constants.KEY_IP_ACCESS_COUNT + ip, ++count, Constants.TimeValue.SECOND);
     }
 
     private void returnJsonResponse(HttpServletResponse response, ResponseResult result) {
