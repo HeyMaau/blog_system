@@ -20,7 +20,8 @@ public enum ResponseState {
     QR_CODE_STATE_EXPIRED(false, 40012, "二维码过期"),
     QR_CODE_STATE_NOT_CONFIRM(false, 40013, "二维码未确认"),
     LONG_POLL_TIME_OUT(false, 40014, "长轮询超时"),
-    USER_FORBIDDEN(false, 40015, "用户已禁止");
+    USER_FORBIDDEN(false, 40015, "用户已禁止"),
+    IP_BLOCKED(false, 40016, "IP禁止访问");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;

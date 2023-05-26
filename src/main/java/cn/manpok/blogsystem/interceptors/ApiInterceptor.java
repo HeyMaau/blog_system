@@ -1,6 +1,7 @@
 package cn.manpok.blogsystem.interceptors;
 
 import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.TextUtil;
@@ -29,7 +30,7 @@ public class ApiInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String ip = request.getRemoteAddr();
         if (isIPBlocked(ip)) {
-            returnJsonResponse(response, "您的IP已被封，请稍后再试");
+            returnJsonResponse(response, ResponseResult.FAIL(ResponseState.IP_BLOCKED));
             return false;
         }
         addIPAccessCount(ip);
@@ -53,7 +54,7 @@ public class ApiInterceptor implements HandlerInterceptor {
                     redisUtil.set(redisKey.toString(), Constants.VALUE_TRUE, Constants.TimeValue.SECOND_5);
                     return true;
                 }
-                returnJsonResponse(response, "频繁提交，请稍后再试");
+                returnJsonResponse(response, ResponseResult.FAIL(ResponseState.IP_BLOCKED));
                 return false;
             }
         }
@@ -78,8 +79,7 @@ public class ApiInterceptor implements HandlerInterceptor {
         redisUtil.set(Constants.KEY_IP_ACCESS_COUNT + ip, ++count);
     }
 
-    private void returnJsonResponse(HttpServletResponse response, String msg) {
-        ResponseResult result = ResponseResult.FAIL(msg);
+    private void returnJsonResponse(HttpServletResponse response, ResponseResult result) {
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
         try (PrintWriter writer = response.getWriter()) {
@@ -88,6 +88,6 @@ public class ApiInterceptor implements HandlerInterceptor {
         } catch (Exception e) {
             log.error("response写数据错误");
         }
-        log.info(msg);
+        log.info(result.toString());
     }
 }

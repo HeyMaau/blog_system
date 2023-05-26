@@ -107,4 +107,14 @@ public class ResponseResult {
         this.data = data;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "ResponseResult{" +
+                "success=" + success +
+                ", code=" + code +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

@@ -11,7 +11,7 @@ public interface Constants {
     String VALUE_TRUE = "true";
     String KEY_BLOCK_IP = "key_block_ip_";
     String KEY_IP_ACCESS_COUNT = "key_ip_access_count_";
-    int ACCESS_COUNT_LIMIT = 10;
+    int ACCESS_COUNT_LIMIT = 100;
 
     interface User {
         String DEFAULT_AVATAR = "www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png";
