@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * SOLR搜索封装BEAN类
  */
-@SolrDocument(collection = "ik_core")
+@SolrDocument(collection = "blog_system_search_core")
 public class BlogSolrSearch implements Serializable {
 
     @Id
@@ -25,8 +25,8 @@ public class BlogSolrSearch implements Serializable {
     private String content;
     @Field("labels")
     private String labels;
-    @Field("url")
-    private String url;
+    @Field("cover")
+    private String cover;
     @Field("category_id")
     private String categoryID;
     @Field("create_time")
@@ -35,22 +35,6 @@ public class BlogSolrSearch implements Serializable {
     private Date updateTime;
     @Field("search_item")
     private List<String> searchItem;
-
-    @Override
-    public String toString() {
-        return "BlogSolrSearch{" +
-                "id='" + id + '\'' +
-                ", viewCount=" + viewCount +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", labels='" + labels + '\'' +
-                ", url='" + url + '\'' +
-                ", categoryID='" + categoryID + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", searchItem=" + searchItem +
-                '}';
-    }
 
     public List<String> getSearchItem() {
         return searchItem;
@@ -100,12 +84,12 @@ public class BlogSolrSearch implements Serializable {
         this.labels = labels;
     }
 
-    public String getUrl() {
-        return url;
+    public String getCover() {
+        return cover;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setCover(String cover) {
+        this.cover = cover;
     }
 
     public String getCategoryID() {
@@ -130,5 +114,21 @@ public class BlogSolrSearch implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogSolrSearch{" +
+                "id='" + id + '\'' +
+                ", viewCount=" + viewCount +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", labels='" + labels + '\'' +
+                ", cover='" + cover + '\'' +
+                ", categoryID='" + categoryID + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", searchItem=" + searchItem +
+                '}';
     }
 }

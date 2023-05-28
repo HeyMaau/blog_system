@@ -9,6 +9,8 @@ public interface ISolrSearchService {
 
     void deleteArticle(String articleID);
 
+    void clearData();
+
     void updateArticle(BlogArticle blogArticle);
 
     ResponseResult queryArticle(String keyword, String categoryID, Integer sort, int page, int size);

@@ -65,6 +65,17 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
     }
 
     @Override
+    public void clearData() {
+        try {
+            solrClient.deleteByQuery("*:*");
+            solrClient.commit();
+            log.info("清空solr数据库");
+        } catch (Exception e) {
+            log.error("清空solr数据库失败");
+        }
+    }
+
+    @Override
     public void updateArticle(BlogArticle blogArticle) {
         addArticle(blogArticle);
     }
@@ -86,10 +97,14 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
             sort = Constants.Search.SORT_VIEW_COUNT_DESC;
         }
         switch (sort) {
-            case Constants.Search.SORT_CREATE_TIME_ASC -> solrQuery.setSort(Constants.Search.FIELD_CREATE_TIME, SolrQuery.ORDER.asc);
-            case Constants.Search.SORT_CREATE_TIME_DESC -> solrQuery.setSort(Constants.Search.FIELD_CREATE_TIME, SolrQuery.ORDER.desc);
-            case Constants.Search.SORT_VIEW_COUNT_ASC -> solrQuery.setSort(Constants.Search.FIELD_VIEW_COUNT, SolrQuery.ORDER.asc);
-            case Constants.Search.SORT_VIEW_COUNT_DESC -> solrQuery.setSort(Constants.Search.FIELD_VIEW_COUNT, SolrQuery.ORDER.desc);
+            case Constants.Search.SORT_CREATE_TIME_ASC ->
+                    solrQuery.setSort(Constants.Search.FIELD_CREATE_TIME, SolrQuery.ORDER.asc);
+            case Constants.Search.SORT_CREATE_TIME_DESC ->
+                    solrQuery.setSort(Constants.Search.FIELD_CREATE_TIME, SolrQuery.ORDER.desc);
+            case Constants.Search.SORT_VIEW_COUNT_ASC ->
+                    solrQuery.setSort(Constants.Search.FIELD_VIEW_COUNT, SolrQuery.ORDER.asc);
+            case Constants.Search.SORT_VIEW_COUNT_DESC ->
+                    solrQuery.setSort(Constants.Search.FIELD_VIEW_COUNT, SolrQuery.ORDER.desc);
         }
         //分类关键词
         if (!TextUtil.isEmpty(categoryID)) {
@@ -150,6 +165,7 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
         document.addField("id", blogArticle.getId());
         document.addField("view_count", blogArticle.getViewCount());
         document.addField("title", blogArticle.getTitle());
+        document.addField("cover", blogArticle.getCover());
         //内容转纯文本存入solr，先判断文章格式类型
         //如果是MD，则先转HTML
         String html;

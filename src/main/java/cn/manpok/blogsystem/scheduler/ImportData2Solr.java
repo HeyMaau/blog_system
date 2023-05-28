@@ -24,6 +24,8 @@ public class ImportData2Solr implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        //先清空数据库，防止数据错误
+        solrSearchService.clearData();
         List<BlogArticle> all = articleAdminDao.findAll((Specification<BlogArticle>) (root, query, criteriaBuilder) -> {
             //条件：筛选文章状态为发布或置顶的
             Predicate statePublishPredicate = criteriaBuilder.equal(root.get("state"), Constants.Article.STATE_PUBLISH);
