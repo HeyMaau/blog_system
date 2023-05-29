@@ -128,7 +128,7 @@ public interface Constants {
         String FIELD_TITLE = "title";
         String FIELD_CONTENT = "content";
         String FIELD_ID = "id";
-        int HIGHLIGHT_FRAG_SIZE = 125;
+        int HIGHLIGHT_FRAG_SIZE = 200;
     }
 
     /**
