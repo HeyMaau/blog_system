@@ -7,10 +7,7 @@ import cn.manpok.blogsystem.dao.ICommentAdminDao;
 import cn.manpok.blogsystem.pojo.*;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
-import cn.manpok.blogsystem.service.IArticleAdminService;
-import cn.manpok.blogsystem.service.ILabelService;
-import cn.manpok.blogsystem.service.ISolrSearchService;
-import cn.manpok.blogsystem.service.IUserService;
+import cn.manpok.blogsystem.service.*;
 import cn.manpok.blogsystem.utils.*;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -63,6 +60,9 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
     @Autowired
     private ICommentAdminDao commentAdminDao;
 
+    @Autowired
+    private IImageService imageService;
+
     @Override
     public ResponseResult addArticle(BlogArticle blogArticle) {
         BlogArticle article2Save = null;
@@ -114,6 +114,11 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             }
         } else {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
+        }
+        //清除原来的旧封面
+        String originCover = article2Save.getCover();
+        if (!TextUtil.isEmpty(originCover)) {
+            imageService.deleteImage(originCover);
         }
         //补充数据
         article2Save.setTitle(blogArticle.getTitle());
@@ -210,6 +215,12 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         //先删除文章下所有的评论
         int commentsDeleteCount = commentAdminDao.deleteCommentsByArticleId(articleID);
         log.info("删除文章 ----> " + articleID + "所有评论 ----> " + commentsDeleteCount);
+        //删除文章封面
+        BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
+        String cover = queryArticle.getCover();
+        if (!TextUtil.isEmpty(cover)) {
+            imageService.deleteImage(cover);
+        }
         //再删除数据库中的文章
         int deleteCount = articleAdminDao.deleteArticleById(articleID);
         //solr中的文章也要删除
@@ -229,6 +240,11 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         BlogArticle queryArticle = articleAdminDao.findArticleById(articleID);
         if (queryArticle == null) {
             return ResponseResult.FAIL("文章不存在");
+        }
+        //删除文章封面
+        String cover = queryArticle.getCover();
+        if (!TextUtil.isEmpty(cover)) {
+            imageService.deleteImage(cover);
         }
         queryArticle.setState(Constants.Article.STATE_DELETE);
         //删除redis中的文章列表缓存
@@ -262,6 +278,11 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         }
         if (!queryArticle.getState().equals(Constants.Article.STATE_PUBLISH)) {
             return ResponseResult.FAIL("文章未发表");
+        }
+        //清除原来的旧封面
+        String originCover = queryArticle.getCover();
+        if (!TextUtil.isEmpty(originCover)) {
+            imageService.deleteImage(originCover);
         }
         //更新标签
         labelService.updateLabelInDB(queryArticle.getLabels(), blogArticle.getLabels());

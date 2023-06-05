@@ -4,6 +4,7 @@ import cn.manpok.blogsystem.dao.ICategoryDao;
 import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ICategoryService;
+import cn.manpok.blogsystem.service.IImageService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
@@ -28,6 +29,9 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     private ICategoryDao categoryDao;
+
+    @Autowired
+    private IImageService imageService;
 
     @Override
     public ResponseResult addCategory(BlogCategory blogCategory) {
@@ -92,6 +96,11 @@ public class CategoryServiceImpl implements ICategoryService {
         BlogCategory queryCategory = categoryDao.findCategoryById(blogCategory.getId());
         if (queryCategory == null) {
             return ResponseResult.FAIL("文章分类不存在");
+        }
+        //清理旧封面
+        String originCover = queryCategory.getCover();
+        if (!TextUtil.isEmpty(originCover)) {
+            imageService.deleteImage(originCover);
         }
         queryCategory.setName(blogCategory.getName());
         queryCategory.setDescription(blogCategory.getDescription());

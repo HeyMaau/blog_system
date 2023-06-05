@@ -11,6 +11,7 @@ import cn.manpok.blogsystem.pojo.BlogUserSimple;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IAsyncTaskService;
+import cn.manpok.blogsystem.service.IImageService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
 import com.auth0.jwt.interfaces.Claim;
@@ -80,6 +81,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private Gson gson;
+
+    @Autowired
+    private IImageService imageService;
 
     /**
      * 初始化邮箱设置
@@ -419,6 +423,11 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户名已存在");
         }
         BlogUser queryUserByID = userDao.findUserById(userByToken.getId());
+        //清除旧头像
+        String originAvatar = queryUserByID.getAvatar();
+        if (!TextUtil.isEmpty(originAvatar)) {
+            imageService.deleteImage(originAvatar);
+        }
         queryUserByID.setUserName(blogUser.getUserName());
         queryUserByID.setAvatar(blogUser.getAvatar());
         queryUserByID.setSign(blogUser.getSign());
@@ -434,6 +443,11 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户名不能为空");
         }
         BlogUser queryUserByID = userDao.findUserById(blogUser.getId());
+        //清除旧头像
+        String originAvatar = queryUserByID.getAvatar();
+        if (!TextUtil.isEmpty(originAvatar)) {
+            imageService.deleteImage(originAvatar);
+        }
         queryUserByID.setUserName(blogUser.getUserName());
         queryUserByID.setMajor(blogUser.getMajor());
         queryUserByID.setHubSite(blogUser.getHubSite());
@@ -449,6 +463,11 @@ public class UserServiceImpl implements IUserService {
         BlogUser queryUserByID = userDao.findUserById(userID);
         if (queryUserByID == null) {
             return ResponseResult.FAIL("用户不存在");
+        }
+        //清理头像
+        String avatar = queryUserByID.getAvatar();
+        if (!TextUtil.isEmpty(avatar)) {
+            imageService.deleteImage(avatar);
         }
         queryUserByID.setState(Constants.STATE_FORBIDDEN);
         return ResponseResult.SUCCESS("删除用户成功");
