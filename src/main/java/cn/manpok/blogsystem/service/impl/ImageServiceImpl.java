@@ -4,13 +4,10 @@ import cn.manpok.blogsystem.dao.IArticleAdminDao;
 import cn.manpok.blogsystem.dao.IImageDao;
 import cn.manpok.blogsystem.pojo.BlogArticle;
 import cn.manpok.blogsystem.pojo.BlogImage;
-import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IImageService;
-import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -19,10 +16,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -55,9 +48,6 @@ public class ImageServiceImpl implements IImageService {
 
     @Autowired
     private Snowflake snowflake;
-
-    @Autowired
-    private IUserService userService;
 
     @Autowired
     private IImageDao imageDao;
@@ -123,8 +113,6 @@ public class ImageServiceImpl implements IImageService {
         image.setCreateTime(currentDate);
         image.setUpdateTime(currentDate);
         image.setType(type);
-        BlogUser user = userService.checkUserToken();
-        image.setUserId(user.getId());
         imageDao.save(image);
         //写入
         try {
@@ -177,15 +165,14 @@ public class ImageServiceImpl implements IImageService {
 
     @Override
     public ResponseResult getImages(int page, int size) {
-        //检查分页参数
+        return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
+        /*//检查分页参数
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
-        //获取用户token
-        BlogUser user = userService.checkUserToken();
         //构建分页
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
         //查询条件：1、属于当前用户；2、状态正常
-        Page<BlogImage> queryImages = imageDao.findImagesByUserIdAndState(user.getId(), Constants.STATE_NORMAL, pageable);
-        return ResponseResult.SUCCESS("获取所有图片成功").setData(queryImages);
+        Page<BlogImage> queryImages = imageDao.findImagesByUserIdAndState(user.getId(), Constants.STATE_NORMAL, pageable);*/
+//        return ResponseResult.SUCCESS("获取所有图片成功").setData(queryImages);
     }
 
     @Override
