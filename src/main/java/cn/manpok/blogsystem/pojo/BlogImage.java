@@ -12,8 +12,6 @@ public class BlogImage {
 
     @Id
     private String id;
-    @Column(name = "user_id")
-    private String userId;
     @Column(name = "url")
     private String url;
     @Column(name = "state")
@@ -33,14 +31,6 @@ public class BlogImage {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getUrl() {
@@ -95,7 +85,6 @@ public class BlogImage {
     public String toString() {
         return "BlogImage{" +
                 "id='" + id + '\'' +
-                ", userId='" + userId + '\'' +
                 ", url='" + url + '\'' +
                 ", state='" + state + '\'' +
                 ", createTime=" + createTime +

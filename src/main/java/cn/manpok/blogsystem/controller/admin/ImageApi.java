@@ -64,7 +64,6 @@ public class ImageApi {
      * @param size
      * @return
      */
-    @GetMapping("/list")
     @PreAuthorize("@permission.admin")
     public ResponseResult getImages(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("获取所有图片 ----> ");

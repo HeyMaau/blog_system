@@ -166,13 +166,6 @@ public class ImageServiceImpl implements IImageService {
     @Override
     public ResponseResult getImages(int page, int size) {
         return ResponseResult.FAIL(ResponseState.PERMISSION_DENIED);
-        /*//检查分页参数
-        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
-        //构建分页
-        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "createTime");
-        //查询条件：1、属于当前用户；2、状态正常
-        Page<BlogImage> queryImages = imageDao.findImagesByUserIdAndState(user.getId(), Constants.STATE_NORMAL, pageable);*/
-//        return ResponseResult.SUCCESS("获取所有图片成功").setData(queryImages);
     }
 
     @Override
