@@ -132,6 +132,7 @@ public class ImageServiceImpl implements IImageService {
         //根据图片ID查询数据库记录
         BlogImage queryImage = imageDao.findImageById(imageID);
         if (queryImage == null) {
+            handleImageNotFound();
             log.error("图片不存在 ----> " + imageID);
             return;
         }
@@ -141,6 +142,8 @@ public class ImageServiceImpl implements IImageService {
         String imageFilePath = imagePath + File.separator + imageUrl;
         File file = new File(imageFilePath);
         if (!file.exists()) {
+            handleImageNotFound();
+            log.error("图片本地文件不存在 ----> " + imageID);
             return;
         }
         //获取文件后缀名
@@ -283,5 +286,9 @@ public class ImageServiceImpl implements IImageService {
             case Constants.Image.TYPE_JPEG -> Constants.Image.TYPE_JPEG_WITH_PREFIX;
             default -> null;
         };
+    }
+
+    private void handleImageNotFound() {
+        response.setStatus(HttpStatus.NOT_FOUND.value());
     }
 }
