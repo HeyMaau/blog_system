@@ -97,11 +97,6 @@ public class CategoryServiceImpl implements ICategoryService {
         if (queryCategory == null) {
             return ResponseResult.FAIL("文章分类不存在");
         }
-        //清理旧封面
-        String originCover = queryCategory.getCover();
-        if (!TextUtil.isEmpty(originCover)) {
-            imageService.deleteImage(originCover);
-        }
         queryCategory.setName(blogCategory.getName());
         queryCategory.setDescription(blogCategory.getDescription());
         queryCategory.setPinyin(blogCategory.getPinyin());

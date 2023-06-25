@@ -9,6 +9,7 @@ import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IImageService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.Snowflake;
+import cn.manpok.blogsystem.utils.TextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -70,7 +71,7 @@ public class ImageServiceImpl implements IImageService {
     private SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.Image.DATE_FORMAT);
 
     @Override
-    public ResponseResult uploadImage(MultipartFile imageFile, String type) {
+    public ResponseResult uploadImage(MultipartFile imageFile, String type, String oldID) {
         //判断文件是否存在
         if (imageFile == null) {
             return ResponseResult.FAIL("图片为空");
@@ -84,6 +85,10 @@ public class ImageServiceImpl implements IImageService {
         long size = imageFile.getSize();
         if (size > maxImageSize) {
             return ResponseResult.FAIL("图片大小超过2MB");
+        }
+        //删除旧的图片
+        if (!TextUtil.isEmpty(oldID)) {
+            deleteImage(oldID);
         }
         //把文件写到磁盘上
         //返回给前端的结果
@@ -124,6 +129,7 @@ public class ImageServiceImpl implements IImageService {
         //返回数据给前端，ID、原始文件名
         result.put("image_id", id);
         result.put("image_name", originalFilename);
+        log.info("上传图片 ----> " + id);
         return ResponseResult.SUCCESS("图片上传成功").setData(result);
     }
 
@@ -175,6 +181,7 @@ public class ImageServiceImpl implements IImageService {
     public ResponseResult deleteImage(String imageID) {
         BlogImage queryImage = imageDao.findImageById(imageID);
         if (queryImage == null) {
+            log.info("删除图片不存在 ----> " + imageID);
             return ResponseResult.FAIL("图片不存在");
         }
         queryImage.setState(Constants.STATE_FORBIDDEN);

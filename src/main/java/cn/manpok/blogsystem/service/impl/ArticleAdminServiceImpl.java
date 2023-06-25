@@ -115,11 +115,6 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         } else {
             return ResponseResult.FAIL(ResponseState.OPERATION_NOT_PERMITTED);
         }
-        //清除原来的旧封面
-        String originCover = article2Save.getCover();
-        if (!TextUtil.isEmpty(originCover)) {
-            imageService.deleteImage(originCover);
-        }
         //补充数据
         article2Save.setTitle(blogArticle.getTitle());
         article2Save.setCategoryId(blogArticle.getCategoryId());
@@ -278,11 +273,6 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         }
         if (!queryArticle.getState().equals(Constants.Article.STATE_PUBLISH)) {
             return ResponseResult.FAIL("文章未发表");
-        }
-        //清除原来的旧封面
-        String originCover = queryArticle.getCover();
-        if (!TextUtil.isEmpty(originCover)) {
-            imageService.deleteImage(originCover);
         }
         //更新标签
         labelService.updateLabelInDB(queryArticle.getLabels(), blogArticle.getLabels());

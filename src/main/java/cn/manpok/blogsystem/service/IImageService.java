@@ -4,7 +4,7 @@ import cn.manpok.blogsystem.response.ResponseResult;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface IImageService {
-    ResponseResult uploadImage(MultipartFile imageFile, String type);
+    ResponseResult uploadImage(MultipartFile imageFile, String type, String oldID);
 
     void getImage(String imageID);
 

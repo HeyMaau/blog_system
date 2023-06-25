@@ -423,11 +423,6 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户名已存在");
         }
         BlogUser queryUserByID = userDao.findUserById(userByToken.getId());
-        //清除旧头像
-        String originAvatar = queryUserByID.getAvatar();
-        if (!TextUtil.isEmpty(originAvatar)) {
-            imageService.deleteImage(originAvatar);
-        }
         queryUserByID.setUserName(blogUser.getUserName());
         queryUserByID.setAvatar(blogUser.getAvatar());
         queryUserByID.setSign(blogUser.getSign());
@@ -443,11 +438,6 @@ public class UserServiceImpl implements IUserService {
             return ResponseResult.FAIL("用户名不能为空");
         }
         BlogUser queryUserByID = userDao.findUserById(blogUser.getId());
-        //清除旧头像
-        String originAvatar = queryUserByID.getAvatar();
-        if (!TextUtil.isEmpty(originAvatar)) {
-            imageService.deleteImage(originAvatar);
-        }
         queryUserByID.setUserName(blogUser.getUserName());
         queryUserByID.setMajor(blogUser.getMajor());
         queryUserByID.setHubSite(blogUser.getHubSite());
