@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedisUtil {
 
-    @Resource
+    @Resource(name = "redisTemplate")
     private RedisTemplate redisTemplate;
 
     /**
@@ -75,6 +76,11 @@ public class RedisUtil {
                 redisTemplate.delete(CollectionUtils.arrayToList(key));
             }
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public Long dels(Collection<String> keys) {
+        return redisTemplate.delete(keys);
     }
 
     //============================String=============================
