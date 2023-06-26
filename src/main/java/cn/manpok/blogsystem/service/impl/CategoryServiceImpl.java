@@ -4,11 +4,10 @@ import cn.manpok.blogsystem.dao.ICategoryDao;
 import cn.manpok.blogsystem.pojo.BlogCategory;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ICategoryService;
-import cn.manpok.blogsystem.service.IImageService;
-import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.PageUtil;
-import cn.manpok.blogsystem.utils.Snowflake;
-import cn.manpok.blogsystem.utils.TextUtil;
+import cn.manpok.blogsystem.utils.*;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +21,7 @@ import java.util.List;
 
 @Service
 @Transactional
+@Slf4j
 public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
@@ -31,7 +31,10 @@ public class CategoryServiceImpl implements ICategoryService {
     private ICategoryDao categoryDao;
 
     @Autowired
-    private IImageService imageService;
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private Gson gson;
 
     @Override
     public ResponseResult addCategory(BlogCategory blogCategory) {
@@ -55,6 +58,8 @@ public class CategoryServiceImpl implements ICategoryService {
         blogCategory.setUpdateTime(new Date());
         //保存
         categoryDao.save(blogCategory);
+        //清除redis中的缓存
+        redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
         return ResponseResult.SUCCESS("添加文章分类成功");
     }
 
@@ -102,6 +107,8 @@ public class CategoryServiceImpl implements ICategoryService {
         queryCategory.setPinyin(blogCategory.getPinyin());
         queryCategory.setOrder(blogCategory.getOrder());
         queryCategory.setUpdateTime(new Date());
+        //清除redis中的缓存
+        redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
         return ResponseResult.SUCCESS("更新文章分类成功");
     }
 
@@ -112,12 +119,26 @@ public class CategoryServiceImpl implements ICategoryService {
             return ResponseResult.FAIL("文章分类不存在");
         }
         queryCategory.setState(Constants.STATE_FORBIDDEN);
+        //清除redis中的缓存
+        redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
         return ResponseResult.SUCCESS("删除文章分类成功");
     }
 
     @Override
     public ResponseResult getNormalCategories() {
-        List<BlogCategory> all = categoryDao.findAllCategoriesByState(Constants.STATE_NORMAL);
+        List<BlogCategory> all;
+        //从redis中取出缓存
+        String categoryListCache = (String) redisUtil.get(Constants.Category.KEY_CATEGORY_LIST_CACHE);
+        if (!TextUtil.isEmpty(categoryListCache)) {
+            log.info("从redis中取出文章分类列表缓存");
+            all = gson.fromJson(categoryListCache, new TypeToken<List<BlogCategory>>() {
+            }.getType());
+        } else {
+            all = categoryDao.findAllCategoriesByState(Constants.STATE_NORMAL);
+            categoryListCache = gson.toJson(all);
+            redisUtil.set(Constants.Category.KEY_CATEGORY_LIST_CACHE, categoryListCache, Constants.TimeValue.HOUR_2);
+            log.info("已缓存文章分类列表到redis");
+        }
         return ResponseResult.SUCCESS("获取所有分类成功").setData(all);
     }
 
@@ -128,6 +149,8 @@ public class CategoryServiceImpl implements ICategoryService {
             return ResponseResult.FAIL("文章分类不存在");
         }
         queryCategory.setState(Constants.STATE_NORMAL);
+        //清除redis中的缓存
+        redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
         return ResponseResult.SUCCESS("恢复文章分类成功");
     }
 }

@@ -98,6 +98,13 @@ public interface Constants {
     }
 
     /**
+     * 分类相关常量
+     */
+    interface Category {
+        String KEY_CATEGORY_LIST_CACHE = "key_category_list_cache";
+    }
+
+    /**
      * 标签相关常量
      */
     interface Label {
