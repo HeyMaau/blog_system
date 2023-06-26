@@ -444,6 +444,8 @@ public class UserServiceImpl implements IUserService {
         queryUserByID.setAvatar(blogUser.getAvatar());
         queryUserByID.setSign(blogUser.getSign());
         queryUserByID.setUpdateTime(new Date());
+        //清除redis中的管理员信息缓存
+        redisUtil.del(Constants.User.KEY_ADMIN_INFO_CACHE);
         return ResponseResult.SUCCESS("修改用户信息成功");
     }
 
@@ -704,10 +706,18 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ResponseResult getAdminInfo() {
-        BlogUserSimple adminInfo = userSimpleDao.findUserByRoles(Constants.User.ROLE_ADMIN);
-        if (adminInfo != null) {
-            return ResponseResult.SUCCESS().setData(adminInfo);
+        BlogUserSimple adminInfo;
+        //从redis中取出缓存
+        String adminInfoCache = (String) redisUtil.get(Constants.User.KEY_ADMIN_INFO_CACHE);
+        if (!TextUtil.isEmpty(adminInfoCache)) {
+            log.info("从redis中取出管理员信息缓存");
+            adminInfo = gson.fromJson(adminInfoCache, BlogUserSimple.class);
+        } else {
+            adminInfo = userSimpleDao.findUserByRoles(Constants.User.ROLE_ADMIN);
+            adminInfoCache = gson.toJson(adminInfo);
+            redisUtil.set(Constants.User.KEY_ADMIN_INFO_CACHE, adminInfoCache, Constants.TimeValue.HOUR_2);
+            log.info("已缓存管理员信息到redis");
         }
-        return ResponseResult.FAIL("获取管理员信息失败");
+        return ResponseResult.SUCCESS().setData(adminInfo);
     }
 }
