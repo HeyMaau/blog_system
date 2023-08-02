@@ -4,8 +4,8 @@ spring:
 
   datasource:
     username: root
-    password: root
-    url: jdbc:mysql://192.168.144.128:3306/blog?characterEncoding=utf8&useSSL=false
+    password: password
+    url: jdbc:mysql://mysql:3306/blog_system?characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_general_ci
@@ -15,12 +15,12 @@ spring:
       matching-strategy: ant_path_matcher
 
   jpa:
-    show-sql: true
+    show-sql: false
 
   redis:
-    host: 192.168.144.128
+    host: redis
     port: 6379
-    password: root
+    password: password
 
   servlet:
     multipart:
@@ -35,15 +35,20 @@ blog:
   system:
     image:
       # 图片本地保存路径
-      dir-path: D:\WorkSpace\Java\images
+      dir-path: /usr/src/myapp/images
       # 图片大小限制，单位b，大小2M
       max-size: 2097152
-      # 读取图片缓冲区带下
+      # 读取图片缓冲区带
       input-stream:
         buffer: 8192
+      # multi-avatar地址
+      multi-avatar-url: https://api.multiavatar.com/{1}.png?apikey={2}
+      # multi-avatar-api-key
+      multi-avatar-api-key: XXXX
     # solr地址
     solr:
-      path: http://192.168.238.129:8983/solr/ik_core
+      path: http://solr:8983/solr/blog_system_search_core
     #swagger开关
     swagger:
       enable: false
+    jwt-secret: XXXX

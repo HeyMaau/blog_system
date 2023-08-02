@@ -5,7 +5,7 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://192.168.144.128:3306/blog?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.144.130:3306/blog_system?characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_general_ci
@@ -18,9 +18,9 @@ spring:
     show-sql: true
 
   redis:
-    host: 192.168.144.128
+    host: 192.168.144.130
     port: 6379
-    password: root
+    password: pasword
 
   servlet:
     multipart:
@@ -47,8 +47,8 @@ blog:
       multi-avatar-api-key: XXXX
     # solr地址
     solr:
-      path: http://192.168.144.128:8983/solr/ik_core
+      path: http://192.168.144.130:8983/solr/blog_system_search_core
     #swagger开关
     swagger:
       enable: true
-
+    jwt-secret: XXXX
