@@ -1,0 +1,48 @@
+package cn.manpok.blogsystem.service.impl;
+
+import cn.manpok.blogsystem.dao.IThinkingDao;
+import cn.manpok.blogsystem.pojo.BlogThinking;
+import cn.manpok.blogsystem.pojo.BlogUser;
+import cn.manpok.blogsystem.response.ResponseResult;
+import cn.manpok.blogsystem.service.IThinkingService;
+import cn.manpok.blogsystem.service.IUserService;
+import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.Snowflake;
+import cn.manpok.blogsystem.utils.TextUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
+
+@Service
+public class ThinkingServiceImpl implements IThinkingService {
+
+    @Autowired
+    private IThinkingDao thinkingDao;
+
+    @Autowired
+    private Snowflake snowflake;
+
+    @Autowired
+    private IUserService userService;
+
+    @Transactional
+    @Override
+    public ResponseResult addThinking(BlogThinking thinking) {
+        //检查参数是否规范
+        if (TextUtil.isEmpty(thinking.getContent())) {
+            return ResponseResult.FAIL("想法内容为空");
+        }
+        //补充参数
+        thinking.setId(String.valueOf(snowflake.nextId()));
+        thinking.setState(Constants.STATE_NORMAL);
+        BlogUser user = userService.checkUserToken();
+        thinking.setUserId(user.getId());
+        Date date = new Date();
+        thinking.setCreateTime(date);
+        thinking.setUpdateTime(date);
+        thinkingDao.save(thinking);
+        return ResponseResult.SUCCESS("发布想法成功");
+    }
+}
