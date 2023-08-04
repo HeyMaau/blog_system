@@ -10,4 +10,6 @@ public interface IThinkingService {
     ResponseResult updateThinking(BlogThinking thinking);
 
     ResponseResult deleteThinking(String thinkingID);
+
+    ResponseResult deleteThinkingPhysically(String thinkingID);
 }

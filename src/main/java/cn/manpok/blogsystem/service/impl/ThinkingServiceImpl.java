@@ -77,4 +77,14 @@ public class ThinkingServiceImpl implements IThinkingService {
         queryThinking.setState(Constants.STATE_FORBIDDEN);
         return ResponseResult.SUCCESS("删除想法成功");
     }
+
+    @Transactional
+    @Override
+    public ResponseResult deleteThinkingPhysically(String thinkingID) {
+        int deleteCount = thinkingDao.deleteThinkingById(thinkingID);
+        if (deleteCount <= 0) {
+            return ResponseResult.FAIL("彻底删除想法失败");
+        }
+        return ResponseResult.SUCCESS("彻底删除想法成功");
+    }
 }

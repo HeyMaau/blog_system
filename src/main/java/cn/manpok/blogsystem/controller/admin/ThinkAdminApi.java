@@ -37,4 +37,10 @@ public class ThinkAdminApi {
         log.info("删除想法 ----> " + thinkingID);
         return thinkingService.deleteThinking(thinkingID);
     }
+
+    @DeleteMapping("/delete/{thinkingID}")
+    public ResponseResult deleteThinkingPhysically(@PathVariable("thinkingID") String thinkingID) {
+        log.info("彻底删除想法 ----> " + thinkingID);
+        return thinkingService.deleteThinkingPhysically(thinkingID);
+    }
 }
