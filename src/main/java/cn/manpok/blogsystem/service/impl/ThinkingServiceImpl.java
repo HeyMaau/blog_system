@@ -65,4 +65,16 @@ public class ThinkingServiceImpl implements IThinkingService {
         queryThinking.setUpdateTime(new Date());
         return ResponseResult.SUCCESS("修改想法成功");
     }
+
+    @Transactional
+    @Override
+    public ResponseResult deleteThinking(String thinkingID) {
+        //从数据库中查询
+        BlogThinking queryThinking = thinkingDao.findThinkingById(thinkingID);
+        if (queryThinking == null) {
+            return ResponseResult.FAIL("想法不存在");
+        }
+        queryThinking.setState(Constants.STATE_FORBIDDEN);
+        return ResponseResult.SUCCESS("删除想法成功");
+    }
 }

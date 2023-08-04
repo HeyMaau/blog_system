@@ -8,4 +8,6 @@ public interface IThinkingService {
     ResponseResult addThinking(BlogThinking thinking);
 
     ResponseResult updateThinking(BlogThinking thinking);
+
+    ResponseResult deleteThinking(String thinkingID);
 }
