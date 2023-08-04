@@ -45,4 +45,24 @@ public class ThinkingServiceImpl implements IThinkingService {
         thinkingDao.save(thinking);
         return ResponseResult.SUCCESS("发布想法成功");
     }
+
+    @Transactional
+    @Override
+    public ResponseResult updateThinking(BlogThinking thinking) {
+        //检查参数是否规范
+        if (TextUtil.isEmpty(thinking.getContent())) {
+            return ResponseResult.FAIL("想法内容为空");
+        }
+        //从数据库中查询
+        BlogThinking queryThinking = thinkingDao.findThinkingById(thinking.getId());
+        if (queryThinking == null) {
+            return ResponseResult.FAIL("想法不存在");
+        }
+        //更新数据
+        queryThinking.setTitle(thinking.getTitle());
+        queryThinking.setContent(thinking.getContent());
+        queryThinking.setImages(thinking.getImages());
+        queryThinking.setUpdateTime(new Date());
+        return ResponseResult.SUCCESS("修改想法成功");
+    }
 }
