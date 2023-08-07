@@ -122,6 +122,13 @@ public interface Constants {
     }
 
     /**
+     * 想法相关常量
+     */
+    interface Thinking {
+        String KEY_THINKINGS_CACHE = "KEY_THINKINGS_CACHE";
+    }
+
+    /**
      * 搜索相关常量
      */
     interface Search {

@@ -1,21 +1,29 @@
 package cn.manpok.blogsystem.service.impl;
 
 import cn.manpok.blogsystem.dao.IThinkingDao;
+import cn.manpok.blogsystem.pojo.BlogPaging;
 import cn.manpok.blogsystem.pojo.BlogThinking;
 import cn.manpok.blogsystem.pojo.BlogUser;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IThinkingService;
 import cn.manpok.blogsystem.service.IUserService;
-import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.Snowflake;
-import cn.manpok.blogsystem.utils.TextUtil;
+import cn.manpok.blogsystem.utils.*;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
+@Slf4j
 public class ThinkingServiceImpl implements IThinkingService {
 
     @Autowired
@@ -26,6 +34,12 @@ public class ThinkingServiceImpl implements IThinkingService {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
+
+    @Autowired
+    private Gson gson;
 
     @Transactional
     @Override
@@ -86,5 +100,31 @@ public class ThinkingServiceImpl implements IThinkingService {
             return ResponseResult.FAIL("彻底删除想法失败");
         }
         return ResponseResult.SUCCESS("彻底删除想法成功");
+    }
+
+    @Override
+    public ResponseResult getNormalThinkings(int page, int size) {
+        //检查分页参数
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        //从redis中取第一页的缓存
+        if (pageInfo.page == 1) {
+            String thinkingListCacheStr = (String) redisUtil.get(Constants.Thinking.KEY_THINKINGS_CACHE);
+            if (!TextUtil.isEmpty(thinkingListCacheStr)) {
+                BlogPaging<List<BlogThinking>> thinkingCache = gson.fromJson(thinkingListCacheStr, new TypeToken<BlogPaging<List<BlogThinking>>>() {
+                }.getType());
+                log.info("从redis中取出第一页想法");
+                return ResponseResult.SUCCESS("获取想法列表成功").setData(thinkingCache);
+            }
+        }
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "createTime");
+        Page<BlogThinking> pageData = thinkingDao.findAllThinkinsByState(Constants.STATE_NORMAL, pageable);
+        BlogPaging<List<BlogThinking>> paging = new BlogPaging<>(pageInfo.size, pageData.getTotalElements(), pageInfo.page, pageData.getContent());
+        //缓存第一页想法
+        if (pageInfo.page == 1) {
+            String thinkingListCacheStr = gson.toJson(paging);
+            redisUtil.set(Constants.Thinking.KEY_THINKINGS_CACHE, thinkingListCacheStr, Constants.TimeValue.HOUR_2);
+            log.info("已缓存第一页想法到redis");
+        }
+        return ResponseResult.SUCCESS("获取想法列表成功").setData(paging);
     }
 }
