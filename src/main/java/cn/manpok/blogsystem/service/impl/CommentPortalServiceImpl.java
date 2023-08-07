@@ -140,7 +140,7 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
             rootComment.setChildren(children);
         }
         //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
-        BlogPaging<List<BlogCommentSimple>> paging = new BlogPaging<>(pageInfo.size, rootComments.getTotalElements(), pageInfo.page, rootComments.getContent());
+        BlogPaging<List<BlogCommentSimple>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, rootComments.getTotalElements(), rootComments.getContent());
         //如果是第一页的评论，缓存到redis中
         if (pageInfo.page == 1) {
             redisUtil.set(Constants.Comment.KEY_COMMENTS_CACHE + articleID, gson.toJson(paging), Constants.TimeValue.HOUR_2);

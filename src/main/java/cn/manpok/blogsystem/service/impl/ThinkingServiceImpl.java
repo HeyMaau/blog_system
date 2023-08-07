@@ -118,13 +118,23 @@ public class ThinkingServiceImpl implements IThinkingService {
         }
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "createTime");
         Page<BlogThinking> pageData = thinkingDao.findAllThinkinsByState(Constants.STATE_NORMAL, pageable);
-        BlogPaging<List<BlogThinking>> paging = new BlogPaging<>(pageInfo.size, pageData.getTotalElements(), pageInfo.page, pageData.getContent());
+        BlogPaging<List<BlogThinking>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, pageData.getTotalElements(), pageData.getContent());
         //缓存第一页想法
         if (pageInfo.page == 1) {
             String thinkingListCacheStr = gson.toJson(paging);
             redisUtil.set(Constants.Thinking.KEY_THINKINGS_CACHE, thinkingListCacheStr, Constants.TimeValue.HOUR_2);
             log.info("已缓存第一页想法到redis");
         }
+        return ResponseResult.SUCCESS("获取想法列表成功").setData(paging);
+    }
+
+    @Override
+    public ResponseResult getAllThinkings(int page, int size) {
+        //检查分页参数
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "createTime");
+        Page<BlogThinking> pageData = thinkingDao.findAll(pageable);
+        BlogPaging<List<BlogThinking>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, pageData.getTotalElements(), pageData.getContent());
         return ResponseResult.SUCCESS("获取想法列表成功").setData(paging);
     }
 }

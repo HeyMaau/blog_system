@@ -30,7 +30,7 @@ public class BlogPaging<T> {
      */
     private T data;
 
-    public BlogPaging(int pageSize, long total, int currentPage, T data) {
+    public BlogPaging(int currentPage, int pageSize, long total, T data) {
         this.pageSize = pageSize;
         this.total = total;
         this.currentPage = currentPage;

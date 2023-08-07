@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RequestMapping("/admin/thinking")
 @PreAuthorize("@permission.admin")
-public class ThinkAdminApi {
+public class ThinkingAdminApi {
 
     @Autowired
     private IThinkingService thinkingService;
@@ -42,5 +42,11 @@ public class ThinkAdminApi {
     public ResponseResult deleteThinkingPhysically(@PathVariable("thinkingID") String thinkingID) {
         log.info("彻底删除想法 ----> " + thinkingID);
         return thinkingService.deleteThinkingPhysically(thinkingID);
+    }
+
+    @GetMapping("/list")
+    public ResponseResult getAllThinkings(@RequestParam("page") int page, @RequestParam("size") int size) {
+        log.info("管理平台获取想法列表");
+        return thinkingService.getAllThinkings(page, size);
     }
 }

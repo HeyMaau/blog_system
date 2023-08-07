@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @RequestMapping("/portal/thinking")
-public class ThinkPortalApi {
+public class ThinkingPortalApi {
 
     @Autowired
     private IThinkingService thinkingService;
 
-    @GetMapping
+    @GetMapping("/list")
     public ResponseResult getNormalThinkings(@RequestParam("page") int page, @RequestParam("size") int size) {
         log.info("门户获取想法列表");
         return thinkingService.getNormalThinkings(page, size);

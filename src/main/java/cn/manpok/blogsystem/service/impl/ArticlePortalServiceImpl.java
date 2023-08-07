@@ -117,7 +117,7 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
             article.setContent(text);
         }
         //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
-        BlogPaging<List<BlogArticle>> paging = new BlogPaging<>(pageInfo.size, all.getTotalElements(), pageInfo.page, all.getContent());
+        BlogPaging<List<BlogArticle>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, all.getTotalElements(), all.getContent());
         //如果是第一页的文章，缓存到redis中
         if (pageInfo.page == 1) {
             String key = Constants.Article.KEY_ARTICLE_LIST_CACHE;

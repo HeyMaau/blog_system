@@ -14,4 +14,6 @@ public interface IThinkingService {
     ResponseResult deleteThinkingPhysically(String thinkingID);
 
     ResponseResult getNormalThinkings(int page, int size);
+
+    ResponseResult getAllThinkings(int page, int size);
 }
