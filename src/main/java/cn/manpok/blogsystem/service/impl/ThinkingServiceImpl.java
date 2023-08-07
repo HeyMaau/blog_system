@@ -57,6 +57,8 @@ public class ThinkingServiceImpl implements IThinkingService {
         thinking.setCreateTime(date);
         thinking.setUpdateTime(date);
         thinkingDao.save(thinking);
+        //删除redis中的缓存
+        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
         return ResponseResult.SUCCESS("发布想法成功");
     }
 
@@ -77,6 +79,8 @@ public class ThinkingServiceImpl implements IThinkingService {
         queryThinking.setContent(thinking.getContent());
         queryThinking.setImages(thinking.getImages());
         queryThinking.setUpdateTime(new Date());
+        //删除redis中的缓存
+        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
         return ResponseResult.SUCCESS("修改想法成功");
     }
 
@@ -89,6 +93,8 @@ public class ThinkingServiceImpl implements IThinkingService {
             return ResponseResult.FAIL("想法不存在");
         }
         queryThinking.setState(Constants.STATE_FORBIDDEN);
+        //删除redis中的缓存
+        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
         return ResponseResult.SUCCESS("删除想法成功");
     }
 
@@ -99,6 +105,8 @@ public class ThinkingServiceImpl implements IThinkingService {
         if (deleteCount <= 0) {
             return ResponseResult.FAIL("彻底删除想法失败");
         }
+        //删除redis中的缓存
+        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
         return ResponseResult.SUCCESS("彻底删除想法成功");
     }
 
