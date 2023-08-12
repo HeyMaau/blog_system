@@ -1,9 +1,7 @@
 package cn.manpok.blogsystem.service.impl;
 
-import cn.manpok.blogsystem.dao.IArticleAdminDao;
-import cn.manpok.blogsystem.dao.IImageDao;
-import cn.manpok.blogsystem.pojo.BlogArticle;
-import cn.manpok.blogsystem.pojo.BlogImage;
+import cn.manpok.blogsystem.dao.*;
+import cn.manpok.blogsystem.pojo.*;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IImageService;
@@ -54,6 +52,15 @@ public class ImageServiceImpl implements IImageService {
 
     @Autowired
     private IArticleAdminDao articleAdminDao;
+
+    @Autowired
+    private ICategoryDao categoryDao;
+
+    @Autowired
+    private IUserDao userDao;
+
+    @Autowired
+    private IThinkingDao thinkingDao;
 
     @Autowired
     private HttpServletResponse response;
@@ -212,8 +219,9 @@ public class ImageServiceImpl implements IImageService {
     @Transactional
     @Async("asyncTaskServiceExecutor")
     @Scheduled(cron = "0 0 2 ? * 1")
-    public void removeArticleUnusedImages() {
+    public void removeUnusedImages() {
         Set<String> imageSet = new HashSet<>();
+        //找出文章中所有的图片
         List<BlogArticle> articleList = articleAdminDao.findAll();
         for (BlogArticle article : articleList) {
             Document document = Jsoup.parse(article.getContent());
@@ -224,8 +232,28 @@ public class ImageServiceImpl implements IImageService {
                 String id = src.substring(index + 1);
                 imageSet.add(id);
             }
+            imageSet.add(article.getCover());
         }
-        List<BlogImage> imageList = imageDao.findAllByType(Constants.Image.TYPE_ARTICLE_IMAGE);
+        //找出分类中所有的图片
+        List<BlogCategory> categoryList = categoryDao.findAll();
+        for (BlogCategory category : categoryList) {
+            imageSet.add(category.getCover());
+        }
+        //找出用户中所有的图片
+        List<BlogUser> userList = userDao.findAll();
+        for (BlogUser user : userList) {
+            imageSet.add(user.getAvatar());
+        }
+        //找出想法中所有的图片
+        List<BlogThinking> thinkingList = thinkingDao.findAll();
+        for (BlogThinking thinking : thinkingList) {
+            String thinkingImages = thinking.getImages();
+            if (thinkingImages != null) {
+                String[] images = thinking.getImages().split("-");
+                imageSet.addAll(Arrays.asList(images));
+            }
+        }
+        List<BlogImage> imageList = imageDao.findAll();
         for (BlogImage image : imageList) {
             if (!imageSet.contains(image.getId())) {
                 image.setState(Constants.STATE_FORBIDDEN);

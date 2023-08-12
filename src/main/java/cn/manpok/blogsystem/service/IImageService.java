@@ -14,7 +14,7 @@ public interface IImageService {
 
     void getCommentAvatar(String key);
 
-    void removeArticleUnusedImages();
+    void removeUnusedImages();
 
     void deleteImagePhysically();
 
