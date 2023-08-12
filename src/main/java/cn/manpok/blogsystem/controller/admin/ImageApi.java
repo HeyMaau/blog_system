@@ -1,6 +1,5 @@
 package cn.manpok.blogsystem.controller.admin;
 
-import cn.manpok.blogsystem.interceptors.CheckRepeatedCommit;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IImageService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +21,10 @@ public class ImageApi {
 
     /**
      * @param imageFile
-     * @param type
+     * @param type      0：非文章图片，1：文章图片
      * @param oldID     旧图片ID，用于删除图片
      * @return
      */
-    @CheckRepeatedCommit
     @PreAuthorize("@permission.admin")
     @PostMapping
     public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile,
@@ -46,6 +44,19 @@ public class ImageApi {
     public ResponseResult deleteImage(@PathVariable("imageID") String imageID) {
         log.info("删除图片 ----> " + imageID);
         return imageService.deleteImage(imageID);
+    }
+
+    /**
+     * 批量删除图片
+     *
+     * @param imageIDs
+     * @return
+     */
+    @DeleteMapping
+    @PreAuthorize("@permission.admin")
+    public ResponseResult deleteImages(@RequestBody String[] imageIDs) {
+        log.info("批量删除图片 ----> " + imageIDs);
+        return imageService.deleteImages(imageIDs);
     }
 
     /**

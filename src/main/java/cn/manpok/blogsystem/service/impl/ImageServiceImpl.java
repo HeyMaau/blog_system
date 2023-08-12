@@ -22,12 +22,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transactional;
 import java.io.File;
 import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
@@ -35,7 +35,6 @@ import java.util.*;
 
 @Service
 @Slf4j
-@Transactional
 public class ImageServiceImpl implements IImageService {
 
     @Value("${blog.system.image.dir-path}")
@@ -71,6 +70,7 @@ public class ImageServiceImpl implements IImageService {
     private SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.Image.DATE_FORMAT);
 
     @Override
+    @Transactional
     public ResponseResult uploadImage(MultipartFile imageFile, String type, String oldID) {
         //判断文件是否存在
         if (imageFile == null) {
@@ -178,6 +178,7 @@ public class ImageServiceImpl implements IImageService {
     }
 
     @Override
+    @Transactional
     public ResponseResult deleteImage(String imageID) {
         BlogImage queryImage = imageDao.findImageById(imageID);
         if (queryImage == null) {
@@ -208,6 +209,7 @@ public class ImageServiceImpl implements IImageService {
     }
 
     @Override
+    @Transactional
     @Async("asyncTaskServiceExecutor")
     @Scheduled(cron = "0 0 2 ? * 1")
     public void removeArticleUnusedImages() {
@@ -233,6 +235,7 @@ public class ImageServiceImpl implements IImageService {
     }
 
     @Override
+    @Transactional
     @Async("asyncTaskServiceExecutor")
     @Scheduled(cron = "0 0 4 ? * 1")
     public void deleteImagePhysically() {
@@ -262,6 +265,18 @@ public class ImageServiceImpl implements IImageService {
         } else {
             log.info("已清除" + count + "张本地图片");
         }
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult deleteImages(String[] imageIDs) {
+        List<String> imageIDList = Arrays.asList(imageIDs);
+        List<BlogImage> queryImages = imageDao.findAllById(imageIDList);
+        for (BlogImage image : queryImages) {
+            image.setState(Constants.STATE_FORBIDDEN);
+            log.info("标记文章图片为删除状态 ----> " + image.getId());
+        }
+        return ResponseResult.SUCCESS("批量删除图片成功");
     }
 
     /**

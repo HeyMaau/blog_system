@@ -17,4 +17,6 @@ public interface IImageService {
     void removeArticleUnusedImages();
 
     void deleteImagePhysically();
+
+    ResponseResult deleteImages(String[] imageIDs);
 }
