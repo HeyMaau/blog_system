@@ -10,8 +10,6 @@ public interface IImageDao extends JpaRepository<BlogImage, String>, JpaSpecific
 
     BlogImage findImageById(String id);
 
-    List<BlogImage> findAllByType(String type);
-
     List<BlogImage> findAllByState(String state);
 
     int deleteAllByState(String state);

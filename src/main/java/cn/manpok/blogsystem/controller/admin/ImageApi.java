@@ -21,16 +21,12 @@ public class ImageApi {
 
     /**
      * @param imageFile
-     * @param type      0：非文章图片，1：文章图片
-     * @param oldID     旧图片ID，用于删除图片
      * @return
      */
     @PreAuthorize("@permission.admin")
     @PostMapping
-    public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile,
-                                      @RequestParam(value = "type", required = false, defaultValue = "0") String type,
-                                      @RequestParam(value = "old", required = false) String oldID) {
-        return imageService.uploadImage(imageFile, type, oldID);
+    public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile) {
+        return imageService.uploadImage(imageFile);
     }
 
     /**

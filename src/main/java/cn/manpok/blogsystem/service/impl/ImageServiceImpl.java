@@ -7,7 +7,6 @@ import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IImageService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.Snowflake;
-import cn.manpok.blogsystem.utils.TextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -78,7 +77,7 @@ public class ImageServiceImpl implements IImageService {
 
     @Override
     @Transactional
-    public ResponseResult uploadImage(MultipartFile imageFile, String type, String oldID) {
+    public ResponseResult uploadImage(MultipartFile imageFile) {
         //判断文件是否存在
         if (imageFile == null) {
             return ResponseResult.FAIL("图片为空");
@@ -92,10 +91,6 @@ public class ImageServiceImpl implements IImageService {
         long size = imageFile.getSize();
         if (size > maxImageSize) {
             return ResponseResult.FAIL("图片大小超过2MB");
-        }
-        //删除旧的图片
-        if (!TextUtil.isEmpty(oldID)) {
-            deleteImage(oldID);
         }
         //把文件写到磁盘上
         //返回给前端的结果
@@ -124,7 +119,6 @@ public class ImageServiceImpl implements IImageService {
         image.setState(Constants.STATE_NORMAL);
         image.setCreateTime(currentDate);
         image.setUpdateTime(currentDate);
-        image.setType(type);
         imageDao.save(image);
         //写入
         try {

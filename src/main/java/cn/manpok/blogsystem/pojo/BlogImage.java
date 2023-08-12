@@ -22,8 +22,6 @@ public class BlogImage {
     private Date updateTime;
     @Column(name = "name")
     private String name;
-    @Column(name = "type")
-    private String type;
 
     public String getId() {
         return id;
@@ -73,14 +71,6 @@ public class BlogImage {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     @Override
     public String toString() {
         return "BlogImage{" +
@@ -90,7 +80,6 @@ public class BlogImage {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
                 '}';
     }
 }
