@@ -16,9 +16,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -137,11 +140,26 @@ public class ThinkingServiceImpl implements IThinkingService {
     }
 
     @Override
-    public ResponseResult getAllThinkings(int page, int size) {
+    public ResponseResult getAllThinkings(int page, int size, String keyword, String state) {
         //检查分页参数
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        Specification<BlogThinking> specification = (root, query, criteriaBuilder) -> {
+            List<Predicate> predicateList = new ArrayList<>();
+            if (!TextUtil.isEmpty(keyword)) {
+                Predicate titlePre = criteriaBuilder.like(root.get("title"), "%" + keyword + "%");
+                Predicate contentPre = criteriaBuilder.like(root.get("content"), "%" + keyword + "%");
+                Predicate keywordPre = criteriaBuilder.or(titlePre, contentPre);
+                predicateList.add(keywordPre);
+            }
+            if (!TextUtil.isEmpty(state)) {
+                Predicate statePre = criteriaBuilder.equal(root.get("state"), state);
+                predicateList.add(statePre);
+            }
+            Predicate[] predicates = predicateList.toArray(new Predicate[0]);
+            return criteriaBuilder.and(predicates);
+        };
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "createTime");
-        Page<BlogThinking> pageData = thinkingDao.findAll(pageable);
+        Page<BlogThinking> pageData = thinkingDao.findAll(specification, pageable);
         BlogPaging<List<BlogThinking>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, pageData.getTotalElements(), pageData.getContent());
         return ResponseResult.SUCCESS("获取想法列表成功").setData(paging);
     }

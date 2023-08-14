@@ -45,8 +45,11 @@ public class ThinkingAdminApi {
     }
 
     @GetMapping("/list")
-    public ResponseResult getAllThinkings(@RequestParam("page") int page, @RequestParam("size") int size) {
+    public ResponseResult getAllThinkings(@RequestParam("page") int page,
+                                          @RequestParam("size") int size,
+                                          @RequestParam(value = "keyword", required = false) String keyword,
+                                          @RequestParam(value = "state", required = false) String state) {
         log.info("管理平台获取想法列表");
-        return thinkingService.getAllThinkings(page, size);
+        return thinkingService.getAllThinkings(page, size, keyword, state);
     }
 }
