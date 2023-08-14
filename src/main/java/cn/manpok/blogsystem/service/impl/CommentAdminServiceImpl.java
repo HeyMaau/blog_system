@@ -3,6 +3,7 @@ package cn.manpok.blogsystem.service.impl;
 import cn.manpok.blogsystem.dao.ICommentAdminDao;
 import cn.manpok.blogsystem.dao.ICommentPortalDao;
 import cn.manpok.blogsystem.pojo.BlogComment;
+import cn.manpok.blogsystem.pojo.BlogPaging;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.ICommentAdminService;
@@ -18,11 +19,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -99,19 +99,24 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
     }
 
     @Override
-    public ResponseResult getComments(int page, int size, String state) {
+    public ResponseResult getComments(int page, int size, String state, String type) {
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.DESC, "createTime");
-        Page<BlogComment> all = commentAdminDao.findAll(new Specification<BlogComment>() {
-            @Override
-            public Predicate toPredicate(Root<BlogComment> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                if (!TextUtil.isEmpty(state)) {
-                    return criteriaBuilder.equal(root.get("state"), state);
-                }
-                return null;
+        Page<BlogComment> all = commentAdminDao.findAll((Specification<BlogComment>) (root, query, criteriaBuilder) -> {
+            List<Predicate> predicateList = new ArrayList<>();
+            if (!TextUtil.isEmpty(state)) {
+                Predicate statePre = criteriaBuilder.equal(root.get("state"), state);
+                predicateList.add(statePre);
             }
+            if (!TextUtil.isEmpty(type)) {
+                Predicate typePre = criteriaBuilder.equal(root.get("type"), type);
+                predicateList.add(typePre);
+            }
+            Predicate[] predicates = predicateList.toArray(new Predicate[0]);
+            return criteriaBuilder.and(predicates);
         }, pageable);
-        return ResponseResult.SUCCESS("获取评论列表成功").setData(all);
+        BlogPaging<List<BlogComment>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, all.getTotalElements(), all.getContent());
+        return ResponseResult.SUCCESS("获取评论列表成功").setData(paging);
     }
 
     @Override

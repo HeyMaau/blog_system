@@ -36,6 +36,8 @@ public class BlogComment {
     private String replyUserName;
     @Column(name = "user_email")
     private String userEmail;
+    @Column(name = "type")
+    private String type;
 
 
     public String getId() {
@@ -153,6 +155,14 @@ public class BlogComment {
         this.userEmail = userEmail;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "BlogComment{" +
@@ -169,6 +179,7 @@ public class BlogComment {
                 ", replyCommentId='" + replyCommentId + '\'' +
                 ", replyUserName='" + replyUserName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
