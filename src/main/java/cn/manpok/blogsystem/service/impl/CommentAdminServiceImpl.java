@@ -56,13 +56,15 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
             case Constants.STATE_NORMAL -> {
                 queryComment.setState(Constants.Comment.STATE_TOP);
                 //清除redis中的缓存
-                redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
+                redisUtil.del(Constants.Comment.KEY_ARTICLE_COMMENTS_CACHE + queryComment.getArticleId());
+                redisUtil.del(Constants.Comment.KEY_THINKING_COMMENTS_CACHE + queryComment.getArticleId());
                 return ResponseResult.SUCCESS("置顶评论成功");
             }
             case Constants.Comment.STATE_TOP -> {
                 queryComment.setState(Constants.STATE_NORMAL);
                 //清除redis中的缓存
-                redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
+                redisUtil.del(Constants.Comment.KEY_ARTICLE_COMMENTS_CACHE + queryComment.getArticleId());
+                redisUtil.del(Constants.Comment.KEY_THINKING_COMMENTS_CACHE + queryComment.getArticleId());
                 return ResponseResult.SUCCESS("取消置顶评论成功");
             }
             default -> {
@@ -79,7 +81,8 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
         }
         queryComment.setState(Constants.STATE_FORBIDDEN);
         //清除redis中的缓存
-        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
+        redisUtil.del(Constants.Comment.KEY_ARTICLE_COMMENTS_CACHE + queryComment.getArticleId());
+        redisUtil.del(Constants.Comment.KEY_THINKING_COMMENTS_CACHE + queryComment.getArticleId());
         return ResponseResult.SUCCESS("通过状态删除评论成功");
     }
 
@@ -94,7 +97,8 @@ public class CommentAdminServiceImpl implements ICommentAdminService {
             return ResponseResult.FAIL("删除评论失败");
         }
         //清除redis中的缓存
-        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
+        redisUtil.del(Constants.Comment.KEY_ARTICLE_COMMENTS_CACHE + queryComment.getArticleId());
+        redisUtil.del(Constants.Comment.KEY_THINKING_COMMENTS_CACHE + queryComment.getArticleId());
         return ResponseResult.SUCCESS("删除评论成功");
     }
 

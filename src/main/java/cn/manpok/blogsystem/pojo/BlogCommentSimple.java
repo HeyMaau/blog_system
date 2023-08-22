@@ -32,6 +32,8 @@ public class BlogCommentSimple {
     private String replyUserName;
     @Transient
     private List<BlogCommentSimple> children;
+    @Column(name = "type")
+    private String type;
 
     public String getId() {
         return id;
@@ -139,6 +141,14 @@ public class BlogCommentSimple {
         this.children = children;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "BlogCommentSimple{" +
@@ -154,6 +164,7 @@ public class BlogCommentSimple {
                 ", replyCommentId='" + replyCommentId + '\'' +
                 ", replyUserName='" + replyUserName + '\'' +
                 ", children=" + children +
+                ", type='" + type + '\'' +
                 '}';
     }
 }

@@ -117,8 +117,11 @@ public interface Constants {
      * 评论相关常量
      */
     interface Comment {
+        String TYPE_ARTICLE = "0";
+        String TYPE_THINKING = "1";
         String STATE_TOP = "2";
-        String KEY_COMMENTS_CACHE = "key_comments_cache_";
+        String KEY_ARTICLE_COMMENTS_CACHE = "key_article_comments_cache_";
+        String KEY_THINKING_COMMENTS_CACHE = "key_thinking_comments_cache_";
     }
 
     /**

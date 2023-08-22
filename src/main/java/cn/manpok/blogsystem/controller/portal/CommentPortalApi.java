@@ -38,11 +38,11 @@ public class CommentPortalApi {
      * @param commentID
      * @return
      */
-    @DeleteMapping("/{commentID}")
+    /*@DeleteMapping("/{commentID}")
     public ResponseResult deleteComment(@PathVariable("commentID") String commentID) {
         log.info("删除评论 ----> " + commentID);
         return commentPortalService.deleteCommend(commentID);
-    }
+    }*/
 
     /**
      * 修改评论
@@ -50,22 +50,23 @@ public class CommentPortalApi {
      * @param blogComment
      * @return
      */
-    @PutMapping
+    /*@PutMapping
     public ResponseResult updateComment(@RequestBody BlogComment blogComment) {
         log.info("修改评论 ----> " + blogComment.toString());
         return commentPortalService.updateComment(blogComment);
-    }
+    }*/
 
     /**
-     * 门户获取文章下的所有评论
+     * 门户获取文章或想法下的所有评论
      *
      * @param articleID
      * @return
      */
-    @GetMapping("/list/{articleID}")
+    @GetMapping("/list/{type}/{articleID}")
     public ResponseResult getCommentsByArticle(@PathVariable("articleID") String articleID,
+                                               @PathVariable("type") String type,
                                                @RequestParam("page") int page, @RequestParam("size") int size) {
-        log.info("门户获取文章下的所有评论 ----> " + articleID);
-        return commentPortalService.getComments(articleID, page, size);
+        log.info("门户获取文章或想法的所有评论 ----> " + articleID);
+        return commentPortalService.getComments(articleID, type, page, size);
     }
 }

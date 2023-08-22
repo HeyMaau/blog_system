@@ -3,9 +3,9 @@ package cn.manpok.blogsystem.service.impl;
 import cn.manpok.blogsystem.dao.IArticleAdminSimpleDao;
 import cn.manpok.blogsystem.dao.ICommentPortalDao;
 import cn.manpok.blogsystem.dao.ICommentSimplePortalDao;
+import cn.manpok.blogsystem.dao.IThinkingDao;
 import cn.manpok.blogsystem.pojo.*;
 import cn.manpok.blogsystem.response.ResponseResult;
-import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.ICommentPortalService;
 import cn.manpok.blogsystem.service.IUserService;
 import cn.manpok.blogsystem.utils.*;
@@ -55,6 +55,9 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
     @Autowired
     private ICommentSimplePortalDao commentSimplePortalDao;
 
+    @Autowired
+    private IThinkingDao thinkingDao;
+
     @Override
     public ResponseResult addComment(BlogComment blogComment) {
         //检查评论的参数，必填项：文章ID，内容
@@ -62,9 +65,20 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         if (TextUtil.isEmpty(articleID)) {
             return ResponseResult.FAIL("文章ID为空");
         }
-        BlogArticleSimple articleSimple = articleAdminSimpleDao.findArticleSimpleById(articleID);
-        if (articleSimple == null) {
-            return ResponseResult.FAIL("文章不存在");
+        switch (blogComment.getType()) {
+            case Constants.Comment.TYPE_ARTICLE:
+                BlogArticleSimple articleSimple = articleAdminSimpleDao.findArticleSimpleById(articleID);
+                if (articleSimple == null) {
+                    return ResponseResult.FAIL("文章不存在");
+                }
+                break;
+            case Constants.Comment.TYPE_THINKING:
+                BlogThinking thinking = thinkingDao.findThinkingById(articleID);
+                if (thinking == null) {
+                    return ResponseResult.FAIL("想法不存在");
+                }
+                break;
+            default:
         }
         if (TextUtil.isEmpty(blogComment.getContent())) {
             return ResponseResult.FAIL("评论内容为空");
@@ -74,6 +88,9 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         }
         if (TextUtil.isEmpty(blogComment.getUserName())) {
             return ResponseResult.FAIL("昵称为空");
+        }
+        if (!blogComment.getType().equals(Constants.Comment.TYPE_ARTICLE) && !blogComment.getType().equals(Constants.Comment.TYPE_THINKING)) {
+            return ResponseResult.FAIL("评论类型不正确");
         }
         //补充数据
         blogComment.setId(String.valueOf(snowflake.nextId()));
@@ -85,11 +102,19 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         blogComment.setUpdateTime(date);
         commentPortalDao.save(blogComment);
         //清除redis中的缓存
-        redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + blogComment.getArticleId());
+        switch (blogComment.getType()) {
+            case Constants.Comment.TYPE_ARTICLE:
+                redisUtil.del(Constants.Comment.KEY_ARTICLE_COMMENTS_CACHE + blogComment.getArticleId());
+                break;
+            case Constants.Comment.TYPE_THINKING:
+                redisUtil.del(Constants.Comment.KEY_THINKING_COMMENTS_CACHE + blogComment.getArticleId());
+                break;
+            default:
+        }
         return ResponseResult.SUCCESS("发表评论成功");
     }
 
-    @Override
+    /*@Override
     public ResponseResult deleteCommend(String commentID) {
         //数据库查询对应的评论
         BlogComment queryComment = commentPortalDao.findCommentById(commentID);
@@ -106,13 +131,22 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         //清除redis中的缓存
         redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + queryComment.getArticleId());
         return ResponseResult.SUCCESS("删除评论成功");
-    }
+    }*/
 
     @Override
-    public ResponseResult getComments(String articleID, int page, int size) {
+    public ResponseResult getComments(String articleID, String type, int page, int size) {
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         if (pageInfo.page == 1) {
-            String commentsStr = (String) redisUtil.get(Constants.Comment.KEY_COMMENTS_CACHE + articleID);
+            String commentsStr = null;
+            switch (type) {
+                case Constants.Comment.TYPE_ARTICLE:
+                    commentsStr = (String) redisUtil.get(Constants.Comment.KEY_ARTICLE_COMMENTS_CACHE + articleID);
+                    break;
+                case Constants.Comment.TYPE_THINKING:
+                    commentsStr = (String) redisUtil.get(Constants.Comment.KEY_THINKING_COMMENTS_CACHE + articleID);
+                    break;
+                default:
+            }
             if (!TextUtil.isEmpty(commentsStr)) {
                 BlogPaging<List<BlogCommentSimple>> commentsCache = gson.fromJson(commentsStr, new TypeToken<BlogPaging<List<BlogCommentSimple>>>() {
                 }.getType());
@@ -130,8 +164,9 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
             public Predicate toPredicate(Root<BlogCommentSimple> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 Predicate statePredicate = criteriaBuilder.notEqual(root.get("state"), Constants.STATE_FORBIDDEN);
                 Predicate articlePredicate = criteriaBuilder.equal(root.get("articleId"), articleID);
+                Predicate typePre = criteriaBuilder.equal(root.get("type"), type);
                 Predicate parentCommentPredicate = criteriaBuilder.isNull(root.get("parentCommentId"));
-                return criteriaBuilder.and(statePredicate, articlePredicate, parentCommentPredicate);
+                return criteriaBuilder.and(statePredicate, articlePredicate, parentCommentPredicate, typePre);
             }
         }, pageable);
         //根据根评论找出所属的子评论（回复评论）
@@ -143,13 +178,21 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         BlogPaging<List<BlogCommentSimple>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, rootComments.getTotalElements(), rootComments.getContent());
         //如果是第一页的评论，缓存到redis中
         if (pageInfo.page == 1) {
-            redisUtil.set(Constants.Comment.KEY_COMMENTS_CACHE + articleID, gson.toJson(paging), Constants.TimeValue.HOUR_2);
+            switch (type) {
+                case Constants.Comment.TYPE_ARTICLE:
+                    redisUtil.set(Constants.Comment.KEY_ARTICLE_COMMENTS_CACHE + articleID, gson.toJson(paging), Constants.TimeValue.HOUR_2);
+                    break;
+                case Constants.Comment.TYPE_THINKING:
+                    redisUtil.set(Constants.Comment.KEY_THINKING_COMMENTS_CACHE + articleID, gson.toJson(paging), Constants.TimeValue.HOUR_2);
+                    break;
+                default:
+            }
             log.info("文章第一页评论已缓存到redis ----> " + articleID);
         }
         return ResponseResult.SUCCESS("获取所有评论成功").setData(paging);
     }
 
-    @Override
+    /*@Override
     public ResponseResult updateComment(BlogComment blogComment) {
         //查询数据库
         BlogComment queryComment = commentPortalDao.findCommentById(blogComment.getId());
@@ -173,5 +216,5 @@ public class CommentPortalServiceImpl implements ICommentPortalService {
         //清除redis中的缓存
         redisUtil.del(Constants.Comment.KEY_COMMENTS_CACHE + blogComment.getArticleId());
         return ResponseResult.SUCCESS("修改评论成功");
-    }
+    }*/
 }
