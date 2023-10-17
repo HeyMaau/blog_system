@@ -36,6 +36,8 @@ blog:
     image:
       # 图片本地保存路径
       dir-path: /usr/src/myapp/images
+      #存多一份给nginx用
+      dir-path-nginx: /usr/src/myapp/images_nginx
       # 图片大小限制，单位b，大小2M
       max-size: 2097152
       # 读取图片缓冲区带
@@ -45,6 +47,8 @@ blog:
       multi-avatar-url: https://api.multiavatar.com/{1}.png?apikey={2}
       # multi-avatar-api-key
       multi-avatar-api-key: t3JID2jWxkVU5X
+      # 图片重定向地址
+      redirect-base-url: http://test.static.manpok.top/image/
     # solr地址
     solr:
       path: http://solr:8983/solr/blog_system_search_core

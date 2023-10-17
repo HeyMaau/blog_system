@@ -8,6 +8,7 @@ import cn.manpok.blogsystem.service.IImageService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.Snowflake;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -26,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -42,6 +43,12 @@ public class ImageServiceImpl implements IImageService {
 
     @Value("${blog.system.image.input-stream.buffer}")
     private int bufferSize;
+
+    @Value("${blog.system.image.dir-path-nginx}")
+    private String imagePath4Nginx;
+
+    @Value("${blog.system.image.redirect-base-url}")
+    private String imageRedirectBaseUrl;
 
     @Autowired
     private Snowflake snowflake;
@@ -105,10 +112,14 @@ public class ImageServiceImpl implements IImageService {
         String imageFilePath = imagePath + File.separator + dateFormatStr + File.separator + contentType;
         String fileName = id + "." + contentType;
         File file = new File(imageFilePath, fileName);
+        File file4Nginx = new File(imagePath4Nginx, fileName);
         //创建目录
         File parentFile = file.getParentFile();
         if (!parentFile.exists()) {
             parentFile.mkdirs();
+        }
+        if (!file4Nginx.getParentFile().exists()) {
+            file4Nginx.getParentFile().mkdirs();
         }
         //写入数据库
         BlogImage image = new BlogImage();
@@ -123,6 +134,7 @@ public class ImageServiceImpl implements IImageService {
         //写入
         try {
             imageFile.transferTo(file);
+            FileUtils.copyFile(file, file4Nginx);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseResult.FAIL(ResponseState.IMAGE_UPLOAD_FAILED);
@@ -143,31 +155,11 @@ public class ImageServiceImpl implements IImageService {
             log.error("图片不存在 ----> " + imageID);
             return;
         }
-        //获取图片相对路径
-        String imageUrl = queryImage.getUrl();
-        //根据主机存放路径，组成图片的全路径
-        String imageFilePath = imagePath + File.separator + imageUrl;
-        File file = new File(imageFilePath);
-        if (!file.exists()) {
-            handleImageNotFound();
-            log.error("图片本地文件不存在 ----> " + imageID);
-            return;
-        }
-        //获取文件后缀名
-        int index = imageUrl.lastIndexOf(".");
-        String type = imageUrl.substring(index + 1);
-        //根据后缀名设置contentType
-        String contentType = getContentType(type);
-        response.setContentType(contentType);
-        //输出流写出
-        try (FileInputStream inputStream = new FileInputStream(file);
-             ServletOutputStream outputStream = response.getOutputStream()) {
-            byte[] buffer = new byte[bufferSize];
-            int len;
-            while ((len = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, len);
-            }
-        } catch (Exception e) {
+        String url = queryImage.getUrl();
+        String fileName = url.substring(url.lastIndexOf(File.separator) + 1);
+        try {
+            response.sendRedirect(imageRedirectBaseUrl + fileName);
+        } catch (IOException e) {
             log.error("输出图片失败");
             e.printStackTrace();
         }
@@ -278,6 +270,19 @@ public class ImageServiceImpl implements IImageService {
                 }
                 if (grandParent.list() == null || grandParent.list().length == 0) {
                     grandParent.delete();
+                }
+            }
+
+            //删除为nginx准备的文件夹下的图片
+            String url = image.getUrl();
+            String fileName = url.substring(url.lastIndexOf(File.separator) + 1);
+            File file4Nginx = new File(imagePath4Nginx, fileName);
+            if (file4Nginx.exists()) {
+                boolean delete = file4Nginx.delete();
+                if (delete) {
+                    log.info("删除Nginx本地图片成功 ----> " + image.getId());
+                } else {
+                    log.error("删除Nginx本地图片失败 ----> " + image.getId());
                 }
             }
         }
