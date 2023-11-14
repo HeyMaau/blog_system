@@ -20,6 +20,8 @@ public class ImageApi {
     private IImageService imageService;
 
     /**
+     * 上传图片无水印
+     *
      * @param imageFile
      * @return
      */
@@ -27,6 +29,18 @@ public class ImageApi {
     @PostMapping
     public ResponseResult uploadImage(@RequestParam("file") MultipartFile imageFile) {
         return imageService.uploadImage(imageFile);
+    }
+
+    /**
+     * 上传图片加水印
+     *
+     * @param imageFile
+     * @return
+     */
+    @PreAuthorize("@permission.admin")
+    @PostMapping("/watermark")
+    public ResponseResult uploadImageWithWatermark(@RequestParam("file") MultipartFile imageFile) {
+        return imageService.uploadImageWithWatermark(imageFile);
     }
 
     /**

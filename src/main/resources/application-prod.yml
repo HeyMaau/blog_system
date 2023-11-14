@@ -49,6 +49,18 @@ blog:
       multi-avatar-api-key: XXXX
       # 图片重定向地址
       redirect-base-url: https://static.manpok.top/image/
+      # 水印相关
+      watermark:
+        # 原始图片水印地址
+        originFilePath: /usr/src/myapp/images/watermark.png
+        # 临时图片水印地址
+        tempFilePath: /usr/src/myapp/images
+        # 临时图片水印文件名
+        tempFileName: temp_watermark_
+        # 文字水印字号
+        font-size: 20
+        # 文字水印文本
+        text: 卧卷@ manpok
     # solr地址
     solr:
       path: http://solr:8983/solr/blog_system_search_core
