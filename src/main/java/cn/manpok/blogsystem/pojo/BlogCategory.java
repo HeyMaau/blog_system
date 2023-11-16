@@ -14,12 +14,8 @@ public class BlogCategory {
     private String id;
     @Column(name = "name")
     private String name;
-    @Column(name = "pinyin")
-    private String pinyin;
     @Column(name = "description")
     private String description;
-    @Column(name = "`order`")
-    private long order;
     @Column(name = "`state`")
     private String state;
     @Column(name = "create_time")
@@ -48,30 +44,12 @@ public class BlogCategory {
     }
 
 
-    public String getPinyin() {
-        return pinyin;
-    }
-
-    public void setPinyin(String pinyin) {
-        this.pinyin = pinyin;
-    }
-
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-
-    public long getOrder() {
-        return order;
-    }
-
-    public void setOrder(long order) {
-        this.order = order;
     }
 
 
@@ -112,9 +90,7 @@ public class BlogCategory {
         return "BlogCategory{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", pinyin='" + pinyin + '\'' +
                 ", description='" + description + '\'' +
-                ", order=" + order +
                 ", state='" + state + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +

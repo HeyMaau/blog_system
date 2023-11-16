@@ -45,9 +45,6 @@ public class CategoryServiceImpl implements ICategoryService {
         if (TextUtil.isEmpty(blogCategory.getDescription())) {
             return ResponseResult.FAIL("分类描述为空");
         }
-        if (TextUtil.isEmpty(blogCategory.getPinyin())) {
-            return ResponseResult.FAIL("分类名称拼音为空");
-        }
         if (TextUtil.isEmpty(blogCategory.getCover())) {
             return ResponseResult.FAIL("分类封面为空");
         }
@@ -91,9 +88,6 @@ public class CategoryServiceImpl implements ICategoryService {
         if (TextUtil.isEmpty(blogCategory.getDescription())) {
             return ResponseResult.FAIL("分类描述为空");
         }
-        if (TextUtil.isEmpty(blogCategory.getPinyin())) {
-            return ResponseResult.FAIL("分类名称拼音为空");
-        }
         if (TextUtil.isEmpty(blogCategory.getCover())) {
             return ResponseResult.FAIL("分类封面为空");
         }
@@ -104,8 +98,6 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         queryCategory.setName(blogCategory.getName());
         queryCategory.setDescription(blogCategory.getDescription());
-        queryCategory.setPinyin(blogCategory.getPinyin());
-        queryCategory.setOrder(blogCategory.getOrder());
         queryCategory.setUpdateTime(new Date());
         //清除redis中的缓存
         redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
