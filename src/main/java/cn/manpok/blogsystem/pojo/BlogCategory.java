@@ -24,6 +24,8 @@ public class BlogCategory {
     private Date updateTime;
     @Column(name = "cover")
     private String cover;
+    @Column(name = "tag_color")
+    private String tagColor;
 
 
     public String getId() {
@@ -85,6 +87,14 @@ public class BlogCategory {
         this.cover = cover;
     }
 
+    public String getTagColor() {
+        return tagColor;
+    }
+
+    public void setTagColor(String tagColor) {
+        this.tagColor = tagColor;
+    }
+
     @Override
     public String toString() {
         return "BlogCategory{" +
@@ -95,6 +105,7 @@ public class BlogCategory {
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", cover='" + cover + '\'' +
+                ", tagColor='" + tagColor + '\'' +
                 '}';
     }
 }

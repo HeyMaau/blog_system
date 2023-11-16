@@ -98,6 +98,8 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         queryCategory.setName(blogCategory.getName());
         queryCategory.setDescription(blogCategory.getDescription());
+        queryCategory.setCover(blogCategory.getCover());
+        queryCategory.setTagColor(blogCategory.getTagColor());
         queryCategory.setUpdateTime(new Date());
         //清除redis中的缓存
         redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
