@@ -103,6 +103,8 @@ public class CategoryServiceImpl implements ICategoryService {
         queryCategory.setUpdateTime(new Date());
         //清除redis中的缓存
         redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
+        //redis中的文章缓存也要清除
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
         return ResponseResult.SUCCESS("更新文章分类成功");
     }
 

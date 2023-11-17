@@ -95,7 +95,7 @@ public interface Constants {
         String TYPE_MARKDOWN = "1";
         String KEY_ARTICLE_CACHE = "key_article_cache_";
         String KEY_VIEW_COUNT_CACHE = "key_view_count_cache_";
-        String KEY_ARTICLE_LIST_CACHE = "key_article_list_cache_";
+        String KEY_ARTICLE_LIST_CACHE = "key_article_list_cache";
     }
 
     /**
