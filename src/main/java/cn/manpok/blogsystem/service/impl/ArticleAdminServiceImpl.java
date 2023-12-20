@@ -150,8 +150,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
             //条件一：当关键词不为空时，模糊匹配标题、内容、摘要，用or连接
             if (!TextUtil.isEmpty(keywords)) {
                 Predicate title = criteriaBuilder.like(root.get("title"), "%" + keywords + "%");
-                Predicate summary = criteriaBuilder.like(root.get("summary"), "%" + keywords + "%");
-                Predicate keywordsPredicate = criteriaBuilder.or(title, summary);
+                Predicate content = criteriaBuilder.like(root.get("content"), "%" + keywords + "%");
+                Predicate keywordsPredicate = criteriaBuilder.or(title, content);
                 predicateList.add(keywordsPredicate);
             }
             //条件二：当文章状态不为空时，筛选文章状态
