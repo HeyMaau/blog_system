@@ -150,6 +150,15 @@ public interface Constants {
     }
 
     /**
+     * 埋点相关常量
+     */
+    interface Statistics {
+        String KEY_PAGE_WITH_EVENT = "key_statistics_page_%s_event_%s_date_%s_from_%s";
+        String KEY_PAGE_WITH_EVENT_PREFIX = "key_statistics_page_";
+        String PATTERN = "key_statistics_page_(.*)_event_(.*)_date_(.*)_from_(.*)";
+    }
+
+    /**
      * 手机客户端相关常量
      */
     interface APP {

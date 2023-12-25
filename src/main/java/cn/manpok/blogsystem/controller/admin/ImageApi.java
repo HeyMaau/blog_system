@@ -76,7 +76,6 @@ public class ImageApi {
      */
     @GetMapping("/{imageID}")
     public void getImage(@PathVariable("imageID") String imageID) {
-        log.info("获取单张图片 ----> " + imageID);
         imageService.getImage(imageID);
     }
 
@@ -100,7 +99,6 @@ public class ImageApi {
      */
     @GetMapping("/comment/{key}")
     public void getCommentAvatar(@PathVariable("key") String key) {
-        log.info("获取评论头像 ----> " + key);
         imageService.getCommentAvatar(key);
     }
 }
