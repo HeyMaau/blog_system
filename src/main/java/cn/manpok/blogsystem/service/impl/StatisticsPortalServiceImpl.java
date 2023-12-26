@@ -95,8 +95,10 @@ public class StatisticsPortalServiceImpl implements IStatisticsPortalService {
                     queryBlogStatistics.setCount(Long.parseLong(countStr));
                     queryBlogStatistics.setUpdateTime(new Date());
                 }
-                log.info("埋点数据保存到数据库");
             }
+        }
+        if (!keys.isEmpty()) {
+            log.info("埋点数据保存到数据库");
         }
     }
 }
