@@ -28,7 +28,7 @@ public class ApiInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String ip = request.getRemoteAddr();
+        String ip = TextUtil.isEmpty(request.getHeader(Constants.User.KEY_HEADER_X_REAL_IP)) ? request.getRemoteAddr() : request.getHeader(Constants.User.KEY_HEADER_X_REAL_IP);
         if (isIPBlocked(ip)) {
             returnJsonResponse(response, ResponseResult.FAIL(ResponseState.IP_BLOCKED));
             return false;

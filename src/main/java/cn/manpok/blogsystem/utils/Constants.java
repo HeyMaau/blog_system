@@ -27,6 +27,7 @@ public interface Constants {
         String KEY_FORGET_PASSWORD_TOKEN_COOKIE = "key_forget_password_token_cookie";
         String KEY_TOKEN_KEY = "token_key";
         String KEY_HEADER_AUTHORIZATION = "authorization";
+        String KEY_HEADER_X_REAL_IP = "X-Real-IP";
         String KEY_ADMIN_INFO_CACHE = "key_admin_info_cache";
     }
 
@@ -167,5 +168,9 @@ public interface Constants {
         String STATE_QR_CODE_TRUE = "true";
         String STATE_QR_CODE_FALSE = "false";
         String STATE_QR_CODE_ENQUIRE = "enquire";
+    }
+
+    interface Log {
+        String BEFORE_LOG = "Request method name: %s, Request IP: %s";
     }
 }
