@@ -1,6 +1,6 @@
 package cn.manpok.blogsystem.service.impl;
 
-import cn.manpok.blogsystem.dao.IStatisticsPortalDao;
+import cn.manpok.blogsystem.dao.IStatisticsDao;
 import cn.manpok.blogsystem.pojo.BlogStatistics;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IStatisticsPortalService;
@@ -29,7 +29,7 @@ public class StatisticsPortalServiceImpl implements IStatisticsPortalService {
     private RedisUtil redisUtil;
 
     @Autowired
-    private IStatisticsPortalDao statisticsPortalDao;
+    private IStatisticsDao statisticsDao;
 
     @Autowired
     private Snowflake snowflake;
@@ -52,7 +52,7 @@ public class StatisticsPortalServiceImpl implements IStatisticsPortalService {
             redisUtil.set(key, String.valueOf(++count), Constants.TimeValue.DAY);
         } else {
             //先从数据库查询
-            BlogStatistics queryBlogStatistics = statisticsPortalDao.findByPageAndEventAndRecordDateAndClient(blogStatistics.getPage(), blogStatistics.getEvent(), recordDate, blogStatistics.getClient());
+            BlogStatistics queryBlogStatistics = statisticsDao.findByPageAndEventAndRecordDateAndClient(blogStatistics.getPage(), blogStatistics.getEvent(), recordDate, blogStatistics.getClient());
             if (queryBlogStatistics != null) {
                 long count = queryBlogStatistics.getCount();
                 redisUtil.set(key, String.valueOf(++count), Constants.TimeValue.DAY);
@@ -66,7 +66,7 @@ public class StatisticsPortalServiceImpl implements IStatisticsPortalService {
                 queryBlogStatistics.setClient(blogStatistics.getClient());
                 queryBlogStatistics.setCreateTime(date);
                 queryBlogStatistics.setUpdateTime(date);
-                statisticsPortalDao.save(queryBlogStatistics);
+                statisticsDao.save(queryBlogStatistics);
                 redisUtil.set(key, "1", Constants.TimeValue.DAY);
 
             }
@@ -89,7 +89,7 @@ public class StatisticsPortalServiceImpl implements IStatisticsPortalService {
                 String event = matcher.group(2);
                 String recordDate = matcher.group(3);
                 String client = matcher.group(4);
-                BlogStatistics queryBlogStatistics = statisticsPortalDao.findByPageAndEventAndRecordDateAndClient(page, event, recordDate, client);
+                BlogStatistics queryBlogStatistics = statisticsDao.findByPageAndEventAndRecordDateAndClient(page, event, recordDate, client);
                 if (queryBlogStatistics != null) {
                     String countStr = (String) redisUtil.get(keyStr);
                     queryBlogStatistics.setCount(Long.parseLong(countStr));

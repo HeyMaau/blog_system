@@ -157,6 +157,9 @@ public interface Constants {
         String KEY_PAGE_WITH_EVENT = "key_statistics_page_%s_event_%s_date_%s_from_%s";
         String KEY_PAGE_WITH_EVENT_PREFIX = "key_statistics_page_";
         String PATTERN = "key_statistics_page_(.*)_event_(.*)_date_(.*)_from_(.*)";
+        String KEY_RESPONSE_FIELD_TOTAL_VISIT = "totalVisit";
+        String CLIENT_NAME_DESKTOP = "desktop";
+        String CLIENT_NAME_MOBILE = "mobile";
     }
 
     /**
