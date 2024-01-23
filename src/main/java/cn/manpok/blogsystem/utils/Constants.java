@@ -162,6 +162,10 @@ public interface Constants {
         String CLIENT_NAME_MOBILE = "mobile";
     }
 
+    interface Audio {
+        String KEY_AUDIO_LIST_CACHE = "key_audio_list_cache";
+    }
+
     /**
      * 手机客户端相关常量
      */
