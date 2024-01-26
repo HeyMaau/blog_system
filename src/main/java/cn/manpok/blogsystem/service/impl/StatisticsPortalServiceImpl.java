@@ -94,6 +94,7 @@ public class StatisticsPortalServiceImpl implements IStatisticsPortalService {
                     String countStr = (String) redisUtil.get(keyStr);
                     queryBlogStatistics.setCount(Long.parseLong(countStr));
                     queryBlogStatistics.setUpdateTime(new Date());
+                    statisticsDao.save(queryBlogStatistics);
                 }
             }
         }
