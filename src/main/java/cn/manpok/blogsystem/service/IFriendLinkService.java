@@ -10,9 +10,5 @@ public interface IFriendLinkService {
 
     ResponseResult updateFriendLink(BlogFriendLink blogFriendLink);
 
-    ResponseResult getFriendLink(String friendLinkID);
-
     ResponseResult getFriendLinks(int page, int size);
-
-    ResponseResult getNormalFriendLinks();
 }

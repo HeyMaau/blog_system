@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/admin/friend_link")
 @PreAuthorize("@permission.isAdmin()")
-public class FriendLinkApi {
+public class FriendLinkAdminApi {
 
     @Autowired
     private IFriendLinkService friendLinkService;
@@ -26,9 +26,9 @@ public class FriendLinkApi {
      * @param blogFriendLink
      * @return
      */
-    @PostMapping
+    @PostMapping("/add")
     public ResponseResult addFriendLink(@RequestBody BlogFriendLink blogFriendLink) {
-        log.info("添加友情链接 ----> " + blogFriendLink.toString());
+        log.info("管理平台添加友情链接 ----> " + blogFriendLink.toString());
         return friendLinkService.addFriendLink(blogFriendLink);
     }
 
@@ -38,9 +38,8 @@ public class FriendLinkApi {
      * @param friendLinkID
      * @return
      */
-    @DeleteMapping("/{friendLinkID}")
-    public ResponseResult deleteFriendLink(@PathVariable("friendLinkID") String friendLinkID) {
-        log.info("删除友情链接 ----> " + friendLinkID);
+    @DeleteMapping("/delete/{id}")
+    public ResponseResult deleteFriendLink(@PathVariable("id") String friendLinkID) {
         return friendLinkService.deleteFriendLink(friendLinkID);
     }
 
@@ -50,34 +49,10 @@ public class FriendLinkApi {
      * @param blogFriendLink
      * @return
      */
-    @PutMapping
+    @PutMapping("/update")
     public ResponseResult updateFriendLink(@RequestBody BlogFriendLink blogFriendLink) {
-        log.info("修改友情链接 ----> " + blogFriendLink.toString());
+        log.info("管理平台修改友情链接 ----> " + blogFriendLink.toString());
         return friendLinkService.updateFriendLink(blogFriendLink);
     }
 
-    /**
-     * 获取友情链接
-     *
-     * @param friendLinkID
-     * @return
-     */
-    @GetMapping("/{friendLinkID}")
-    public ResponseResult getFriendLink(@PathVariable("friendLinkID") String friendLinkID) {
-        log.info("获取友情链接 ----> " + friendLinkID);
-        return friendLinkService.getFriendLink(friendLinkID);
-    }
-
-    /**
-     * 获取所有友情链接
-     *
-     * @param page
-     * @param size
-     * @return
-     */
-    @GetMapping("/list")
-    public ResponseResult getFriendLinks(@RequestParam("page") int page, @RequestParam("size") int size) {
-        log.info("获取所有友情链接 ----> ");
-        return friendLinkService.getFriendLinks(page, size);
-    }
 }

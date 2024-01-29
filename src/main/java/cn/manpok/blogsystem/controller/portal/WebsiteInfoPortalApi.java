@@ -2,7 +2,6 @@ package cn.manpok.blogsystem.controller.portal;
 
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ICategoryService;
-import cn.manpok.blogsystem.service.IFriendLinkService;
 import cn.manpok.blogsystem.service.ILooperService;
 import cn.manpok.blogsystem.service.IWebsiteInfoService;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +24,6 @@ public class WebsiteInfoPortalApi {
 
     @Autowired
     private ILooperService looperService;
-
-    @Autowired
-    private IFriendLinkService friendLinkService;
 
     @Autowired
     private ICategoryService categoryService;
@@ -74,17 +70,6 @@ public class WebsiteInfoPortalApi {
     public ResponseResult getLoopers() {
         log.info("门户获取轮播图");
         return looperService.getNormalLoopers();
-    }
-
-    /**
-     * 门户获取所有友情链接
-     *
-     * @return
-     */
-    @GetMapping("/friend_links")
-    public ResponseResult getFriendLinks() {
-        log.info("门户获取所有友情链接");
-        return friendLinkService.getNormalFriendLinks();
     }
 
     /**

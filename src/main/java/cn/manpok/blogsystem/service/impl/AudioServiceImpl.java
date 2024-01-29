@@ -87,7 +87,7 @@ public class AudioServiceImpl implements IAudioService {
         Page<BlogAudio> all = audioDao.findAll(pageRequest);
         BlogPaging<List<BlogAudio>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, all.getTotalElements(), all.getContent());
         String audioListJson = gson.toJson(paging);
-        redisUtil.set(Constants.Audio.KEY_AUDIO_LIST_CACHE, audioListJson);
+        redisUtil.set(Constants.Audio.KEY_AUDIO_LIST_CACHE, audioListJson, Constants.TimeValue.HOUR);
         log.info("音频列表已缓存到redis");
         return ResponseResult.SUCCESS("获取音频列表成功").setData(paging);
     }

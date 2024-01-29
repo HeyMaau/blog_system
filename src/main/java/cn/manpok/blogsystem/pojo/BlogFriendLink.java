@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "friends")
+@Table(name = "friend_link")
 public class BlogFriendLink {
 
     @Id
@@ -18,10 +18,8 @@ public class BlogFriendLink {
     private String logo;
     @Column(name = "url")
     private String url;
-    @Column(name = "`order`")
-    private long order;
-    @Column(name = "state")
-    private String state;
+    @Column(name = "link_order")
+    private long linkOrder;
     @Column(name = "create_time")
     private Date createTime;
     @Column(name = "update_time")
@@ -63,22 +61,12 @@ public class BlogFriendLink {
         this.url = url;
     }
 
-
-    public long getOrder() {
-        return order;
+    public long getLinkOrder() {
+        return linkOrder;
     }
 
-    public void setOrder(long order) {
-        this.order = order;
-    }
-
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
+    public void setLinkOrder(long linkOrder) {
+        this.linkOrder = linkOrder;
     }
 
     public Date getCreateTime() {
@@ -104,8 +92,7 @@ public class BlogFriendLink {
                 ", name='" + name + '\'' +
                 ", logo='" + logo + '\'' +
                 ", url='" + url + '\'' +
-                ", order=" + order +
-                ", state='" + state + '\'' +
+                ", linkOrder=" + linkOrder +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 '}';

@@ -166,6 +166,10 @@ public interface Constants {
         String KEY_AUDIO_LIST_CACHE = "key_audio_list_cache";
     }
 
+    interface FriendLink {
+        String KEY_FRIEND_LINK_LIST_CACHE = "key_friend_link_list_cache";
+    }
+
     /**
      * 手机客户端相关常量
      */
