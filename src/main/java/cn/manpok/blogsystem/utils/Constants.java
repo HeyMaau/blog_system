@@ -154,9 +154,9 @@ public interface Constants {
      * 埋点相关常量
      */
     interface Statistics {
-        String KEY_PAGE_WITH_EVENT = "key_statistics_page_%s_event_%s_date_%s_from_%s";
-        String KEY_PAGE_WITH_EVENT_PREFIX = "key_statistics_page_";
-        String PATTERN = "key_statistics_page_(.*)_event_(.*)_date_(.*)_from_(.*)";
+        String KEY_STATISTICS_CACHE = "key_statistics_page_%s_component_%s_event_%s_date_%s_from_%s";
+        String KEY_STATISTICS_CACHE_PREFIX = "key_statistics_page_";
+        String PATTERN = "key_statistics_page_(.*)_component_(.*)_event_(.*)_date_(.*)_from_(.*)";
         String KEY_RESPONSE_FIELD_TOTAL_VISIT = "totalVisit";
         String CLIENT_NAME_DESKTOP = "desktop";
         String CLIENT_NAME_MOBILE = "mobile";

@@ -1,10 +1,13 @@
 package cn.manpok.blogsystem.scheduler;
 
 import cn.manpok.blogsystem.dao.IArticleAdminDao;
+import cn.manpok.blogsystem.dao.IStatisticsDao;
 import cn.manpok.blogsystem.pojo.BlogArticle;
+import cn.manpok.blogsystem.pojo.BlogStatistics;
 import cn.manpok.blogsystem.service.ISolrSearchService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.RedisUtil;
+import cn.manpok.blogsystem.utils.TextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -29,10 +32,14 @@ public class AppRunnerImpl implements ApplicationRunner {
     @Autowired
     private RedisUtil redisUtil;
 
+    @Autowired
+    private IStatisticsDao statisticsDao;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         clearRedisCache();
         importData2Solr();
+        migrateStatisticData();
     }
 
     private void clearRedisCache() {
@@ -53,6 +60,19 @@ public class AppRunnerImpl implements ApplicationRunner {
         });
         for (BlogArticle article : all) {
             solrSearchService.addArticle(article);
+        }
+    }
+
+    private void migrateStatisticData() {
+        //todo:下次发版移除
+        List<BlogStatistics> all = statisticsDao.findAll();
+        for (BlogStatistics blogStatistics : all) {
+            String page = blogStatistics.getPage();
+            if (!TextUtil.isEmpty(page) && page.equalsIgnoreCase("AudioPlayer")) {
+                blogStatistics.setComponent(blogStatistics.getPage());
+                blogStatistics.setPage(null);
+                statisticsDao.save(blogStatistics);
+            }
         }
     }
 }

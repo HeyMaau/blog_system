@@ -20,7 +20,7 @@ public class StatisticsPortalApi {
 
     @PostMapping("/record")
     public ResponseResult commitRecord(@RequestBody BlogStatistics blogStatistics) {
-        log.info("数据埋点：page: " + blogStatistics.getPage() + " event: " + blogStatistics.getEvent() + " from: " + blogStatistics.getClient());
+        log.info("数据埋点：page: " + blogStatistics.getPage() + " component: " + blogStatistics.getComponent() + " event: " + blogStatistics.getEvent() + " from: " + blogStatistics.getClient());
         return statisticsPortalService.commitRecord(blogStatistics);
     }
 }

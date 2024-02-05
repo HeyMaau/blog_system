@@ -23,6 +23,9 @@ public class BlogStatistics {
     @Column(name = "page")
     private String page;
 
+    @Column(name = "component")
+    private String component;
+
     @Column(name = "event")
     private String event;
 
@@ -46,6 +49,7 @@ public class BlogStatistics {
         return "BlogStatistics{" +
                 "id='" + id + '\'' +
                 ", page='" + page + '\'' +
+                ", component='" + component + '\'' +
                 ", event='" + event + '\'' +
                 ", count=" + count +
                 ", recordDate='" + recordDate + '\'' +
