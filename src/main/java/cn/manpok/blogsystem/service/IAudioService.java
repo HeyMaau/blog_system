@@ -12,4 +12,6 @@ public interface IAudioService {
     ResponseResult getAudioList(int page, int size);
 
     ResponseResult deleteAudio(String id);
+
+    void downloadAudioFile();
 }

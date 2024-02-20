@@ -16,15 +16,14 @@ public class RestTemplateConfig {
     @ConditionalOnMissingBean(RestTemplate.class)
     @Bean
     public RestTemplate createRestTemplate() {
-        RestTemplate restTemplate = new RestTemplate(getClientHttpRequestFactory());
-        return restTemplate;
+        return new RestTemplate(getClientHttpRequestFactory());
     }
 
     private ClientHttpRequestFactory getClientHttpRequestFactory() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(5, TimeUnit.SECONDS)
-                .writeTimeout(5, TimeUnit.SECONDS)
-                .readTimeout(5, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .writeTimeout(5, TimeUnit.MINUTES)
+                .readTimeout(5, TimeUnit.MINUTES)
                 .build();
         return new OkHttp3ClientHttpRequestFactory(okHttpClient);
     }

@@ -10,12 +10,25 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RequestCallback;
+import org.springframework.web.client.RestTemplate;
 
+import java.io.File;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +47,12 @@ public class AudioServiceImpl implements IAudioService {
 
     @Autowired
     private Gson gson;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @Value("${blog.system.audio.temp-dir-path}")
+    private String tempAudioFilePath;
 
     @Override
     public ResponseResult addAudio(BlogAudio blogAudio) {
@@ -114,5 +133,36 @@ public class AudioServiceImpl implements IAudioService {
                 && !TextUtil.isEmpty(blogAudio.getAlbum())
                 && !TextUtil.isEmpty(blogAudio.getAudioUrl())
                 && !TextUtil.isEmpty(blogAudio.getCoverUrl());
+    }
+
+    @Override
+    @Async("asyncTaskServiceExecutor")
+    @Scheduled(cron = "0 0 17 * * ?")
+    public void downloadAudioFile() {
+        File tempAudioFileFolder = new File(tempAudioFilePath);
+        if (!tempAudioFileFolder.exists()) {
+            tempAudioFileFolder.mkdirs();
+        }
+        List<BlogAudio> audioList = audioDao.findAll();
+        RequestCallback requestCallback = request -> request.getHeaders()
+                .setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM, MediaType.ALL));
+        for (BlogAudio audio : audioList) {
+            String audioUrl = audio.getAudioUrl();
+            if (!TextUtil.isEmpty(audioUrl)) {
+                try {
+                    String suffix = audioUrl.substring(audioUrl.lastIndexOf("."));
+                    String targetPath = tempAudioFilePath + audio.getName() + suffix;
+                    URI uri = new URI(audioUrl);
+                    restTemplate.execute(uri, HttpMethod.GET, requestCallback, response -> {
+                        log.info("开始下载音频文件：" + audio.getName());
+                        Files.copy(response.getBody(), Paths.get(targetPath), StandardCopyOption.REPLACE_EXISTING);
+                        return null;
+                    });
+                    log.info("下载音频文件完成：" + audio.getName());
+                } catch (Exception e) {
+                    log.error("下载音频文件异常：" + e);
+                }
+            }
+        }
     }
 }
