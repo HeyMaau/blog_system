@@ -134,6 +134,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         if (state.equals(Constants.Article.STATE_PUBLISH)) {
             solrSearchService.addArticle(article2Save);
             redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+            redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + article2Save.getCategoryId());
         }
         return ResponseResult.SUCCESS("添加文章成功").setData(article2Save.getId());
     }
@@ -202,6 +203,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setState(Constants.Article.STATE_TOP);
         //删除redis中的文章列表缓存
         redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
         return ResponseResult.SUCCESS("置顶文章成功");
     }
 
@@ -224,6 +226,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         redisUtil.del(Constants.Article.KEY_ARTICLE_CACHE + articleID);
         redisUtil.del(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID);
         redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
         if (deleteCount < 1) {
             return ResponseResult.FAIL("删除文章失败");
         }
@@ -244,6 +247,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         queryArticle.setState(Constants.Article.STATE_DELETE);
         //删除redis中的文章列表缓存
         redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
         return ResponseResult.SUCCESS("删除文章成功");
     }
 
@@ -290,6 +294,7 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + blogArticle.getId(), gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
         //删除redis中的文章列表缓存
         redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
         return ResponseResult.SUCCESS("修改文章成功");
     }
 
