@@ -24,7 +24,7 @@ spring:
 
   servlet:
     multipart:
-      max-file-size: 5MB
+      max-file-size: 8MB
       max-request-size: 50MB
 
   jackson:
@@ -38,8 +38,8 @@ blog:
       dir-path: D:\WorkSpace\Java\images
       #存多一份给nginx用
       dir-path-nginx: D:\WorkSpace\Java\image
-      # 图片大小限制，单位b，大小2M
-      max-size: 2097152
+      # 图片大小限制，单位b，大小6M
+      max-size: 6291456
       # 读取图片缓冲区带
       input-stream:
         buffer: 8192
@@ -61,6 +61,7 @@ blog:
         font-size: 20
         # 文字水印文本
         text: 卧卷@ manpok
+      max-width-height: 1440
     # solr地址
     solr:
       path: http://192.168.144.130:8983/solr/blog_system_search_core

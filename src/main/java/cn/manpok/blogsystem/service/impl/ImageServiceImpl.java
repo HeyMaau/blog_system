@@ -73,6 +73,9 @@ public class ImageServiceImpl implements IImageService {
     @Value("${blog.system.image.watermark.tempFileName}")
     private String tempWatermarkFileName;
 
+    @Value("${blog.system.image.max-width-height}")
+    private int maxWithHeight;
+
     @Autowired
     private Snowflake snowflake;
 
@@ -117,10 +120,10 @@ public class ImageServiceImpl implements IImageService {
         if (contentType == null) {
             return ResponseResult.FAIL(ResponseState.IMAGE_TYPE_NOT_SUPPORT);
         }
-        //如果图片大于2M不能上传
+        //如果图片大于6M不能上传
         long size = imageFile.getSize();
         if (size > maxImageSize) {
-            return ResponseResult.FAIL("图片大小超过2MB");
+            return ResponseResult.FAIL("图片大小超过6MB");
         }
         //把文件写到磁盘上
         //返回给前端的结果
@@ -180,10 +183,10 @@ public class ImageServiceImpl implements IImageService {
         if (contentType == null) {
             return ResponseResult.FAIL(ResponseState.IMAGE_TYPE_NOT_SUPPORT);
         }
-        //如果图片大于2M不能上传
+        //如果图片大于6M不能上传
         long size = imageFile.getSize();
         if (size > maxImageSize) {
-            return ResponseResult.FAIL("图片大小超过2MB");
+            return ResponseResult.FAIL("图片大小超过6MB");
         }
         //把文件写到磁盘上
         //返回给前端的结果
@@ -475,10 +478,11 @@ public class ImageServiceImpl implements IImageService {
             File watermarkFile = new File(originWatermarkPath);
             BufferedImage targetImg = ImageIO.read(inputStream);
             File tempWatermarkFile = new File(tempWaterMarkPath, tempWatermarkFileName + imageID + ".png");
-            Thumbnails.of(watermarkFile).width(targetImg.getWidth() / 4).outputQuality(1f).toFile(tempWatermarkFile);
+            int scale = (int) Math.ceil((double) Math.max(targetImg.getHeight(), targetImg.getWidth()) / maxWithHeight);
+            Thumbnails.of(watermarkFile).width(targetImg.getWidth() / 4 / scale).outputQuality(1f).toFile(tempWatermarkFile);
             BufferedImage waterImg = ImageIO.read(tempWatermarkFile);
             Thumbnails.of(targetImg)
-                    .size(targetImg.getWidth(), targetImg.getHeight()) // 大小
+                    .size(maxWithHeight, maxWithHeight) // 大小
                     .watermark(Positions.BOTTOM_RIGHT, waterImg, 1f)  // 0.5f表示透明度，最大值为1
                     .outputQuality(1f)   // 图片质量，最大值为1
                     .outputFormat("jpg")
