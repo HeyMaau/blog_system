@@ -5,7 +5,7 @@ spring:
   datasource:
     username: root
     password: root
-    url: jdbc:mysql://192.168.144.130:3306/blog_system?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.244.128:3306/blog_system?characterEncoding=utf8&useSSL=false
     driver-class-name: com.mysql.jdbc.Driver
     hikari:
       connection-init-sql: SET NAMES utf8mb4 COLLATE utf8mb4_general_ci
@@ -18,7 +18,7 @@ spring:
     show-sql: true
 
   redis:
-    host: 192.168.144.130
+    host: 192.168.244.128
     port: 6379
     password: pasword
 
@@ -56,15 +56,22 @@ blog:
         # 临时图片水印地址
         tempFilePath: D:\WorkSpace\Java\images\
         # 临时图片水印文件名
-        tempFileName: temp_watermark_
+        tempWatermarkFileName: temp_watermark_
+        #临时图片PNG
+        tempPNGFileName: temp_PNG_
         # 文字水印字号
         font-size: 20
         # 文字水印文本
         text: 卧卷@ manpok
       max-width-height: 1440
+      webp:
+        shell-name:
+          cmd
+        shell-param:
+          /c
     # solr地址
     solr:
-      path: http://192.168.144.130:8983/solr/blog_system_search_core
+      path: http://192.168.244.128:8983/solr/blog_system_search_core
     #swagger开关
     swagger:
       enable: true

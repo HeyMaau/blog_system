@@ -70,11 +70,20 @@ public class ImageServiceImpl implements IImageService {
     @Value("${blog.system.image.watermark.tempFilePath}")
     private String tempWaterMarkPath;
 
-    @Value("${blog.system.image.watermark.tempFileName}")
+    @Value("${blog.system.image.watermark.tempWatermarkFileName}")
     private String tempWatermarkFileName;
+
+    @Value("${blog.system.image.watermark.tempPNGFileName}")
+    private String tempPNGFileName;
 
     @Value("${blog.system.image.max-width-height}")
     private int maxWithHeight;
+
+    @Value("${blog.system.image.webp.shell-name}")
+    private String shellName;
+
+    @Value("${blog.system.image.webp.shell-param}")
+    private String shellParam;
 
     @Autowired
     private Snowflake snowflake;
@@ -198,8 +207,7 @@ public class ImageServiceImpl implements IImageService {
         //id
         String id = String.valueOf(snowflake.nextId());
         //最终文件路径、文件名
-        //加水印的图片转换为JPG格式
-        contentType = "jpg";
+        contentType = "webp";
         String imageFilePath = imagePath + File.separator + dateFormatStr + File.separator + contentType;
         String fileName = id + "." + contentType;
         File file = new File(imageFilePath, fileName);
@@ -478,6 +486,7 @@ public class ImageServiceImpl implements IImageService {
             File watermarkFile = new File(originWatermarkPath);
             BufferedImage targetImg = ImageIO.read(inputStream);
             File tempWatermarkFile = new File(tempWaterMarkPath, tempWatermarkFileName + imageID + ".png");
+            File tempPNGFile = new File(tempWaterMarkPath, tempPNGFileName + imageID + ".png");
             int scale = (int) Math.ceil((double) Math.max(targetImg.getHeight(), targetImg.getWidth()) / maxWithHeight);
             Thumbnails.of(watermarkFile).width(targetImg.getWidth() / 4 / scale).outputQuality(1f).toFile(tempWatermarkFile);
             BufferedImage waterImg = ImageIO.read(tempWatermarkFile);
@@ -485,12 +494,28 @@ public class ImageServiceImpl implements IImageService {
                     .size(maxWithHeight, maxWithHeight) // 大小
                     .watermark(Positions.BOTTOM_RIGHT, waterImg, 1f)  // 0.5f表示透明度，最大值为1
                     .outputQuality(1f)   // 图片质量，最大值为1
-                    .outputFormat("jpg")
-                    .toFile(destFile);
+                    .outputFormat("png")
+                    .toFile(tempPNGFile);
+            List<String> command = new ArrayList<>();
+            command.add(shellName);
+            command.add(shellParam);
+            command.add("cwebp");
+            command.add("-q");
+            command.add("75");
+            command.add(tempPNGFile.getAbsolutePath());
+            command.add("-o");
+            command.add(destFile.getAbsolutePath());
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
+            int exitCode = processBuilder.start().waitFor();
+            log.info("转换webp图像的exitCode: " + exitCode);
             tempWatermarkFile.delete();
+            tempPNGFile.delete();
         } catch (IOException e) {
             e.printStackTrace();
             log.error("上传图片生成图片水印失败");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            log.error("上传图片生成webp图片失败");
         }
     }
 
