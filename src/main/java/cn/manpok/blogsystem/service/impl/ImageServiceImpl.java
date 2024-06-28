@@ -499,14 +499,11 @@ public class ImageServiceImpl implements IImageService {
             List<String> command = new ArrayList<>();
             command.add(shellName);
             command.add(shellParam);
-            command.add("cwebp");
-            command.add("-q");
-            command.add("75");
-            command.add(tempPNGFile.getAbsolutePath());
-            command.add("-o");
-            command.add(destFile.getAbsolutePath());
+            String cwebpCommand = "cwebp -q 75 " + tempPNGFile.getAbsolutePath() + " -o " + destFile.getAbsolutePath();
+            command.add(cwebpCommand);
             ProcessBuilder processBuilder = new ProcessBuilder(command);
-            int exitCode = processBuilder.start().waitFor();
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
             log.info("转换webp图像的exitCode: " + exitCode);
             tempWatermarkFile.delete();
             tempPNGFile.delete();
