@@ -124,7 +124,7 @@ public class ImageServiceImpl implements IImageService {
         if (imageFile == null) {
             return ResponseResult.FAIL("图片为空");
         }
-        //限制图片类型为jpg、png、gif、jpeg
+        //限制图片类型为jpg、png、gif、jpeg、webp
         String contentType = checkImageContentType(imageFile.getContentType());
         if (contentType == null) {
             return ResponseResult.FAIL(ResponseState.IMAGE_TYPE_NOT_SUPPORT);
@@ -416,6 +416,7 @@ public class ImageServiceImpl implements IImageService {
             case Constants.Image.TYPE_GIF_WITH_PREFIX -> Constants.Image.TYPE_GIF;
             case Constants.Image.TYPE_PNG_WITH_PREFIX -> Constants.Image.TYPE_PNG;
             case Constants.Image.TYPE_JPEG_WITH_PREFIX -> Constants.Image.TYPE_JPEG;
+            case Constants.Image.TYPE_WEBP_WITH_PREFIX -> Constants.Image.TYPE_WEBP;
             default -> null;
         };
     }

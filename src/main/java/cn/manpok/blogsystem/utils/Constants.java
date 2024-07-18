@@ -48,10 +48,12 @@ public interface Constants {
         String TYPE_GIF = "gif";
         String TYPE_PNG = "png";
         String TYPE_JPEG = "jpeg";
+        String TYPE_WEBP = "webp";
         String TYPE_JPG_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_JPG;
         String TYPE_GIF_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_GIF;
         String TYPE_PNG_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_PNG;
         String TYPE_JPEG_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_JPEG;
+        String TYPE_WEBP_WITH_PREFIX = CONTENT_TYPE_PREFIX + TYPE_WEBP;
     }
 
     /**
