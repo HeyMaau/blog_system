@@ -8,13 +8,13 @@ import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import cn.manpok.blogsystem.utils.TextUtil;
+import jakarta.annotation.PreDestroy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PreDestroy;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;

@@ -1,6 +1,8 @@
 package cn.manpok.blogsystem.pojo;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity

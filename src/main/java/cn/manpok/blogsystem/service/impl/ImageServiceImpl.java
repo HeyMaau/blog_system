@@ -7,6 +7,8 @@ import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IImageService;
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.Snowflake;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
@@ -18,6 +20,7 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -27,8 +30,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -284,7 +285,7 @@ public class ImageServiceImpl implements IImageService {
     @Override
     public void getCommentAvatar(String key) {
         ResponseEntity<byte[]> responseEntity = restTemplate.getForEntity(multiAvatarUrl, byte[].class, key, multiAvatarApiKey);
-        HttpStatus statusCode = responseEntity.getStatusCode();
+        HttpStatusCode statusCode = responseEntity.getStatusCode();
         if (statusCode.is2xxSuccessful()) {
             byte[] body = responseEntity.getBody();
             if (body != null) {

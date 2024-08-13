@@ -1,27 +1,17 @@
 package cn.manpok.blogsystem.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
 @ConditionalOnProperty(name = "blog.system.swagger.enable", havingValue = "true")
 public class SwaggerConfig {
-
-    /**
+/*
+    *//**
      * 创建用户API信息
      *
      * @return
-     */
+     *//*
     @Bean
     public Docket createUserApi() {
         return new Docket(DocumentationType.SWAGGER_2)  // DocumentationType.SWAGGER_2 固定的，代表swagger2
@@ -33,11 +23,11 @@ public class SwaggerConfig {
                 .build();
     }
 
-    /**
+    *//**
      * 用户API信息
      *
      * @return
-     */
+     *//*
     private ApiInfo userApiInfo() {
         return new ApiInfoBuilder()
                 .title("博客系统用户API") //  可以用来自定义API的主标题
@@ -47,11 +37,11 @@ public class SwaggerConfig {
                 .build(); //
     }
 
-    /**
+    *//**
      * 创建管理API信息
      *
      * @return
-     */
+     *//*
     @Bean
     public Docket createAdminApi() {
         return new Docket(DocumentationType.SWAGGER_2)  // DocumentationType.SWAGGER_2 固定的，代表swagger2
@@ -63,11 +53,11 @@ public class SwaggerConfig {
                 .build();
     }
 
-    /**
+    *//**
      * 管理API信息
      *
      * @return
-     */
+     *//*
     private ApiInfo adminApiInfo() {
         return new ApiInfoBuilder()
                 .title("博客系统管理API") //  可以用来自定义API的主标题
@@ -77,11 +67,11 @@ public class SwaggerConfig {
                 .build(); //
     }
 
-    /**
+    *//**
      * 创建门户API信息
      *
      * @return
-     */
+     *//*
     @Bean
     public Docket createPortalApi() {
         return new Docket(DocumentationType.SWAGGER_2)  // DocumentationType.SWAGGER_2 固定的，代表swagger2
@@ -93,11 +83,11 @@ public class SwaggerConfig {
                 .build();
     }
 
-    /**
+    *//**
      * 门户API信息
      *
      * @return
-     */
+     *//*
     private ApiInfo portalApiInfo() {
         return new ApiInfoBuilder()
                 .title("博客系统门户API") //  可以用来自定义API的主标题
@@ -105,5 +95,5 @@ public class SwaggerConfig {
                 .termsOfServiceUrl("") // 用于定义服务的域名
                 .version("1.0") // 可以用来定义版本。
                 .build(); //
-    }
+    }*/
 }

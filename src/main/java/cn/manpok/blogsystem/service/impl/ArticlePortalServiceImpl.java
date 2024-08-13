@@ -13,8 +13,9 @@ import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.PageUtil;
 import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.TextUtil;
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

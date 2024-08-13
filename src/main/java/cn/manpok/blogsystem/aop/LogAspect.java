@@ -2,6 +2,7 @@ package cn.manpok.blogsystem.aop;
 
 import cn.manpok.blogsystem.utils.Constants;
 import cn.manpok.blogsystem.utils.TextUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -10,7 +11,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Aspect
 @Slf4j
