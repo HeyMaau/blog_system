@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -87,5 +88,11 @@ public class AppServiceImpl implements IAppService {
             return ResponseResult.SUCCESS("APP有更新").setData(latestAppInfo);
         }
         return ResponseResult.SUCCESS("APP暂无更新");
+    }
+
+    @Override
+    public ResponseResult getAppInfoList() {
+        List<BlogApp> appInfoList = appDao.findAll();
+        return ResponseResult.SUCCESS("获取APP信息列表成功").setData(appInfoList);
     }
 }

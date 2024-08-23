@@ -12,4 +12,6 @@ public interface IAppService {
     ResponseResult deleteAppInfo(String id);
 
     ResponseResult checkAppUpdateInfo(Integer versionCode);
+
+    ResponseResult getAppInfoList();
 }

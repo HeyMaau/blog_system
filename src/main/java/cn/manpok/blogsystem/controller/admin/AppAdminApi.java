@@ -30,4 +30,10 @@ public class AppAdminApi {
         log.info("管理平台删除APP信息 id：" + id);
         return appService.deleteAppInfo(id);
     }
+
+    @GetMapping("/list")
+    public ResponseResult getAppInfoList() {
+        log.info("管理平台获取APP信息列表");
+        return appService.getAppInfoList();
+    }
 }
