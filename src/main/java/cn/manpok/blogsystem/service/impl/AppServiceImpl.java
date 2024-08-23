@@ -59,6 +59,7 @@ public class AppServiceImpl implements IAppService {
         queryBlogApp.setDownloadUrl(blogApp.getDownloadUrl());
         queryBlogApp.setChangeLog(blogApp.getChangeLog());
         queryBlogApp.setUpdateTime(date);
+        queryBlogApp.setForceUpdate(blogApp.getForceUpdate());
         appDao.save(queryBlogApp);
         return ResponseResult.SUCCESS("更新APP信息成功");
     }

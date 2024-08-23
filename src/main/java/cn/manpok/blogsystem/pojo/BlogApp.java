@@ -31,4 +31,6 @@ public class BlogApp {
     private Date updateTime;
     @Column(name = "change_log")
     private String changeLog;
+    @Column(name = "force_update")
+    private int forceUpdate;
 }
