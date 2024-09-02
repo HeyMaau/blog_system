@@ -77,10 +77,13 @@ blog:
     # solr地址
     solr:
       path: http://solr:8983/solr/blog_system_search_core
-    #swagger开关
-    swagger:
-      enable: false
     audio:
       # 存放临时音频文件的地址
       temp-dir-path: /usr/src/myapp/audios/
     jwt-secret: XXXX
+
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
