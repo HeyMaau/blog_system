@@ -71,6 +71,7 @@ public interface Constants {
         int MIN_10 = MIN * 10;
         int HOUR = MIN * 60;
         int HOUR_2 = HOUR * 2;
+        int HOUR_4 = HOUR * 4;
         int DAY = HOUR * 24;
         int MONTH = DAY * 30;
         int YEAR = DAY * 365;

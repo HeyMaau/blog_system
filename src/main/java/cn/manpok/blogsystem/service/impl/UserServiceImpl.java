@@ -679,7 +679,7 @@ public class UserServiceImpl implements IUserService {
         log.info("user token ----> " + token);
         //生成token的MD5返回给客户端
         String tokenMD5 = DigestUtils.md5DigestAsHex(token.getBytes());
-        redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_2);
+        redisUtil.set(Constants.User.KEY_USER_TOKEN + tokenMD5, token, Constants.TimeValue.HOUR_4);
         //如果是管理员账户，则不保存refreshToken，Cookie的保存时间为两小时
         if (blogUser.getRoles().equals(Constants.User.ROLE_ADMIN)) {
             return tokenMD5;
