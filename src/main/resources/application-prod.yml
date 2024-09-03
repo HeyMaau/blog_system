@@ -80,6 +80,9 @@ blog:
     audio:
       # 存放临时音频文件的地址
       temp-dir-path: /usr/src/myapp/audios/
+    share:
+      article:
+        url: http://m.manpok.top/article
     jwt-secret: XXXX
 
 springdoc:

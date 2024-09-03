@@ -80,6 +80,9 @@ blog:
     audio:
       # 存放临时音频文件的地址
       temp-dir-path: D:\WorkSpace\Java\audios\
+    share:
+      article:
+        url: http://192.168.31.136:5173/article
     jwt-secret: XXXX
 
 springdoc:
