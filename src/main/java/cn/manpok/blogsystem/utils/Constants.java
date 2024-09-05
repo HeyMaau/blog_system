@@ -182,6 +182,7 @@ public interface Constants {
         String STATE_QR_CODE_TRUE = "true";
         String STATE_QR_CODE_FALSE = "false";
         String STATE_QR_CODE_ENQUIRE = "enquire";
+        String KEY_LATEST_APP_INFO = "key_latest_app_info";
     }
 
     interface Log {

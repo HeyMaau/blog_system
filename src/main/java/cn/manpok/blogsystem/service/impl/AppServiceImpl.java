@@ -4,8 +4,11 @@ import cn.manpok.blogsystem.dao.IAppDao;
 import cn.manpok.blogsystem.pojo.BlogApp;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IAppService;
+import cn.manpok.blogsystem.utils.Constants;
+import cn.manpok.blogsystem.utils.RedisUtil;
 import cn.manpok.blogsystem.utils.Snowflake;
 import cn.manpok.blogsystem.utils.TextUtil;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,15 +24,32 @@ public class AppServiceImpl implements IAppService {
 
     private final Snowflake snowflake;
 
-    public AppServiceImpl(IAppDao appDao, Snowflake snowflake) {
+    private final RedisUtil redisUtil;
+
+    private final Gson gson;
+
+    public AppServiceImpl(IAppDao appDao, Snowflake snowflake, RedisUtil redisUtil, Gson gson) {
         this.appDao = appDao;
         this.snowflake = snowflake;
+        this.redisUtil = redisUtil;
+        this.gson = gson;
     }
 
     @Override
     public ResponseResult getAppDownloadUrl() {
+        String appInfoStr = (String) redisUtil.get(Constants.APP.KEY_LATEST_APP_INFO);
+        if (!TextUtil.isEmpty(appInfoStr)) {
+            BlogApp appInfoCache = gson.fromJson(appInfoStr, BlogApp.class);
+            if (appInfoCache != null) {
+                log.info("从redis取出APP下载链接");
+                return ResponseResult.SUCCESS().setData(appInfoCache);
+            }
+        }
         BlogApp appInfo = appDao.getLatestAppInfo();
         if (appInfo != null) {
+            appInfoStr = gson.toJson(appInfo);
+            redisUtil.set(Constants.APP.KEY_LATEST_APP_INFO, appInfoStr, Constants.TimeValue.HOUR_2);
+            log.info("APP下载链接已存入redis");
             return ResponseResult.SUCCESS().setData(appInfo);
         }
         return ResponseResult.FAIL("获取APP下载链接失败");
@@ -62,6 +82,7 @@ public class AppServiceImpl implements IAppService {
         queryBlogApp.setUpdateTime(date);
         queryBlogApp.setForceUpdate(blogApp.getForceUpdate());
         appDao.save(queryBlogApp);
+        redisUtil.del(Constants.APP.KEY_LATEST_APP_INFO);
         return ResponseResult.SUCCESS("更新APP信息成功");
     }
 
@@ -75,6 +96,7 @@ public class AppServiceImpl implements IAppService {
         if (count <= 0) {
             return ResponseResult.FAIL("删除APP信息失败");
         }
+        redisUtil.del(Constants.APP.KEY_LATEST_APP_INFO);
         return ResponseResult.SUCCESS("删除APP信息成功");
     }
 
@@ -83,7 +105,19 @@ public class AppServiceImpl implements IAppService {
         if (versionCode == null) {
             return ResponseResult.FAIL("versionCode为空");
         }
-        BlogApp latestAppInfo = appDao.getLatestAppInfo();
+        BlogApp latestAppInfo = null;
+        String appInfoStr = (String) redisUtil.get(Constants.APP.KEY_LATEST_APP_INFO);
+        if (!TextUtil.isEmpty(appInfoStr)) {
+            latestAppInfo = gson.fromJson(appInfoStr, BlogApp.class);
+        }
+        if (latestAppInfo != null) {
+            log.info("从redis取出最新APP信息");
+        } else {
+            latestAppInfo = appDao.getLatestAppInfo();
+            appInfoStr = gson.toJson(latestAppInfo);
+            redisUtil.set(Constants.APP.KEY_LATEST_APP_INFO, appInfoStr, Constants.TimeValue.HOUR_2);
+            log.info("最新APP信息已存入redis");
+        }
         if (latestAppInfo.getVersionCode() > versionCode) {
             return ResponseResult.SUCCESS("APP有更新").setData(latestAppInfo);
         }
