@@ -1,11 +1,7 @@
 package cn.manpok.blogsystem.controller.portal;
 
-import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.IShareService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +15,9 @@ public class SharePortalApi {
         this.shareService = shareService;
     }
 
-    @GetMapping("/article/{id}")
+    /*@GetMapping("/article/{id}")
     public ResponseResult getArticleShareLink(@PathVariable String id) {
         log.info("前端获取文章分享链接：" + id);
         return shareService.getArticleShareLink(id);
-    }
+    }*/
 }
