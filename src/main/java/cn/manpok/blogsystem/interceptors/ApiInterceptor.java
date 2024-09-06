@@ -29,12 +29,6 @@ public class ApiInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull Object handler) {
-        String ip = TextUtil.isEmpty(request.getHeader(Constants.User.KEY_HEADER_X_REAL_IP)) ? request.getRemoteAddr() : request.getHeader(Constants.User.KEY_HEADER_X_REAL_IP);
-        if (isIPBlocked(ip)) {
-            returnJsonResponse(response, ResponseResult.FAIL(ResponseState.IP_BLOCKED));
-            return false;
-        }
-        addIPAccessCount(ip);
         if (handler instanceof HandlerMethod handlerMethod) {
             //检查方法上是否有防止重复提交的注解
             CheckRepeatedCommit checkRepeatedCommit = handlerMethod.getMethodAnnotation(CheckRepeatedCommit.class);
@@ -55,29 +49,11 @@ public class ApiInterceptor implements HandlerInterceptor {
                     redisUtil.set(redisKey.toString(), Constants.VALUE_TRUE, Constants.TimeValue.SECOND_5);
                     return true;
                 }
-                returnJsonResponse(response, ResponseResult.FAIL(ResponseState.IP_BLOCKED));
+                returnJsonResponse(response, ResponseResult.FAIL(ResponseState.REPEATED_COMMIT));
                 return false;
             }
         }
         return true;
-    }
-
-    private boolean isIPBlocked(String ip) {
-        String blocked = (String) redisUtil.get(Constants.KEY_BLOCK_IP + ip);
-        return blocked != null;
-    }
-
-    private void addIPAccessCount(String ip) {
-        Integer count = (Integer) redisUtil.get(Constants.KEY_IP_ACCESS_COUNT + ip);
-        if (count == null) {
-            redisUtil.set(Constants.KEY_IP_ACCESS_COUNT + ip, 1, Constants.TimeValue.SECOND);
-            return;
-        }
-        if (count >= Constants.ACCESS_COUNT_LIMIT) {
-            redisUtil.set(Constants.KEY_BLOCK_IP + ip, Constants.VALUE_TRUE, Constants.TimeValue.HOUR_2);
-            return;
-        }
-        redisUtil.set(Constants.KEY_IP_ACCESS_COUNT + ip, ++count, Constants.TimeValue.SECOND);
     }
 
     private void returnJsonResponse(HttpServletResponse response, ResponseResult result) {

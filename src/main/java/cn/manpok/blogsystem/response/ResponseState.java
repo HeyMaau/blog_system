@@ -21,7 +21,7 @@ public enum ResponseState {
     QR_CODE_STATE_NOT_CONFIRM(false, 40013, "二维码未确认"),
     LONG_POLL_TIME_OUT(false, 40014, "长轮询超时"),
     USER_FORBIDDEN(false, 40015, "用户已禁止"),
-    IP_BLOCKED(false, 40016, "IP禁止访问");
+    REPEATED_COMMIT(false, 40016, "请勿频繁提交，5秒后重试");
 
     ResponseState(boolean success, int code, String message) {
         this.success = success;
