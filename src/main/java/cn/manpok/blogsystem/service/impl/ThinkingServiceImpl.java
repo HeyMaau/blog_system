@@ -163,4 +163,25 @@ public class ThinkingServiceImpl implements IThinkingService {
         BlogPaging<List<BlogThinking>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, pageData.getTotalElements(), pageData.getContent());
         return ResponseResult.SUCCESS("获取想法列表成功").setData(paging);
     }
+
+    @Override
+    public ResponseResult getThinking(String id) {
+        String thinkingCacheStr = (String) redisUtil.get(Constants.Thinking.KEY_THINKING_CACHE + id);
+        BlogThinking blogThinking = null;
+        if (!TextUtil.isEmpty(thinkingCacheStr)) {
+            blogThinking = gson.fromJson(thinkingCacheStr, BlogThinking.class);
+        }
+        if (blogThinking != null) {
+            log.info("从redis取出想法缓存：" + id);
+            return ResponseResult.SUCCESS("获取想法成功").setData(blogThinking);
+        } else {
+            blogThinking = thinkingDao.findThinkingById(id);
+        }
+        if (blogThinking == null) {
+            return ResponseResult.FAIL("想法不存在");
+        }
+        redisUtil.set(Constants.Thinking.KEY_THINKING_CACHE + id, gson.toJson(blogThinking), Constants.TimeValue.HOUR_2);
+        log.info("想法已存入redis缓存：" + id);
+        return ResponseResult.SUCCESS("获取想法成功").setData(blogThinking);
+    }
 }

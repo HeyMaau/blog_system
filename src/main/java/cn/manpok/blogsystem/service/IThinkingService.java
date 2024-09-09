@@ -16,4 +16,6 @@ public interface IThinkingService {
     ResponseResult getNormalThinkings(int page, int size);
 
     ResponseResult getAllThinkings(int page, int size, String keyword, String state);
+
+    ResponseResult getThinking(String id);
 }

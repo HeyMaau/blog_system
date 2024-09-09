@@ -132,7 +132,8 @@ public interface Constants {
      * 想法相关常量
      */
     interface Thinking {
-        String KEY_THINKINGS_CACHE = "KEY_THINKINGS_CACHE";
+        String KEY_THINKINGS_CACHE = "key_thinkings_cache";
+        String KEY_THINKING_CACHE = "key_thinking_cache_";
     }
 
     /**
