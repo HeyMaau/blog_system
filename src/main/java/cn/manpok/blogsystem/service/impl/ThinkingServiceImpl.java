@@ -84,6 +84,7 @@ public class ThinkingServiceImpl implements IThinkingService {
         queryThinking.setUpdateTime(new Date());
         //删除redis中的缓存
         redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
+        redisUtil.del(Constants.Thinking.KEY_THINKING_CACHE + thinking.getId());
         return ResponseResult.SUCCESS("修改想法成功");
     }
 
@@ -98,6 +99,7 @@ public class ThinkingServiceImpl implements IThinkingService {
         queryThinking.setState(Constants.STATE_FORBIDDEN);
         //删除redis中的缓存
         redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
+        redisUtil.del(Constants.Thinking.KEY_THINKING_CACHE + thinkingID);
         return ResponseResult.SUCCESS("删除想法成功");
     }
 
@@ -110,6 +112,7 @@ public class ThinkingServiceImpl implements IThinkingService {
         }
         //删除redis中的缓存
         redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
+        redisUtil.del(Constants.Thinking.KEY_THINKING_CACHE + thinkingID);
         return ResponseResult.SUCCESS("彻底删除想法成功");
     }
 
