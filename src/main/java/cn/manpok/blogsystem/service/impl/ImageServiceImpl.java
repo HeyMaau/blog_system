@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
-import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -201,24 +200,14 @@ public class ImageServiceImpl implements IImageService {
         }
         //把文件写到磁盘上
         //返回给前端的结果
-        Map<String, String> result = new HashMap<>(2);
-        //命名规则：基本路径+日期+图片类型+文件名，文件名用ID+后缀名
-        //日期
-        Date currentDate = new Date();
-        String dateFormatStr = this.dateFormat.format(currentDate);
+        Map<String, String> result = new HashMap<>(3);
         //id
         String id = String.valueOf(snowflake.nextId());
         //最终文件路径、文件名
         contentType = "webp";
-        String imageFilePath = imagePath + File.separator + dateFormatStr + File.separator + contentType;
         String fileName = id + "." + contentType;
-        File file = new File(imageFilePath, fileName);
         File file4Nginx = new File(imagePath4Nginx, fileName);
         //创建目录
-        File parentFile = file.getParentFile();
-        if (!parentFile.exists()) {
-            parentFile.mkdirs();
-        }
         if (!file4Nginx.getParentFile().exists()) {
             file4Nginx.getParentFile().mkdirs();
         }
@@ -227,21 +216,23 @@ public class ImageServiceImpl implements IImageService {
         String originalFilename = imageFile.getOriginalFilename();
         image.setName(originalFilename);
         image.setId(id);
-        image.setUrl(dateFormatStr + File.separator + contentType + File.separator + fileName);
+        image.setUrl("");
         image.setState(Constants.STATE_NORMAL);
+        Date currentDate = new Date();
         image.setCreateTime(currentDate);
         image.setUpdateTime(currentDate);
         imageDao.save(image);
         //写入
         try {
-            addWaterMark(imageFile.getInputStream(), file, id);
-            FileUtils.copyFile(file, file4Nginx);
+            addWaterMark(imageFile.getInputStream(), file4Nginx, id);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(e.toString());
+            log.error("上传水印图片失败");
             return ResponseResult.FAIL(ResponseState.IMAGE_UPLOAD_FAILED);
         }
         //返回数据给前端，ID、原始文件名
         result.put("image_id", id);
+        result.put("image_url", imageRedirectBaseUrl + fileName);
         result.put("image_name", originalFilename);
         log.info("上传加水印图片 ----> " + id);
         return ResponseResult.SUCCESS("图片上传成功").setData(result);
