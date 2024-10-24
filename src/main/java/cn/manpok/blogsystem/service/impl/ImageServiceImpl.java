@@ -498,24 +498,31 @@ public class ImageServiceImpl implements IImageService {
                     .outputQuality(1f)   // 图片质量，最大值为1
                     .outputFormat("png")
                     .toFile(tempPNGFile);
-            List<String> command = new ArrayList<>();
-            command.add(shellName);
-            command.add(shellParam);
-            String cwebpCommand = "cwebp -q 75 " + tempPNGFile.getAbsolutePath() + " -o " + destFile.getAbsolutePath();
-            command.add(cwebpCommand);
-            ProcessBuilder processBuilder = new ProcessBuilder(command);
-            Process process = processBuilder.start();
-            int exitCode = process.waitFor();
+            int exitCode = convert2Webp(tempPNGFile, destFile);
             log.info("转换webp图像的exitCode: " + exitCode);
             tempWatermarkFile.delete();
             tempPNGFile.delete();
         } catch (IOException e) {
             e.printStackTrace();
             log.error("上传图片生成图片水印失败");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        }
+    }
+
+    private int convert2Webp(final File src, final File dest) {
+        try {
+            List<String> command = new ArrayList<>();
+            command.add(shellName);
+            command.add(shellParam);
+            String cwebpCommand = "cwebp -q 75 " + src.getAbsolutePath() + " -o " + dest.getAbsolutePath();
+            command.add(cwebpCommand);
+            ProcessBuilder processBuilder = new ProcessBuilder(command);
+            Process process = processBuilder.start();
+            return process.waitFor();
+        } catch (IOException | InterruptedException e) {
+            log.error(e.toString());
             log.error("上传图片生成webp图片失败");
         }
+        return -1;
     }
 
 }
