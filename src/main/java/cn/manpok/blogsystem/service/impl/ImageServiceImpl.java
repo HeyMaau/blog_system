@@ -35,7 +35,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.*;
 
@@ -115,8 +114,6 @@ public class ImageServiceImpl implements IImageService {
     @Value("${blog.system.image.multi-avatar-api-key}")
     private String multiAvatarApiKey;
 
-    private SimpleDateFormat dateFormat = new SimpleDateFormat(Constants.Image.DATE_FORMAT);
-
     @Override
     @Transactional
     public ResponseResult uploadImage(MultipartFile imageFile) {
@@ -147,17 +144,6 @@ public class ImageServiceImpl implements IImageService {
         if (!file4Nginx.getParentFile().exists()) {
             file4Nginx.getParentFile().mkdirs();
         }
-        //写入数据库
-        BlogImage image = new BlogImage();
-        String originalFilename = imageFile.getOriginalFilename();
-        image.setName(originalFilename);
-        image.setId(id);
-        image.setUrl("");
-        image.setState(Constants.STATE_NORMAL);
-        Date currentDate = new Date();
-        image.setCreateTime(currentDate);
-        image.setUpdateTime(currentDate);
-        imageDao.save(image);
         //写入
         try {
             imageFile.transferTo(file4Nginx);
@@ -174,15 +160,28 @@ public class ImageServiceImpl implements IImageService {
             log.error("转换无水印webp图片失败");
             return ResponseResult.FAIL(ResponseState.IMAGE_UPLOAD_FAILED);
         }
+        //写入数据库
+        BlogImage image = new BlogImage();
+        String originalFilename = imageFile.getOriginalFilename();
+        image.setName(originalFilename);
+        image.setId(id);
+        String imageUrl = imageRedirectBaseUrl + webpFileName;
+        image.setUrl(imageUrl);
+        image.setState(Constants.STATE_NORMAL);
+        Date currentDate = new Date();
+        image.setCreateTime(currentDate);
+        image.setUpdateTime(currentDate);
+        imageDao.save(image);
         //返回数据给前端，ID、原始文件名
         result.put("image_id", id);
-        result.put("image_url", imageRedirectBaseUrl + webpFileName);
+        result.put("image_url", imageUrl);
         result.put("image_name", originalFilename);
         log.info("上传图片 ----> " + id);
         return ResponseResult.SUCCESS("图片上传成功").setData(result);
     }
 
     @Override
+    @Transactional
     public ResponseResult uploadImageWithWatermark(MultipartFile imageFile) {
         //判断文件是否存在
         if (imageFile == null) {
@@ -211,17 +210,6 @@ public class ImageServiceImpl implements IImageService {
         if (!file4Nginx.getParentFile().exists()) {
             file4Nginx.getParentFile().mkdirs();
         }
-        //写入数据库
-        BlogImage image = new BlogImage();
-        String originalFilename = imageFile.getOriginalFilename();
-        image.setName(originalFilename);
-        image.setId(id);
-        image.setUrl("");
-        image.setState(Constants.STATE_NORMAL);
-        Date currentDate = new Date();
-        image.setCreateTime(currentDate);
-        image.setUpdateTime(currentDate);
-        imageDao.save(image);
         //写入
         try {
             addWaterMark(imageFile.getInputStream(), file4Nginx, id);
@@ -230,9 +218,21 @@ public class ImageServiceImpl implements IImageService {
             log.error("上传水印图片失败");
             return ResponseResult.FAIL(ResponseState.IMAGE_UPLOAD_FAILED);
         }
+        //写入数据库
+        BlogImage image = new BlogImage();
+        String originalFilename = imageFile.getOriginalFilename();
+        image.setName(originalFilename);
+        image.setId(id);
+        String imageUrl = imageRedirectBaseUrl + fileName;
+        image.setUrl(imageUrl);
+        image.setState(Constants.STATE_NORMAL);
+        Date currentDate = new Date();
+        image.setCreateTime(currentDate);
+        image.setUpdateTime(currentDate);
+        imageDao.save(image);
         //返回数据给前端，ID、原始文件名
         result.put("image_id", id);
-        result.put("image_url", imageRedirectBaseUrl + fileName);
+        result.put("image_url", imageUrl);
         result.put("image_name", originalFilename);
         log.info("上传加水印图片 ----> " + id);
         return ResponseResult.SUCCESS("图片上传成功").setData(result);
