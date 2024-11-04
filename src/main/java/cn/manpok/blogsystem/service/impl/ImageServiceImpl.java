@@ -306,9 +306,7 @@ public class ImageServiceImpl implements IImageService {
             Elements imgs = document.getElementsByTag("img");
             for (Element img : imgs) {
                 String src = img.attr("src");
-                int index = src.lastIndexOf("/");
-                String id = src.substring(index + 1);
-                imageSet.add(id);
+                imageSet.add(src);
             }
             imageSet.add(article.getCover());
         }
@@ -333,7 +331,7 @@ public class ImageServiceImpl implements IImageService {
         }
         List<BlogImage> imageList = imageDao.findAll();
         for (BlogImage image : imageList) {
-            if (!imageSet.contains(image.getId())) {
+            if (!imageSet.contains(image.getUrl())) {
                 image.setState(Constants.STATE_FORBIDDEN);
                 log.info("标记文章图片为删除状态 ----> " + image.getId());
             }
@@ -347,27 +345,9 @@ public class ImageServiceImpl implements IImageService {
     public void deleteImagePhysically() {
         List<BlogImage> imageList = imageDao.findAllByState(Constants.STATE_FORBIDDEN);
         for (BlogImage image : imageList) {
-            File file = new File(imagePath + File.separator + image.getUrl());
-            if (file.exists()) {
-                File parentFile = file.getParentFile();
-                File grandParent = parentFile.getParentFile();
-                boolean delete = file.delete();
-                if (delete) {
-                    log.info("删除本地图片成功 ----> " + image.getId());
-                } else {
-                    log.error("删除本地图片失败 ----> " + image.getId());
-                }
-                if (parentFile.list() == null || parentFile.list().length == 0) {
-                    parentFile.delete();
-                }
-                if (grandParent.list() == null || grandParent.list().length == 0) {
-                    grandParent.delete();
-                }
-            }
-
             //删除为nginx准备的文件夹下的图片
             String url = image.getUrl();
-            String fileName = url.substring(url.lastIndexOf(File.separator) + 1);
+            String fileName = url.substring(url.lastIndexOf("/") + 1);
             File file4Nginx = new File(imagePath4Nginx, fileName);
             if (file4Nginx.exists()) {
                 boolean delete = file4Nginx.delete();
@@ -382,7 +362,7 @@ public class ImageServiceImpl implements IImageService {
         if (count == 0) {
             log.info("没有本地图片需要清理");
         } else {
-            log.info("已清除" + count + "张本地图片");
+            log.info("已清除" + count + "张本地图片记录");
         }
     }
 
