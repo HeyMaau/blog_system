@@ -26,7 +26,7 @@ public class JWTUtil {
      * @return
      */
     public static String generateToken(Map<String, String> payload) {
-        return generateToken(payload, Constants.TimeValue.HOUR_2);
+        return generateToken(payload, Constants.TimeValue.HOUR_4);
     }
 
     /**
