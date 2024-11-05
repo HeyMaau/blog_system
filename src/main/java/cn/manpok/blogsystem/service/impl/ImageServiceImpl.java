@@ -29,13 +29,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.*;
 
 @Service
@@ -394,58 +391,8 @@ public class ImageServiceImpl implements IImageService {
         };
     }
 
-    /**
-     * 获取图片类型对应的contentType
-     *
-     * @param type
-     * @return
-     */
-    private String getContentType(String type) {
-        return switch (type) {
-            case Constants.Image.TYPE_JPG -> Constants.Image.TYPE_JPG_WITH_PREFIX;
-            case Constants.Image.TYPE_GIF -> Constants.Image.TYPE_GIF_WITH_PREFIX;
-            case Constants.Image.TYPE_PNG -> Constants.Image.TYPE_PNG_WITH_PREFIX;
-            case Constants.Image.TYPE_JPEG -> Constants.Image.TYPE_JPEG_WITH_PREFIX;
-            default -> null;
-        };
-    }
-
     private void handleImageNotFound() {
         response.setStatus(HttpStatus.NOT_FOUND.value());
-    }
-
-    /**
-     * 添加文字水印
-     *
-     * @param inputStream
-     * @param format
-     * @param textColor
-     * @param fontSize
-     * @param text
-     * @param destFile
-     */
-    private void addTextWaterMark(InputStream inputStream, String format, Color textColor, int fontSize, String text, int style, File destFile) {
-        try {
-            BufferedImage targetImg = ImageIO.read(inputStream);
-            int width = targetImg.getWidth(); //图片宽
-            int height = targetImg.getHeight(); //图片高
-            BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_BGR);
-            Graphics2D g = bufferedImage.createGraphics();
-            g.drawImage(targetImg, 0, 0, width, height, null);
-            g.setColor(textColor); //水印颜色
-            g.setFont(new Font("微软雅黑", style, fontSize));
-            // 水印内容放置在右下角
-            int x = width - (text.length() + 1) * fontSize;
-            int y = height - fontSize * 2;
-            g.drawString(text, x, y);
-            FileOutputStream outImgStream = new FileOutputStream(destFile);
-            ImageIO.write(bufferedImage, format, outImgStream);
-            outImgStream.flush();
-            outImgStream.close();
-            g.dispose();
-        } catch (Exception e) {
-            log.error("上传图片生成文字水印失败");
-        }
     }
 
     /**
