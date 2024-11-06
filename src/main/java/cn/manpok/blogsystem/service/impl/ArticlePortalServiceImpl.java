@@ -84,6 +84,7 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
             if (categoryID != null) {
                 key += categoryID;
             }
+            key += "_page_size_" + pageInfo.size;
             String articlesStr = (String) redisUtil.get(key);
             if (!TextUtil.isEmpty(articlesStr)) {
                 BlogPaging<List<BlogArticle>> articleListCache = gson.fromJson(articlesStr, new TypeToken<BlogPaging<List<BlogArticle>>>() {
@@ -124,6 +125,7 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
             if (categoryID != null) {
                 key += categoryID;
             }
+            key += "_page_size_" + pageInfo.size;
             redisUtil.set(key, gson.toJson(paging), Constants.TimeValue.MIN_10);
             log.info("文章列表第一页已缓存到redis");
         }

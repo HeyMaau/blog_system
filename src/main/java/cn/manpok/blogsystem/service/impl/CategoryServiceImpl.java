@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -104,7 +105,8 @@ public class CategoryServiceImpl implements ICategoryService {
         //清除redis中的缓存
         redisUtil.del(Constants.Category.KEY_CATEGORY_LIST_CACHE);
         //redis中的文章缓存也要清除
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+        Set keys = redisUtil.keys(Constants.Article.KEY_ARTICLE_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("更新文章分类成功");
     }
 

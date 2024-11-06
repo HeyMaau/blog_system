@@ -21,9 +21,11 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.criteria.Predicate;
 import jakarta.transaction.Transactional;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -133,8 +135,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         //只有发表的文章才保存到SOLR，并清空redis缓存
         if (state.equals(Constants.Article.STATE_PUBLISH)) {
             solrSearchService.addArticle(article2Save);
-            redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
-            redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + article2Save.getCategoryId());
+            Set keys = redisUtil.keys(Constants.Article.KEY_ARTICLE_LIST_CACHE + "*");
+            redisUtil.dels(keys);
         }
         return ResponseResult.SUCCESS("添加文章成功").setData(article2Save.getId());
     }
@@ -193,7 +195,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         if (state.equals(Constants.Article.STATE_TOP)) {
             queryArticle.setState(Constants.Article.STATE_PUBLISH);
             //删除redis中的文章列表缓存
-            redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
+            Set keys = redisUtil.keys(Constants.Article.KEY_ARTICLE_LIST_CACHE + "*");
+            redisUtil.dels(keys);
             return ResponseResult.SUCCESS("取消置顶文章成功");
         }
         //只有已发布的文章才允许置顶操作
@@ -202,8 +205,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         }
         queryArticle.setState(Constants.Article.STATE_TOP);
         //删除redis中的文章列表缓存
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
+        Set keys = redisUtil.keys(Constants.Article.KEY_ARTICLE_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("置顶文章成功");
     }
 
@@ -225,8 +228,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         //redis中的缓存也要删掉，包括阅读量和文章和文章列表
         redisUtil.del(Constants.Article.KEY_ARTICLE_CACHE + articleID);
         redisUtil.del(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID);
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
+        Set keys = redisUtil.keys(Constants.Article.KEY_ARTICLE_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         if (deleteCount < 1) {
             return ResponseResult.FAIL("删除文章失败");
         }
@@ -246,8 +249,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         }
         queryArticle.setState(Constants.Article.STATE_DELETE);
         //删除redis中的文章列表缓存
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
+        Set keys = redisUtil.keys(Constants.Article.KEY_ARTICLE_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("删除文章成功");
     }
 
@@ -293,8 +296,8 @@ public class ArticleAdminServiceImpl implements IArticleAdminService {
         //更新redis中的缓存
         redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + blogArticle.getId(), gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
         //删除redis中的文章列表缓存
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE);
-        redisUtil.del(Constants.Article.KEY_ARTICLE_LIST_CACHE + queryArticle.getCategoryId());
+        Set keys = redisUtil.keys(Constants.Article.KEY_ARTICLE_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("修改文章成功");
     }
 
