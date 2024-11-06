@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -61,7 +62,8 @@ public class ThinkingServiceImpl implements IThinkingService {
         thinking.setUpdateTime(date);
         thinkingDao.save(thinking);
         //删除redis中的缓存
-        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
+        Set keys = redisUtil.keys(Constants.Thinking.KEY_THINKINGS_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("发布想法成功");
     }
 
@@ -83,7 +85,8 @@ public class ThinkingServiceImpl implements IThinkingService {
         queryThinking.setImages(thinking.getImages());
         queryThinking.setUpdateTime(new Date());
         //删除redis中的缓存
-        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
+        Set keys = redisUtil.keys(Constants.Thinking.KEY_THINKINGS_CACHE + "*");
+        redisUtil.dels(keys);
         redisUtil.del(Constants.Thinking.KEY_THINKING_CACHE + thinking.getId());
         return ResponseResult.SUCCESS("修改想法成功");
     }
@@ -98,7 +101,8 @@ public class ThinkingServiceImpl implements IThinkingService {
         }
         queryThinking.setState(Constants.STATE_FORBIDDEN);
         //删除redis中的缓存
-        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
+        Set keys = redisUtil.keys(Constants.Thinking.KEY_THINKINGS_CACHE + "*");
+        redisUtil.dels(keys);
         redisUtil.del(Constants.Thinking.KEY_THINKING_CACHE + thinkingID);
         return ResponseResult.SUCCESS("删除想法成功");
     }
@@ -111,7 +115,8 @@ public class ThinkingServiceImpl implements IThinkingService {
             return ResponseResult.FAIL("彻底删除想法失败");
         }
         //删除redis中的缓存
-        redisUtil.del(Constants.Thinking.KEY_THINKINGS_CACHE);
+        Set keys = redisUtil.keys(Constants.Thinking.KEY_THINKINGS_CACHE + "*");
+        redisUtil.dels(keys);
         redisUtil.del(Constants.Thinking.KEY_THINKING_CACHE + thinkingID);
         return ResponseResult.SUCCESS("彻底删除想法成功");
     }
@@ -122,7 +127,7 @@ public class ThinkingServiceImpl implements IThinkingService {
         PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         //从redis中取第一页的缓存
         if (pageInfo.page == 1) {
-            String thinkingListCacheStr = (String) redisUtil.get(Constants.Thinking.KEY_THINKINGS_CACHE);
+            String thinkingListCacheStr = (String) redisUtil.get(Constants.Thinking.KEY_THINKINGS_CACHE + pageInfo.size);
             if (!TextUtil.isEmpty(thinkingListCacheStr)) {
                 BlogPaging<List<BlogThinking>> thinkingCache = gson.fromJson(thinkingListCacheStr, new TypeToken<BlogPaging<List<BlogThinking>>>() {
                 }.getType());
@@ -136,7 +141,7 @@ public class ThinkingServiceImpl implements IThinkingService {
         //缓存第一页想法
         if (pageInfo.page == 1) {
             String thinkingListCacheStr = gson.toJson(paging);
-            redisUtil.set(Constants.Thinking.KEY_THINKINGS_CACHE, thinkingListCacheStr, Constants.TimeValue.HOUR_2);
+            redisUtil.set(Constants.Thinking.KEY_THINKINGS_CACHE + pageInfo.size, thinkingListCacheStr, Constants.TimeValue.HOUR_2);
             log.info("已缓存第一页想法到redis");
         }
         return ResponseResult.SUCCESS("获取想法列表成功").setData(paging);
