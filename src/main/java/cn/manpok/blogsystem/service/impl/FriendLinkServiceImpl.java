@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Slf4j
@@ -48,7 +49,9 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
         blogFriendLink.setCreateTime(date);
         blogFriendLink.setUpdateTime(date);
         friendLinkDao.save(blogFriendLink);
-        redisUtil.del(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE);
+        //清除缓存
+        Set keys = redisUtil.keys(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("添加友情链接成功");
     }
 
@@ -61,7 +64,9 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
             return ResponseResult.FAIL("删除友情链接失败");
         }
         log.info("管理平台删除友情链接成功 ----> " + friendLinkID);
-        redisUtil.del(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE);
+        //清除缓存
+        Set keys = redisUtil.keys(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("删除友情链接成功");
     }
 
@@ -81,13 +86,17 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
         queryFriendLink.setUrl(blogFriendLink.getUrl());
         queryFriendLink.setLinkOrder(blogFriendLink.getLinkOrder());
         queryFriendLink.setUpdateTime(new Date());
-        redisUtil.del(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE);
+        //清除缓存
+        Set keys = redisUtil.keys(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE + "*");
+        redisUtil.dels(keys);
         return ResponseResult.SUCCESS("修改友情链接成功");
     }
 
     @Override
     public ResponseResult getFriendLinks(int page, int size) {
-        String friendLinkCacheStr = (String) redisUtil.get(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE);
+        //检查分页参数
+        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
+        String friendLinkCacheStr = (String) redisUtil.get(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE + pageInfo.size);
         if (!TextUtil.isEmpty(friendLinkCacheStr)) {
             BlogPaging<List<BlogFriendLink>> friendLinkCache = gson.fromJson(friendLinkCacheStr, new TypeToken<BlogPaging<List<BlogFriendLink>>>() {
             }.getType());
@@ -96,12 +105,10 @@ public class FriendLinkServiceImpl implements IFriendLinkService {
                 return ResponseResult.SUCCESS("获取友情链接列表成功").setData(friendLinkCache);
             }
         }
-        //检查分页参数
-        PageUtil.PageInfo pageInfo = PageUtil.checkPageParam(page, size);
         Pageable pageable = PageRequest.of(pageInfo.page - 1, pageInfo.size, Sort.Direction.ASC, "linkOrder");
         Page<BlogFriendLink> queryFriendLinks = friendLinkDao.findAll(pageable);
         BlogPaging<List<BlogFriendLink>> paging = new BlogPaging<>(pageInfo.page, pageInfo.size, queryFriendLinks.getTotalElements(), queryFriendLinks.getContent());
-        redisUtil.set(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE, gson.toJson(paging), Constants.TimeValue.HOUR);
+        redisUtil.set(Constants.FriendLink.KEY_FRIEND_LINK_LIST_CACHE + pageInfo.size, gson.toJson(paging), Constants.TimeValue.HOUR);
         log.info("友情链接列表已缓存到redis");
         return ResponseResult.SUCCESS("获取友情链接列表成功").setData(paging);
     }

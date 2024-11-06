@@ -168,7 +168,7 @@ public interface Constants {
     }
 
     interface FriendLink {
-        String KEY_FRIEND_LINK_LIST_CACHE = "key_friend_link_list_cache";
+        String KEY_FRIEND_LINK_LIST_CACHE = "key_friend_link_list_cache_page_size_";
     }
 
     /**
