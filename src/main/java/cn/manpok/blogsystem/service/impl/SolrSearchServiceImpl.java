@@ -5,19 +5,14 @@ import cn.manpok.blogsystem.pojo.BlogPaging;
 import cn.manpok.blogsystem.pojo.BlogSolrSearch;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.service.ISolrSearchService;
-import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.ListUtil;
-import cn.manpok.blogsystem.utils.PageUtil;
-import cn.manpok.blogsystem.utils.TextUtil;
+import cn.manpok.blogsystem.utils.*;
 import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
-import com.vladsch.flexmark.util.ast.Node;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrInputDocument;
-import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -31,6 +26,9 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
 
     @Autowired
     private SolrClient solrClient;
+
+    @Autowired
+    private HtmlUtil htmlUtil;
 
     @Autowired
     private Parser parser;
@@ -170,37 +168,16 @@ public class SolrSearchServiceImpl implements ISolrSearchService {
         //如果是MD，则先转HTML
         String html;
         if (blogArticle.getType().equals(Constants.Article.TYPE_MARKDOWN)) {
-            html = md2Html(blogArticle.getContent());
+            html = htmlUtil.md2Html(blogArticle.getContent());
         } else {
             html = blogArticle.getContent();
         }
-        String text = html2Text(html);
+        String text = htmlUtil.html2Text(html);
         document.addField("content", text);
         document.addField("labels", blogArticle.getLabels());
         document.addField("category_id", blogArticle.getCategoryId());
         document.addField("create_time", blogArticle.getCreateTime());
         document.addField("update_time", blogArticle.getUpdateTime());
         return document;
-    }
-
-    /**
-     * Markdown转HTML
-     *
-     * @param md
-     * @return
-     */
-    private String md2Html(String md) {
-        Node document = parser.parse(md);
-        return renderer.render(document);
-    }
-
-    /**
-     * HTML转纯文本
-     *
-     * @param html
-     * @return
-     */
-    private String html2Text(String html) {
-        return Jsoup.parse(html).text();
     }
 }

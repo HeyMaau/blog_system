@@ -9,15 +9,11 @@ import cn.manpok.blogsystem.pojo.BlogPaging;
 import cn.manpok.blogsystem.response.ResponseResult;
 import cn.manpok.blogsystem.response.ResponseState;
 import cn.manpok.blogsystem.service.IArticlePortalService;
-import cn.manpok.blogsystem.utils.Constants;
-import cn.manpok.blogsystem.utils.PageUtil;
-import cn.manpok.blogsystem.utils.RedisUtil;
-import cn.manpok.blogsystem.utils.TextUtil;
+import cn.manpok.blogsystem.utils.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,6 +48,9 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
 
     @Autowired
     private IArticleAdminDao articleAdminDao;
+
+    @Autowired
+    private HtmlUtil htmlUtil;
 
     @Override
     public ResponseResult getRecommendArticle(String articleID, int size) {
@@ -114,7 +113,13 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
         }, pageable);
         //返回前端的文章内容需要去除html标签
         for (BlogArticle article : all.getContent()) {
-            String text = Jsoup.parse(article.getContent()).text();
+            String text;
+            if (article.getType().equals("1")) {
+                String html = htmlUtil.md2Html(article.getContent());
+                text = htmlUtil.html2Text(html);
+            } else {
+                text = htmlUtil.html2Text(article.getContent());
+            }
             article.setContent(text);
         }
         //要把分页封装到自定义的Paging中，因gson序列化与反序列化需要
