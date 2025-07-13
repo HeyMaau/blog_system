@@ -13,7 +13,9 @@ import cn.manpok.blogsystem.utils.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import jakarta.persistence.criteria.Predicate;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Service
@@ -51,6 +55,9 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
 
     @Autowired
     private HtmlUtil htmlUtil;
+
+    @Autowired
+    private HttpServletRequest request;
 
     @Override
     public ResponseResult getRecommendArticle(String articleID, int size) {
@@ -139,6 +146,19 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
 
     @Override
     public ResponseResult getNormalArticle(String articleID) {
+        String UA = request.getHeader("User-Agent");
+        boolean isOldVersion = TextUtil.isEmpty(UA);
+        if (!isOldVersion) {
+            Pattern pattern = Pattern.compile("manpok_app/(\\d+\\.\\d+)");
+            Matcher matcher = pattern.matcher(UA);
+
+            if (matcher.find()) {
+                String version = matcher.group(1);
+                isOldVersion = Float.parseFloat(version) < 2.0;
+            } else {
+                isOldVersion = true;
+            }
+        }
         //先从缓存中查文章对应的阅读量
         Long viewCountCache = (Long) redisUtil.get(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID);
         if (viewCountCache == null) {
@@ -150,6 +170,12 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
             queryArticle.setViewCount(++viewCount);
             redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
             redisUtil.set(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID, viewCount);
+            if (isOldVersion && "1".equals(queryArticle.getType())) {
+                BlogArticle copyBlogArticle = new BlogArticle();
+                BeanUtils.copyProperties(queryArticle, copyBlogArticle);
+                copyBlogArticle.setContent(htmlUtil.md2Html(queryArticle.getContent()));
+                return ResponseResult.SUCCESS("获取文章成功").setData(copyBlogArticle);
+            }
             return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
         }
         //若有阅读量缓存，则从redis中查文章的缓存
@@ -163,6 +189,12 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
             redisUtil.set(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID, viewCountCache);
             //刷新文章缓存
             redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(article), Constants.TimeValue.HOUR_2);
+            if (isOldVersion && "1".equals(article.getType())) {
+                BlogArticle copyBlogArticle = new BlogArticle();
+                BeanUtils.copyProperties(article, copyBlogArticle);
+                copyBlogArticle.setContent(htmlUtil.md2Html(article.getContent()));
+                return ResponseResult.SUCCESS("获取文章成功").setData(copyBlogArticle);
+            }
             return ResponseResult.SUCCESS("获取文章成功").setData(article);
         }
         //缓存中没有，则从数据库中查询
@@ -180,6 +212,12 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
         redisUtil.set(Constants.Article.KEY_VIEW_COUNT_CACHE + articleID, viewCountCache);
         //保存文章缓存
         redisUtil.set(Constants.Article.KEY_ARTICLE_CACHE + articleID, gson.toJson(queryArticle), Constants.TimeValue.HOUR_2);
+        if (isOldVersion && "1".equals(queryArticle.getType())) {
+            BlogArticle copyBlogArticle = new BlogArticle();
+            BeanUtils.copyProperties(queryArticle, copyBlogArticle);
+            copyBlogArticle.setContent(htmlUtil.md2Html(queryArticle.getContent()));
+            return ResponseResult.SUCCESS("获取文章成功").setData(copyBlogArticle);
+        }
         return ResponseResult.SUCCESS("获取文章成功").setData(queryArticle);
     }
 }
