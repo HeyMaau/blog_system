@@ -148,7 +148,7 @@ public class ArticlePortalServiceImpl implements IArticlePortalService {
     public ResponseResult getNormalArticle(String articleID) {
         String UA = request.getHeader("User-Agent");
         boolean isOldVersion = TextUtil.isEmpty(UA);
-        if (!isOldVersion) {
+        if (!isOldVersion && UA.toLowerCase().contains("android")) {
             Pattern pattern = Pattern.compile("manpok_app/(\\d+\\.\\d+)");
             Matcher matcher = pattern.matcher(UA);
 
